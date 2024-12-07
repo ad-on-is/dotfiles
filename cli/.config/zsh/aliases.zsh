@@ -47,14 +47,12 @@ function stowadd() {
   what=$(echo $what | sed -e "s/~\///g")
   what=$(echo $what | sed  -e "s/\/home\/$(whoami)\///g")
   cat=$2
-  # read -p "Adding $src to $cat. Continue (Y/N)?"
 
    read -r "response?Adding $src to $cat. Are you sure? [Y/n]"
   # response=${response,,} # tolower
   if [[ "$response" =~ ^[Nn]$ ]]; then
-    echo "Not doing anything"
+    echo "Aborted."
   else
-    echo "yes"
     mv $src $HOME/dotfiles/$cat/$what
     cd $HOME/dotfiles
     stow $cat
