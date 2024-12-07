@@ -38,12 +38,17 @@ function stowpull() {
 
 function stowadd() {
   curdir=$(pwd)
-  what=$1
   src=$1
-  if [[ $what = "." ]]; then
-    what=$(pwd)
+  if [[ "$src" = "." ]]; then
     src=$(pwd)
   fi
+ 
+  if [[ "$src" != /* ]]; then 
+    src=$(pwd)/$src
+  fi
+
+  what=$src
+
   what=$(echo $what | sed -e "s/~\///g")
   what=$(echo $what | sed  -e "s/\/home\/$(whoami)\///g")
   cat=$2
@@ -56,7 +61,10 @@ function stowadd() {
     mv $src $HOME/dotfiles/$cat/$what
     cd $HOME/dotfiles
     stow $cat
-    stowpush
+    git add .
+  git commit -am "changes"
+  git push
+
     cd $curdir
   fi
 
