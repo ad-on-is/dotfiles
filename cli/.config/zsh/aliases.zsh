@@ -18,8 +18,6 @@ alias get_addcerts='scp -r adis_durakovic@dnmc.in:/home/adis_durakovic/webserver
 
 alias docker-compose='docker compose'
 
-# alias stowpush='curdir=$(pwd) cd $HOME/dotfiles && git add . && git commit -am "changes" && git push && cd $curdir'
-alias stowpull='cd $HOME/dotfiles && git pull'
 
 function stowpush() {
   curdir=$(pwd)
@@ -30,7 +28,16 @@ function stowpush() {
   cd $curdir
 }
 
+function stowpull() {
+  curdir=$(pwd)
+  cd $HOME/dotfiles
+  git pull
+  cd $curdir
+}
+
+
 function stowadd() {
+  curdir=$(pwd)
   what=$1
   src=$1
   if [[ $what = "." ]]; then
@@ -48,7 +55,11 @@ function stowadd() {
     echo "Not doing anything"
   else
     echo "yes"
+    echo "mv $src $HOME/dotfiles/$cat/$what"
+    cd $HOME/dotfiles
+    stow $cat
     stowpush
+    cd $curdir
   fi
 
 
