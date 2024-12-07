@@ -47,6 +47,12 @@ function stowadd() {
     src=$(pwd)/$src
   fi
 
+
+  if [[ ! -e "$src" ]]; then
+    echo "$src not found!"
+    return
+  fi
+
   what=$src
 
   what=$(echo $what | sed -e "s/~\///g")
@@ -62,8 +68,8 @@ function stowadd() {
     cd $HOME/dotfiles
     stow $cat
     git add .
-  git commit -am "changes"
-  git push
+    git commit -am "changes"
+    git push
 
     cd $curdir
   fi
