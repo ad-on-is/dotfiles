@@ -39,6 +39,7 @@ function stowpull() {
 function stowadd() {
   curdir=$(pwd)
   src=$1
+  cat=$2
   if [[ "$src" = "." ]]; then
     src=$(pwd)
   fi
@@ -47,19 +48,29 @@ function stowadd() {
     src=$(pwd)/$src
   fi
 
+  what=$src
+  what=$(echo $what | sed -e "s/~\///g")
+  what=$(echo $what | sed  -e "s/\/home\/$(whoami)\///g")
+  BLUE='\033[0;34m'
+  YELLOW='\033[0;33m'
+  GREEN='\033[0;32m'
+  RED='\033[0;31m'
+  NC='\033[0m'
+
+
 
   if [[ ! -e "$src" ]]; then
-    echo "$src not found!"
+    echo
+    echo -e "$src ${RED}not found!${NC}"
     return
   fi
 
-  what=$src
 
-  what=$(echo $what | sed -e "s/~\///g")
-  what=$(echo $what | sed  -e "s/\/home\/$(whoami)\///g")
-  cat=$2
 
-   read -r "response?Adding $src to $cat. Are you sure? [Y/n]"
+  echo -e "${BLUE}From:\t${NC} $src"
+  echo -e "${BLUE}To:\t${NC} $HOME/dotfiles/${GREEN}$cat${NC}/$what"
+
+   read -r "response?Continue? [Y/n]"
   # response=${response,,} # tolower
   if [[ "$response" =~ ^[Nn]$ ]]; then
     echo "Aborted."
