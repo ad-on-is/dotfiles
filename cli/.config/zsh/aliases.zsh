@@ -18,8 +18,8 @@ alias get_addcerts='scp -r adis_durakovic@dnmc.in:/home/adis_durakovic/webserver
 
 alias docker-compose='docker compose'
 
-alias stowpush='git --git-dir $HOME/dotfiles/.git add . && git --git-dir $HOME/dotfiles/.git commit -am "changes" && git --git-dir $HOME/dotfiles/.git push'
-alias stowpull='git --git-dir $HOME/dotfiles/.git pull'
+alias stowpush='curdir=$(pwd) cd $HOME/dotfiles && git add . && git commit -am "changes" && git push && cd $curdir'
+alias stowpull='cd $HOME/dotfiles && git pull'
 
 function stowadd() {
   what=$1
