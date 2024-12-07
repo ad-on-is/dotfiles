@@ -75,14 +75,14 @@ function stowadd() {
   if [[ "$response" =~ ^[Nn]$ ]]; then
     echo "Aborted."
   else
-    mv $src $HOME/dotfiles/$cat/$what
-    cd $HOME/dotfiles
-    stow $cat -v
-    git add .
-    git commit -am "changes"
-    git push
-
-    cd $curdir
+    # mv $src $HOME/dotfiles/$cat/$what
+    # cd $HOME/dotfiles
+    # stow $cat -v
+    # git add .
+    # git commit -am "changes"
+    # git push
+    #
+    # cd $curdir
   fi
 
 
