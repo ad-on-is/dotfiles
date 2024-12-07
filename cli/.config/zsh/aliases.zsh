@@ -77,7 +77,7 @@ function stowadd() {
   else
     mv $src $HOME/dotfiles/$cat/$what
     cd $HOME/dotfiles
-    stow $cat
+    stow $cat -v
     git add .
     git commit -am "changes"
     git push
