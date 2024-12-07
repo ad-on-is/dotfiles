@@ -55,7 +55,7 @@ function stowadd() {
     echo "Not doing anything"
   else
     echo "yes"
-    echo "mv $src $HOME/dotfiles/$cat/$what"
+    mv $src $HOME/dotfiles/$cat/$what
     cd $HOME/dotfiles
     stow $cat
     stowpush
