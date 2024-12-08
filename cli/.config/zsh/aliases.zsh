@@ -18,76 +18,6 @@ alias get_addcerts='scp -r adis_durakovic@dnmc.in:/home/adis_durakovic/webserver
 
 alias docker-compose='docker compose'
 
-
-function stowpush() {
-  curdir=$(pwd)
-  cd $HOME/dotfiles
-  git add .
-  git commit -am "changes"
-  git push
-  cd $curdir
-}
-
-function stowpull() {
-  curdir=$(pwd)
-  cd $HOME/dotfiles
-  git pull
-  cd $curdir
-}
-
-
-function stowadd() {
-  curdir=$(pwd)
-  src=$1
-  cat=$2
-  if [[ "$src" = "." ]]; then
-    src=$(pwd)
-  fi
- 
-  if [[ "$src" != /* ]]; then 
-    src=$(pwd)/$src
-  fi
-
-  what=$src
-  what=$(echo $what | sed -e "s/~\///g")
-  what=$(echo $what | sed  -e "s/\/home\/$(whoami)\///g")
-  BLUE='\033[0;34m'
-  YELLOW='\033[0;33m'
-  GREEN='\033[0;32m'
-  RED='\033[0;31m'
-  NC='\033[0m'
-
-
-
-  if [[ ! -e "$src" ]]; then
-    echo
-    echo -e "$src ${RED}not found!${NC}"
-    return
-  fi
-
-
-
-  echo -e "${BLUE}From:\t${NC} $src"
-  echo -e "${BLUE}To:\t${NC} $HOME/dotfiles/${GREEN}$cat${NC}/$what"
-
-   read -r "response?Continue? [Y/n]"
-  # response=${response,,} # tolower
-  if [[ "$response" =~ ^[Nn]$ ]]; then
-    echo "Aborted."
-  else
-    # mv $src $HOME/dotfiles/$cat/$what
-    # cd $HOME/dotfiles
-    # stow $cat -v
-    # git add .
-    # git commit -am "changes"
-    # git push
-    #
-    # cd $curdir
-  fi
-
-
-}
-
 alias fix-datagrip='fd -H "\\.lock" ~/.var/app/com.jetbrains.DataGrip -x rm'
 
 # function http() {
@@ -123,7 +53,7 @@ alias fix-datagrip='fd -H "\\.lock" ~/.var/app/com.jetbrains.DataGrip -x rm'
 #             if [ -n "$l" ]; then
 #                 headers+="$l\n"
 #             fi
-            
+
 #         fi
 #     combheaders="$method\n$headers"
 #     done <<< "$out"
@@ -188,7 +118,7 @@ function landevice() {
     vlanstr=""
     for vlan in "${vlans[@]}"
     do
-        vlanstr="10.40.$vlan.0/24 $vlanstr" 
+        vlanstr="10.40.$vlan.0/24 $vlanstr"
     done
 
     final=`nmap -sL $(echo $vlanstr | rev | cut -c 2- | rev) | grep '.lan' | grep -i $device`
@@ -203,5 +133,5 @@ function landevice() {
     echo $final
 
 
-    
+
 }
