@@ -24,7 +24,7 @@ zinit light-mode for \
     zdharma-continuum/zinit-annex-bin-gem-node \
     zdharma-continuum/zinit-annex-patch-dl \
     zdharma-continuum/zinit-annex-rust  \
-    zsh-autosuggestions \
+    zsh-users/zsh-autosuggestions \
     Aloxaf/fzf-tab \
     zsh-users/zsh-syntax-highlighting \
     sudo
@@ -99,7 +99,7 @@ _atuin_up_search() {
 }
 
 
-   
+
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "/$HOME/.bun/_bun"
 
