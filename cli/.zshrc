@@ -27,7 +27,7 @@ zinit light-mode for \
     zsh-users/zsh-autosuggestions \
     Aloxaf/fzf-tab \
     zsh-users/zsh-syntax-highlighting \
-    sudo
+    https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/sudo/sudo.plugin.zsh
 
 
 
