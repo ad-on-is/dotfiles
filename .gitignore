@@ -1,1 +1,3 @@
-cli/.config/zsh/plugins
+cli/.config/zsh/plugins/*
+!cli/.config/zsh/plugins/sudo
+!cli/.config/zsh/plugins/sudo/*
