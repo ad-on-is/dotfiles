@@ -1,5 +1,8 @@
 
 
+
+zstyle ':completion:*' cache-path "$XDG_CACHE_HOME"/zsh/zcompcache
+
 source ~/.zshenv
 source ~/.config/zsh/aliases.zsh
 
@@ -38,7 +41,7 @@ source ~/.config/zsh/zstyle.zsh
 
 
 autoload -U compinit && compinit -i  # BEFORE zoxide init
-
+# compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
 
 
 
@@ -105,14 +108,7 @@ _atuin_up_search() {
 
 
 
-# bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
-# bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
-# bindkey -M menuselect '\r' .accept-line
-
-# bindkey -s "\C-k" 'clear^M'
 bindkey '^l'      autosuggest-accept
-
-
 
 function clear-scrollback-widget {
   clear && printf '\e[3J'
@@ -127,3 +123,5 @@ if [[ -f $HOME/.local/share/bash-completion/completions/appman ]]; then
   bashcompinit
   source "$HOME/.local/share/bash-completion/completions/appman"
 fi
+
+

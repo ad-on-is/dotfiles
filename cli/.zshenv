@@ -3,10 +3,11 @@ skip_global_compinit=1
 
 # HSTR configuration - add this to ~/.zshrc
 # setopt histignorespace           # skip cmds w/ leading space from history
+
 export HISTFILESIZE=100000000
 export HISTSIZE=${HISTFILESIZE}
 export SAVEHIST=${HISTFILESIZE}
-export HISTFILE=~/.zsh_history
+export HISTFILE="$XDG_STATE_HOME"/zsh/history
 export STARSHIP_LOG=error
 
 setopt HIST_FIND_NO_DUPS
@@ -15,26 +16,61 @@ setopt appendhistory
 setopt INC_APPEND_HISTORY  
 setopt SHARE_HISTORY
 
-#export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk/
-#export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/Cellar/unox/0.2.0_1/bin:$ANDROID_SDK_ROOT/emulator:$ANDROID_SDK_ROOT/tools:$PATH
+# XDG FIXUP
+export ANDROID_USER_HOME="$XDG_DATA_HOME"/android
+export ANDROID_EMLUATOR_HOME="$XDG_DATA_HOME"/android
+export ANDROID_AVD_HOME="$XDG_DATA_HOME"/android/avd
+export CARGO_HOME="$XDG_DATA_HOME"/cargo  
+export FNM_PATH="$XDG_DATA_HOME"/fnm
+export DOTNET_CLI_HOME="$XDG_DATA_HOME"/dotnet
+export DUB_HOME="$XDG_DATA_HOME/dub"
+export GNUPGHOME="$XDG_DATA_HOME"/gnupg
+export GOPATH=$XDG_DATA_HOME/go
+export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
+export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
+export XCURSOR_PATH=/usr/share/icons:$XDG_DATA_HOME/icons
+export JULIA_DEPOT_PATH="$XDG_DATA_HOME/julia:$JULIA_DEPOT_PATH"
+export ICEAUTHORITY="$XDG_CACHE_HOME"/ICEauthority
+export XCOMPOSEFILE="$XDG_CONFIG_HOME"/X11/xcompose
+export TERMINFO="$XDG_DATA_HOME"/terminfo                                     
+export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo
+export NODE_REPL_HISTORY="$XDG_STATE_HOME"/node_repl_history
+export NPM_CONFIG_CACHE="$XDG_CACHE_HOME"/npm
+export NPM_CONFIG_INIT_MODULE="$XDG_CONFIG_HOME"/npm/config/npm-init.js       
+export NPM_CONFIG_TMP="$XDG_RUNTIME_DIR"/npm
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
+export NUGET_PACKAGES="$XDG_CACHE_HOME"/NuGetPackages
+export NVM_DIR="$XDG_DATA_HOME"/nvm
+export OMNISHARPHOME="$XDG_CONFIG_HOME"/omnisharp
+export RANDFILE="$XDG_CACHE_HOME"/rnd
+export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
+export PLATFORMIO_CORE_DIR="$XDG_DATA_HOME"/platformio
+export PSQL_HISTORY="$XDG_STATE_HOME/psql_history" 
+export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
+export WINEPREFIX="$XDG_DATA_HOME"/wine
+
+
+
+
+
+export JAVA_HOME=/etc/alternatives/jre
+export BUN_INSTALL="$HOME/.bun"
+
+
+export CHROME_EXECUTABLE=/usr/bin/chromium-browser
+
+export PNPM_HOME=$XDG_DATA_HOME/pnpm
+
+
+
 export EDITOR=/bin/nvim
-#export DOCKER_HOST=tcp://127.0.0.1:2375
-# PLATFORMIOBINPATH=/home/add/.platformio/penv/bin
-# export FLUTTERPATH=$HOME/Flutter/flutter-sdk-linux
-# export ANDROID_HOME=$HOME/Android
-# export GOPATH=$HOME/Go
-# export GOROOT=$GOPATH/go
-# export ANDROID_SDK_ROOT=$ANDROID_HOME/tools
-# export PATH=$HOME/Docker/bin:$PATH:/usr/lib/dart/bin:/snap/bin:$FLUTTERPATH/bin:$ANDROID_SDK_ROOT/bin:/usr/lib/dart/bin:$GOROOT/bin:$GOPATH/tools/bin:$GOPATH/bin:$HOME/Docker/.npm-global/bin:$PLATFORMIOBINPATH
-export GOPATH=$HOME/go
-export PIPX_BIN_DIR=~/.local/share/pipx/bin
+export PIPX_BIN_DIR=$XDG_DATA_HOME/pipx/bin
 export ANDROID_HOME=$HOME/Development/Android/Sdk
 export FLUTTER_ROOT=$HOME/Development/Flutter/Sdk
+export CHROME_EXECUTABLE=/usr/bin/chromium-browser
 PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
 PATH=$PATH:$ANDROID_HOME/platform-tools
-export CHROME_EXECUTABLE=/usr/bin/chromium-browser
-#export PATH=$PATH:$HOME/Development/Docker/bin
-PATH=$PATH:$HOME/.fnm
+PATH=$PATH:$XDG_DATA_HOME/fnm
 PATH=$FLUTTER_ROOT/bin:$PATH
 PATH=$PATH:/usr/lib/dart/bin
 PATH=$PATH:$GOROOT/bin:$GOPATH/tools/bin:$GOPATH/bin
@@ -44,31 +80,23 @@ PATH=$PATH:$HOME/.local/bin
 PATH=$PATH:$HOME/.local/bin/docker
 
 
-export JAVA_HOME=/etc/alternatives/jre
 PATH=$PATH:$JAVA_HOME/bin
 PATH=$PATH:$HOME/.platformio/penv/bin
 
 PATH=$PATH:$PIPX_BIN_DIR
-export BUN_INSTALL="$HOME/.bun"
 PATH="$BUN_INSTALL/bin:$PATH"
 
 
 
-export CHROME_EXECUTABLE=/usr/bin/chromium-browser
 
-PATH=$PATH:~/.cargo/bin
+PATH=$PATH:$CARGO_HOME/bin
 PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
 
 
-export PNPM_HOME=$HOME/.local/share/pnpm
 export PATH=$PNPM_HOME:$PATH
 
 export PATH=$PATH
-#export ADB_SERVER_SOCKET=tcp:192.168.1.100:5037
-# export ADB_SERVER_SOCKET=tcp:"$(cat /etc/resolv.conf | tail -n1 | cut -d " " -f 2)":5037
-# export ADB_SERVER_SOCKET=tcp:"$(tail -1 /etc/resolv.conf | cut -d' ' -f2)":5037
 
-# docker-compose vars
 
 if [[ -f ~/.secrets   ]]; then
   source ~/.secrets
@@ -84,7 +112,7 @@ export EXA_ICON_SPACING=2
 export OPENCV_LOG_LEVEL=ERROR
 
 
-. "$HOME/.cargo/env"
+. "$CARGO_HOME/env"
 
 ZSH_DISABLE_COMPFIX="true"
 ZELLIJ_AUTO_EXIT=true

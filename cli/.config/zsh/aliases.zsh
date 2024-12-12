@@ -1,3 +1,6 @@
+alias adb='HOME="$XDG_DATA_HOME"/android adb'
+alias mvn="mvn -gs $XDG_CONFIG_HOME/maven/settings.xml"
+
 alias gatekeeper-enable='sudo spctl --master-enable'
 alias gatekeeper-disable='sudo spctl --master-disable'
 alias drminone='docker rmi $(docker images -f "dangling=true" -q)'
