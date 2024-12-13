@@ -111,8 +111,9 @@ export EXA_ICON_SPACING=2
 # prevent howdy (facial recognition) warning message
 export OPENCV_LOG_LEVEL=ERROR
 
-
+if [[ -f "$CARGO_HOME/env" ]]; then
 . "$CARGO_HOME/env"
+fi
 
 ZSH_DISABLE_COMPFIX="true"
 ZELLIJ_AUTO_EXIT=true
