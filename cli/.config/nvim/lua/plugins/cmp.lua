@@ -45,6 +45,11 @@ return {
       end
     end, { "i", "s" })
 
+    opts.completion = {
+      completeopt = "menu,menuone,noinsert",
+    }
+    opts.preselect = cmp.PreselectMode.None
+
     opts.sorting = {
       -- priority_weight = 2,
       comparators = {

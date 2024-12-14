@@ -6,7 +6,7 @@ return {
         update_in_insert = true,
       },
       inlay_hints = {
-        enabled = false,
+        enabled = true,
       },
     },
   },
@@ -38,11 +38,7 @@ return {
         left_pad = { 1, 2, 4, 6, 8, 10, 12, 14 },
       },
       checkbox = {
-        -- Turn on / off checkbox state rendering
         enabled = true,
-        -- Determines how icons fill the available space:
-        --  inline:  underlying text is concealed resulting in a left aligned icon
-        --  overlay: result is left padded with spaces to hide any additional text
         position = "inline",
         unchecked = {
           icon = "󰄱 ",
@@ -50,9 +46,6 @@ return {
         checked = {
           icon = "󰱒 ",
         },
-        -- custom = {
-        --   todo = { raw = "[-]", rendered = "󰥔 ", highlight = "RenderMarkdownTodo", scope_highlight = nil },
-        -- },
       },
     },
   },
