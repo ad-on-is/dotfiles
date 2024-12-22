@@ -20,6 +20,31 @@ alias gobuildrpi='env GOOS=linux GOARCH=arm GOARM=5 go build'
 alias get_addcerts='scp -r adis_durakovic@dnmc.in:/home/adis_durakovic/webserver/config/nginx/ssl/archive/add.dnmc.in ~/Docker/conf/nginx/ssl/archive/add.dnmc.in'
 
 alias docker-compose='docker compose'
+alias rg='rg --smart-case'
+
+function distrobox-save() {
+  if [[ -z $1 ]]; then
+    echo "Please provide a distrobox name"
+    return
+  fi
+  name=$1
+  file="$HOME/.local/distrobox/$name.tar.gz"
+  echo "Saving $name to $file"
+  docker container commit -p "$name" "$name"
+  docker save "$name":latest | gzip > $file
+}
+
+function distrobox-restore() {
+ if [[ -z $1 ]]; then
+    echo "Please provide a distrobox name"
+    return
+  fi
+
+  name=$1
+  file="$HOME/.local/distrobox/$name.tar.gz"
+
+  docker load < $file
+}
 
 alias fix-datagrip='fd -H "\\.lock" ~/.var/app/com.jetbrains.DataGrip -x rm'
 

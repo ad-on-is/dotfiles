@@ -1,84 +1,128 @@
+-- local M = {}
+--
+-- M.code_actions = function(mouse)
+--
+--
+-- end
+
 return {
 
-  code_actions = function()
-    local actions = require("telescope.actions")
-    local action_state = require("telescope.actions.state")
+  code_actions = function(mouse)
+    local function apply_specific_code_action(action_title)
+      vim.lsp.buf.code_action({
+        filter = function(action)
+          return action.title == action_title
+        end,
+        apply = true,
+      })
+    end
+    local actions = {
 
-    local lsp_actions = {
-      { "  Code Actions", vim.lsp.buf.code_action },
-      { "󰿨 Go to Definition", vim.lsp.buf.definition },
-      { " Goto Implementation", vim.lsp.buf.implementation },
-      { "󰮥 Show signature help", vim.lsp.buf.signature_help },
-      { "󰵉 Show References", vim.lsp.buf.references },
+      {
+        name = "  Code Actions",
+        hl = "Exgreen",
+        items = {},
+      },
+
+      { name = "separator" },
+      {
+        name = "󰿨 Goto Definition",
+        cmd = vim.lsp.buf.definition,
+        hl = "Exwhite",
+      },
+
+      {
+        name = " Goto Implementation",
+        cmd = vim.lsp.buf.implementation,
+        hl = "Exwhite",
+      },
+      {
+        name = "󰵉 Show References",
+        hl = "Exwhite",
+        cmd = vim.lsp.buf.references,
+      },
+      { name = "separator" },
+      {
+        name = "󰑕 Rename",
+        cmd = vim.lsp.buf.rename,
+        hl = "Exyellow",
+      },
     }
 
-    require("telescope.pickers")
-      .new({}, {
-        prompt_title = "LSP Actions",
-        -- layout_strategy = "vertical",
-        layout_config = {
-          horizontal = {
-            prompt_position = "top",
-            -- preview_width = 0.60,
-          },
-          width = 0.45,
-          height = 0.2,
-        },
-        finder = require("telescope.finders").new_table({
-          results = lsp_actions,
-          entry_maker = function(entry)
-            return {
-              value = entry[2],
-              display = entry[1],
-              ordinal = entry[1],
-            }
-          end,
-        }),
-        sorter = require("telescope.sorters").get_generic_fuzzy_sorter(),
-        attach_mappings = function(prompt_bufnr, map)
-          actions.select_default:replace(function()
-            local selection = action_state.get_selected_entry()
-            actions.close(prompt_bufnr)
-            if selection then
-              selection.value()
-            end
-          end)
-          return true
-        end,
-      })
-      :find()
-  end,
+    local bufnr = vim.api.nvim_get_current_buf()
+    local params = vim.lsp.util.make_range_params()
 
-  live_grep_current_tree_selection = function()
-    local api = require("nvim-tree.api")
-    local node = api.tree.get_node_under_cursor()
+    params.context = {
+      triggerKind = vim.lsp.protocol.CodeActionTriggerKind.Invoked,
+      diagnostics = vim.lsp.diagnostic.get_line_diagnostics(),
+    }
 
-    if not node then
-      -- If no node is selected, search from cwd
-      require("telescope.builtin").live_grep()
-      return
-    end
+    local code_acts = {}
+    vim.lsp.buf_request(bufnr, "textDocument/codeAction", params, function(_, results, _, _)
+      if #results > 0 then
+        for i, res in ipairs(results) do
+          code_acts[i] = {
+            name = res.title,
+            hl = "Exwhite",
+            cmd = function()
+              apply_specific_code_action(res.title)
+            end,
+          }
+        end
+        actions[1].items = code_acts
+        require("menu").open(actions, { mouse = mouse or false })
+      end
+    end)
+    -- os.execute("sleep " .. tonumber(0.1))
 
-    local path
-    if node.type == "directory" then
-      path = node.absolute_path
-    else
-      -- If file is selected, search from its parent directory
-      path = vim.fn.fnamemodify(node.absolute_path, ":h")
-    end
-
-    -- Ensure the path exists and is accessible
-    if vim.fn.isdirectory(path) == 0 then
-      vim.notify("Invalid directory path: " .. path, vim.log.levels.ERROR)
-      return
-    end
-
-    -- Configure and launch telescope live_grep
-    require("telescope.builtin").live_grep({
-      cwd = path,
-      prompt_title = "Live Grep: " .. vim.fn.fnamemodify(path, ":~"),
-      search_dirs = { path },
-    })
+    -- local options = vim.bo.ft == "neo-tree" and "nvimtree" or "default"
+    -- require("menu").open(options, { mouse = true })
+    -- local actions = require("telescope.actions")
+    -- local action_state = require("telescope.actions.state")
+    --
+    -- local lsp_actions = {
+    --   { "  Code Actions \t\t\t\t\t\t ->", vim.lsp.buf.code_action },
+    --   { "󰿨 Go to Definition", vim.lsp.buf.definition },
+    --   { " Goto Implementation", vim.lsp.buf.implementation },
+    --   { "󰮥 Show signature help", vim.lsp.buf.signature_help },
+    --   { "󰵉 Show References", vim.lsp.buf.references },
+    -- }
+    --
+    -- require("telescope.pickers")
+    --   .new({}, {
+    --     prompt_title = "LSP Actions",
+    --     -- layout_strategy = "vertical",
+    --     layout_config = {
+    --       horizontal = {
+    --         prompt_position = "top",
+    --         -- preview_width = 0.60,
+    --       },
+    --       width = 30,
+    --       height = 10,
+    --     },
+    --     finder = require("telescope.finders").new_table({
+    --       results = lsp_actions,
+    --       entry_maker = function(entry)
+    --         return {
+    --           value = entry[2],
+    --           display = entry[1],
+    --           ordinal = entry[1],
+    --         }
+    --       end,
+    --     }),
+    --     sorter = require("telescope.sorters").get_generic_fuzzy_sorter(),
+    --     attach_mappings = function(prompt_bufnr, map)
+    --       actions.select_default:replace(function()
+    --         local selection = action_state.get_selected_entry()
+    --         actions.close(prompt_bufnr)
+    --         if selection then
+    --           selection.value()
+    --         end
+    --       end)
+    --       return true
+    --     end,
+    --   })
+    --   :find()
   end,
 
   toggle_tree = function()

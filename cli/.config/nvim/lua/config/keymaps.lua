@@ -25,15 +25,19 @@ maphelper("<C-z>", ":undo<CR>", ":undo<CR>", "<Esc>:undo<CR>", "Undo")
 maphelper("<C-y>", ":redo<CR>", ":redo<CR>", "<Esc>:redo<CR>", "Undo")
 -- -- clear highlighting
 maphelper("<C-ö>", "gcc", "gc", "<Esc>gcc<CR>", "Toggle comment", true)
-maphelper("<C-q>", ":qa!<CR>", ":qa!<CR>", "<Esc>:qa!<CR>", "Quit", true)
 maphelper("<C-x>", "x", "x", "<Esc>x", "Cut selection", true)
 maphelper("<C-n>", ":ene | startinsert<CR>", ":ene | startinsert<CR>", "<Esc>:ene | startinsert<CR>", "Quit", true)
 maphelper("<A-d>", "yyp", "yyp", "<Esc>yyp", "Duplicate line")
-maphelper("<A-down>", ":m .+1<CR>g=v", ":m '>+1<CR>gv=gv", "<Esc>:m .+1<CR>==gi", "Move line down")
-maphelper("<A-up>", ":m .-2<CR>g=v", ":m '<-2<CR>gv=gv", "<Esc>:m .-2<CR>==gi", "Move line up")
+maphelper("<A-down>", ":m .+1<CR>==", ":m '>+1<CR>gv=gv", "<Esc>:m .+1<CR>==gi", "Move line down")
+maphelper("<A-up>", ":m .-2<CR>==", ":m '<-2<CR>gv=gv", "<Esc>:m .-2<CR>==gi", "Move line up")
 --
 map("n", "d", '"_d')
 map("v", "d", '"_d')
+
+map("n", "c", '"_c')
+map("v", "c", '"_c')
+map("i", "jj", "jj")
+maphelper("<space>ux", "<cmd>source %<cr>", "<cmd>source %<cr>", "<nop>", "Source current file", true)
 
 map("n", "<S-Right>", "v<Right>", { noremap = true, silent = true })
 map("n", "<S-Left>", "v<Left>", { noremap = true, silent = true })
@@ -45,40 +49,52 @@ map("i", "<S-Left>", "<C-o>v<Left>", { noremap = true, silent = true })
 map("n", "<BS>", "Xi", { noremap = true, silent = true })
 map("v", "<BS>", "di", { noremap = true, silent = true })
 
+-- GitConflict
+map("n", "<leader>gCo", "<cmd>GitConflictChooseOurs<cr>", { desc = "Choose Ours" })
+map("n", "<leader>gCt", "<cmd>GitConflictChooseTheirs<cr>", { desc = "Choose Theirs" })
+map("n", "<leader>gCb", "<cmd>GitConflictChooseBoth<cr>", { desc = "Choose Both" })
+map("n", "<leader>gCn", "<cmd>GitConflictChooseNone<cr>", { desc = "Choose None" })
+map("n", "<leader>gCl", "<cmd>GitConflictChooseNextConflict<cr>", { desc = "Next" })
+map("n", "<leader>gCj", "<cmd>GitConflictChoosePrevConflict<cr>", { desc = "Previous" })
+map("n", "<leader>gCa", "<cmd>GitConflictListQf<cr>", { desc = "Show All" })
+
 --
 -- -- Telescope
 -- --
 maphelper2("<C-.>", function()
   funcs.code_actions()
 end, "Code actions")
-maphelper2("<C-w>", function()
-  Snacks.bufdelete()
-end, "Close current file")
--- maphelper2("<C-l>", function()
---   require("nvchad.tabufline").move_buf(1)
--- end, "Move right")
-maphelper2("<C-p>", "<cmd> Telescope find_files <CR>", "Worktree files")
-maphelper2("<C-u>", "<cmd> Telescope buffers <CR>", "Used files")
+maphelper2("<C-Space", function()
+  vim.lsp.buf.hover()
+end, "Code actions")
+
+maphelper2("<C-p>", "<cmd> FzfLua files <CR>", "Worktree files")
+maphelper2("<C-u>", "<cmd> FzfLua buffers <CR>", "Used files")
 maphelper2("<C-s>", function()
   funcs.smart_save()
 end, "Smart save")
-maphelper2("<C-r>", "<cmd> Telescope oldfiles <CR>", "Recent files")
-maphelper2("<C-f>", "<cmd> Telescope live_grep <CR>", "Find in tree selection", true)
+maphelper2("<C-r>", "<cmd> FzfLua oldfiles <CR>", "Recent files")
+maphelper2("<C-f>", "<cmd> FzfLua live_grep_glob <CR>", "Life grep", true)
 maphelper2("<C-h>", vim.lsp.buf.hover, "LSP hover", true)
--- maphelper2("<C-f>", "<cmd> Telescope live_grep <CR>", "Find in tree selection", true)
--- maphelper2("<C-f>", funcs.live_grep_current_tree_selection, "Find in tree selection")
-maphelper2("<C-b>", funcs.toggle_tree, "Toggle tree")
---
--- maphelper2("<C-s>", funcs.smart_save, "Smart save")
--- maphelper2("<C-.>", function()
---   local options = vim.bo.ft == "NvimTree" and "nvimtree" or menuoptions
---   menu.open(options)
--- end, "Open menu")
---
--- -- mouse users + nvimtree users!
+
+maphelper("<A-q>", ":qa!<CR>", ":qa!<CR>", "<Esc>:qa!<CR>", "Quit", true)
+maphelper2("<A-b>", function()
+  Snacks.bufdelete()
+end, "Close current file")
+maphelper2("<A-e>", funcs.toggle_tree, "Toggle tree")
+maphelper2("<A-h>", "<cmd>BufferLineCyclePrev<cr>", "Previous buffer", true)
+maphelper2("<A-ö>", "<cmd>BufferLineCycleNext<cr>", "Previous buffer", true)
+maphelper2("<A-j>", "<C-w>h", "Go to left window", true)
+maphelper2("<A-l>", "<C-w>l", "Go to right window", true)
+maphelper2("<A-i>", "<C-w>k", "Go to top window", true)
+maphelper2("<A-k>", "<C-w>j", "Go to bottom window", true)
+maphelper2("<A-v>", "<C-w>v", "Split window vertically", true)
+maphelper2("<A-c>", "<C-w>s", "Split window", true)
+-- maphelper2("<A-x>", "<C-w>q", "Go to bottom window", true)
 -- map("n", "<RightMouse>", function()
 --   vim.cmd.exec('"normal! \\<RightMouse>"')
 --
---   local options = vim.bo.ft == "NvimTree" and "nvimtree" or menuoptions
---   menu.open(options, { mouse = true })
+--   -- local options = vim.bo.ft == "NvimTree" and "nvimtree" or menuoptions
+--   -- menu.open(options, { mouse = true })
+--   funcs.code_actions(true)
 -- end, {})

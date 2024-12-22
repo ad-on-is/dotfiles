@@ -6,6 +6,6 @@
 --   callback = function()
 --     vim.defer_fn(function()
 --       vim.lsp.buf.hover()
---     end, 1000)
+--     end, 2000)
 --   end,
 -- })

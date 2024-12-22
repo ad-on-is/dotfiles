@@ -45,13 +45,13 @@ export OMNISHARPHOME="$XDG_CONFIG_HOME"/omnisharp
 export RANDFILE="$XDG_CACHE_HOME"/rnd
 export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
 export PLATFORMIO_CORE_DIR="$XDG_DATA_HOME"/platformio
-export PSQL_HISTORY="$XDG_STATE_HOME/psql_history" 
+export PSQL_HISTORY="$XDG_STATE_HOME/psql_history"
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 export WINEPREFIX="$XDG_DATA_HOME"/wine
 
 
 
-
+export LG_CONFIG_FILE="/$XDG_CONFIG_HOME/lazygit/config.yml,$XDG_CONFIG_HOME/lazygit/catppuccin.yml"
 
 export JAVA_HOME=/etc/alternatives/jre
 export BUN_INSTALL="$HOME/.bun"

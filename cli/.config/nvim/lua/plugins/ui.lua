@@ -3,21 +3,28 @@ return {
   {
     "folke/snacks.nvim",
     opts = {
+      scroll = {
+        enabled = false,
+      },
       dashboard = {
         sections = {
           { section = "header" },
+          { title = [[
+
+
+          ]], pane = 2 },
           {
             pane = 2,
             section = "terminal",
             cmd = "colorscript -e square",
-            height = 5,
             padding = 1,
+            height = 7,
           },
-          { section = "keys", gap = 1, padding = 1 },
-          { pane = 2, icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
-          { pane = 2, icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
+          { section = "keys", pane = 2, padding = 1, indent = 2 },
+          { icon = " ", title = "Recent Files", section = "recent_files", padding = 1 },
+          { icon = " ", title = "Projects", section = "projects", padding = 1 },
           {
-            pane = 2,
+
             icon = " ",
             title = "Git Status",
             section = "terminal",
@@ -34,12 +41,14 @@ return {
         },
         preset = {
           header = [[
- ██╗      █████╗ ███████╗██╗   ██╗██╗   ██╗██╗███╗   ███╗
- ██║     ██╔══██╗╚══███╔╝╚██╗ ██╔╝██║   ██║██║████╗ ████║
- ██║     ███████║  ███╔╝  ╚████╔╝ ██║   ██║██║██╔████╔██║
- ██║     ██╔══██║ ███╔╝    ╚██╔╝  ╚██╗ ██╔╝██║██║╚██╔╝██║
- ███████╗██║  ██║███████╗   ██║    ╚████╔╝ ██║██║ ╚═╝ ██║
- ╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝     ╚═══╝  ╚═╝╚═╝     ╚═╝
+	                                                                    
+	       ████ ██████           █████      ██                    
+	      ███████████             █████                            
+	      █████████ ███████████████████ ███   ███████████  
+	     █████████  ███    █████████████ █████ ██████████████  
+	    █████████ ██████████ █████████ █████ █████ ████ █████  
+	  ███████████ ███    ███ █████████ █████ █████ ████ █████ 
+	 ██████  █████████████████████ ████ █████ █████ ████ ██████
  ]],
         },
       },
@@ -48,7 +57,6 @@ return {
   {
     "Isrothy/neominimap.nvim",
     init = function()
-      vim.opt.wrap = false
       vim.opt.sidescrolloff = 36 -- Set a large value
 
       vim.g.neominimap = {
@@ -66,7 +74,30 @@ return {
     "nvim-neo-tree/neo-tree.nvim",
     opts = {
       close_if_last_window = true,
-      window = { mappings = { ["<C-q>"] = ":qa!", ["<C-b>"] = ":wincmd p" } },
+      window = { mappings = { ["<A-q>"] = ":qa!", ["<A-b>"] = ":wincmd p" } },
+      default_component_configs = {
+        name = { use_git_status_colors = false },
+        git_status = {
+          symbols = {
+            -- Change type
+            added = "✚", -- or "✚", but this is redundant info if you use git_status_colors on the name
+            modified = "", -- or "", but this is redundant info if you use git_status_colors on the name
+          },
+        },
+      },
+    },
+  },
+
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    opts_extend = { "spec" },
+    opts = {
+      spec = {
+        {
+          { "<leader>gC", group = "Conflict", icon = { icon = " ", color = "blue" } },
+        },
+      },
     },
   },
   {
@@ -80,6 +111,7 @@ return {
       },
     },
   },
+
   {
     "nvim-lualine/lualine.nvim",
     -- dependencies = {
@@ -110,6 +142,7 @@ return {
         },
         lualine_x = {
           "searchcount",
+          LazyVim.lualine.cmp_source("codeium"),
           "encoding",
           "filetype",
           {
@@ -125,31 +158,66 @@ return {
             cond = function()
               return package.loaded["dap"] and require("dap").status() ~= ""
             end,
-            color = function()
-              return LazyVim.ui.fg("Debug")
-            end,
+            -- color = function()
+            --   return Snacks.util.color("Debug")
+            -- end,
           },
           -- stylua: ignore
           {
-            require("lazy.status").updates,
-            cond = require("lazy.status").has_updates,
-            color = function() return LazyVim.ui.fg("Special") end,
+          require("lazy.status").updates,
+          cond = require("lazy.status").has_updates,
+          --   color = function() return Snacks.util.color("Special") end,
           },
         },
       },
     },
   },
   {
+    "MeanderingProgrammer/render-markdown.nvim",
+    opts = {
+      render_modes = true,
+      code = {
+        enabled = true,
+      },
+      heading = {
+        enabled = true,
+        icons = { "󰲡 ", "󰲣 ", "󰲥 ", "󰲧 ", "󰲩 ", "󰲫 " },
+        signs = { "󰫎 " },
+        left_pad = { 1, 2, 4, 6, 8, 10, 12, 14 },
+      },
+      checkbox = {
+        enabled = true,
+        position = "inline",
+        unchecked = {
+          icon = "󰄱 ",
+        },
+        checked = {
+          icon = "󰱒 ",
+        },
+      },
+    },
+  },
+
+  {
     "hrsh7th/nvim-cmp",
     opts = function(_, opts)
       if not opts.window then
         opts.window = { completion = { side_padding = 0 } }
       end
-      local kind_icons = LazyVim.config.icons.kinds
+      local prev = opts.formatting.format
       opts.formatting = {
         format = function(entry, item)
-          item.menu = (item.kind or "Text") .. " [" .. entry.source.name .. "]"
-          item.kind = (" " .. kind_icons[(item.kind or "Text")] .. " ") or " "
+          prev(entry, item)
+          local icon = string.gsub(item.kind, "%s.*", "")
+          local text = string.gsub(item.kind, "^.*%s", "")
+          if icon == "XX" then
+            icon = ""
+          end
+          if text == "XX" then
+            text = "Color"
+          end
+          item.menu = text .. " [" .. entry.source.name .. "]"
+          item.kind = " " .. icon .. " "
           return item
         end,
         fields = { "kind", "abbr", "menu" },
@@ -159,8 +227,9 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     opts = function(_, opts)
-      local telescope = require("telescope")
-      telescope.load_extension("flutter")
+      if not opts.defaults then
+        opts.defaults = {}
+      end
 
       opts.defaults.layout_config = {
         horizontal = {
@@ -176,6 +245,8 @@ return {
       opts.defaults.sorting_strategy = "ascending"
     end,
   },
+  { "nvzone/volt", lazy = true },
+  { "nvzone/menu", lazy = true },
 
   {
     "folke/noice.nvim",

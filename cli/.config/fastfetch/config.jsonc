@@ -6,11 +6,11 @@
   "logo": {
     "type": "small",
     "padding": {
-      "top": 2
-    }
+      "top": 2,
+    },
   },
   "display": {
-    "separator": " "
+    "separator": " ",
   },
   "modules": [
     "title",
@@ -19,7 +19,7 @@
     {
       "type": "colors",
       "paddingLeft": 0,
-      "symbol": "star"
+      "symbol": "star",
     },
 
     "break",
@@ -27,27 +27,27 @@
       "type": "board",
       "key": "󰌢 PC",
       "keyColor": "green",
-      "format": "{2} {1}"
+      "format": "{2} {1}",
     },
     {
       "type": "cpu",
       "key": "├",
-      "keyColor": "green"
+      "keyColor": "green",
     },
     {
       "type": "uptime",
       "key": "├󰅐",
-      "keyColor": "green"
+      "keyColor": "green",
     },
     {
       "type": "memory",
       "key": "├󰑭",
-      "keyColor": "green"
+      "keyColor": "green",
     },
     {
       "type": "swap",
       "key": "├󰓡",
-      "keyColor": "green"
+      "keyColor": "green",
     },
 
     {
@@ -55,14 +55,14 @@
       "key": "├ /root",
       "keyColor": "green",
       "folders": "/",
-      "format": "{1} / {2} ({3}) {9} "
+      "format": "{1} / {2} ({3}) {9} ",
     },
     {
       "type": "disk",
       "key": "├ /home",
       "keyColor": "green",
       "folders": "/home",
-      "format": "{1} / {2} ({3}) {9} "
+      "format": "{1} / {2} ({3}) {9} ",
     },
 
     "break",
@@ -70,14 +70,14 @@
     {
       "type": "gpu",
       "key": "󰍛 GPU",
-      "keyColor": "yellow"
+      "keyColor": "yellow",
     },
 
     {
       "type": "display",
       "key": "└󰍹",
       "keyColor": "yellow",
-      "format": "{6}: {1}x{2} - {8}° @ {3} Hz "
+      "format": "{6}: {1}x{2} - {8}° @ {3} Hz ",
     },
 
     "break",
@@ -86,22 +86,22 @@
       "type": "sound",
       "key": " AV",
       "keyColor": "cyan",
-      "soundType": "main"
+      "soundType": "main",
     },
     {
       "type": "camera",
       "key": "├",
-      "keyColor": "cyan"
+      "keyColor": "cyan",
     },
     {
       "type": "player",
       "key": "├󰥠",
-      "keyColor": "cyan"
+      "keyColor": "cyan",
     },
     {
       "type": "media",
       "key": "└󰝚",
-      "keyColor": "cyan"
+      "keyColor": "cyan",
     },
 
     "break",
@@ -110,35 +110,35 @@
       "type": "os",
       "key": " OS",
       "keyColor": "black",
-      "format": "{2} {8}"
+      "format": "{2} {8}",
     },
 
     {
       "type": "datetime",
       "key": "├󰅐",
-      "keyColor": "black"
+      "keyColor": "black",
     },
 
     {
       "type": "kernel",
       "key": "├",
-      "keyColor": "black"
+      "keyColor": "black",
     },
 
     {
       "type": "packages",
       "key": "├󰏖",
-      "keyColor": "black"
+      "keyColor": "black",
     },
     {
       "type": "shell",
       "key": "└",
-      "keyColor": "black"
+      "keyColor": "black",
     },
     {
       "type": "bluetooth",
       "key": "├",
-      "keyColor": "blue"
+      "keyColor": "blue",
     },
 
     "break",
@@ -146,51 +146,51 @@
     {
       "type": "wm",
       "key": " DE/WM",
-      "keyColor": "blue"
+      "keyColor": "blue",
     },
     {
       "type": "lm",
       "key": "├󰧨",
-      "keyColor": "blue"
+      "keyColor": "blue",
     },
     {
       "type": "wmtheme",
       "key": "├󰉼",
-      "keyColor": "blue"
+      "keyColor": "blue",
     },
     {
       "type": "icons",
       "key": "├󰀻",
-      "keyColor": "blue"
+      "keyColor": "blue",
     },
     {
       "type": "terminal",
       "key": "├",
-      "keyColor": "blue"
+      "keyColor": "blue",
     },
     {
       "type": "locale",
       "key": "├",
-      "keyColor": "blue"
+      "keyColor": "blue",
     },
     {
       "type": "wallpaper",
       "key": "└󰸉",
-      "keyColor": "blue"
+      "keyColor": "blue",
     },
 
     "break",
     {
       "type": "publicip",
       "key": " NET",
-      "keyColor": "red"
+      "keyColor": "red",
     },
     {
       "type": "localip",
       "key": "├󰌗",
       "keyColor": "red",
       "format": "{4}: {1} ({7})",
-      "defaultRouteOnly": true
+      "defaultRouteOnly": true,
     },
     {
       "type": "localip",
@@ -198,16 +198,16 @@
       "keyColor": "red",
       "format": "{4}: {1}",
       "defaultRouteOnly": false,
-      "namePrefix": "wlp6s0"
+      "namePrefix": "wlp6s0",
     },
 
     {
       "type": "wifi",
       "key": "  ",
       "keyColor": "red",
-      "format": "{4} ({2}/{3})"
+      "format": "{4} ({2}/{3})",
     },
 
-    "break"
-  ]
+    "break",
+  ],
 }
