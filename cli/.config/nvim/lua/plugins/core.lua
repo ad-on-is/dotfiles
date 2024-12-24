@@ -15,6 +15,12 @@ return {
     config = true,
   },
   {
+    "fedepujol/move.nvim",
+    opts = {
+      --- Config
+    },
+  },
+  {
     "catgoose/nvim-colorizer.lua",
     event = "BufReadPre",
     opts = {

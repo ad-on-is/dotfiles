@@ -6,6 +6,11 @@ return {
       scroll = {
         enabled = false,
       },
+      indent = {
+        animate = {
+          enabled = false,
+        },
+      },
       dashboard = {
         sections = {
           { section = "header" },
@@ -77,9 +82,12 @@ return {
       window = { mappings = { ["<A-q>"] = ":qa!", ["<A-b>"] = ":wincmd p" } },
       default_component_configs = {
         name = { use_git_status_colors = false },
+        modified = {
+          symbol = " ",
+        },
         git_status = {
           symbols = {
-            -- Change type
+            unstaged = "",
             added = "✚", -- or "✚", but this is redundant info if you use git_status_colors on the name
             modified = "", -- or "", but this is redundant info if you use git_status_colors on the name
           },
@@ -199,32 +207,6 @@ return {
   },
 
   {
-    "hrsh7th/nvim-cmp",
-    opts = function(_, opts)
-      if not opts.window then
-        opts.window = { completion = { side_padding = 0 } }
-      end
-      local prev = opts.formatting.format
-      opts.formatting = {
-        format = function(entry, item)
-          prev(entry, item)
-          local icon = string.gsub(item.kind, "%s.*", "")
-          local text = string.gsub(item.kind, "^.*%s", "")
-          if icon == "XX" then
-            icon = ""
-          end
-          if text == "XX" then
-            text = "Color"
-          end
-          item.menu = text .. " [" .. entry.source.name .. "]"
-          item.kind = " " .. icon .. " "
-          return item
-        end,
-        fields = { "kind", "abbr", "menu" },
-      }
-    end,
-  },
-  {
     "nvim-telescope/telescope.nvim",
     opts = function(_, opts)
       if not opts.defaults then
@@ -247,7 +229,7 @@ return {
   },
   { "nvzone/volt", lazy = true },
   { "nvzone/menu", lazy = true },
-
+  { "rasulomaroff/reactive.nvim", opts = { load = { "catppuccin-mocha-cursor", "catppuccin-mocha-cursorline" } } },
   {
     "folke/noice.nvim",
     event = "VeryLazy",
@@ -291,8 +273,26 @@ return {
         {
           filter = {
             event = "msg_show",
-            kind = "",
+            kind = "wmsg",
             find = "Invalid mapping",
+          },
+          opts = { skip = true },
+        },
+
+        {
+          filter = {
+            event = "msg_show",
+            kind = "emsg",
+            find = "Failed to set cursor",
+          },
+          opts = { skip = true },
+        },
+
+        {
+          filter = {
+            event = "msg_show",
+            kind = "",
+            find = "Nothing is copied",
           },
           opts = { skip = true },
         },

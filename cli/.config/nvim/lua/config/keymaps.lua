@@ -28,16 +28,26 @@ maphelper("<C-ö>", "gcc", "gc", "<Esc>gcc<CR>", "Toggle comment", true)
 maphelper("<C-x>", "x", "x", "<Esc>x", "Cut selection", true)
 maphelper("<C-n>", ":ene | startinsert<CR>", ":ene | startinsert<CR>", "<Esc>:ene | startinsert<CR>", "Quit", true)
 maphelper("<A-d>", "yyp", "yyp", "<Esc>yyp", "Duplicate line")
-maphelper("<A-down>", ":m .+1<CR>==", ":m '>+1<CR>gv=gv", "<Esc>:m .+1<CR>==gi", "Move line down")
-maphelper("<A-up>", ":m .-2<CR>==", ":m '<-2<CR>gv=gv", "<Esc>:m .-2<CR>==gi", "Move line up")
+-- maphelper("<A-down>", ":m .+1<CR>==", ":'<,'>m '>+1<CR>gv=gv", "<Esc>:m .+1<CR>==gi", "Move line down")
+-- maphelper("<A-up>", ":m .-2<CR>==", ":m '<-2<CR>gv=gv", "<Esc>:m .-2<CR>==gi", "Move line up")
+maphelper("<A-up>", ":MoveLine(-1)<CR>", ":MoveBlock(-1)<CR>", "<nop>", "Move line up")
+maphelper("<A-down>", ":MoveLine(1)<CR>", ":MoveBlock(1)<CR>", "<nop>", "Move line down")
 --
 map("n", "d", '"_d')
 map("v", "d", '"_d')
 
+maphelper2("<esc>", "<C-c>", "Fix escape")
+
 map("n", "c", '"_c')
+map("n", "?", vim.diagnostic.open_float)
+map(
+  "n",
+  "<space>dh",
+  ":lua print(vim.inspect(vim.treesitter.get_captures_at_cursor()))<cr>",
+  { desc = "Show highlight info" }
+)
 map("v", "c", '"_c')
 map("i", "jj", "jj")
-maphelper("<space>ux", "<cmd>source %<cr>", "<cmd>source %<cr>", "<nop>", "Source current file", true)
 
 map("n", "<S-Right>", "v<Right>", { noremap = true, silent = true })
 map("n", "<S-Left>", "v<Left>", { noremap = true, silent = true })
@@ -64,7 +74,7 @@ map("n", "<leader>gCa", "<cmd>GitConflictListQf<cr>", { desc = "Show All" })
 maphelper2("<C-.>", function()
   funcs.code_actions()
 end, "Code actions")
-maphelper2("<C-Space", function()
+maphelper2("<C-Space>", function()
   vim.lsp.buf.hover()
 end, "Code actions")
 
