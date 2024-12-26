@@ -37,6 +37,10 @@ maphelper("<A-down>", ":MoveLine(1)<CR>", ":MoveBlock(1)<CR>", "<nop>", "Move li
 map("n", "d", '"_d')
 map("v", "d", '"_d')
 
+map({ "n", "v" }, "<space>t", function()
+  Snacks.terminal.toggle()
+end, { desc = "Toggle terminal" })
+
 map("n", "<S-ScrollWheelUp>", "10zl", { silent = true })
 map("n", "<S-ScrollWheelDown>", "10zh", { silent = true })
 
