@@ -20,6 +20,11 @@ return {
       --- Config
     },
   },
+  -- {
+  --   "echasnovski/mini.move",
+  --   event = "VeryLazy",
+  --   opts = {},
+  -- },
   {
     "catgoose/nvim-colorizer.lua",
     event = "BufReadPre",

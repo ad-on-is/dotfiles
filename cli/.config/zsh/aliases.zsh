@@ -22,6 +22,7 @@ alias get_addcerts='scp -r adis_durakovic@dnmc.in:/home/adis_durakovic/webserver
 alias docker-compose='docker compose'
 alias rg='rg --smart-case'
 
+
 function distrobox-save() {
   if [[ -z $1 ]]; then
     echo "Please provide a distrobox name"

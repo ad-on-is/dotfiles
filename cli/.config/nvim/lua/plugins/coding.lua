@@ -4,8 +4,11 @@ return {
     opts = {
       keymap = {
         preset = "super-tab",
+        ["<CR>"] = { "accept", "fallback" },
+
         cmdline = {
           preset = "super-tab",
+          ["<CR>"] = { "accept", "fallback" },
           ["<esc>"] = {
             "cancel",
             function()
@@ -20,7 +23,7 @@ return {
       completion = {
         accept = { auto_brackets = { enabled = false } },
         list = {
-          selection = "auto_insert",
+          selection = "preselect",
         },
         menu = {
           scrollbar = false,
@@ -84,10 +87,18 @@ return {
     },
     opts = {
       dev_log = {
+        enabled = false,
         open_cmd = "botright 15split",
       },
       widget_guides = {
         enabled = false,
+      },
+      debugger = {
+        enabled = true,
+        exception_breakpoints = {},
+        register_configurations = function(paths)
+          require("dap.ext.vscode").load_launchjs()
+        end,
       },
       lsp = {
         -- capabilities = function(config)

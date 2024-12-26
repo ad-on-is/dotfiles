@@ -16,6 +16,7 @@ end
 local function maphelper2(key, c, desc, remap)
   maphelper(key, c, c, c, desc, remap)
 end
+
 --
 maphelper("<S-down>", "V<Down>", "<Down>", "<Esc>v<Down>", "Select line up")
 maphelper("<S-up>", "V<Up>", "<Up>", "<Esc>v<Up>", "Select line down")
@@ -36,8 +37,10 @@ maphelper("<A-down>", ":MoveLine(1)<CR>", ":MoveBlock(1)<CR>", "<nop>", "Move li
 map("n", "d", '"_d')
 map("v", "d", '"_d')
 
-maphelper2("<esc>", "<C-c>", "Fix escape")
+map("n", "<S-ScrollWheelUp>", "10zl", { silent = true })
+map("n", "<S-ScrollWheelDown>", "10zh", { silent = true })
 
+-- maphelper2("<esc>", "<C-c>", "Fix escape")
 map("n", "c", '"_c')
 map("n", "?", vim.diagnostic.open_float)
 map(
@@ -49,6 +52,11 @@ map(
 map("v", "c", '"_c')
 map("i", "jj", "jj")
 
+if vim.g.neovide then
+  maphelper("<C-S-V>", "p<CR>", "p<CR>", "<Esc>Pi")
+  map("c", "<C-S-V>", "<C-R>+")
+  maphelper("<C-S-Z>", "u", "u", "<Esc>u")
+end
 map("n", "<S-Right>", "v<Right>", { noremap = true, silent = true })
 map("n", "<S-Left>", "v<Left>", { noremap = true, silent = true })
 map("v", "<S-Right>", "<Right>", { noremap = true, silent = true })
@@ -87,7 +95,7 @@ maphelper2("<C-r>", "<cmd> FzfLua oldfiles <CR>", "Recent files")
 maphelper2("<C-f>", "<cmd> FzfLua live_grep_glob <CR>", "Life grep", true)
 maphelper2("<C-h>", vim.lsp.buf.hover, "LSP hover", true)
 
-maphelper("<A-q>", ":qa!<CR>", ":qa!<CR>", "<Esc>:qa!<CR>", "Quit", true)
+maphelper("<A-q>", ":qa<CR>", ":qa<CR>", "<Esc>:qa<CR>", "Quit", true)
 maphelper2("<A-b>", function()
   Snacks.bufdelete()
 end, "Close current file")

@@ -59,27 +59,51 @@ return {
       },
     },
   },
-  {
-    "Isrothy/neominimap.nvim",
-    init = function()
-      vim.opt.sidescrolloff = 36 -- Set a large value
+  -- {
+  --   "Isrothy/neominimap.nvim",
+  --   init = function()
+  --     vim.opt.sidescrolloff = 36 -- Set a large value
+  --
+  --     vim.g.neominimap = {
+  --       layout = "float",
+  --       auto_enable = true,
+  --       x_multiplier = 4,
+  --       y_multiplier = 1,
+  --       float = { minimap_width = 10, window_border = "none" },
+  --       split = { minimap_width = 10 },
+  --       click = { enabled = true },
+  --     }
+  --   end,
+  -- },
 
-      vim.g.neominimap = {
-        layout = "float",
-        auto_enable = true,
-        x_multiplier = 4,
-        y_multiplier = 1,
-        float = { minimap_width = 10, window_border = "none" },
-        split = { minimap_width = 10 },
-        click = { enabled = true },
-      }
+  {
+    "echasnovski/mini.map",
+    lazy = false,
+    config = function()
+      local MiniMap = require("mini.map")
+      MiniMap.setup({
+        symbols = {
+          encode = MiniMap.gen_encode_symbols.dot("3x2"),
+        },
+        integrations = {
+          MiniMap.gen_integration.builtin_search(),
+          MiniMap.gen_integration.diagnostic(),
+          MiniMap.gen_integration.gitsigns(),
+        },
+        window = {
+          focusable = true,
+          show_integration_count = false,
+          width = 8,
+          winblend = 25,
+        },
+      })
     end,
   },
   {
     "nvim-neo-tree/neo-tree.nvim",
     opts = {
       close_if_last_window = true,
-      window = { mappings = { ["<A-q>"] = ":qa!", ["<A-b>"] = ":wincmd p" } },
+      window = { mappings = { ["<A-q>"] = ":qa", ["<A-e>"] = ":wincmd p" } },
       default_component_configs = {
         name = { use_git_status_colors = false },
         modified = {
@@ -149,8 +173,9 @@ return {
           },
         },
         lualine_x = {
+          -- "nvim-dap-ui",
           "searchcount",
-          LazyVim.lualine.cmp_source("codeium"),
+          -- LazyVim.lualine.cmp_source("codeium"),
           "encoding",
           "filetype",
           {
@@ -325,5 +350,16 @@ return {
       },
     },
     dependencies = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" },
+  },
+  {
+    "folke/snacks.nvim",
+    ---@type snacks.Config
+    opts = {
+      terminal = {
+        -- your terminal configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      },
+    },
   },
 }
