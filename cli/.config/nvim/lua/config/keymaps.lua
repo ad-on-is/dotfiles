@@ -57,9 +57,9 @@ map("v", "c", '"_c')
 map("i", "jj", "jj")
 
 if vim.g.neovide then
-  maphelper("<C-S-V>", "p<CR>", "p<CR>", "<Esc>Pi")
+  maphelper("<C-S-V>", "P<CR>", "P<CR>", "<Esc>Pi")
   map("c", "<C-S-V>", "<C-R>+")
-  maphelper("<C-S-Z>", "u", "u", "<Esc>u")
+  maphelper("<C-S-Z>", ":redo<cr>", ":redo<cr>", "<Esc>:redo<cr>")
 end
 map("n", "<S-Right>", "v<Right>", { noremap = true, silent = true })
 map("n", "<S-Left>", "v<Left>", { noremap = true, silent = true })

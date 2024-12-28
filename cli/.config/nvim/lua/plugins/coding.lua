@@ -72,18 +72,19 @@ return {
     "nvim-treesitter/nvim-treesitter",
     opts = { ensure_installed = { "dart" } },
   },
+
   {
     "nvim-flutter/flutter-tools.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "stevearc/dressing.nvim",
-      {
-        "nvim-telescope/telescope.nvim",
-        opts = function(_, opts)
-          local telescope = require("telescope")
-          telescope.load_extension("flutter")
-        end,
-      },
+      -- {
+      --   "nvim-telescope/telescope.nvim",
+      --   opts = function(_, opts)
+      --     local telescope = require("telescope")
+      --     telescope.load_extension("flutter")
+      --   end,
+      -- },
     },
     opts = {
       dev_log = {
@@ -96,11 +97,13 @@ return {
       debugger = {
         enabled = true,
         exception_breakpoints = {},
+        -- evaluate_to_string_in_debug_views = false,
         register_configurations = function(paths)
           require("dap.ext.vscode").load_launchjs()
         end,
       },
       lsp = {
+        enabled = false,
         -- capabilities = function(config)
         --   return require("blink.cmp").get_lsp_capabilities(config)
         -- end,

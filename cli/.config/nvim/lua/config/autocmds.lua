@@ -20,11 +20,3 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
     end
   end,
 })
-
-vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
-  pattern = "*dap-repl*",
-  callback = function()
-    local baleia = require("baleia").setup({})
-    baleia.automatically(vim.api.nvim_get_current_buf())
-  end,
-})

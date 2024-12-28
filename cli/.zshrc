@@ -101,7 +101,7 @@ _atuin_up_search() {
     fi
 }
 
-
+ll
 
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "/$HOME/.bun/_bun"
@@ -116,6 +116,7 @@ function clear-scrollback-widget {
 }
 zle -N clear-scrollback-widget
 bindkey '^k' clear-scrollback-widget
+# bindkey '^P' $HOME/.local/bin/ssh-select.sh
 
 
 if [[ -f $HOME/.local/share/bash-completion/completions/appman ]]; then
