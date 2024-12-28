@@ -3,6 +3,7 @@
 
 zstyle ':completion:*' cache-path "$XDG_CACHE_HOME"/zsh/zcompcache
 
+
 source ~/.zshenv
 source ~/.config/zsh/aliases.zsh
 
@@ -34,9 +35,7 @@ zinit light-mode for \
 
 
 
-
 source ~/.config/zsh/zstyle.zsh
-
 
 
 
@@ -57,40 +56,6 @@ autoload -U compinit && compinit -i  # BEFORE zoxide init
 
 
 
-# _zoxide_cd_completion() {
-#
-# local debug_log="/tmp/zoxide_completion_debug.log"
-#
-#     # Log the current completion context
-#     {
-#         echo "--- Completion Debug ---"
-#         echo "Current words: ${words[@]}"
-#         echo "Current word index: $CURRENT"
-#         echo "Completing word: ${words[CURRENT]}"
-#     } >> "$debug_log"
-#
-#     # Try to get zoxide matches
-#     local completion_word="${words[CURRENT]}"
-#     local -a zoxide_matches
-#     zoxide_matches=($(zoxide query -l "$completion_word" 2>&1))
-#
-#     # Log zoxide matches
-#     {
-#         echo "Zoxide matches count: ${#zoxide_matches[@]}"
-#         echo "Zoxide matches: ${zoxide_matches[@]}"
-#     } >> "$debug_log"
-#
-#     # If matches exist, add to completion
-#     if [[ ${#zoxide_matches[@]} -gt 0 ]]; then
-#         compadd -f "${zoxide_matches[@]}"
-#     fi
-#
-# }
-#
-# # Replace the default cd completion with our custom function
-# compdef _zoxide_cd_completion cd
-#
-
 
 
 _atuin_up_search() {
@@ -101,7 +66,6 @@ _atuin_up_search() {
     fi
 }
 
-ll
 
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "/$HOME/.bun/_bun"
@@ -116,7 +80,6 @@ function clear-scrollback-widget {
 }
 zle -N clear-scrollback-widget
 bindkey '^k' clear-scrollback-widget
-# bindkey '^P' $HOME/.local/bin/ssh-select.sh
 
 
 if [[ -f $HOME/.local/share/bash-completion/completions/appman ]]; then
