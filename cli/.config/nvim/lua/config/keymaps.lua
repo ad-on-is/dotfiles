@@ -57,7 +57,7 @@ map("v", "c", '"_c')
 map("i", "jj", "jj")
 
 if vim.g.neovide then
-  maphelper("<C-S-V>", "P<CR>", "P<CR>", "<Esc>Pi")
+  maphelper("<C-S-V>", "P<CR>", "P<CR>", "<Esc>pli")
   map("c", "<C-S-V>", "<C-R>+")
   maphelper("<C-S-Z>", ":redo<cr>", ":redo<cr>", "<Esc>:redo<cr>")
 end
@@ -67,10 +67,13 @@ map("v", "<S-Right>", "<Right>", { noremap = true, silent = true })
 map("v", "<S-Left>", "<Left>", { noremap = true, silent = true })
 map("i", "<S-Right>", "<C-o>v<Right>", { noremap = true, silent = true })
 map("i", "<S-Left>", "<C-o>v<Left>", { noremap = true, silent = true })
+map("n", "<S-End>", "v$", { noremap = true, silent = true })
+map("v", "<S-End>", "$", { noremap = true, silent = true })
+map("i", "<S-End>", "<esc>v$", { noremap = true, silent = true })
 
-map("n", "<BS>", "Xi", { noremap = true, silent = true })
-map("v", "<BS>", "di", { noremap = true, silent = true })
-
+map("n", "<BS>", "xi", { noremap = true, silent = true })
+map("x", "<BS>", "xi", { noremap = true, silent = true })
+--
 -- GitConflict
 map("n", "<leader>gCo", "<cmd>GitConflictChooseOurs<cr>", { desc = "Choose Ours" })
 map("n", "<leader>gCt", "<cmd>GitConflictChooseTheirs<cr>", { desc = "Choose Theirs" })

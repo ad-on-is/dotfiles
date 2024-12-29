@@ -97,6 +97,17 @@ return {
           winblend = 25,
         },
       })
+
+      vim.api.nvim_create_autocmd("BufWinEnter", {
+        callback = function()
+          if vim.bo.filetype == "mninimap" then
+            return
+          else
+            MiniMap = require("mini.map")
+            MiniMap.open()
+          end
+        end,
+      })
     end,
   },
   {
