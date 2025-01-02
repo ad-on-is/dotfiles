@@ -20,7 +20,7 @@ alias gobuildrpi='env GOOS=linux GOARCH=arm GOARM=5 go build'
 alias get_addcerts='scp -r adis_durakovic@dnmc.in:/home/adis_durakovic/webserver/config/nginx/ssl/archive/add.dnmc.in ~/Docker/conf/nginx/ssl/archive/add.dnmc.in'
 
 alias docker-compose='docker compose'
-alias rg='rg --smart-case'
+alias rg='rg --smart-case --hidden'
 
 
 function distrobox-save() {

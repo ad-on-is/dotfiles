@@ -1,6 +1,8 @@
 
 skip_global_compinit=1
 
+XDG_STATE_HOME=${XDG_STATE_HOME:-"$HOME/.local/state"}
+
 # HSTR configuration - add this to ~/.zshrc
 # setopt histignorespace           # skip cmds w/ leading space from history
 
@@ -48,6 +50,8 @@ export PLATFORMIO_CORE_DIR="$XDG_DATA_HOME"/platformio
 export PSQL_HISTORY="$XDG_STATE_HOME/psql_history"
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 export WINEPREFIX="$XDG_DATA_HOME"/wine
+export PNPM_HOME="$XDG_DATA_HOME"/pnpm
+export NPM_CONFIG_STORE_DIR="$PNPM_HOME"/store
 
 
 
@@ -59,12 +63,11 @@ export BUN_INSTALL="$HOME/.bun"
 
 export CHROME_EXECUTABLE=/usr/bin/chromium-browser
 
-export PNPM_HOME=$XDG_DATA_HOME/pnpm
 
 
 
 export EDITOR=/bin/nvim
-export PIPX_BIN_DIR=$XDG_DATA_HOME/pipx/bin
+export PIPX_BIN_DIR="$XDG_DATA_HOME"/pipx/bin
 export ANDROID_HOME=$HOME/Development/Android/Sdk
 export FLUTTER_ROOT=$HOME/Development/Flutter/Sdk
 export CHROME_EXECUTABLE=/usr/bin/chromium-browser

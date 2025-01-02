@@ -1,10 +1,31 @@
 return {
+  -- {
+  --   "Exafunction/codeium.nvim",
+  --   cmd = "Codeium",
+  --   event = "InsertEnter",
+  --   build = ":Codeium Auth",
+  --   -- enabled = false,
+  --   opts = {
+  --     virtual_text = {
+  --       key_bindings = {
+  --         accept = "<C-k>",
+  --         next = "<C-l>",
+  --         prev = "<C-j>",
+  --         clear = "<C-i>",
+  --       },
+  --     },
+  --   },
+  -- },
   {
     "saghen/blink.cmp",
     opts = {
       keymap = {
         preset = "super-tab",
         ["<CR>"] = { "accept", "fallback" },
+        ["<esc>"] = {
+          "cancel",
+          "fallback",
+        },
 
         cmdline = {
           preset = "super-tab",
@@ -78,13 +99,6 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       "stevearc/dressing.nvim",
-      -- {
-      --   "nvim-telescope/telescope.nvim",
-      --   opts = function(_, opts)
-      --     local telescope = require("telescope")
-      --     telescope.load_extension("flutter")
-      --   end,
-      -- },
     },
     opts = {
       dev_log = {

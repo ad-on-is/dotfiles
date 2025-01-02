@@ -16,38 +16,13 @@ return {
         apply = true,
       })
     end
-    local actions = {
 
-      {
-        name = "  Code Actions",
-        hl = "Exgreen",
-        items = {},
-      },
+    local actions = {}
 
-      { name = "separator" },
-      {
-        name = "󰿨 Goto Definition",
-        cmd = vim.lsp.buf.definition,
-        hl = "Exwhite",
-      },
-
-      {
-        name = " Goto Implementation",
-        cmd = vim.lsp.buf.implementation,
-        hl = "Exwhite",
-      },
-      {
-        name = "󰵉 Show References",
-        hl = "Exwhite",
-        cmd = vim.lsp.buf.references,
-      },
-      { name = "separator" },
-      {
-        name = "󰑕 Rename",
-        cmd = vim.lsp.buf.rename,
-        hl = "Exyellow",
-      },
-    }
+    actions["Goto Definition"] = vim.lsp.buf.definition
+    actions["Goto Implementation"] = vim.lsp.buf.implementation
+    actions["Show References"] = vim.lsp.buf.references
+    actions["Rename"] = vim.lsp.buf.rename
 
     local bufnr = vim.api.nvim_get_current_buf()
     local params = vim.lsp.util.make_range_params()
@@ -61,68 +36,23 @@ return {
     vim.lsp.buf_request(bufnr, "textDocument/codeAction", params, function(_, results, _, _)
       if #results > 0 then
         for i, res in ipairs(results) do
-          code_acts[i] = {
-            name = res.title,
-            hl = "Exwhite",
-            cmd = function()
-              apply_specific_code_action(res.title)
-            end,
-          }
+          actions[res.title] = function()
+            apply_specific_code_action("" .. res.title)
+          end
         end
-        actions[1].items = code_acts
-        require("menu").open(actions, { mouse = mouse or false })
+        local items = {}
+        for t, _ in pairs(actions) do
+          table.insert(items, t)
+        end
+        table.sort(items)
+        vim.ui.select(items, {}, function(choice)
+          if choice == nil then
+            return
+          end
+          actions[choice]()
+        end)
       end
     end)
-    -- os.execute("sleep " .. tonumber(0.1))
-
-    -- local options = vim.bo.ft == "neo-tree" and "nvimtree" or "default"
-    -- require("menu").open(options, { mouse = true })
-    -- local actions = require("telescope.actions")
-    -- local action_state = require("telescope.actions.state")
-    --
-    -- local lsp_actions = {
-    --   { "  Code Actions \t\t\t\t\t\t ->", vim.lsp.buf.code_action },
-    --   { "󰿨 Go to Definition", vim.lsp.buf.definition },
-    --   { " Goto Implementation", vim.lsp.buf.implementation },
-    --   { "󰮥 Show signature help", vim.lsp.buf.signature_help },
-    --   { "󰵉 Show References", vim.lsp.buf.references },
-    -- }
-    --
-    -- require("telescope.pickers")
-    --   .new({}, {
-    --     prompt_title = "LSP Actions",
-    --     -- layout_strategy = "vertical",
-    --     layout_config = {
-    --       horizontal = {
-    --         prompt_position = "top",
-    --         -- preview_width = 0.60,
-    --       },
-    --       width = 30,
-    --       height = 10,
-    --     },
-    --     finder = require("telescope.finders").new_table({
-    --       results = lsp_actions,
-    --       entry_maker = function(entry)
-    --         return {
-    --           value = entry[2],
-    --           display = entry[1],
-    --           ordinal = entry[1],
-    --         }
-    --       end,
-    --     }),
-    --     sorter = require("telescope.sorters").get_generic_fuzzy_sorter(),
-    --     attach_mappings = function(prompt_bufnr, map)
-    --       actions.select_default:replace(function()
-    --         local selection = action_state.get_selected_entry()
-    --         actions.close(prompt_bufnr)
-    --         if selection then
-    --           selection.value()
-    --         end
-    --       end)
-    --       return true
-    --     end,
-    --   })
-    --   :find()
   end,
 
   toggle_tree = function()
@@ -132,19 +62,6 @@ return {
     else
       neotree.execute({ action = "focus" })
     end
-    -- local view = require("neo-tree.view")
-    -- if view.is_visible() then
-    --   if vim.api.nvim_get_current_win() == view.get_winnr() then
-    --     -- Currently focused on nvim-tree, switch to other window
-    --     vim.cmd("wincmd p")
-    --   else
-    --     -- Currently focused on other window, switch to nvim-tree
-    --     view.focus()
-    --   end
-    -- else
-    --   -- NvimTree not visible, open it
-    --   require("nvim-tree.api").tree.open()
-    -- end
   end,
 
   open_nvim_tree = function(data)

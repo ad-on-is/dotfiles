@@ -113,6 +113,18 @@ return {
   {
     "nvim-neo-tree/neo-tree.nvim",
     opts = {
+      filesystem = {
+        filtered_items = {
+          visible = false, -- hide filtered items on open
+          hide_gitignored = true,
+          hide_dotfiles = false,
+          hide_by_name = {
+            ".git",
+            ".DS_Store",
+            "thumbs.db",
+          },
+        },
+      },
       close_if_last_window = true,
       window = { mappings = { ["<A-q>"] = ":qa", ["<A-e>"] = ":wincmd p" } },
       default_component_configs = {
@@ -227,7 +239,7 @@ return {
         enabled = true,
         icons = { "󰲡 ", "󰲣 ", "󰲥 ", "󰲧 ", "󰲩 ", "󰲫 " },
         signs = { "󰫎 " },
-        left_pad = { 1, 2, 4, 6, 8, 10, 12, 14 },
+        left_pad = { 1, 2, 3, 4, 5, 6, 7, 8 },
       },
       checkbox = {
         enabled = true,
@@ -242,27 +254,27 @@ return {
     },
   },
 
-  {
-    "nvim-telescope/telescope.nvim",
-    opts = function(_, opts)
-      if not opts.defaults then
-        opts.defaults = {}
-      end
-
-      opts.defaults.layout_config = {
-        horizontal = {
-          prompt_position = "top",
-          preview_width = 0.60,
-        },
-        width = 0.90,
-        height = 0.70,
-      }
-      opts.defaults.prompt_prefix = "   "
-      opts.defaults.selection_caret = " "
-      opts.defaults.entry_prefix = " "
-      opts.defaults.sorting_strategy = "ascending"
-    end,
-  },
+  -- {
+  --   "nvim-telescope/telescope.nvim",
+  --   opts = function(_, opts)
+  --     if not opts.defaults then
+  --       opts.defaults = {}
+  --     end
+  --
+  --     opts.defaults.layout_config = {
+  --       horizontal = {
+  --         prompt_position = "top",
+  --         preview_width = 0.60,
+  --       },
+  --       width = 0.90,
+  --       height = 0.70,
+  --     }
+  --     opts.defaults.prompt_prefix = "   "
+  --     opts.defaults.selection_caret = " "
+  --     opts.defaults.entry_prefix = " "
+  --     opts.defaults.sorting_strategy = "ascending"
+  --   end,
+  -- },
   { "nvzone/volt", lazy = true },
   { "nvzone/menu", lazy = true },
   { "rasulomaroff/reactive.nvim", opts = { load = { "catppuccin-mocha-cursor", "catppuccin-mocha-cursorline" } } },
@@ -397,7 +409,7 @@ return {
             },
           },
           position = "right",
-          size = 40,
+          size = 25,
         },
         {
           elements = {
@@ -411,7 +423,7 @@ return {
             },
           },
           position = "bottom",
-          size = 10,
+          size = 15,
         },
       },
     },
