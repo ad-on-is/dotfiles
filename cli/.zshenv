@@ -1,7 +1,7 @@
 
 skip_global_compinit=1
 
-XDG_STATE_HOME=${XDG_STATE_HOME:-"$HOME/.local/state"}
+export XDG_STATE_HOME=${XDG_STATE_HOME:-"$HOME/.local/state"}
 
 # HSTR configuration - add this to ~/.zshrc
 # setopt histignorespace           # skip cmds w/ leading space from history
