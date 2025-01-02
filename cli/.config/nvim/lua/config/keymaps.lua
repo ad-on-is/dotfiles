@@ -83,6 +83,10 @@ map("n", "<leader>gCl", "<cmd>GitConflictChooseNextConflict<cr>", { desc = "Next
 map("n", "<leader>gCj", "<cmd>GitConflictChoosePrevConflict<cr>", { desc = "Previous" })
 map("n", "<leader>gCa", "<cmd>GitConflictListQf<cr>", { desc = "Show All" })
 
+map("n", "<tab>", "i<tab>")
+map("v", "<tab>", ">gv")
+map("v", "<S-tab>", "<gv")
+
 --
 -- -- Telescope
 -- --
