@@ -7,7 +7,7 @@
 
 return {
 
-  code_actions = function(mouse)
+  code_actions = function()
     local function apply_specific_code_action(action_title)
       vim.lsp.buf.code_action({
         filter = function(action)
@@ -32,26 +32,26 @@ return {
       diagnostics = vim.lsp.diagnostic.get_line_diagnostics(),
     }
 
-    local code_acts = {}
     vim.lsp.buf_request(bufnr, "textDocument/codeAction", params, function(_, results, _, _)
-      if #results > 0 then
-        for i, res in ipairs(results) do
-          actions[res.title] = function()
-            apply_specific_code_action("" .. res.title)
-          end
-        end
-        local items = {}
-        for t, _ in pairs(actions) do
-          table.insert(items, t)
-        end
-        table.sort(items)
-        vim.ui.select(items, {}, function(choice)
-          if choice == nil then
-            return
-          end
-          actions[choice]()
-        end)
+      if not results or #results == 0 then
+        return
       end
+      for i, res in ipairs(results) do
+        actions[res.title] = function()
+          apply_specific_code_action("" .. res.title)
+        end
+      end
+      local items = {}
+      for t, _ in pairs(actions) do
+        table.insert(items, t)
+      end
+      table.sort(items)
+      vim.ui.select(items, {}, function(choice)
+        if choice == nil then
+          return
+        end
+        actions[choice]()
+      end)
     end)
   end,
 

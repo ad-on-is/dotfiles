@@ -19,6 +19,7 @@ return {
   {
     "saghen/blink.cmp",
     opts = {
+
       keymap = {
         preset = "super-tab",
         ["<CR>"] = { "accept", "fallback" },
@@ -45,13 +46,6 @@ return {
         accept = { auto_brackets = { enabled = false } },
         list = {
           selection = "preselect",
-        },
-        menu = {
-          scrollbar = false,
-          draw = {
-            padding = { 0, 1 },
-            columns = { { "kind_icon" }, { "label", "label_description", "source_name", gap = 2 } },
-          },
         },
       },
       sources = {

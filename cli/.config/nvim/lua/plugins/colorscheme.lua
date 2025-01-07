@@ -43,7 +43,6 @@ return {
   {
     "catppuccin/nvim",
     name = "catppuccin",
-    dependencies = { "NvChad/base46" },
     opts = {
       flavour = "mocha",
       transparent_background = false,
@@ -88,9 +87,9 @@ return {
         which_key = true,
       },
       custom_highlights = function(C)
-        local mix = require("base46.colors").mix
+        local mix = require("catppuccin.utils.colors").blend
         local mc = function(fg, density)
-          return mix(fg or C.surface2, C.crust, density or 90)
+          return mix(fg or C.surface2, "#0e0f16", density or 0.1)
         end
         return {
           Comment = { fg = C.overlay0 },
@@ -99,7 +98,8 @@ return {
           ["@parameter"] = { fg = C.mauve },
           Keyword = { fg = C.sapphire },
           BlinkCmpMenu = { bg = "#0e0f16" },
-          BlinkCmpMenuSelection = { bg = mc(C.surface2) },
+          CursorLineNr = { fg = C.peach },
+          BlinkCmpMenuSelection = { bg = mc(C.text) },
           BlinkCmpKindSnippet = { fg = C.mauve, bg = mc(C.mauve) },
           BlinkCmpKindKeyword = { fg = C.red, bg = mc(C.red) },
           BlinkCmpKindText = { fg = C.teal, bg = mc(C.teal) },
@@ -130,12 +130,12 @@ return {
           NeoTreeNormal = { fg = C.text, bg = "#0e0f16" },
           NeoTreeNormalNC = { fg = C.text, bg = "#0e0f16" },
           NeoTreeDirectoryName = { fg = C.text },
-          NeoTreeDirectoryIcon = { fg = mc(C.blue, 60) },
+          NeoTreeDirectoryIcon = { fg = mc(C.blue, 0.4) },
           NeominimapBackground = { bg = "#0e0f16" },
           NeominimapCursorLine = { bg = C.surface1 },
           SnacksIndent = { fg = C.crust },
-          SnacksIndentScope = { fg = mc(C.lavender, 70) },
-          SnacksIndentChunk = { fg = mc(C.lavender, 70) },
+          SnacksIndentScope = { fg = mc(C.lavender, 0.3) },
+          SnacksIndentChunk = { fg = mc(C.lavender, 0.3) },
         }
       end,
       color_overrides = {
@@ -192,6 +192,7 @@ return {
     },
     lazy = false,
   },
+  { "rasulomaroff/reactive.nvim", opts = { load = { "catppuccin-mocha-cursorline", "catppuccin-mocha-cursor" } } },
   {
     "folke/snacks.nvim",
     ---@type snacks.Config
