@@ -16,3 +16,11 @@ vim.g.neovide_padding_right = 5
 vim.g.neovide_padding_left = 5
 
 vim.g.mkdp_auto_close = 0
+
+-- performance tuning
+vim.lsp.set_log_level("off")
+vim.g.matchparen_timeout = 2
+vim.g.matchparen_insert_timeout = 2
+vim.opt.syntax = "off"
+vim.o.foldenable = false
+vim.o.spell = false

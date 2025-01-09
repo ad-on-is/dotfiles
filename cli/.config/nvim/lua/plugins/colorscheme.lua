@@ -93,10 +93,11 @@ return {
         end
         return {
           Comment = { fg = C.overlay0 },
-          String = { fg = C.teal },
+          String = { fg = C.rosewater },
           ["@variable.parameter"] = { fg = C.mauve },
           ["@parameter"] = { fg = C.mauve },
           Keyword = { fg = C.sapphire },
+          Operator = { fg = C.maroon },
           BlinkCmpMenu = { bg = "#0e0f16" },
           CursorLineNr = { fg = C.peach },
           BlinkCmpMenuSelection = { bg = mc(C.text) },

@@ -44,9 +44,9 @@ return {
       },
       completion = {
         accept = { auto_brackets = { enabled = false } },
-        list = {
-          selection = "preselect",
-        },
+        -- list = {
+        --   selection = { preselect =  },
+        -- },
       },
       sources = {
         cmdline = function()

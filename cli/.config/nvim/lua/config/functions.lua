@@ -78,10 +78,8 @@ return {
       return
     end
 
-    if
-      vim.api.nvim_buf_get_name(0) == ""
-      or (vim.api.nvim_buf_line_count(0) == 1 and vim.api.nvim_buf_get_lines(0, 0, 1, false)[1] == "")
-    then
+    if vim.api.nvim_buf_get_name(0) == ""
+ then
       local filename = vim.fn.input("Save file as: ")
       if filename ~= "" then
         vim.cmd("write " .. filename)

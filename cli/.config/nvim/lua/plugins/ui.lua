@@ -59,23 +59,79 @@ return {
       },
     },
   },
+
   -- {
-  --   "Isrothy/neominimap.nvim",
-  --   init = function()
-  --     vim.opt.sidescrolloff = 36 -- Set a large value
+  --   "echasnovski/mini.map",
+  --   lazy = false,
+  --   config = function()
+  --     local MiniMap = require("mini.map")
+  --     MiniMap.setup({
+  --       symbols = {
+  --         encode = MiniMap.gen_encode_symbols.dot("3x2"),
+  --       },
+  --       integrations = {
+  --         MiniMap.gen_integration.builtin_search(),
+  --         MiniMap.gen_integration.diagnostic(),
+  --         MiniMap.gen_integration.gitsigns(),
+  --       },
+  --       window = {
+  --         focusable = true,
+  --         show_integration_count = false,
+  --         width = 8,
+  --         winblend = 25,
+  --       },
+  --     })
   --
-  --     vim.g.neominimap = {
-  --       layout = "float",
-  --       auto_enable = true,
-  --       x_multiplier = 4,
-  --       y_multiplier = 1,
-  --       float = { minimap_width = 10, window_border = "none" },
-  --       split = { minimap_width = 10 },
-  --       click = { enabled = true },
-  --     }
+  --     vim.api.nvim_create_autocmd("BufWinEnter", {
+  --       callback = function()
+  --         if vim.bo.filetype == "mninimap" then
+  --           return
+  --         else
+  --           MiniMap = require("mini.map")
+  --           MiniMap.open()
+  --         end
+  --       end,
+  --     })
   --   end,
   -- },
-  --
+  {
+    "Isrothy/neominimap.nvim",
+    init = function()
+      vim.opt.sidescrolloff = 106 -- Set a large value
+
+      vim.g.neominimap = {
+        layout = "float",
+        auto_enable = true,
+        x_multiplier = 4,
+        y_multiplier = 1,
+        float = { minimap_width = 10, window_border = "none" },
+        split = { minimap_width = 10 },
+        click = { enabled = true },
+      }
+    end,
+  },
+
+  {
+    "lewis6991/gitsigns.nvim",
+    opts = {
+      signs = {
+        add = { text = "▎" },
+        change = { text = "▎" },
+        delete = { text = "▎" },
+        topdelete = { text = "▎" },
+        changedelete = { text = "▎" },
+        untracked = { text = "▎" },
+      },
+      signs_staged = {
+        add = { text = "▎" },
+        change = { text = "▎" },
+        delete = { text = "▎" },
+        topdelete = { text = "▎" },
+        changedelete = { text = "▎" },
+        untracked = { text = "▎" },
+      },
+    },
+  },
   {
     "xzbdmw/colorful-menu.nvim",
     config = true,
@@ -120,40 +176,6 @@ return {
     },
   },
 
-  {
-    "echasnovski/mini.map",
-    lazy = false,
-    config = function()
-      local MiniMap = require("mini.map")
-      MiniMap.setup({
-        symbols = {
-          encode = MiniMap.gen_encode_symbols.dot("3x2"),
-        },
-        integrations = {
-          MiniMap.gen_integration.builtin_search(),
-          MiniMap.gen_integration.diagnostic(),
-          MiniMap.gen_integration.gitsigns(),
-        },
-        window = {
-          focusable = true,
-          show_integration_count = false,
-          width = 8,
-          winblend = 25,
-        },
-      })
-
-      vim.api.nvim_create_autocmd("BufWinEnter", {
-        callback = function()
-          if vim.bo.filetype == "mninimap" then
-            return
-          else
-            MiniMap = require("mini.map")
-            MiniMap.open()
-          end
-        end,
-      })
-    end,
-  },
   {
     "nvim-neo-tree/neo-tree.nvim",
     opts = {
@@ -217,6 +239,11 @@ return {
     --   { "nvim-lua/lsp-status.nvim" },
     -- },
     opts = {
+      refresh = {
+        statusline = 1500,
+        tabline = 1500,
+        winbar = 1500,
+      },
       sections = {
         lualine_b = {
           "branch",
@@ -269,6 +296,7 @@ return {
           --   color = function() return Snacks.util.color("Special") end,
           },
         },
+        lualine_z = {},
       },
     },
   },
