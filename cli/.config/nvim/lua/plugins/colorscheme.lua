@@ -6,40 +6,6 @@ return {
     end,
   },
 
-  -- {
-  --   "lukas-reineke/indent-blankline.nvim",
-  --   -- main = "ibl",
-  --   -- ---@module "ibl"
-  --   -- ---@type ibl.config
-  --   opts = function(_, opts)
-  --     local highlight = {
-  --       "RainbowRed",
-  --       "RainbowYellow",
-  --       "RainbowBlue",
-  --       "RainbowOrange",
-  --       "RainbowGreen",
-  --       "RainbowViolet",
-  --       "RainbowCyan",
-  --     }
-  --
-  --     -- local hooks = require("ibl.hooks")
-  --     -- -- create the highlight groups in the highlight setup hook, so they are reset
-  --     -- -- every time the colorscheme changes
-  --     -- hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
-  --     --   vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
-  --     --   vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
-  --     --   vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
-  --     --   vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
-  --     --   vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
-  --     --   vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
-  --     --   vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
-  --     -- end)
-  --     -- vim.g.rainbow_delimiters = { highlight = highlight }
-  --     -- opts.scope.highlight = highlight
-  --     --
-  --     -- hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
-  --   end,
-  -- },
   {
     "catppuccin/nvim",
     name = "catppuccin",
@@ -86,18 +52,22 @@ return {
         treesitter_context = true,
         which_key = true,
       },
-      custom_highlights = function(C)
+      custom_highlights = function(C, O)
         local mix = require("catppuccin.utils.colors").blend
         local mc = function(fg, density)
           return mix(fg or C.surface2, "#0e0f16", density or 0.1)
         end
         return {
-          Comment = { fg = C.overlay0 },
+          Comment = { fg = mc(C.lavender, 0.5) },
+          DiagnosticUnnecessary = { style = { "undercurl" } },
           String = { fg = C.rosewater },
           ["@variable.parameter"] = { fg = C.mauve },
           ["@parameter"] = { fg = C.mauve },
           Keyword = { fg = C.sapphire },
-          Operator = { fg = C.maroon },
+          ["@keyword.operator"] = { fg = C.sapphire },
+          LspInlayHint = { fg = mc(C.mauve, 0.5), bg = "none", style = { "italic" } },
+          -- Operator = { fg = "#df8e1d" },
+          Operator = { fg = "#e64553" },
           BlinkCmpMenu = { bg = "#0e0f16" },
           CursorLineNr = { fg = C.peach },
           BlinkCmpMenuSelection = { bg = mc(C.text) },
@@ -207,7 +177,6 @@ return {
               ["'*'"] = "#b4befe",
             },
             -- set to an empty string "" to disable icons
-            nerdFontsVersion = "3",
           },
         },
         theme_path = vim.fs.normalize("/home/adonis/.config/lazygit/catppuccin.yml"),

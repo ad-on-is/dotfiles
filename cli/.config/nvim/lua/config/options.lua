@@ -2,7 +2,7 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 --
--- vim.g.ai_cmp = false
+vim.g.ai_cmp = false
 -- vim.opt.completeopt = "menu,menuone,noselect"
 -- vim.opt.wrap = true
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
@@ -24,3 +24,7 @@ vim.g.matchparen_insert_timeout = 2
 vim.opt.syntax = "off"
 vim.o.foldenable = false
 vim.o.spell = false
+
+-- vim.opt.number = true
+-- vim.opt.relativenumber = true
+-- vim.o.statuscolumn = "%l [%r] %s" -- show signs, line number, and relative line number

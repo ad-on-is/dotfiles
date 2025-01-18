@@ -1,6 +1,8 @@
 return {
+  { "folke/persistence.nvim", enabled = false },
   {
-    "lukas-reineke/indent-blankline.nvim",
+    "echasnovski/mini.pairs",
     enabled = false,
   },
+  { "roobert/tailwindcss-colorizer-cmp.nvim", enabled = false },
 }

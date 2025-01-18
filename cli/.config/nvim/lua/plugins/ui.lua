@@ -6,6 +6,11 @@ return {
       scroll = {
         enabled = false,
       },
+      statuscolumn = {
+        folds = {
+          open = true,
+        },
+      },
       indent = {
         animate = {
           enabled = false,
@@ -97,7 +102,7 @@ return {
   {
     "Isrothy/neominimap.nvim",
     init = function()
-      vim.opt.sidescrolloff = 106 -- Set a large value
+      vim.opt.sidescrolloff = 36 -- Set a large value
 
       vim.g.neominimap = {
         layout = "float",
@@ -113,6 +118,7 @@ return {
 
   {
     "lewis6991/gitsigns.nvim",
+    event = "VeryLazy",
     opts = {
       signs = {
         add = { text = "▎" },
@@ -134,12 +140,18 @@ return {
   },
   {
     "xzbdmw/colorful-menu.nvim",
-    config = true,
+    event = "VeryLazy",
+    opts = {},
   },
 
   {
     "saghen/blink.cmp",
     opts = {
+      appearance = {
+        kind_icons = {
+          Color = "●",
+        },
+      },
       completion = {
         menu = {
           draw = {
@@ -178,6 +190,7 @@ return {
 
   {
     "nvim-neo-tree/neo-tree.nvim",
+    event = "VeryLazy",
     opts = {
       filesystem = {
         filtered_items = {
@@ -223,11 +236,10 @@ return {
   },
   {
     "akinsho/bufferline.nvim",
+    event = "VeryLazy",
     opts = {
       options = {
-        custom_filter = function()
-          return true
-        end,
+        always_show_bufferline = true,
         indicator = { style = "underline" },
       },
     },
@@ -235,6 +247,7 @@ return {
 
   {
     "nvim-lualine/lualine.nvim",
+    event = "VeryLazy",
     -- dependencies = {
     --   { "nvim-lua/lsp-status.nvim" },
     -- },
@@ -302,6 +315,7 @@ return {
   },
   {
     "MeanderingProgrammer/render-markdown.nvim",
+    event = "VeryLazy",
     opts = {
       render_modes = true,
       code = {
@@ -326,43 +340,21 @@ return {
     },
   },
 
-  -- {
-  --   "nvim-telescope/telescope.nvim",
-  --   opts = function(_, opts)
-  --     if not opts.defaults then
-  --       opts.defaults = {}
-  --     end
-  --
-  --     opts.defaults.layout_config = {
-  --       horizontal = {
-  --         prompt_position = "top",
-  --         preview_width = 0.60,
-  --       },
-  --       width = 0.90,
-  --       height = 0.70,
-  --     }
-  --     opts.defaults.prompt_prefix = "   "
-  --     opts.defaults.selection_caret = " "
-  --     opts.defaults.entry_prefix = " "
-  --     opts.defaults.sorting_strategy = "ascending"
-  --   end,
-  -- },
-  { "nvzone/volt", lazy = true },
-  { "nvzone/menu", lazy = true },
   {
     "folke/noice.nvim",
     event = "VeryLazy",
     opts = {
+      -- notify = {
+      --   enabled = false,
+      -- },
       lsp = {
-        override = {
-          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-          ["vim.lsp.util.stylize_markdown"] = true,
-          ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+        hover = {
+          silent = true,
         },
 
-        signature = {
-          enabled = false,
-        },
+        -- signature = {
+        --   enabled = false,
+        -- },
       },
 
       cmdline = {
@@ -373,36 +365,14 @@ return {
 
       routes = {
         {
+          view = "split",
+          filter = { event = "msg_show", min_height = 2 },
+        },
+        {
           filter = {
             event = "msg_show",
             kind = "",
             find = "^/",
-          },
-          opts = { skip = true },
-        },
-        {
-          filter = {
-            event = "msg_show",
-            kind = "",
-            find = "No signature help",
-          },
-          opts = { skip = true },
-        },
-
-        {
-          filter = {
-            event = "msg_show",
-            kind = "wmsg",
-            find = "Invalid mapping",
-          },
-          opts = { skip = true },
-        },
-
-        {
-          filter = {
-            event = "msg_show",
-            kind = "emsg",
-            find = "Failed to set cursor",
           },
           opts = { skip = true },
         },
@@ -449,6 +419,9 @@ return {
     "folke/snacks.nvim",
     ---@type snacks.Config
     opts = {
+      notifier = {
+        style = "minimal",
+      },
       terminal = {
         -- your terminal configuration comes here
         -- or leave it empty to use the default settings
@@ -458,6 +431,7 @@ return {
   },
   {
     "rcarriga/nvim-dap-ui",
+    event = "VeryLazy",
     opts = {
       layouts = {
         {

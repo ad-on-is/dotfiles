@@ -4,10 +4,37 @@
 zstyle ':completion:*' cache-path "$XDG_CACHE_HOME"/zsh/zcompcache
 
 
+
+
 source ~/.zshenv
 source ~/.config/zsh/aliases.zsh
 
 bindkey -e
+
+
+ZPLUGINDIR=${ZPLUGINDIR:-${ZDOTDIR:-$HOME/.config/zsh}/plugins}
+
+# get zsh_unplugged and store it with your other plugins
+if [[ ! -d $ZPLUGINDIR/zsh_unplugged ]]; then
+  git clone --quiet https://github.com/mattmc3/zsh_unplugged $ZPLUGINDIR/zsh_unplugged
+fi
+source $ZPLUGINDIR/zsh_unplugged/zsh_unplugged.zsh
+
+# ohmyzsh plugins
+plugins=(
+  sudo
+)
+
+repos=(
+    # zdharma-continuum/zinit-annex-as-monitor
+    # zdharma-continuum/zinit-annex-bin-gem-node
+    # zdharma-continuum/zinit-annex-patch-dl
+    # zdharma-continuum/zinit-annex-rust
+    ohmyzsh/ohmyzsh
+    zsh-users/zsh-autosuggestions
+    Aloxaf/fzf-tab
+    zsh-users/zsh-syntax-highlighting
+)
 
 ### Added by Zinit's installer
 # if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
@@ -18,23 +45,23 @@ bindkey -e
 #         print -P "%F{160} The clone has failed.%f%b"
 # fi
 
-source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
-ZINIT[PLUGINS_DIR]=$HOME/.config/zsh/plugins
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
+# source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+# ZINIT[PLUGINS_DIR]=$HOME/.config/zsh/plugins
+# autoload -Uz _zinit
+# (( ${+_comps} )) && _comps[zinit]=_zinit
+#
+# zinit light-mode for \
+#     zdharma-continuum/zinit-annex-as-monitor \
+#     zdharma-continuum/zinit-annex-bin-gem-node \
+#     zdharma-continuum/zinit-annex-patch-dl \
+#     zdharma-continuum/zinit-annex-rust  \
+#     zsh-users/zsh-autosuggestions \
+#     Aloxaf/fzf-tab \
+#     zsh-users/zsh-syntax-highlighting \
+#     https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/sudo/sudo.plugin.zsh
+#
 
-zinit light-mode for \
-    zdharma-continuum/zinit-annex-as-monitor \
-    zdharma-continuum/zinit-annex-bin-gem-node \
-    zdharma-continuum/zinit-annex-patch-dl \
-    zdharma-continuum/zinit-annex-rust  \
-    zsh-users/zsh-autosuggestions \
-    Aloxaf/fzf-tab \
-    zsh-users/zsh-syntax-highlighting \
-    https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/sudo/sudo.plugin.zsh
-
-
-
+plugin-load $repos
 source ~/.config/zsh/zstyle.zsh
 
 

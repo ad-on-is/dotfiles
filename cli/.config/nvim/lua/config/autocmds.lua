@@ -10,3 +10,17 @@
 --   end,
 -- })
 --
+
+vim.api.nvim_create_autocmd({ "ModeChanged" }, {
+  pattern = "*:n",
+  callback = function()
+    vim.lsp.inlay_hint.enable(true) -- disable hints in insert mode
+  end,
+})
+
+vim.api.nvim_create_autocmd({ "ModeChanged" }, {
+  pattern = "n:*",
+  callback = function()
+    vim.lsp.inlay_hint.enable(false) -- disable hints in insert mode
+  end,
+})

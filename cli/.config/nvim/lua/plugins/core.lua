@@ -1,51 +1,107 @@
 return {
-  { "akinsho/git-conflict.nvim", version = "*", config = true },
-  { "alvan/vim-closetag" },
   {
-    "max397574/better-escape.nvim",
-    event = "InsertEnter",
-    config = function()
-      require("better_escape").setup()
-    end,
+    "akinsho/git-conflict.nvim",
+    version = "*",
+    event = "VeryLazy",
+    opts = {},
   },
-  { "folke/persistence.nvim", enabled = false },
+
   {
-    "rmagatti/auto-session",
-    opts = {
-      -- auto_restore = false,
+    "nvim-treesitter/nvim-treesitter",
+    keys = {
+      { "<bs>", false },
     },
-  },
-  {
-    "fedepujol/move.nvim",
     opts = {
-      --- Config
-    },
-  },
-  -- {
-  --   "echasnovski/mini.move",
-  --   event = "VeryLazy",
-  --   opts = {},
-  -- },
-  {
-    "catgoose/nvim-colorizer.lua",
-    event = "BufReadPre",
-    opts = {
-      filetypes = { "*", "!dart" },
-      -- dart is handled by flutter-tools
-      user_default_options = {
-        mode = "virtualtext",
-        always_update = true,
-        RRGGBBAA = true,
-        AARRGGBB = true,
-        css = true,
-        tailwind = true,
-        -- sass = { enable = true },
+      incremental_selection = {
+        keymaps = {
+          node_decremental = "<C-S-space>",
+        },
       },
     },
   },
   {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    opts = {
+      map_bs = false,
+    },
+    config = true,
+  },
+
+  {
+    "rmagatti/auto-session",
+    opts = {
+      post_restore_cmds = {
+        function()
+          local close_timer = vim.loop.new_timer()
+
+          if not close_timer then
+            return
+          end
+
+          close_timer:start(
+            100,
+            0,
+            vim.schedule_wrap(function()
+              for i, buf in ipairs(vim.fn.getbufinfo({ buflisted = 1 })) do
+                if buf.name == "" or buf.name == "[No Name]" then
+                  Snacks.bufdelete(buf.bufnr)
+                end
+              end
+
+              if close_timer then
+                close_timer:stop()
+                close_timer:close()
+                close_timer = nil
+              end
+              vim.cmd(":wincmd p")
+              vim.cmd(":GitConflictRefresh")
+            end)
+          )
+        end,
+      },
+    },
+  },
+  {
+    "fedepujol/move.nvim",
+    event = "VeryLazy",
+    opts = {},
+  },
+  {
+    "catgoose/nvim-colorizer.lua",
+    event = "BufReadPre",
+    opts = {
+      user_default_options = {
+        virtualtext = "●",
+        mode = "virtualtext",
+        RRGGBBAA = true,
+        AARRGGBB = true,
+        css = true,
+        virtualtext_inline = "after",
+        tailwind = true,
+        -- sass = { enable = true, parsers = { "css" } },
+      },
+    },
+    init = function()
+      local c = require("colorizer")
+      vim.api.nvim_create_autocmd({ "InsertEnter", "InsertLeave" }, {
+        callback = function(args)
+          if args.event == "InsertEnter" then
+            c.detach_from_buffer()
+          else
+            if not c.is_buffer_attached() then
+              c.attach_to_buffer()
+            end
+          end
+        end,
+      })
+    end,
+  },
+
+  {
     "m00qek/baleia.nvim",
     version = "*",
+    event = "VeryLazy",
     config = function()
       vim.g.baleia = require("baleia").setup({ async = false })
       vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
