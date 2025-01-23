@@ -14,6 +14,7 @@ alias dexec=docker_exec
 alias emacs='emacs -nw'
 alias devwatch='find $1 | entr -cr ${@: 2}'
 alias watchgo='watchexec -r -e go --stop-signal SIGINT -- ${@:1}'
+alias sctl='systemctl --user'
 
 alias gobuildrpi='env GOOS=linux GOARCH=arm GOARM=5 go build'
 

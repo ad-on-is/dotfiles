@@ -365,8 +365,8 @@ return {
 
       routes = {
         {
-          view = "split",
-          filter = { event = "msg_show", min_height = 2 },
+          view = "vsplit",
+          filter = { event = "msg_show", min_height = 20 },
         },
         {
           filter = {

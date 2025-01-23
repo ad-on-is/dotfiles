@@ -5,4 +5,5 @@ return {
     enabled = false,
   },
   { "roobert/tailwindcss-colorizer-cmp.nvim", enabled = false },
+  { "rafamadriz/friendly-snippets", enabled = false },
 }
