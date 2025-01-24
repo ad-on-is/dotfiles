@@ -163,5 +163,5 @@ style_root = "red bold"
 
 [hostname]
 ssh_only = true
-format = "@[$hostname]($style)"
-style = "orange bold"
+format = "@[$hostname]($style) "
+style = "purple bold"
