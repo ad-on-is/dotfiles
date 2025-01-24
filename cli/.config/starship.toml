@@ -158,7 +158,7 @@ style = "green bold"
 [username]
 show_always = false
 format = "[$user]($style)"
-style_user = "white bold"
+style_user = "purple bold"
 style_root = "red bold"
 
 [hostname]
