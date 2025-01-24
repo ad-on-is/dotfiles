@@ -2,7 +2,7 @@ add_newline = false
 continuation_prompt = "› "
 
 format = """
-$sudo$directory$time$container$all
+$sudo$directory$time$container$os$all
 """
 
 #format = """$character"""
@@ -19,6 +19,9 @@ min_time = 10
 style = "red"
 symbol = ""
 format = "[$symbol $name]($style) "
+
+[custom.container]
+command = ""
 
 [aws]
 symbol = "  "
@@ -165,3 +168,6 @@ style_root = "red bold"
 ssh_only = true
 format = "@[$hostname]($style) "
 style = "purple bold"
+
+[os]
+disabled = false
