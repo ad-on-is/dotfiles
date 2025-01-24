@@ -157,11 +157,11 @@ style = "green bold"
 
 [username]
 show_always = false
-format = "[$user]($style) "
+format = "[$user]($style)"
 style_user = "white bold"
 style_root = "red bold"
 
 [hostname]
 ssh_only = true
 format = "@[$hostname]($style) in "
-style = "red bold"
+style = "orange bold"
