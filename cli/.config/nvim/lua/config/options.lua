@@ -19,8 +19,9 @@ vim.g.mkdp_auto_close = 0
 
 -- performance tuning
 vim.lsp.set_log_level("off")
-vim.g.matchparen_timeout = 2
-vim.g.matchparen_insert_timeout = 2
+vim.g.matchparen_timeout = 10
+vim.g.matchparen_insert_timeout = 10
+vim.g.loaded_matchparen = 1
 vim.opt.syntax = "off"
 vim.o.foldenable = false
 vim.o.spell = false

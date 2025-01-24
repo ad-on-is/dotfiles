@@ -19,6 +19,21 @@ local function maphelper2(key, c, desc, remap)
   maphelper(key, c, c, c, desc, remap)
 end
 
+map("n", "<leader>ups", function()
+  vim.cmd([[
+		:profile start /tmp/nvim-profile.log
+		:profile func *
+		:profile file *
+	]])
+end, { desc = "Profile Start" })
+
+map("n", "<leader>upe", function()
+  vim.cmd([[
+		:profile stop
+		:e /tmp/nvim-profile.log
+	]])
+end, { desc = "Profile End" })
+
 --
 maphelper("<S-down>", "V<Down>", "<Down>", "<Esc>v<Down>", "Select line up")
 maphelper("<S-up>", "V<Up>", "<Up>", "<Esc>v<Up>", "Select line down")

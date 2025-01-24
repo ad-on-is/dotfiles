@@ -231,6 +231,9 @@ return {
         {
           { "<leader>gC", group = "Conflict", icon = { icon = " ", color = "blue" } },
         },
+        {
+          { "<leader>up", group = "Profiler", icon = { icon = "󰾆 ", color = "green" } },
+        },
       },
     },
   },
