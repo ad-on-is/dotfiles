@@ -28,6 +28,7 @@ repos=(
     ohmyzsh/ohmyzsh
     zsh-users/zsh-autosuggestions
     Aloxaf/fzf-tab
+    Freed-Wu/fzf-tab-source
     zsh-users/zsh-syntax-highlighting
 )
 
@@ -53,25 +54,12 @@ autoload -U compinit && compinit -i  # BEFORE zoxide init
 # [ -x "$(command -v zellij)" ] && eval "$(zellij setup --generate-auto-start zsh)"
 # [ -x "$(command -v vivid)" ] && export LS_COLORS="$(vivid generate catppuccin-mocha)"
 
-
-
-
-
-_atuin_up_search() {
-    if [[ ! $BUFFER == *$'\n'* ]]; then
-        _atuin_search --shell-up-key-binding --inline-height 20 "$@"
-    else
-        zle up-line
-    fi
-}
-
-
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "/$HOME/.bun/_bun"
 
 
 
-bindkey '^l'      autosuggest-accept
+bindkey '^l' autosuggest-accept
 
 function clear-scrollback-widget {
   clear && printf '\e[3J'
@@ -92,4 +80,3 @@ if [[ -f $HOME/.local/share/bash-completion/completions/appman ]]; then
   bashcompinit
   source "$HOME/.local/share/bash-completion/completions/appman"
 fi
-

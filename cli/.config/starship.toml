@@ -2,7 +2,7 @@ add_newline = false
 continuation_prompt = "› "
 
 format = """
-$sudo$directory$time$container$os$all
+$sudo$directory$time$container$custom$all
 """
 
 #format = """$character"""
@@ -16,12 +16,18 @@ show_milliseconds = true
 min_time = 10
 
 [container]
+disabled = true
 style = "red"
 symbol = ""
 format = "[$symbol $name]($style) "
 
-[custom.container]
-command = ""
+[custom.distrobox]
+command = "cat /etc/os-release | grep \"NAME=\" | grep -v grep | head -1 | cut -d '\"' -f2"
+style = "red bold"
+symbol = ""
+
+format = "[󰆧 $output]($style) "
+when = ''' test -f "/.dockerenv" '''
 
 [aws]
 symbol = "  "
@@ -168,6 +174,7 @@ style_root = "red bold"
 ssh_only = true
 format = "@[$hostname]($style) "
 style = "purple bold"
+
 
 [os]
 disabled = false

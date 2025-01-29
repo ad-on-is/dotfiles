@@ -2,6 +2,9 @@
 skip_global_compinit=1
 
 export XDG_STATE_HOME=${XDG_STATE_HOME:-"$HOME/.local/state"}
+export XDG_DATA_HOME=${XDG_DATA_HOME:-"$HOME/.local/share"}
+export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-"$HOME/.config"}
+export XDG_CACHE_HOME=${XDG_CACHE_HOME:-"$HOME/.cache"}
 
 # HSTR configuration - add this to ~/.zshrc
 # setopt histignorespace           # skip cmds w/ leading space from history
