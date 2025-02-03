@@ -37,7 +37,6 @@ export XCURSOR_PATH=/usr/share/icons:$XDG_DATA_HOME/icons
 export JULIA_DEPOT_PATH="$XDG_DATA_HOME/julia:$JULIA_DEPOT_PATH"
 # export ICEAUTHORITY="$XDG_CACHE_HOME"/ICEauthority
 export XCOMPOSEFILE="$XDG_CONFIG_HOME"/X11/xcompose
-export TERMINFO="$XDG_DATA_HOME"/terminfo                                     
 export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo
 export NODE_REPL_HISTORY="$XDG_STATE_HOME"/node_repl_history
 export NPM_CONFIG_CACHE="$XDG_CACHE_HOME"/npm
