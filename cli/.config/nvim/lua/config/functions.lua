@@ -56,12 +56,18 @@ return {
   end,
 
   toggle_tree = function()
-    local neotree = require("neo-tree.command")
     if vim.bo.filetype == "neo-tree" then
       vim.cmd("wincmd p")
     else
-      neotree.execute({ action = "focus" })
+      Snacks.picker.explorer()
     end
+
+    -- local neotree = require("neo-tree.command")
+    -- if vim.bo.filetype == "neo-tree" then
+    --   vim.cmd("wincmd p")
+    -- else
+    --   neotree.execute({ action = "focus" })
+    -- end
   end,
 
   open_nvim_tree = function(data)
@@ -78,8 +84,7 @@ return {
       return
     end
 
-    if vim.api.nvim_buf_get_name(0) == ""
- then
+    if vim.api.nvim_buf_get_name(0) == "" then
       local filename = vim.fn.input("Save file as: ")
       if filename ~= "" then
         vim.cmd("write " .. filename)

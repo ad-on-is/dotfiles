@@ -1,6 +1,7 @@
 return {
   {
     "ibhagwan/fzf-lua",
+    enabled = false,
     opts = {
       winopts = {
         on_create = function(_)
