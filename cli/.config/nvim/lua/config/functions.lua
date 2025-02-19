@@ -59,10 +59,11 @@ return {
     if vim.bo.filetype == "neo-tree" then
       vim.cmd("wincmd p")
     else
-      Snacks.picker.explorer()
+      -- Snacks.picker.explorer()
+      local neotree = require("neo-tree.command")
+      neotree.execute({ action = "focus" })
     end
 
-    -- local neotree = require("neo-tree.command")
     -- if vim.bo.filetype == "neo-tree" then
     --   vim.cmd("wincmd p")
     -- else

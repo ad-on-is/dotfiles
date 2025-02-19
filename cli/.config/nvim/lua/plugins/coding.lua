@@ -54,7 +54,19 @@ return {
   --   },
   -- },
   --
-
+  -- {
+  --   "stevearc/conform.nvim",
+  --   opts = {
+  --     formatters_by_ft = {
+  --       css = { "css_beautify" },
+  --       sass = { "css_beautify" },
+  --       scss = { "css_beautify" },
+  --       javascript = { "prettierd" },
+  --       typescript = { "prettierd" },
+  --
+  --     },
+  --   },
+  -- },
   {
     "yetone/avante.nvim",
     event = "VeryLazy",
@@ -156,10 +168,25 @@ return {
           "cancel",
           "fallback",
         },
+      },
+      cmdline = {
+        enabled = true,
+        sources = function()
+          local type = vim.fn.getcmdtype()
+          -- Search forward and backward
+          if type == "/" or type == "?" then
+            return { "buffer" }
+          end
+          -- Commands
+          if type == ":" then
+            return { "cmdline" }
+          end
+          return {}
+        end,
 
-        cmdline = {
+        keymap = {
           preset = "super-tab",
-          ["<CR>"] = { "accept", "fallback" },
+          ["<CR>"] = { "select_accept_and_enter", "fallback" },
           ["<esc>"] = {
             "cancel",
             function()
@@ -186,20 +213,6 @@ return {
         -- list = {
         --   selection = { preselect =  },
         -- },
-      },
-      sources = {
-        cmdline = function()
-          local type = vim.fn.getcmdtype()
-          -- Search forward and backward
-          if type == "/" or type == "?" then
-            return { "buffer" }
-          end
-          -- Commands
-          if type == ":" then
-            return { "cmdline" }
-          end
-          return {}
-        end,
       },
     },
   },
@@ -237,7 +250,7 @@ return {
         },
         emmet_ls = { enabled = false },
         css_variables = { enabled = false },
-        cssls = { enabled = false },
+        cssls = {},
         somesass_ls = {},
         -- vala_ls = {},
         denols = { enabled = false },

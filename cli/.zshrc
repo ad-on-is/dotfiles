@@ -80,3 +80,4 @@ if [[ -f $HOME/.local/share/bash-completion/completions/appman ]]; then
   bashcompinit
   source "$HOME/.local/share/bash-completion/completions/appman"
 fi
+

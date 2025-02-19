@@ -25,27 +25,28 @@ vim.g.loaded_matchparen = 1
 vim.opt.syntax = "off"
 vim.o.foldenable = false
 vim.o.spell = false
+vim.g.lazyvim_php_lsp = "intelephense"
 
-vim.o.clipboard = "unnamedplus"
-
-local function paste()
-  return {
-    vim.fn.split(vim.fn.getreg(""), "\n"),
-    vim.fn.getregtype(""),
-  }
-end
-
-vim.g.clipboard = {
-  name = "OSC 52",
-  copy = {
-    ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
-    ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
-  },
-  paste = {
-    ["+"] = paste,
-    ["*"] = paste,
-  },
-}
+-- vim.o.clipboard = "unnamedplus"
+--
+-- local function paste()
+--   return {
+--     vim.fn.split(vim.fn.getreg(""), "\n"),
+--     vim.fn.getregtype(""),
+--   }
+-- end
+--
+-- vim.g.clipboard = {
+--   name = "OSC 52",
+--   copy = {
+--     ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+--     ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+--   },
+--   paste = {
+--     ["+"] = paste,
+--     ["*"] = paste,
+--   },
+-- }
 
 -- vim.opt.number = true
 -- vim.opt.relativenumber = true

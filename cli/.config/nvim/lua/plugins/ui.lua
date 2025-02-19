@@ -3,6 +3,15 @@ return {
   {
     "folke/snacks.nvim",
     opts = {
+      notifier = {
+        style = "minimal",
+      },
+      terminal = {
+        -- your terminal configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      },
+
       scroll = {
         enabled = false,
       },
@@ -417,20 +426,6 @@ return {
       },
     },
     dependencies = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" },
-  },
-  {
-    "folke/snacks.nvim",
-    ---@type snacks.Config
-    opts = {
-      notifier = {
-        style = "minimal",
-      },
-      terminal = {
-        -- your terminal configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      },
-    },
   },
   {
     "rcarriga/nvim-dap-ui",

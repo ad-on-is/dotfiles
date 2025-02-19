@@ -54,7 +54,7 @@ export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 export WINEPREFIX="$XDG_DATA_HOME"/wine
 export PNPM_HOME="$XDG_DATA_HOME"/pnpm
 export NPM_CONFIG_STORE_DIR="$PNPM_HOME"/store
-
+export COMPOSER_HOME="$XDG_DATA_HOME"/composer
 
 
 export LG_CONFIG_FILE="/$XDG_CONFIG_HOME/lazygit/config.yml,$XDG_CONFIG_HOME/lazygit/catppuccin.yml"
@@ -95,6 +95,7 @@ PATH="$BUN_INSTALL/bin:$PATH"
 
 
 PATH=$PATH:$CARGO_HOME/bin
+PATH=$PATH:$XDG_DATA_HOME/composer/vendor/bin
 PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
 
 
