@@ -7811,3 +7811,14 @@ btop++ needs an interactive shell to run.
 2025/01/23 (14:47:32) | ERROR: Couldn't determine terminal size of "STDOUT_FILENO"!
 2025/01/23 (14:47:32) | ERROR: Couldn't determine terminal size of "STDOUT_FILENO"!
 2025/01/23 (14:47:32) | ERROR: Couldn't determine terminal size of "STDOUT_FILENO"!
+
+2025/03/08 (18:38:54) | ===> btop++ v.1.4.0
+2025/03/08 (18:38:54) | ERROR: Stall in Runner thread, restarting!
+2025/03/08 (18:39:02) | ERROR: Runner thread died unexpectedly!
+
+2025/03/08 (18:39:47) | ===> btop++ v.1.4.0
+2025/03/08 (18:39:47) | ERROR: Stall in Runner thread, restarting!
+2025/03/08 (18:39:55) | ERROR: Stall in Runner thread, restarting!
+2025/03/08 (18:40:03) | ERROR: Stall in Runner thread, restarting!
+2025/03/08 (18:40:10) | ERROR: Stall in Runner thread, restarting!
+2025/03/08 (18:40:18) | ERROR: Stall in Runner thread, restarting!

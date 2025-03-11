@@ -8,6 +8,17 @@ return {
   },
 
   {
+    "supermaven-inc/supermaven-nvim",
+
+    opts = {
+      color = {
+        suggestion_color = vim.api.nvim_get_hl(0, { name = "NonText" }).fg,
+        cterm = vim.api.nvim_get_hl(0, { name = "NonText" }).cterm,
+      },
+    },
+  },
+
+  {
     "catppuccin/nvim",
     name = "catppuccin",
     opts = {
@@ -164,7 +175,10 @@ return {
     },
     lazy = false,
   },
-  { "rasulomaroff/reactive.nvim", opts = { load = { "catppuccin-mocha-cursorline", "catppuccin-mocha-cursor" } } },
+  {
+    "rasulomaroff/reactive.nvim",
+    opts = { load = { "catppuccin-mocha-cursorline", "catppuccin-mocha-cursor" } },
+  },
   {
     "folke/snacks.nvim",
     ---@type snacks.Config

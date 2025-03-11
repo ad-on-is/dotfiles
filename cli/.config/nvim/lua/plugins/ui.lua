@@ -74,40 +74,6 @@ return {
     },
   },
 
-  -- {
-  --   "echasnovski/mini.map",
-  --   lazy = false,
-  --   config = function()
-  --     local MiniMap = require("mini.map")
-  --     MiniMap.setup({
-  --       symbols = {
-  --         encode = MiniMap.gen_encode_symbols.dot("3x2"),
-  --       },
-  --       integrations = {
-  --         MiniMap.gen_integration.builtin_search(),
-  --         MiniMap.gen_integration.diagnostic(),
-  --         MiniMap.gen_integration.gitsigns(),
-  --       },
-  --       window = {
-  --         focusable = true,
-  --         show_integration_count = false,
-  --         width = 8,
-  --         winblend = 25,
-  --       },
-  --     })
-  --
-  --     vim.api.nvim_create_autocmd("BufWinEnter", {
-  --       callback = function()
-  --         if vim.bo.filetype == "mninimap" then
-  --           return
-  --         else
-  --           MiniMap = require("mini.map")
-  --           MiniMap.open()
-  --         end
-  --       end,
-  --     })
-  --   end,
-  -- },
   {
     "Isrothy/neominimap.nvim",
     init = function()
@@ -292,9 +258,7 @@ return {
           },
         },
         lualine_x = {
-          -- "nvim-dap-ui",
           "searchcount",
-          -- LazyVim.lualine.cmp_source("codeium"),
           "encoding",
           "filetype",
           {
@@ -471,4 +435,9 @@ return {
       },
     },
   },
+
+  -- {
+  --   "m4xshen/smartcolumn.nvim",
+  --   opts = {},
+  -- },
 }

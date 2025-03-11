@@ -16,6 +16,8 @@ vim.g.neovide_padding_right = 5
 vim.g.neovide_padding_left = 5
 
 vim.g.mkdp_auto_close = 0
+vim.opt.colorcolumn = "140"
+vim.opt.textwidth = 140
 
 -- performance tuning
 vim.lsp.set_log_level("off")
