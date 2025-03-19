@@ -29,6 +29,7 @@ vim.o.foldenable = false
 vim.o.spell = false
 vim.g.lazyvim_php_lsp = "intelephense"
 
+pcall(require, "config.overrides")
 -- vim.o.clipboard = "unnamedplus"
 --
 -- local function paste()

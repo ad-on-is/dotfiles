@@ -36,37 +36,6 @@ local parse_response = function(data_stream, event_state, opts)
 end
 
 return {
-  -- {
-  --   "Exafunction/codeium.nvim",
-  --   cmd = "Codeium",
-  --   event = "InsertEnter",
-  --   build = ":Codeium Auth",
-  --   -- enabled = false,
-  --   opts = {
-  --     virtual_text = {
-  --       key_bindings = {
-  --         accept = "<C-k>",
-  --         next = "<C-l>",
-  --         prev = "<C-j>",
-  --         clear = "<C-i>",
-  --       },
-  --     },
-  --   },
-  -- },
-  --
-  -- {
-  --   "stevearc/conform.nvim",
-  --   opts = {
-  --     formatters_by_ft = {
-  --       css = { "css_beautify" },
-  --       sass = { "css_beautify" },
-  --       scss = { "css_beautify" },
-  --       javascript = { "prettierd" },
-  --       typescript = { "prettierd" },
-  --
-  --     },
-  --   },
-  -- },
   {
     "yetone/avante.nvim",
     event = "VeryLazy",
@@ -259,6 +228,10 @@ return {
         somesass_ls = {},
         -- vala_ls = {},
         denols = { enabled = false },
+        -- intelephense = {
+        --   filetypes = { "php", "phtml" },
+        --   { files = { associations = { "*.php", "*.phtml", "*.module", "*.inc" } } },
+        -- },
       }, opts.servers)
       -- opts.setup = {
       --   capabilities =
