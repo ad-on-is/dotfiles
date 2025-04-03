@@ -29,6 +29,8 @@ vim.o.foldenable = false
 vim.o.spell = false
 vim.g.lazyvim_php_lsp = "intelephense"
 
+-- copy and paste with OSC52 on SSH
+
 local function paste()
   return {
     vim.fn.split(vim.fn.getreg(""), "\n"),
@@ -50,32 +52,3 @@ if os.getenv("SSH_TTY") ~= nil then
     },
   }
 end
-
--- pcall(require, "config.overrides")
---
---
---
--- vim.o.clipboard = "unnamedplus"
---
--- local function paste()
---   return {
---     vim.fn.split(vim.fn.getreg(""), "\n"),
---     vim.fn.getregtype(""),
---   }
--- end
---
--- vim.g.clipboard = {
---   name = "OSC 52",
---   copy = {
---     ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
---     ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
---   },
---   paste = {
---     ["+"] = paste,
---     ["*"] = paste,
---   },
--- }
-
--- vim.opt.number = true
--- vim.opt.relativenumber = true
--- vim.o.statuscolumn = "%l [%r] %s" -- show signs, line number, and relative line number
