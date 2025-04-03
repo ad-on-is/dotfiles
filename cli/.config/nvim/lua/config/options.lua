@@ -29,7 +29,31 @@ vim.o.foldenable = false
 vim.o.spell = false
 vim.g.lazyvim_php_lsp = "intelephense"
 
-pcall(require, "config.overrides")
+local function paste()
+  return {
+    vim.fn.split(vim.fn.getreg(""), "\n"),
+    vim.fn.getregtype(""),
+  }
+end
+
+if os.getenv("SSH_TTY") ~= nil then
+  vim.g.clipboard = {
+    name = "OSC 52",
+    copy = {
+      ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+      ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+    },
+    paste = {
+      ["+"] = paste,
+      ["*"] = paste,
+    },
+  }
+end
+
+-- pcall(require, "config.overrides")
+--
+--
+--
 -- vim.o.clipboard = "unnamedplus"
 --
 -- local function paste()

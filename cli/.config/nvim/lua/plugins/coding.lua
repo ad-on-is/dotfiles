@@ -40,6 +40,7 @@ return {
     "yetone/avante.nvim",
     event = "VeryLazy",
     lazy = false,
+    enabled = false,
     version = false, -- set this to "*" if you want to always pull the latest change, false to update on release
     opts = {
       provider = "ollama",
@@ -115,14 +116,14 @@ return {
           },
         },
       },
-      {
-        -- Make sure to set this up properly if you have lazy=true
-        "MeanderingProgrammer/render-markdown.nvim",
-        opts = {
-          file_types = { "markdown", "Avante" },
-        },
-        ft = { "markdown", "Avante" },
-      },
+      -- {
+      --   -- Make sure to set this up properly if you have lazy=true
+      --   "MeanderingProgrammer/render-markdown.nvim",
+      --   opts = {
+      --     file_types = { "markdown", "Avante" },
+      --   },
+      --   ft = { "markdown", "Avante" },
+      -- },
     },
   },
 
