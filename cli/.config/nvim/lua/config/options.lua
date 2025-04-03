@@ -37,6 +37,7 @@ local function paste()
 end
 
 if os.getenv("SSH_TTY") ~= nil then
+  vim.o.clipboard = "unnamedplus"
   vim.g.clipboard = {
     name = "OSC 52",
     copy = {
