@@ -11,6 +11,7 @@ import { getClient, socketAddr } from "./hyprland";
 let urgents: string[] = [];
 
 async function handleClient(dispatcher: string, address: string) {
+  console.log(`Handling ${dispatcher} for ${address}`);
   switch (dispatcher) {
     case "urgent":
       urgents.push(address);

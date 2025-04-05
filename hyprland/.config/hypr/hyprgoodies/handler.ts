@@ -124,7 +124,6 @@ export async function maybeFocusUrgent(
     return;
   }
 
-  console.log(parent?.title);
 
   await new Promise((r) => setTimeout(r, 50));
   const newc = await getClient(c!.address);
@@ -134,9 +133,7 @@ export async function maybeFocusUrgent(
   if (!isNemoPreview) {
     if (w > parent!.size[0] / 1.3) w = Math.round(parent!.size[0] / 1.3);
     if (h > parent!.size[1] / 1.3) h = Math.round(parent!.size[1] / 1.3);
-    await $`hyprctl dispatch resizewindowpixel exact ${w} ${h},address:${
-      c!.address
-    }`;
+    await $`hyprctl dispatch resizewindowpixel exact ${w} ${h},address:${c!.address}`;
   }
 
   console.log("WH", w, h);
@@ -144,9 +141,9 @@ export async function maybeFocusUrgent(
   const lCenter = Math.round(parent!.at[0] + parent!.size[0] / 2 - w / 2);
   const tCenter = Math.round(parent!.at[1] + parent!.size[1] / 2 - h / 2);
 
-  await $`hyprctl dispatch movewindowpixel exact ${lCenter} ${tCenter},address:${
-    c!.address
-  }`;
+  const moveAndCenter = `movewindowpixel exact ${lCenter} ${tCenter},address:${c!.address}`
 
+  await $`hyprctl dispatch ${moveAndCenter}`;
   await $`hyprctl dispatch focuswindow address:${c!.address}`;
+  await $`hyprctl keyword windowrule unset,class:^${c.class}$`
 }
