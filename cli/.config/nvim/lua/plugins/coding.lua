@@ -37,6 +37,14 @@ end
 
 return {
   {
+    "kylechui/nvim-surround",
+    config = function()
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
+    end,
+  },
+  {
     "yetone/avante.nvim",
     event = "VeryLazy",
     lazy = false,
@@ -205,6 +213,9 @@ return {
 
       opts.servers = vim.tbl_extend("keep", {
         dartls = {},
+        bashls = {
+          filetypes = { "sh", "bash", "zsh" },
+        },
         emmet_language_server = {
           enabled = false,
           filetypes = {

@@ -24,7 +24,6 @@ alias get_addcerts='scp -r adis_durakovic@dnmc.in:/home/adis_durakovic/webserver
 alias docker-compose='docker compose'
 alias rg='rg --smart-case --hidden'
 
-
 function distrobox-save() {
   if [[ -z $1 ]]; then
     echo "Please provide a distrobox name"
@@ -34,11 +33,11 @@ function distrobox-save() {
   file="$HOME/.local/distrobox/$name.tar.gz"
   echo "Saving $name to $file"
   docker container commit -p "$name" "$name"
-  docker save "$name":latest | gzip > $file
+  docker save "$name":latest | gzip >$file
 }
 
 function distrobox-restore() {
- if [[ -z $1 ]]; then
+  if [[ -z $1 ]]; then
     echo "Please provide a distrobox name"
     return
   fi
@@ -46,7 +45,7 @@ function distrobox-restore() {
   name=$1
   file="$HOME/.local/distrobox/$name.tar.gz"
 
-  docker load < $file
+  docker load <$file
 }
 
 alias fix-datagrip='fd -H "\\.lock" ~/.var/app/com.jetbrains.DataGrip -x rm'
@@ -96,8 +95,6 @@ alias fix-datagrip='fd -H "\\.lock" ~/.var/app/com.jetbrains.DataGrip -x rm'
 #     echo $body | bat --style=plain --paging=never --theme='Catppuccin Mocha'
 # }
 
-
-
 alias ..="cd .."
 alias cat="bat --style=plain  --paging=never --theme='Catppuccin Mocha'"
 
@@ -106,20 +103,28 @@ alias ll='ls -la -M'
 alias la='ls -a'
 alias find='fd -H'
 alias tree="ls --tree -L 2"
-alias rm='gio trash'
+# alias rm='gio trash'
+function rm() {
+  cmd=""
+  for arg in "$@"; do
+    if [[ "$arg" != "-rf" && "$arg" != "-r" ]]; then
+      cmd="$cmd$arg "
+    fi
+  done
+
+  eval "gio trash $cmd"
+}
 alias usage='\gdu --no-cross'
 
 alias ldu='du -h --max-depth=1 | sort -rh'
 alias fix_history='mv ~/.zsh_history ~/.zsh_history_bad && strings ~/.zsh_history_bad > ~/.zsh_history && rm  ~/.zsh_history_bad && fc -R ~/.zsh_history'
 
 docker_exec() {
-    docker exec -it "$1" /bin/sh
+  docker exec -it "$1" /bin/sh
 }
 
-
-
 fb_google_hash() {
-echo "$1" | xxd -r -p | openssl base64
+  echo "$1" | xxd -r -p | openssl base64
 }
 
 alias fb_release_hash='keytool --exportcert -alias key -keystore ~/Credentials/key.jks | openssl sha1 -binary | openssl base64'
@@ -134,35 +139,32 @@ alias gilo='git l $(git branch --show-current)'
 alias gipl='git pull'
 alias giph='git push'
 function quitawesome() {
-    apid=`ps -H -t /dev/tty2 | grep "awesome" | awk '{print $1}'`
-    kill -SIGKILL $apid
+  apid=$(ps -H -t /dev/tty2 | grep "awesome" | awk '{print $1}')
+  kill -SIGKILL $apid
 }
 
 function landevice() {
-    device="$1"
-    if [[ -z $device ]]; then
-      device="."
-    fi
+  device="$1"
+  if [[ -z $device ]]; then
+    device="."
+  fi
 
-    vlans=(0 10 30 40 60 80 90 200)
-    final=""
-    vlanstr=""
-    for vlan in "${vlans[@]}"
-    do
-        vlanstr="10.40.$vlan.0/24 $vlanstr"
-    done
+  vlans=(0 10 30 40 60 80 90 200)
+  final=""
+  vlanstr=""
+  for vlan in "${vlans[@]}"; do
+    vlanstr="10.40.$vlan.0/24 $vlanstr"
+  done
 
-    final=`nmap -sL $(echo $vlanstr | rev | cut -c 2- | rev) | grep '.lan' | grep -i $device`
-    final=`echo $final | sed -r '/^\s*$/d' | sort`
+  final=$(nmap -sL $(echo $vlanstr | rev | cut -c 2- | rev) | grep '.lan' | grep -i $device)
+  final=$(echo $final | sed -r '/^\s*$/d' | sort)
 
-    if [[  $device == "." ]]; then
-        final=`echo $final | awk '{print $5" "$6}'`
-    else
-        final=`echo $final | awk '{print $5}'`
-    fi
+  if [[ $device == "." ]]; then
+    final=$(echo $final | awk '{print $5" "$6}')
+  else
+    final=$(echo $final | awk '{print $5}')
+  fi
 
-    echo $final
-
-
+  echo $final
 
 }

@@ -6,6 +6,11 @@ return {
     opts = {},
   },
 
+  -- {
+  --   "jake-stewart/multicursor.nvim",
+  --   opts = {},
+  -- },
+
   {
     "nvim-treesitter/nvim-treesitter",
     keys = {

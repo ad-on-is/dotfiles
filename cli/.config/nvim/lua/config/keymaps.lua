@@ -5,6 +5,7 @@
 --
 
 local funcs = require("config.functions")
+-- local mc = require("multicursor-nvim")
 -- local menu = require("menu")
 local map = vim.keymap.set
 -- local menuoptions = require("config.menu")
@@ -64,6 +65,12 @@ map("n", "<BS>", "i<right><bs>", { remap = true })
 map({ "n", "v" }, "d", '"_d')
 map({ "n", "v" }, "D", '"_D')
 map({ "n", "v" }, "c", '"_c')
+map({ "n", "v" }, "f", function()
+  local flash = require("flash")
+  flash.jump()
+end)
+map({ "n", "v" }, "s", "ys", { remap = true })
+
 -- map("n", "?", "<cmd>WhichKey<cr>", { noremap = true, desc = "Show WhichKey" })
 
 map({ "n", "v" }, "<space>t", function()
