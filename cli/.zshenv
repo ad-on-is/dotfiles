@@ -1,4 +1,3 @@
-
 skip_global_compinit=1
 
 export XDG_STATE_HOME=${XDG_STATE_HOME:-"$HOME/.local/state"}
@@ -18,14 +17,14 @@ export STARSHIP_LOG=error
 setopt HIST_FIND_NO_DUPS
 setopt HIST_IGNORE_ALL_DUPS
 setopt appendhistory
-setopt INC_APPEND_HISTORY  
+setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY
 
 # XDG FIXUP
 export ANDROID_USER_HOME="$XDG_DATA_HOME"/android
 export ANDROID_EMLUATOR_HOME="$XDG_DATA_HOME"/android
 export ANDROID_AVD_HOME="$XDG_DATA_HOME"/android/avd
-export CARGO_HOME="$XDG_DATA_HOME"/cargo  
+export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export FNM_PATH="$XDG_DATA_HOME"/fnm
 export DOTNET_CLI_HOME="$XDG_DATA_HOME"/dotnet
 export DUB_HOME="$XDG_DATA_HOME/dub"
@@ -40,7 +39,7 @@ export XCOMPOSEFILE="$XDG_CONFIG_HOME"/X11/xcompose
 # export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo
 export NODE_REPL_HISTORY="$XDG_STATE_HOME"/node_repl_history
 export NPM_CONFIG_CACHE="$XDG_CACHE_HOME"/npm
-export NPM_CONFIG_INIT_MODULE="$XDG_CONFIG_HOME"/npm/config/npm-init.js       
+export NPM_CONFIG_INIT_MODULE="$XDG_CONFIG_HOME"/npm/config/npm-init.js
 export NPM_CONFIG_TMP="$XDG_RUNTIME_DIR"/npm
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
 export NUGET_PACKAGES="$XDG_CACHE_HOME"/NuGetPackages
@@ -56,17 +55,12 @@ export PNPM_HOME="$XDG_DATA_HOME"/pnpm
 export NPM_CONFIG_STORE_DIR="$PNPM_HOME"/store
 export COMPOSER_HOME="$XDG_DATA_HOME"/composer
 
-
 export LG_CONFIG_FILE="/$XDG_CONFIG_HOME/lazygit/config.yml,$XDG_CONFIG_HOME/lazygit/catppuccin.yml"
 
 export JAVA_HOME=/etc/alternatives/jre
 export BUN_INSTALL="$HOME/.bun"
 
-
 export CHROME_EXECUTABLE=/usr/bin/chromium-browser
-
-
-
 
 export EDITOR=/bin/nvim
 export PIPX_BIN_DIR="$XDG_DATA_HOME"/pipx/bin
@@ -84,28 +78,22 @@ PATH=$PATH:$HOME/.pub-cache/bin
 PATH=$PATH:$HOME/.local/bin
 PATH=$PATH:$HOME/.local/bin/docker
 
-
 PATH=$PATH:$JAVA_HOME/bin
 PATH=$PATH:$HOME/.platformio/penv/bin
 
 PATH=$PATH:$PIPX_BIN_DIR
 PATH="$BUN_INSTALL/bin:$PATH"
 
-
-
-
 PATH=$PATH:$CARGO_HOME/bin
 PATH=$PATH:$XDG_DATA_HOME/composer/vendor/bin
 PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
-
 
 export PATH=$PNPM_HOME:$PATH
 
 export PATH=$PATH
 
-
-if [[ -f ~/.secrets   ]]; then
-  source ~/.secrets
+if [[ -f ~/.local/.secrets ]]; then
+  source ~/.local/.secrets
 fi
 
 # export LS_COLORS=$LS_COLORS'ow=30;106:di=1;4;96:'
@@ -118,7 +106,7 @@ export EXA_ICON_SPACING=2
 export OPENCV_LOG_LEVEL=ERROR
 
 if [[ -f "$CARGO_HOME/env" ]]; then
-. "$CARGO_HOME/env"
+  . "$CARGO_HOME/env"
 fi
 
 ZSH_DISABLE_COMPFIX="true"
@@ -126,7 +114,8 @@ ZELLIJ_AUTO_EXIT=true
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_USE_ASYNC=false
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=6,underline"
-export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
+export N_PREFIX="$HOME/n"
+[[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin" # Added by n-install (see http://git.io/n-install-repo).
 # export MCFLY_LIGHT=TRUE
 # export MCFLY_KEY_SCHEME=vim
 export MCFLY_FUZZY=3
@@ -137,7 +126,6 @@ export MCFLY_PROMPT="»"
 # export MCFLY_LIGHT=TRUE
 export SKIM_DEFAULT_OPTIONS="$SKIM_DEFAULT_OPTIONS \
 --color=fg:#cdd6f4,bg:#1e1e2e,matched:#313244,matched_bg:#f2cdcd,current:#cdd6f4,current_bg:#45475a,current_match:#1e1e2e,current_match_bg:#f5e0dc,spinner:#a6e3a1,info:#cba6f7,prompt:#89b4fa,cursor:#f38ba8,selected:#eba0ac,header:#94e2d5,border:#6c7086"
-
 
 export FZF_COMPLETION_TRIGGER='**'
 export FZF_DEFAULT_OPTS="--bind btab:up,tab:down"
