@@ -1,4 +1,4 @@
-import { getActiveClient, getActiveWorkspace, getWorkspaces } from "./hyprland";
+import { getActiveClient, getActiveWorkspace, getWorkspaces, getMonitors, getClients, monitors } from "./hyprland";
 import { $ } from "bun";
 
 
@@ -20,6 +20,61 @@ const toggleFloating = async () => {
   } else {
     await $`hyprctl dispatch settiled`;
   }
+
+}
+
+const moveWindow = async () => {
+  const c = await getActiveClient();
+  const at = c.at;
+  const dir = process.argv[4];
+
+  await $`hyprctl dispatch movewindow ${dir}`;
+
+
+  const nc = await getActiveClient();
+  const newat = nc.at;
+  const w = await getActiveWorkspace();
+
+  const clients = await getClients();
+  const wHasClients = clients.filter((c) => c.workspace.id == w.id).length > 1;
+
+  if (((at[0] == newat[0] && at[1] == newat[1]) || !wHasClients) && ["u", "t"].includes(dir)) {
+    await $`hyprctl dispatch movewindow mon:${monitors.top}`;
+  }
+  if (((at[0] == newat[0] && at[1] == newat[1]) || !wHasClients) && ["d", "b"].includes(dir)) {
+    await $`hyprctl dispatch movewindow mon:${monitors.bottom}`;
+  }
+
+
+}
+
+const focusWindow = async () => {
+  const dir = process.argv[4];
+  const aws = await getActiveWorkspace();
+  const clients = await getClients();
+  const wHasClients = clients.filter((c) => c.workspace.id == aws.id).length > 1;
+
+  if (!wHasClients) {
+    switch (dir) {
+      case "t":
+        await $`hyprctl dispatch focusmonitor DP-2`;
+        break;
+      case "b":
+        await $`hyprctl dispatch focusmonitor DP-1`;
+        break;
+      case "l":
+        await $`hyprctl dispatch focusmonitor DP-3`;
+        break;
+      case "r":
+        await $`hyprctl dispatch focusmonitor HDMI-A-1`;
+        break;
+    }
+
+  } else {
+
+    await $`hyprctl dispatch movefocus ${dir}`;
+  }
+
 
 }
 
@@ -71,6 +126,16 @@ const action = process.argv[2];
 switch (action) {
   case "toggleFloating":
     toggleFloating();
+    break;
+  case "window":
+    switch (process.argv[3]) {
+      case "move":
+        moveWindow();
+        break;
+      case "focus":
+        focusWindow();
+        break;
+    }
     break;
   case "workspace":
     workspace();

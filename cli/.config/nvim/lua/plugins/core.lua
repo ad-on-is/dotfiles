@@ -5,6 +5,13 @@ return {
     event = "VeryLazy",
     opts = {},
   },
+  -- { "MagicDuck/grug-far.nvim", opts = {
+  --   engines = {
+  --     ripgrep = {
+  --       extraArgs = "",
+  --     },
+  --   },
+  -- } },
 
   -- {
   --   "jake-stewart/multicursor.nvim",

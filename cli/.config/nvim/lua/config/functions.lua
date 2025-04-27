@@ -7,6 +7,27 @@
 
 return {
 
+  get_visual_selection = function()
+    local reg_save = vim.fn.getreg('"')
+    local regtype_save = vim.fn.getregtype('"')
+
+    -- Get the selection boundaries
+    local start_pos = vim.fn.getpos("'<")
+    local end_pos = vim.fn.getpos("'>")
+
+    -- Yank the selection into the unnamed register
+    vim.cmd("normal! gvy")
+
+    -- Get the content of the unnamed register
+    local selection = vim.fn.getreg('"')
+
+    -- Restore the register
+    vim.fn.setreg('"', reg_save, regtype_save)
+    vim.notify(vim.inspect(selection))
+
+    return selection
+  end,
+
   code_actions = function()
     local function apply_specific_code_action(res)
       -- vim.notify(vim.inspect(res))

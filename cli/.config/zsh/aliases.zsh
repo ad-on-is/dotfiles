@@ -17,6 +17,11 @@ alias watchgo='watchexec -r -e go --stop-signal SIGINT -- ${@:1}'
 alias sctl='systemctl --user'
 alias jctl='journalctl --user'
 
+function gitpr() {
+  git fetch origin pull/$1/head:PR-$1
+  git checkout PR-$1
+}
+
 alias gobuildrpi='env GOOS=linux GOARCH=arm GOARM=5 go build'
 
 alias get_addcerts='scp -r adis_durakovic@dnmc.in:/home/adis_durakovic/webserver/config/nginx/ssl/archive/add.dnmc.in ~/Docker/conf/nginx/ssl/archive/add.dnmc.in'

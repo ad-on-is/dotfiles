@@ -1,10 +1,28 @@
 import { $ } from "bun";
 export const socketAddr = `${process.env.XDG_RUNTIME_DIR}/hypr/${process.env.HYPRLAND_INSTANCE_SIGNATURE}/.socket2.sock`;
 
+export const monitors = {
+  top: "DP-2",
+  bottom: "DP-1",
+  left: "DP-3",
+  right: "HDMI-A-1",
+}
+
 export type Workspace = {
   id: number;
   name: string;
+  monitor: string;
+  monitorID: number;
 };
+
+export type Monitor = {
+  name: string;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+
+}
 
 export type Client = {
   address: string;
@@ -45,6 +63,11 @@ export async function getClient(address: string): Promise<Client | undefined> {
 export async function getActiveWorkspace(): Promise<Workspace> {
   const ctl = await $`hyprctl activeworkspace -j`.text();
   return JSON.parse(ctl) as Workspace;
+}
+
+export async function getMonitors(): Promise<any[]> {
+  const ctl = await $`hyprctl monitors -j`.text();
+  return JSON.parse(ctl);
 }
 
 export async function getWorkspaces(): Promise<Workspace[]> {
