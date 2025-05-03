@@ -4,37 +4,6 @@ local role_map = {
   system = "system",
 }
 
-local parse_messages = function(opts)
-  local messages = {
-    { role = "system", content = opts.system_prompt },
-  }
-  vim.iter(opts.messages):each(function(msg)
-    table.insert(messages, { speaker = role_map[msg.role], text = msg.content })
-  end)
-  return messages
-end
-
-local parse_response = function(data_stream, event_state, opts)
-  if event_state == "done" then
-    opts.on_complete()
-    return
-  end
-
-  if data_stream == nil or data_stream == "" then
-    return
-  end
-
-  local json = vim.json.decode(data_stream)
-  local delta = json.deltaText
-  local stopReason = json.stopReason
-
-  if stopReason == "end_turn" then
-    return
-  end
-
-  opts.on_chunk(delta)
-end
-
 return {
   {
     "kylechui/nvim-surround",
@@ -43,96 +12,6 @@ return {
         -- Configuration here, or leave empty to use defaults
       })
     end,
-  },
-  {
-    "yetone/avante.nvim",
-    event = "VeryLazy",
-    lazy = false,
-    enabled = false,
-    version = false, -- set this to "*" if you want to always pull the latest change, false to update on release
-    opts = {
-      provider = "ollama",
-      auto_suggestions_provider = "ollama",
-      hints = { enabled = false },
-      vendors = {
-        ollama = {
-          __inherited_from = "openai",
-          api_key_name = "",
-          endpoint = "http://127.0.0.1:11434/v1",
-          model = "deepseek-r1:8b",
-        },
-        deepseek = {
-          __inherited_from = "openai",
-          api_key_name = "DEEPSEEK_API_KEY",
-          endpoint = "https://api.deepseek.com",
-          model = "deepseek-coder",
-        },
-        cody = {
-          endpoint = "https://sourcegraph.com",
-          -- model = "anthropic::2024-10-22::claude-3-5-sonnet-latest",
-          api_key_name = "",
-          parse_curl_args = function(opts, code_opts)
-            local headers = {
-              ["Content-Type"] = "application/json",
-              ["Authorization"] = "token sgp_fd1b4edb60bf82b8_8acc06d25720c66c71755bc5c64ffc2a20a3535e",
-            }
-
-            return {
-              url = opts.endpoint .. "/.api/completions/stream?api-version=2&client-name=web&client-version=0.0.1",
-              timeout = 30000,
-              insecure = false,
-              headers = headers,
-              body = vim.tbl_deep_extend("force", {
-                model = opts.model,
-                temperature = 0,
-                topK = -1,
-                topP = -1,
-                maxTokensToSample = 4000,
-                stream = true,
-                messages = parse_messages(code_opts),
-              }, {}),
-            }
-          end,
-          parse_response = parse_response,
-          parse_messages = parse_messages,
-        },
-      },
-      behaviour = {
-        auto_suggestions = false, -- Experimental stage
-      },
-    },
-    -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-    build = "make",
-    -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
-    dependencies = {
-      "stevearc/dressing.nvim",
-      "nvim-lua/plenary.nvim",
-      "MunifTanjim/nui.nvim",
-      {
-        "HakonHarnes/img-clip.nvim",
-        event = "VeryLazy",
-        opts = {
-          -- recommended settings
-          default = {
-            embed_image_as_base64 = false,
-            prompt_for_file_name = false,
-            drag_and_drop = {
-              insert_mode = true,
-            },
-            -- required for Windows users
-            use_absolute_path = true,
-          },
-        },
-      },
-      -- {
-      --   -- Make sure to set this up properly if you have lazy=true
-      --   "MeanderingProgrammer/render-markdown.nvim",
-      --   opts = {
-      --     file_types = { "markdown", "Avante" },
-      --   },
-      --   ft = { "markdown", "Avante" },
-      -- },
-    },
   },
 
   {
@@ -200,6 +79,35 @@ return {
     },
   },
   {
+    "stevearc/conform.nvim",
+    opts = {
+      formatters = {
+        php_cs_fixer = {
+          args = { "fix", "$FILENAME" },
+        },
+      },
+    },
+  },
+  {
+    "mfussenegger/nvim-lint",
+    opts = {
+      linters = {
+        phpcs = {
+          args = {
+            "-q",
+            "--report=json",
+            "--standard=PSR12",
+            -- "--exclude=PSR1.Classes.ClassDeclaration.MissingNamespace",
+            "-", -- need `-` at the end for stdin support
+          },
+          --     args = {
+          --       "--standard=Squiz",
+          --     },
+        },
+      },
+    },
+  },
+  {
     "neovim/nvim-lspconfig",
     -- event = "VeryLazy",
     dependencies = { "saghen/blink.cmp" },
@@ -213,6 +121,7 @@ return {
 
       opts.servers = vim.tbl_extend("keep", {
         dartls = {},
+        golangci_lint_ls = { enabled = false },
         bashls = {
           filetypes = { "sh", "bash", "zsh" },
         },
@@ -240,10 +149,15 @@ return {
         somesass_ls = {},
         -- vala_ls = {},
         denols = { enabled = false },
-        -- intelephense = {
-        --   filetypes = { "php", "phtml" },
-        --   { files = { associations = { "*.php", "*.phtml", "*.module", "*.inc" } } },
-        -- },
+        phpactor = {
+          enabled = false,
+        },
+        intelephense = {
+          -- enabled = false,
+          root_dir = vim.fn.getcwd(),
+          filetypes = { "php", "phtml" },
+          { files = { associations = { "*.php", "*.phtml", "*.module", "*.inc" } } },
+        },
       }, opts.servers)
       -- opts.setup = {
       --   capabilities =

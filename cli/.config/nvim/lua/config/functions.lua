@@ -4,28 +4,69 @@
 --
 --
 -- end
+--
+local function scandir(directory)
+  local i, t, popen = 0, {}, io.popen
+  local pfile = popen('ls -a "' .. directory .. '"')
+  for filename in pfile:lines() do
+    i = i + 1
+    t[i] = filename
+  end
+  pfile:close()
+  return t
+end
 
 return {
 
-  get_visual_selection = function()
-    local reg_save = vim.fn.getreg('"')
-    local regtype_save = vim.fn.getregtype('"')
+  open_dialog = function(type, title)
+    -- vim.ui.input({ prompt = title .. ": " }, function(input)
+    --   vim.notify(input)
+    -- end)
+    local target_dir = vim.fn.input(title .. ": ", vim.fn.getcwd() .. "/", type)
+    if target_dir ~= "" then
+      vim.cmd("e " .. vim.fn.fnameescape(target_dir))
+      vim.cmd("cd " .. vim.fn.fnameescape(target_dir))
+      vim.cmd("SessionRestore")
+    end -- funcs.open_folder_dialog(nil, "/home")
+  end,
 
-    -- Get the selection boundaries
-    local start_pos = vim.fn.getpos("'<")
-    local end_pos = vim.fn.getpos("'>")
+  smart_close = function()
+    local buftype = vim.bo.buftype
 
-    -- Yank the selection into the unnamed register
-    vim.cmd("normal! gvy")
+    local bts = { "nofile", "quickfix", "help", "terminal", "prompt" }
 
-    -- Get the content of the unnamed register
-    local selection = vim.fn.getreg('"')
+    for _, ft in ipairs(bts) do
+      if buftype == ft then
+        vim.cmd(":q")
+        return
+      end
+    end
+  end,
 
-    -- Restore the register
-    vim.fn.setreg('"', reg_save, regtype_save)
-    vim.notify(vim.inspect(selection))
-
-    return selection
+  toggle_search_replace = function(instance)
+    local gf = require("grug-far")
+    if not gf.has_instance(instance) then
+      local wcc = "vsplit"
+      local paths = vim.fn.expand("%")
+      if instance == "search-replace-files" then
+        wcc = ":vertical topleft split"
+        paths = ""
+      end
+      gf.open({
+        instanceName = instance,
+        windowCreationCommand = wcc,
+        prefills = { paths = paths, flags = "--multiline" },
+      })
+      vim.cmd("vertical resize 60%")
+    else
+      -- vim.notify(vim.inspect(i))
+      if gf.is_instance_open(instance) then
+        gf.hide_instance(instance)
+      else
+        gf.get_instance(instance):open()
+        vim.cmd("vertical resize 60%")
+      end
+    end
   end,
 
   code_actions = function()

@@ -5,13 +5,19 @@ return {
     event = "VeryLazy",
     opts = {},
   },
-  -- { "MagicDuck/grug-far.nvim", opts = {
-  --   engines = {
-  --     ripgrep = {
-  --       extraArgs = "",
-  --     },
-  --   },
-  -- } },
+  {
+    "MagicDuck/grug-far.nvim",
+    opts = {
+      debounceMs = 200,
+      minSearchChars = 1,
+      resultLocation = {
+        showNumberLabel = false,
+      },
+      previewWindow = {
+        width = 3,
+      },
+    },
+  },
 
   -- {
   --   "jake-stewart/multicursor.nvim",

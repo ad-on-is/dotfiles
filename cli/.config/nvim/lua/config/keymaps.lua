@@ -125,6 +125,14 @@ maphelper2("<C-Space>", function()
   vim.lsp.buf.hover()
 end, "Code actions")
 
+maphelper2("<C-S-o>", function()
+  funcs.open_dialog("dir", "Open folder")
+end, "Open folder dialog")
+
+maphelper2("<C-o>", function()
+  funcs.open_dialog("file", "Open file")
+end, "Open folder dialog")
+
 maphelper2("<C-p>", function()
   Snacks.picker.files()
 end, "Worktree files")
@@ -140,14 +148,29 @@ end, "Recent files")
 -- map({ "n", "v" }, "<C-f>", "/", { noremap = true })
 -- map({ "i" }, "<C-f>", "<Esc>/", { noremap = true })
 maphelper2("<C-f>", function()
-  require("grug-far").open({ prefills = { paths = vim.fn.expand("%"), flags = "--multiline" } })
-end)
+  funcs.toggle_search_replace("search-replace")
+  -- local gf = require("")
+  -- require("grug-far").open({
+  --   instanceName = "search-replace",
+  --   prefills = { paths = vim.fn.expand("%"), flags = "--multiline" },
+  -- })
+  -- vim.cmd("vertical resize 60%")
+end, "Search and replace")
 maphelper2("<A-f>", function()
-  require("grug-far").open({ windowCreationCommand = ":vertical topleft split", prefills = { flags = "--multiline" } })
+  funcs.toggle_search_replace("search-replace-files")
 
   -- Snacks.picker.grep()
-end, "Life grep", true)
+end, "Search and replace in files", true)
+
+map("n", "\\", function()
+  Snacks.picker.grep()
+end)
+
 maphelper2("<C-h>", vim.lsp.buf.hover, "LSP hover", true)
+
+map("n", "<esc>", function()
+  funcs.smart_close()
+end, { buffer = false, noremap = true })
 
 maphelper("<A-q>", ":qa<CR>", ":qa<CR>", "<Esc>:qa<CR>", "Quit", true)
 maphelper2("<A-b>", function()
