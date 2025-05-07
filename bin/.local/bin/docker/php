@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# Function to escape single quotes
+escape_single_quotes() {
+  echo "${1//\'/\'\\\'\'}"
+}
+
+# Function to check if a string ends with .php
+ends_with_php() {
+  [[ "$1" == *.php ]]
+}
+
+cmd() {
+  docker exec -i -w "$PWD" php php "$@"
+}
+
+# Check how PHP is being invoked
+if [[ "$1" == -* ]] || [ $# -eq 0 ]; then
+  # If it's a flag or no arguments, pass all arguments directly to PHP
+  # docker exec -i --tty -w "$PWD" php php "$@"
+  cmd "$@"
+elif ends_with_php "$1" || [[ -f "$1" ]]; then
+  # If the first argument ends with .php or is a file, execute it
+  # docker exec -i --tty -w "$PWD" php php "$@"
+  cmd "$@"
+else
+  # Otherwise, assume it's PHP code to execute
+  # Combine all parameters into a single string
+  params=$(printf "%s " "$@")
+
+  # Escape single quotes in the combined parameters
+  escaped_params=$(escape_single_quotes "$params")
+
+  # Execute the PHP command in Docker
+  # docker exec -i --tty -w "$PWD" php php "$escaped_params"
+  cmd "$escaped_params"
+fi
+
+# Capture and return the exit code
+exit $?

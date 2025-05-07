@@ -1,0 +1,4 @@
+#!/bin/bash
+PARAMS="$@"
+docker exec -i -w "$PWD" mysql mysql -uroot -p${MYSQL_ROOT_PASSWORD} $PARAMS
+exit $?

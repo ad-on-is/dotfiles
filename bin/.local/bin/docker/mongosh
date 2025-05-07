@@ -1,0 +1,4 @@
+#!/bin/bash
+PARAMS="$@"
+docker exec -i -w "$PWD" mongo mongosh --username "${MONGO_ROOT_USERNAME}" --password "${MONGO_ROOT_PASSWORD}" --authenticationDatabase admin "$PARAMS"
+exit $?
