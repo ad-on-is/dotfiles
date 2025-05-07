@@ -1,0 +1,30 @@
+theme = "catppuccin-mocha"
+background = #11111b
+font-family = "Maple Mono NF"
+font-size = 9
+font-style = semibold
+font-thicken = true
+window-decoration = false
+window-padding-x = 8
+window-padding-y = 8
+window-theme = ghostty
+resize-overlay = never
+gtk-wide-tabs = false
+gtk-adwaita = false
+gtk-tabs-location=bottom
+#confirm-close-surface=false
+
+keybind = ctrl+shift+r=reload_config
+keybind = ctrl+enter=unbind
+keybind = ctrl+shift+ö=next_tab
+keybind = ctrl+shift+w=close_surface
+keybind = ctrl+shift+h=previous_tab
+keybind = ctrl+shift+e=new_split:right
+keybind = ctrl+shift+d=new_split:down
+keybind = ctrl+shift+o=goto_split:next
+
+keybind = ctrl+5=equalize_splits
+keybind = ctrl+8=resize_split:up,10
+keybind = ctrl+9=resize_split:down,10
+keybind = ctrl+6=resize_split:left,10
+keybind = ctrl+7=resize_split:right,10
