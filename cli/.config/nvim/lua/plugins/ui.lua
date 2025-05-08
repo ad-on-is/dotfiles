@@ -73,6 +73,11 @@ return {
       },
     },
   },
+  { "ibhagwan/fzf-lua", opts = {
+    winopts = { preview = {
+      wrap = true,
+    } },
+  } },
 
   {
     "Isrothy/neominimap.nvim",
@@ -198,6 +203,11 @@ return {
         mappings = {
           ["<A-q>"] = ":qa",
           ["<A-e>"] = ":wincmd p",
+          ["\\"] = function(state)
+            local node = state.tree:get_node()
+            local path = node.path
+            require("fzf-lua").live_grep({ cwd = path })
+          end,
           ["<A-f>"] = function(state)
             local node = state.tree:get_node()
             local path = node.path
