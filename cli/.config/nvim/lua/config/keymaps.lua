@@ -148,7 +148,7 @@ end, "Recent files")
 -- map({ "n", "v" }, "<C-f>", "/", { noremap = true })
 -- map({ "i" }, "<C-f>", "<Esc>/", { noremap = true })
 maphelper2("<C-f>", function()
-  funcs.toggle_search_replace("search-replace")
+  funcs.toggle_search_replace("buffer")
   -- local gf = require("")
   -- require("grug-far").open({
   --   instanceName = "search-replace",
@@ -157,7 +157,7 @@ maphelper2("<C-f>", function()
   -- vim.cmd("vertical resize 60%")
 end, "Search and replace")
 maphelper2("<A-f>", function()
-  funcs.toggle_search_replace("search-replace-files")
+  funcs.toggle_search_replace("project")
 
   -- Snacks.picker.grep()
 end, "Search and replace in files", true)

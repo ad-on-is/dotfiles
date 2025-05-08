@@ -43,12 +43,14 @@ return {
     end
   end,
 
-  toggle_search_replace = function(instance)
+  toggle_search_replace = function(instance, path)
     local gf = require("grug-far")
+    local p = path or ""
+    vim.notify(p)
     if not gf.has_instance(instance) then
       local wcc = "vsplit"
       local paths = vim.fn.expand("%")
-      if instance == "search-replace-files" then
+      if instance == "project" then
         wcc = ":vertical topleft split"
         paths = ""
       end

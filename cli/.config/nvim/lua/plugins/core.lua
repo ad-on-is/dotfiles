@@ -45,6 +45,10 @@ return {
     },
     config = true,
   },
+  {
+    "mikavilpas/yazi.nvim",
+    opts = {},
+  },
 
   {
     "rmagatti/auto-session",

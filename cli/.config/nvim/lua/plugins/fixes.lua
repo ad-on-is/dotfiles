@@ -1,5 +1,9 @@
 return {
   {
+    "williamboman/mason-lspconfig.nvim",
+    branch = "v1.x",
+  },
+  {
     "ibhagwan/fzf-lua",
     enabled = false,
     opts = {

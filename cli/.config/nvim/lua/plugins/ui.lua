@@ -194,7 +194,23 @@ return {
         },
       },
       close_if_last_window = true,
-      window = { mappings = { ["<A-q>"] = ":qa", ["<A-e>"] = ":wincmd p" } },
+      window = {
+        mappings = {
+          ["<A-q>"] = ":qa",
+          ["<A-e>"] = ":wincmd p",
+          ["<A-f>"] = function(state)
+            local node = state.tree:get_node()
+            local path = node.path
+            -- vim.notify(vim.inspect(path))
+            funcs.toggle_search_replace("project", path)
+            -- funcs.
+            -- local node = require("neo-tree.ui.renderer").get_node()
+            -- local path = require("neo-tree.ui.selector").get()
+            -- local path = node.path
+            -- vim.notify(path)
+          end,
+        },
+      },
       default_component_configs = {
         name = { use_git_status_colors = false },
         modified = {
