@@ -1,11 +1,17 @@
-import { getActiveClient, getActiveWorkspace, getWorkspaces, getMonitors, getClients, monitors } from "./hyprland";
+import {
+  getActiveClient,
+  getActiveWorkspace,
+  getWorkspaces,
+  getMonitors,
+  getClients,
+  monitors,
+} from "./hyprland";
 import { $ } from "bun";
-
 
 const toggleFloating = async () => {
   // CONFIG
-  const [width, height] = [80, 80] // width and height in percent
-  const CENTER = true // center window when floating
+  const [width, height] = [80, 80]; // width and height in percent
+  const CENTER = true; // center window when floating
   // CONFIG
   //
   //
@@ -20,16 +26,40 @@ const toggleFloating = async () => {
   } else {
     await $`hyprctl dispatch settiled`;
   }
+};
 
-}
+// WIP
+const getArrangement = async () => {
+  const workspace = await getActiveWorkspace();
+  const monitor = (await getMonitors()).find(
+    (m) => m.id == workspace.monitorID,
+  );
+  let clients = (await getClients()).filter(
+    (c) => c.workspace.id == workspace.id,
+  );
+
+  let swallowed = clients
+    .filter((c) => c.swallowing !== "0x0")
+    .map((c) => c.swallowing);
+
+  clients = clients.filter((c) => !swallowed.includes(c.address));
+  console.log(swallowed);
+  const w = monitor.width;
+  const h = monitor.height;
+  console.log(clients);
+  const matrix = [];
+  // for (const c of clients) {
+  //
+  // }
+};
 
 const moveWindow = async () => {
+  // await getArrangement();
   const c = await getActiveClient();
   const at = c.at;
   const dir = process.argv[4];
 
   await $`hyprctl dispatch movewindow ${dir}`;
-
 
   const nc = await getActiveClient();
   const newat = nc.at;
@@ -38,21 +68,26 @@ const moveWindow = async () => {
   const clients = await getClients();
   const wHasClients = clients.filter((c) => c.workspace.id == w.id).length > 1;
 
-  if (((at[0] == newat[0] && at[1] == newat[1]) || !wHasClients) && ["u", "t"].includes(dir)) {
+  if (
+    ((at[0] == newat[0] && at[1] == newat[1]) || !wHasClients) &&
+    ["u", "t"].includes(dir)
+  ) {
     await $`hyprctl dispatch movewindow mon:${monitors.top}`;
   }
-  if (((at[0] == newat[0] && at[1] == newat[1]) || !wHasClients) && ["d", "b"].includes(dir)) {
+  if (
+    ((at[0] == newat[0] && at[1] == newat[1]) || !wHasClients) &&
+    ["d", "b"].includes(dir)
+  ) {
     await $`hyprctl dispatch movewindow mon:${monitors.bottom}`;
   }
-
-
-}
+};
 
 const focusWindow = async () => {
   const dir = process.argv[4];
   const aws = await getActiveWorkspace();
   const clients = await getClients();
-  const wHasClients = clients.filter((c) => c.workspace.id == aws.id).length > 1;
+  const wHasClients =
+    clients.filter((c) => c.workspace.id == aws.id).length > 1;
 
   if (!wHasClients) {
     switch (dir) {
@@ -69,20 +104,15 @@ const focusWindow = async () => {
         await $`hyprctl dispatch focusmonitor HDMI-A-1`;
         break;
     }
-
   } else {
-
     await $`hyprctl dispatch movefocus ${dir}`;
   }
-
-
-}
+};
 
 const workspace = async () => {
   // CONFIG
   const CYCLE = false; // cycle through workspaces when reaching first or last
   //CONFIG
-
 
   const aws = await getActiveWorkspace();
   const wss = await getWorkspaces();
@@ -92,11 +122,14 @@ const workspace = async () => {
 
   const [group] = `${id / 10}`.split(".").map((x) => parseInt(x));
   let to = id;
-  const mws = wss.filter((x) => `${x.id}`.startsWith(`${group}`)).map((ws) => ws.id).sort();
+  const mws = wss
+    .filter((x) => `${x.id}`.startsWith(`${group}`))
+    .map((ws) => ws.id)
+    .sort();
   if (where === "next") {
-    to++
+    to++;
   } else if (where === "prev") {
-    to--
+    to--;
   }
 
   if (to > mws[mws.length - 1]) {
@@ -107,7 +140,6 @@ const workspace = async () => {
     to = CYCLE ? mws[mws.length - 1] : mws[0];
   }
 
-
   switch (what) {
     case "switch":
       await $`hyprctl dispatch workspace ${to}`;
@@ -116,12 +148,9 @@ const workspace = async () => {
       await $`hyprctl dispatch movetoworkspace ${to}`;
       break;
   }
-}
-
+};
 
 const action = process.argv[2];
-
-
 
 switch (action) {
   case "toggleFloating":
@@ -139,6 +168,4 @@ switch (action) {
     break;
   case "workspace":
     workspace();
-
 }
-

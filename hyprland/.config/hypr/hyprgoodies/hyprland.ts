@@ -6,7 +6,7 @@ export const monitors = {
   bottom: "DP-1",
   left: "DP-3",
   right: "HDMI-A-1",
-}
+};
 
 export type Workspace = {
   id: number;
@@ -21,8 +21,7 @@ export type Monitor = {
   y: number;
   width: number;
   height: number;
-
-}
+};
 
 export type Client = {
   address: string;
@@ -31,6 +30,7 @@ export type Client = {
   initialTitle: string;
   focusHistoryID: number;
   class: string;
+  swallowing: string;
   initialClass: string;
   floating: boolean;
   pinned: boolean;

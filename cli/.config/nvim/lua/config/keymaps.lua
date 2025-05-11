@@ -68,7 +68,7 @@ map({ "n", "v" }, "c", '"_c')
 map({ "n", "v" }, "f", function()
   local flash = require("flash")
   flash.jump()
-end)
+end, { remap = true })
 map({ "n", "v" }, "s", "ys", { remap = true })
 
 -- map("n", "?", "<cmd>WhichKey<cr>", { noremap = true, desc = "Show WhichKey" })
@@ -128,6 +128,8 @@ end, "Code actions")
 maphelper2("<C-S-o>", function()
   funcs.open_dialog("dir", "Open folder")
 end, "Open folder dialog")
+
+-- yank with flash
 
 maphelper2("<C-o>", function()
   funcs.open_dialog("file", "Open file")
