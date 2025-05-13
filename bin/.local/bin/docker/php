@@ -11,7 +11,7 @@ ends_with_php() {
 }
 
 cmd() {
-  docker exec -i -w "$PWD" php php "$@"
+  docker exec -i -w "$PWD" "${PHP_CONTAINER:-php}" php "$@"
 }
 
 # Check how PHP is being invoked
