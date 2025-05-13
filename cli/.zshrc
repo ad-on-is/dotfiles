@@ -81,3 +81,7 @@ if [[ -f $HOME/.local/share/bash-completion/completions/appman ]]; then
   source "$HOME/.local/share/bash-completion/completions/appman"
 fi
 
+
+if [[ -f "$HOME"/.zshrc_custom ]]; then 
+  source "$HOME"/.zshrc_custom
+fi
