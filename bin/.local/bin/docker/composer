@@ -1,4 +1,4 @@
 #!/bin/bash
 
-docker exec -i --tty -w "$PWD" php composer "$@"
+docker exec -i --tty -w "$PWD" "${PHP_CONTAINER:-php}" composer "$@"
 exit $?

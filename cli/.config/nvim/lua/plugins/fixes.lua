@@ -1,9 +1,4 @@
 return {
-  {
-    "williamboman/mason-lspconfig.nvim",
-    branch = "v1.x",
-  },
-
   -- fixes switching to normal mode when multiple pickers are triggered after each other
   {
     "ibhagwan/fzf-lua",

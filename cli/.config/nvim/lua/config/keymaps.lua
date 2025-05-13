@@ -43,7 +43,7 @@ maphelper("<C-c>", "y", "y", "<Esc>y", "Copy")
 maphelper("<C-z>", "u", "<esc>u", "<Esc>u", "Undo")
 maphelper("<C-y>", ":redo<CR>", ":redo<CR>", "<Esc>:redo", "Redo")
 -- -- clear highlighting
-maphelper("<C-ö>", "gcc", "gc", "<Esc>gcc<CR>i", "Toggle comment", true)
+maphelper("<C-ö>", "gcc", "gc<cr>gv=gv", "<Esc>gcc<CR>i", "Toggle comment", true)
 maphelper("<C-x>", "x", "x", "<Esc>x", "Cut selection", true)
 maphelper(
   "<C-n>",

@@ -6,6 +6,13 @@ local role_map = {
 
 return {
   {
+    "numToStr/Comment.nvim",
+    opts = {
+      -- add any options here
+    },
+  },
+  { "echasnovski/mini.comment", enabled = false },
+  {
     "kylechui/nvim-surround",
     config = function()
       require("nvim-surround").setup({
