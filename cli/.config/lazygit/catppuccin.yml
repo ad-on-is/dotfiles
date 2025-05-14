@@ -4,6 +4,9 @@ gui:
   authorColors:
     '*': "#b4befe"
   theme:
+    activeBorderColor:
+      - "#fab387"
+      - "bold"
     unstagedChangesColor:
       - "#f38ba8"
     selectedLineBgColor:
@@ -21,7 +24,4 @@ gui:
       - "#89b4fa"
     cherryPickedCommitBgColor:
       - "#f2cdcd"
-    activeBorderColor:
-      - "#fab387"
-      - "bold"
   nerdFontsVersion: "3"

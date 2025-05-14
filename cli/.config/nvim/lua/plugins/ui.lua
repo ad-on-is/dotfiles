@@ -204,20 +204,10 @@ return {
           ["<A-q>"] = ":qa",
           ["<A-e>"] = ":wincmd p",
           ["\\"] = function(state)
-            local node = state.tree:get_node()
-            local path = node.path
-            require("fzf-lua").live_grep({ cwd = path })
+            funcs:tree_search("grep", state)
           end,
           ["<A-f>"] = function(state)
-            local node = state.tree:get_node()
-            local path = node.path
-            -- vim.notify(vim.inspect(path))
-            funcs.toggle_search_replace("project", path)
-            -- funcs.
-            -- local node = require("neo-tree.ui.renderer").get_node()
-            -- local path = require("neo-tree.ui.selector").get()
-            -- local path = node.path
-            -- vim.notify(path)
+            funcs:tree_search("search-replace", state)
           end,
         },
       },
