@@ -16,7 +16,24 @@ local function scandir(directory)
   return t
 end
 
-return {
+local M = {
+
+  tree_search = function(self, type, state)
+    local node = state.tree:get_node()
+    local path = node.path
+
+    if node.type ~= "directory" then
+      vim.notify("Cannot " .. type .. " on a file")
+      return
+    end
+
+    if type == "grep" then
+      require("fzf-lua").live_grep({ cwd = path })
+    else
+      vim.notify(vim.inspect(path))
+      -- self:toggle_search_replace("project", path)
+    end
+  end,
 
   close_window = function()
     local buffers = {}
@@ -272,3 +289,5 @@ return {
     return language_servers
   end,
 }
+
+return M

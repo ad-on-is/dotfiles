@@ -194,7 +194,7 @@ return {
             -- set to an empty string "" to disable icons
           },
         },
-        theme_path = vim.fs.normalize("/home/adonis/.config/lazygit/catppuccin.yml"),
+        theme_path = vim.fs.normalize(os.getenv("HOME") .. "/.config/lazygit/catppuccin.yml"),
       },
     },
   },
