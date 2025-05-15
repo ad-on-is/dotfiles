@@ -86,6 +86,7 @@ PATH="$BUN_INSTALL/bin:$PATH"
 
 PATH=$PATH:$CARGO_HOME/bin
 PATH=$PATH:$XDG_DATA_HOME/composer/vendor/bin
+PATH=$PATH:$HOME/.local/share/devbox/global/default/.devbox/nix/profile/default/bin
 PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
 
 export PATH=$PNPM_HOME:$PATH

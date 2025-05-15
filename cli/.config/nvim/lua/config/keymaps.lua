@@ -93,6 +93,15 @@ if vim.g.neovide then
   maphelper("<C-S-V>", "P<CR>", "P<CR>", "<Esc>pa")
   map("c", "<C-S-V>", "<C-R>+")
   maphelper("<C-S-Z>", ":redo<cr>", ":redo<cr>", "<Esc>:redo<cr>")
+  maphelper2("<C-+>", function()
+    vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * 1.1
+  end)
+  maphelper2("<C-->", function()
+    vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * 1 / 1.1
+  end)
+  maphelper2("<C-0>", function()
+    vim.g.neovide_scale_factor = 1
+  end)
 end
 maphelper("<S-Right>", "v<Right>", "<Right>", "<right><esc>v<Right>")
 maphelper("<S-Left>", "v<Left>", "<Left>", "<esc>v<Left>")
