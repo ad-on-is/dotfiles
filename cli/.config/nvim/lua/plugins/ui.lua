@@ -1,4 +1,5 @@
 local funcs = require("config.functions")
+
 return {
   {
     "folke/snacks.nvim",
@@ -462,6 +463,14 @@ return {
           position = "bottom",
           size = 15,
         },
+      },
+    },
+    {
+      "luukvbaal/statuscol.nvim",
+      opts = {
+        -- segments = {
+        --   { text = "A" },
+        -- },
       },
     },
   },
