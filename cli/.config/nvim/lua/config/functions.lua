@@ -18,6 +18,16 @@ end
 
 return {
 
+  close_window = function()
+    local buffers = {}
+    for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+      local buf = vim.api.nvim_win_get_buf(win)
+      vim.notify(vim.inspect(vim.fn.getbufinfo(buf)))
+      buffers[buf] = true
+    end
+    vim.notify("Visible buffers in this tab: " .. vim.tbl_count(buffers))
+  end,
+
   open_dialog = function(type, title)
     -- vim.ui.input({ prompt = title .. ": " }, function(input)
     --   vim.notify(input)
@@ -144,6 +154,7 @@ return {
       -- Snacks.picker.explorer()
       local neotree = require("neo-tree.command")
       neotree.execute({ action = "focus" })
+      vim.cmd("vertical resize 40%")
     end
 
     -- if vim.bo.filetype == "neo-tree" then

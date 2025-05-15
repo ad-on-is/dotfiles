@@ -170,14 +170,22 @@ end)
 
 maphelper2("<C-h>", vim.lsp.buf.hover, "LSP hover", true)
 
+map("n", "|", function()
+  vim.cmd("vsplit")
+end)
+
 map("n", "<esc>", function()
   funcs.smart_close()
 end, { buffer = false, noremap = true })
 
 maphelper("<A-q>", ":qa<CR>", ":qa<CR>", "<Esc>:qa<CR>", "Quit", true)
-maphelper2("<A-b>", function()
+maphelper2("<C-w>", function()
   Snacks.bufdelete()
 end, "Close current file")
+maphelper2("<A-b>", function()
+  vim.cmd("close")
+end, "Close current file")
+
 maphelper2("<A-e>", function()
   funcs.toggle_tree()
 end, "Toggle tree")
