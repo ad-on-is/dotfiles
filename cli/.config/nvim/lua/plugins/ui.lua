@@ -22,6 +22,7 @@ return {
         },
       },
       indent = {
+        enabled = false,
         animate = {
           enabled = false,
         },
@@ -477,6 +478,15 @@ return {
       "chentoast/marks.nvim",
       event = "VeryLazy",
       opts = {},
+    },
+    {
+      "shellRaining/hlchunk.nvim",
+      event = { "BufReadPre", "BufNewFile" },
+      opts = {
+        chunk = { enable = true, delay = 0, chars = { right_arrow = "─" } },
+        blank = { enable = true },
+        -- indent = { enable = true },
+      },
     },
   },
 

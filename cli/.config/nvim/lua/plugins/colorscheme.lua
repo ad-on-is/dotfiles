@@ -198,4 +198,22 @@ return {
       },
     },
   },
+  {
+    "shellRaining/hlchunk.nvim",
+    opts = {
+      chunk = {
+        style = {
+          { fg = "#74c7ec" },
+          { fg = "#f38ba8" }, -- error
+        },
+      },
+      blank = {
+        style = {
+          { fg = "#313244" },
+          -- { fg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("cursorline")), "bg", "gui") },
+        },
+      },
+      -- indent = { enable = true },
+    },
+  },
 }
