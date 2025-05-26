@@ -175,6 +175,15 @@ return {
     },
     lazy = false,
   },
+  -- {
+  --   "akinsho/bufferline.nvim",
+  --   opts = {
+  --     highlights = {
+  --       buffer_selected = { bg = "#000000" },
+  --     },
+  --   },
+  -- },
+
   {
     "rasulomaroff/reactive.nvim",
     opts = { load = { "catppuccin-mocha-cursorline", "catppuccin-mocha-cursor" } },

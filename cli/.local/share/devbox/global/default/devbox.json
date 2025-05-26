@@ -11,14 +11,14 @@
     "fzf@latest",
     "fastfetch@latest",
     "btop@latest",
-    "neovim@latest",
-    "neovide@latest",
     "glxinfo@latest",
     "awscli@latest",
     "lazygit@latest",
     "fd@latest",
     "watchexec@latest",
-    "gdu@latest"
+    "gdu@latest",
+    "eza@latest",
+    "maple-mono-NF@latest"
   ],
   "shell": {
     "init_hook": [

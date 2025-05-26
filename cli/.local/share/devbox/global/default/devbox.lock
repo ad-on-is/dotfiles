@@ -273,6 +273,74 @@
         }
       }
     },
+    "eza@latest": {
+      "last_modified": "2025-05-06T08:06:31Z",
+      "resolved": "github:NixOS/nixpkgs/1cb1c02a6b1b7cf67e3d7731cbbf327a53da9679#eza",
+      "source": "devbox-search",
+      "version": "0.21.3",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/6f1bg98657xzydq7j42a28q81961fx0r-eza-0.21.3",
+              "default": true
+            },
+            {
+              "name": "man",
+              "path": "/nix/store/046bpxsi5nwgwzc1rw95rgxvn3z3v8bw-eza-0.21.3-man",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/6f1bg98657xzydq7j42a28q81961fx0r-eza-0.21.3"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/04v95zhkkfpj5z7vdsr6y64jid5fm3id-eza-0.21.3",
+              "default": true
+            },
+            {
+              "name": "man",
+              "path": "/nix/store/vdl2s880g6ps2gxs66agxaak9rffly2m-eza-0.21.3-man",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/04v95zhkkfpj5z7vdsr6y64jid5fm3id-eza-0.21.3"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/snr9yy7wyhk2d47baps65jychabqyxji-eza-0.21.3",
+              "default": true
+            },
+            {
+              "name": "man",
+              "path": "/nix/store/6iavw1gymbnxm039y2jxcv0rmhkm69cw-eza-0.21.3-man",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/snr9yy7wyhk2d47baps65jychabqyxji-eza-0.21.3"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/bvrmz3bg5rcc5yk8p73njyg9b49x901i-eza-0.21.3",
+              "default": true
+            },
+            {
+              "name": "man",
+              "path": "/nix/store/y7csm7gafc8zigpga3xxfxgpinaqvknj-eza-0.21.3-man",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/bvrmz3bg5rcc5yk8p73njyg9b49x901i-eza-0.21.3"
+        }
+      }
+    },
     "fastfetch@latest": {
       "last_modified": "2025-05-12T14:38:58Z",
       "resolved": "github:NixOS/nixpkgs/eaeed9530c76ce5f1d2d8232e08bec5e26f18ec1#fastfetch",
@@ -585,99 +653,51 @@
         }
       }
     },
-    "neovide@latest": {
-      "last_modified": "2025-05-06T08:06:31Z",
-      "resolved": "github:NixOS/nixpkgs/1cb1c02a6b1b7cf67e3d7731cbbf327a53da9679#neovide",
+    "maple-mono-NF@latest": {
+      "last_modified": "2025-03-11T17:52:14Z",
+      "resolved": "github:NixOS/nixpkgs/0d534853a55b5d02a4ababa1d71921ce8f0aee4c#maple-mono-NF",
       "source": "devbox-search",
-      "version": "0.15.0",
+      "version": "6.4",
       "systems": {
         "aarch64-darwin": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/qfbxd58davskhcg4v4xfshsh4djyzf1j-neovide-0.15.0",
+              "path": "/nix/store/6fbdz36h435qz1k56jxdhilhbkg2b2yp-MapleMono-NF-6.4",
               "default": true
             }
           ],
-          "store_path": "/nix/store/qfbxd58davskhcg4v4xfshsh4djyzf1j-neovide-0.15.0"
+          "store_path": "/nix/store/6fbdz36h435qz1k56jxdhilhbkg2b2yp-MapleMono-NF-6.4"
         },
         "aarch64-linux": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/yrs1r7lh4ahpaxf0ar6zspvmvq78mm7z-neovide-0.15.0",
+              "path": "/nix/store/lm4rnyjpmr1nzkr18lcxglli58w0g9j4-MapleMono-NF-6.4",
               "default": true
             }
           ],
-          "store_path": "/nix/store/yrs1r7lh4ahpaxf0ar6zspvmvq78mm7z-neovide-0.15.0"
+          "store_path": "/nix/store/lm4rnyjpmr1nzkr18lcxglli58w0g9j4-MapleMono-NF-6.4"
         },
         "x86_64-darwin": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/z86cgz0mkkrpq88pmzlx9dm85j0h8fzn-neovide-0.15.0",
+              "path": "/nix/store/q8gccy2zj3lcypx9im3b2j7098f6i057-MapleMono-NF-6.4",
               "default": true
             }
           ],
-          "store_path": "/nix/store/z86cgz0mkkrpq88pmzlx9dm85j0h8fzn-neovide-0.15.0"
+          "store_path": "/nix/store/q8gccy2zj3lcypx9im3b2j7098f6i057-MapleMono-NF-6.4"
         },
         "x86_64-linux": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/r67wl0pcn1xic7zg379g9gm6q5a9v4lf-neovide-0.15.0",
+              "path": "/nix/store/zsp819mbnk59v26bb2qfnr6mswb55pfr-MapleMono-NF-6.4",
               "default": true
             }
           ],
-          "store_path": "/nix/store/r67wl0pcn1xic7zg379g9gm6q5a9v4lf-neovide-0.15.0"
-        }
-      }
-    },
-    "neovim@latest": {
-      "last_modified": "2025-05-06T08:06:31Z",
-      "resolved": "github:NixOS/nixpkgs/1cb1c02a6b1b7cf67e3d7731cbbf327a53da9679#neovim",
-      "source": "devbox-search",
-      "version": "0.11.1",
-      "systems": {
-        "aarch64-darwin": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/mrv9dl90sj2dq84zbzzwc172hijn0kms-neovim-0.11.1",
-              "default": true
-            }
-          ],
-          "store_path": "/nix/store/mrv9dl90sj2dq84zbzzwc172hijn0kms-neovim-0.11.1"
-        },
-        "aarch64-linux": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/1v3rhbp3bjzsg9ampbwyrms0xsmvgp1l-neovim-0.11.1",
-              "default": true
-            }
-          ],
-          "store_path": "/nix/store/1v3rhbp3bjzsg9ampbwyrms0xsmvgp1l-neovim-0.11.1"
-        },
-        "x86_64-darwin": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/ml57b6gs692awqbd7nbdbifsbbwbhk26-neovim-0.11.1",
-              "default": true
-            }
-          ],
-          "store_path": "/nix/store/ml57b6gs692awqbd7nbdbifsbbwbhk26-neovim-0.11.1"
-        },
-        "x86_64-linux": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/kq84d0mnzb4gxz8w52k1rh8jqwyf7sxx-neovim-0.11.1",
-              "default": true
-            }
-          ],
-          "store_path": "/nix/store/kq84d0mnzb4gxz8w52k1rh8jqwyf7sxx-neovim-0.11.1"
+          "store_path": "/nix/store/zsp819mbnk59v26bb2qfnr6mswb55pfr-MapleMono-NF-6.4"
         }
       }
     },
