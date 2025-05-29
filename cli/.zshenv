@@ -110,11 +110,11 @@ if [[ -f "$CARGO_HOME/env" ]]; then
   . "$CARGO_HOME/env"
 fi
 
-ZSH_DISABLE_COMPFIX="true"
-ZELLIJ_AUTO_EXIT=true
-ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-ZSH_AUTOSUGGEST_USE_ASYNC=false
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=6,underline"
+export ZSH_DISABLE_COMPFIX="true"
+export ZELLIJ_AUTO_EXIT=true
+export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+export ZSH_AUTOSUGGEST_USE_ASYNC=false
+# export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=6"
 export N_PREFIX="$HOME/n"
 [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin" # Added by n-install (see http://git.io/n-install-repo).
 # export MCFLY_LIGHT=TRUE
