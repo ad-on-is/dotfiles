@@ -9,6 +9,7 @@
     "bat@latest",
     "fzf@latest",
     "fastfetch@latest",
+    "atuin@latest",
     "btop@latest",
     "glxinfo@latest",
     "awscli@latest",
@@ -19,7 +20,22 @@
     "eza@latest",
     "maple-mono-NF@latest",
     "ansible@2.16",
-    "zq@latest"
+    "zq@latest",
+    "pipx@latest",
+    "ripgrep@latest",
+    "yazi@latest",
+    "vivid@latest",
+    "zellij@latest",
+    "act@latest",
+    "bfs@latest",
+    "bottom@latest",
+    "carapace@latest",
+    "dfu-programmer@latest",
+    "dfu-util@latest",
+    "fcp@latest",
+    "gitoxide@latest",
+    "swaks@latest",
+    "watchexec@latest"
   ],
   "shell": {
     "init_hook": [
