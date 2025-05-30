@@ -156,6 +156,11 @@ end, "Smart save")
 maphelper2("<C-r>", function()
   require("fzf-lua").oldfiles({ title = "Recent files" })
 end, "Recent files")
+
+maphelper2("<C-d>", function()
+  require("fzf-lua").lsp_document_symbols()
+end, "LSP symbols")
+
 -- map({ "n", "v" }, "<C-f>", "/", { noremap = true })
 -- map({ "i" }, "<C-f>", "<Esc>/", { noremap = true })
 maphelper2("<C-f>", function()

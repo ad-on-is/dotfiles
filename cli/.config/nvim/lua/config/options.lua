@@ -6,6 +6,7 @@ vim.g.ai_cmp = false
 -- vim.opt.completeopt = "menu,menuone,noselect"
 -- vim.opt.wrap = true
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+vim.g.autoformat = false -- disable auto formatting on save / use custom implementation
 
 vim.g.neovide_scale_factor = 1
 vim.g.neovide_cursor_vfx_mode = "railgun"

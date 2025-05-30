@@ -18,20 +18,41 @@ end
 
 local M = {
 
+  -- diff_format = function(args)
+  --   local hunks = require("gitsigns").get_hunks()
+  --   local format = require("conform").format
+  --   for i = #hunks, 1, -1 do
+  --     local hunk = hunks[i]
+  --     if hunk ~= nil and hunk.type ~= "delete" then
+  --       local start = hunk.added.start
+  --       local last = start + hunk.added.count
+  --       -- nvim_buf_get_lines uses zero-based indexing -> subtract from last
+  --       local last_hunk_line = vim.api.nvim_buf_get_lines(0, last - 2, last - 1, true)[1]
+  --       local range = { start = { start, 0 }, ["end"] = { last - 1, last_hunk_line:len() } }
+  --       format({ range = range })
+  --     end
+  --   end
+  -- end,
   tree_search = function(self, type, state)
     local node = state.tree:get_node()
     local path = node.path
 
     if node.type ~= "directory" then
-      vim.notify("Cannot " .. type .. " on a file")
-      return
+      -- vim.notify("Cannot " .. type .. " on a file")
+      local parts = {}
+      for part in path:gmatch("[^/]+") do
+        table.insert(parts, part)
+      end
+      table.remove(parts)
+      path = "/" .. table.concat(parts, "/")
+      -- vim.notify(path)
+      -- return
     end
 
     if type == "grep" then
       require("fzf-lua").live_grep({ cwd = path })
     else
-      vim.notify(vim.inspect(path))
-      -- self:toggle_search_replace("project", path)
+      self:toggle_search_replace("project", path)
     end
   end,
 

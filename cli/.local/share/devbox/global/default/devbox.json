@@ -3,7 +3,6 @@
   "packages": [
     "starship@latest",
     "opentofu@latest",
-    "ansible@latest",
     "zoxide@latest",
     "atuin@latest",
     "ripgrep@latest",
@@ -18,7 +17,9 @@
     "watchexec@latest",
     "gdu@latest",
     "eza@latest",
-    "maple-mono-NF@latest"
+    "maple-mono-NF@latest",
+    "ansible@2.16",
+    "zq@latest"
   ],
   "shell": {
     "init_hook": [

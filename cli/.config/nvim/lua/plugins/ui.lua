@@ -12,7 +12,9 @@ return {
         -- or leave it empty to use the default settings
         -- refer to the configuration section below
       },
-
+      bigfile = {
+        size = 5 * 1024 * 1024, -- 5MB
+      },
       scroll = {
         enabled = false,
       },
@@ -22,6 +24,7 @@ return {
         },
       },
       indent = {
+        enabled = false,
         animate = {
           enabled = false,
         },
@@ -477,6 +480,15 @@ return {
       "chentoast/marks.nvim",
       event = "VeryLazy",
       opts = {},
+    },
+    {
+      "shellRaining/hlchunk.nvim",
+      event = { "BufReadPre", "BufNewFile" },
+      opts = {
+        chunk = { enable = true, delay = 0, chars = { right_arrow = "─" } },
+        blank = { enable = true },
+        -- indent = { enable = true },
+      },
     },
   },
 

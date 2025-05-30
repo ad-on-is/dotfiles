@@ -91,6 +91,7 @@ return {
       -- formatters_by_ft = {
       --   phtml = nil,
       -- },
+      format_on_save = false,
       formatters = {
         php_cs_fixer = {
           args = { "fix", "$FILENAME" },
@@ -165,8 +166,8 @@ return {
         intelephense = {
           -- enabled = false,
           root_dir = vim.fn.getcwd(),
-          filetypes = { "php", "phtml" },
-          { files = { associations = { "*.php", "*.phtml", "*.module", "*.inc" } } },
+          filetypes = { "php" },
+          { files = { associations = { "*.php", "*.module", "*.inc" } } },
         },
       }, opts.servers)
       -- opts.setup = {
@@ -221,5 +222,23 @@ return {
         },
       },
     },
+  },
+
+  {
+    "mfussenegger/nvim-dap",
+    optional = true,
+    opts = function(opts)
+      local dap = require("dap")
+      vim.notify(vim.inspect(dap.configurations.php))
+      dap.configurations.php = {
+        {
+          type = "php",
+          request = "launch",
+          name = "Adis: Listen for Xebug",
+          port = 9001,
+          -- env = {XDEBUG_TRIGGER = "PHPSTORM"}
+        },
+      }
+    end,
   },
 }

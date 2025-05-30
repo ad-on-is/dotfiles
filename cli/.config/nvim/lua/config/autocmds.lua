@@ -10,6 +10,25 @@
 --   end,
 -- })
 --
+--
+
+local ignored_autosave_files = { "phtml" }
+local funcs = require("config.functions")
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*",
+  callback = function(args)
+    local f = args.file
+    if vim.fn.index(ignored_autosave_files, vim.fn.fnamemodify(f, ":e")) ~= -1 then
+      return
+    end
+    require("conform").format({ bufnr = args.buf, async = true })
+  end,
+})
+
+-- vim.api.nvim_create_user_command("DiffFormat", function(args)
+--   funcs.diff_format(args)
+-- end, { desc = "Format changed lines" })
 
 vim.api.nvim_create_autocmd({ "ModeChanged" }, {
   pattern = "*:n",
