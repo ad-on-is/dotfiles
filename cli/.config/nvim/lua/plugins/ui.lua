@@ -241,6 +241,9 @@ return {
         {
           { "<leader>up", group = "Profiler", icon = { icon = "󰾆 ", color = "green" } },
         },
+        {
+          { "<leader>fh", group = "File history", icon = { icon = " ", color = "green" } },
+        },
       },
     },
   },

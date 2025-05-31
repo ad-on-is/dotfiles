@@ -6,7 +6,7 @@ zstyle ':completion:*' cache-path "$XDG_CACHE_HOME"/zsh/zcompcache
 
 
 
-source ~/.zshenv
+source "$HOME"/.zshenv
 
 bindkey -e
 
@@ -15,9 +15,9 @@ ZPLUGINDIR=${ZPLUGINDIR:-${ZDOTDIR:-$HOME/.config/zsh}/plugins}
 
 # get zsh_unplugged and store it with your other plugins
 if [[ ! -d $ZPLUGINDIR/zsh_unplugged ]]; then
-  git clone --quiet https://github.com/mattmc3/zsh_unplugged $ZPLUGINDIR/zsh_unplugged
+  git clone --quiet https://github.com/mattmc3/zsh_unplugged "$ZPLUGINDIR"/zsh_unplugged
 fi
-source $ZPLUGINDIR/zsh_unplugged/zsh_unplugged.zsh
+source "$ZPLUGINDIR"/zsh_unplugged/zsh_unplugged.zsh
 
 # ohmyzsh plugins
 plugins=(
@@ -34,8 +34,8 @@ repos=(
 
 plugin-load $repos
 
-source ~/.config/zsh/aliases.zsh
-source ~/.config/zsh/zstyle.zsh
+source "$HOME"/.config/zsh/aliases.zsh
+source "$HOME"/.config/zsh/zstyle.zsh
 
 
 
