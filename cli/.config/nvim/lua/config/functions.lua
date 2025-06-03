@@ -18,6 +18,44 @@ end
 
 local M = {
 
+  cycle_through_marks = function()
+    local marks = vim.fn.getmarklist("%")
+
+    for i = #marks, 1, -1 do
+      local mark = marks[i]
+      if mark.mark == "'[" or mark.mark == "'." or mark.mark == "'\"" or mark.mark == "''" or mark.mark == "']" then
+        table.remove(marks, i)
+      end
+    end
+
+    if #marks == 0 then
+      return
+    end
+
+    -- Sort marks by line number
+    table.sort(marks, function(a, b)
+      return a.pos[2] < b.pos[2]
+    end)
+
+    local current_line = vim.fn.line(".")
+    local next_mark = nil
+
+    -- Find next mark after current line
+    for _, mark in ipairs(marks) do
+      if mark.pos[2] > current_line then
+        next_mark = mark
+        break
+      end
+    end
+
+    -- If no mark found after current line, wrap to first mark
+    next_mark = next_mark or marks[1]
+
+    if next_mark then
+      vim.cmd("normal! " .. next_mark.pos[2] .. "G" .. next_mark.pos[3] .. "|")
+    end
+  end,
+
   tree_search = function(self, type, state)
     local node = state.tree:get_node()
     local path = node.path
