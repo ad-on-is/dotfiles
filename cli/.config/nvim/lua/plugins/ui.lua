@@ -239,6 +239,10 @@ return {
           { "<leader>gC", group = "Conflict", icon = { icon = " ", color = "blue" } },
         },
         {
+          { "<leader>a", group = "Avante", icon = { icon = "󰚩 ", color = "blue" } },
+        },
+
+        {
           { "<leader>up", group = "Profiler", icon = { icon = "󰾆 ", color = "green" } },
         },
         {
@@ -257,10 +261,10 @@ return {
       },
     },
   },
+  --[[ { "AndreM222/copilot-lualine" }, ]]
 
   {
     "nvim-lualine/lualine.nvim",
-    event = "VeryLazy",
     -- dependencies = {
     --   { "nvim-lua/lsp-status.nvim" },
     -- },
@@ -293,6 +297,7 @@ return {
           },
         },
         lualine_x = {
+          -- "copilot",
           "searchcount",
           "encoding",
           "filetype",

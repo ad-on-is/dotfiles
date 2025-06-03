@@ -151,29 +151,3 @@ function quitawesome() {
   apid=$(ps -H -t /dev/tty2 | grep "awesome" | awk '{print $1}')
   kill -SIGKILL $apid
 }
-
-function landevice() {
-  device="$1"
-  if [[ -z $device ]]; then
-    device="."
-  fi
-
-  vlans=(0 10 30 40 60 80 90 200)
-  final=""
-  vlanstr=""
-  for vlan in "${vlans[@]}"; do
-    vlanstr="10.40.$vlan.0/24 $vlanstr"
-  done
-
-  final=$(nmap -sL $(echo $vlanstr | rev | cut -c 2- | rev) | grep '.lan' | grep -i $device)
-  final=$(echo $final | sed -r '/^\s*$/d' | sort)
-
-  if [[ $device == "." ]]; then
-    final=$(echo $final | awk '{print $5" "$6}')
-  else
-    final=$(echo $final | awk '{print $5}')
-  fi
-
-  echo $final
-
-}
