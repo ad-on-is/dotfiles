@@ -50,7 +50,7 @@ local M = {
     end
 
     if type == "grep" then
-      require("fzf-lua").live_grep({ cwd = path })
+      require("fzf-lua").live_grep({ cwd = path, winopts = { title = path } })
     else
       self:toggle_search_replace("project", path)
     end

@@ -46,6 +46,7 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.lang.cmake" },
     { import = "lazyvim.plugins.extras.lang.omnisharp" },
     { import = "lazyvim.plugins.extras.lang.ansible" },
+    { import = "lazyvim.plugins.extras.ai.supermaven" },
 
     { import = "plugins" },
   },
