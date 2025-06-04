@@ -5,7 +5,17 @@
 vim.g.ai_cmp = false
 -- vim.opt.completeopt = "menu,menuone,noselect"
 -- vim.opt.wrap = true
+local ignored_autosave_files = { "phtml" }
+
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+vim.g.autoformat = function()
+  local f = vim.fn.expand('%:t')
+  vim.notify(f)
+  if vim.fn.index(ignored_autosave_files, vim.fn.fnamemodify(f, ":e")) ~= -1 then
+    return false
+  end
+  return true
+end
 
 vim.g.neovide_scale_factor = 1
 vim.g.neovide_cursor_vfx_mode = "railgun"

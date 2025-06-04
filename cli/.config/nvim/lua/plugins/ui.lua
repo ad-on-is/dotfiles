@@ -12,7 +12,9 @@ return {
         -- or leave it empty to use the default settings
         -- refer to the configuration section below
       },
-
+      bigfile = {
+        size = 5 * 1024 * 1024, -- 5MB
+      },
       scroll = {
         enabled = false,
       },

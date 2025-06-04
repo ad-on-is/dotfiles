@@ -162,7 +162,7 @@ end, "Recent files")
 
 maphelper2("<C-d>", function()
   require("fzf-lua").lsp_document_symbols()
-end, "Recent files")
+end, "LSP symbols")
 
 -- map({ "n", "v" }, "<C-f>", "/", { noremap = true })
 -- map({ "i" }, "<C-f>", "<Esc>/", { noremap = true })
