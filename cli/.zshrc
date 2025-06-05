@@ -1,15 +1,8 @@
-
-
-
 zstyle ':completion:*' cache-path "$XDG_CACHE_HOME"/zsh/zcompcache
-
-
-
 
 source "$HOME"/.zshenv
 
 bindkey -e
-
 
 ZPLUGINDIR=${ZPLUGINDIR:-${ZDOTDIR:-$HOME/.config/zsh}/plugins}
 
@@ -25,11 +18,11 @@ plugins=(
 )
 
 repos=(
-    ohmyzsh/ohmyzsh
-    zsh-users/zsh-autosuggestions
-    Aloxaf/fzf-tab
-    Freed-Wu/fzf-tab-source
-    zsh-users/zsh-syntax-highlighting
+  ohmyzsh/ohmyzsh
+  zsh-users/zsh-autosuggestions
+  Aloxaf/fzf-tab
+  Freed-Wu/fzf-tab-source
+  zsh-users/zsh-syntax-highlighting
 )
 
 plugin-load $repos
@@ -37,12 +30,8 @@ plugin-load $repos
 source "$HOME"/.config/zsh/aliases.zsh
 source "$HOME"/.config/zsh/zstyle.zsh
 
-
-
-autoload -U compinit && compinit -i  # BEFORE zoxide init
+autoload -U compinit && compinit -i # BEFORE zoxide init
 # compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
-
-
 
 [ -x "$(command -v starship)" ] && eval "$(starship init zsh)"
 [ -x "$(command -v zoxide)" ] && eval "${$(zoxide init --cmd cd zsh):s#_files -/#_dirs#}"
@@ -53,13 +42,11 @@ autoload -U compinit && compinit -i  # BEFORE zoxide init
 [ -x "$(command -v atuin)" ] && eval "$(atuin init zsh)"
 [ -x "$(command -v devbox)" ] && eval "$(devbox global shellenv)"
 # [ -x "$(command -v zellij)" ] && eval "$(zellij setup --generate-auto-start zsh)"
-# [ -x "$(command -v vivid)" ] && export LS_COLORS="$(vivid generate catppuccin-mocha)"
+[ -x "$(command -v vivid)" ] && export LS_COLORS="$(vivid generate catppuccin-mocha)"
 
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "/$HOME/.bun/_bun"
-
-
-
+#
 bindkey '^l' autosuggest-accept
 
 function clear-scrollback-widget {
@@ -69,9 +56,8 @@ function clear-scrollback-widget {
 zle -N clear-scrollback-widget
 bindkey '^k' clear-scrollback-widget
 
-
 function open-select-widget {
-"$HOME"/.local/bin/ssh-select.sh 
+  "$HOME"/.local/bin/ssh-select.sh
 }
 zle -N open-select-widget
 bindkey '^P' open-select-widget
@@ -82,14 +68,9 @@ if [[ -f $HOME/.local/share/bash-completion/completions/appman ]]; then
   source "$HOME/.local/share/bash-completion/completions/appman"
 fi
 
-
-if [[ -f "$HOME"/.zshrc_custom ]]; then 
+if [[ -f "$HOME"/.zshrc_custom ]]; then
   source "$HOME"/.zshrc_custom
 fi
-
-# export NVM_DIR="$HOME/.local/share/nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # fnm
 export FNM_PATH="$HOME"/.local/share/fnm

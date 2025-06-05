@@ -88,10 +88,6 @@ return {
   {
     "stevearc/conform.nvim",
     opts = {
-      -- formatters_by_ft = {
-      --   phtml = nil,
-      -- },
-      format_on_save = false,
       formatters = {
         php_cs_fixer = {
           args = { "fix", "$FILENAME" },
