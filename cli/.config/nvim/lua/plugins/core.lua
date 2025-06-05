@@ -144,7 +144,6 @@ return {
     end,
   },
 
-  
   {
     "yetone/avante.nvim",
     event = "VeryLazy",
@@ -152,8 +151,10 @@ return {
     opts = {
       provider = "copilot",
       auto_suggestions_provider = "copilot",
-      copilot = {
-        model = "claude-3.7-sonnet",
+      providers = {
+        copilot = {
+          model = "claude-3.7-sonnet",
+        },
       },
     },
     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
