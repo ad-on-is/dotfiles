@@ -310,25 +310,9 @@ local M = {
 
     -- Add lsp-clients active in the current buffer
     for _, client in pairs(buf_clients) do
-      num_client_names = num_client_names + 1
-      buf_client_names[num_client_names] = client.name
-    end
-
-    -- Add linters for the current filetype (nvim-lint)
-    local lint_success, lint = pcall(require, "lint")
-    if lint_success then
-      for ft, ft_linters in pairs(lint.linters_by_ft) do
-        if ft == buf_ft then
-          if type(ft_linters) == "table" then
-            for _, linter in pairs(ft_linters) do
-              num_client_names = num_client_names + 1
-              buf_client_names[num_client_names] = linter
-            end
-          else
-            num_client_names = num_client_names + 1
-            buf_client_names[num_client_names] = ft_linters
-          end
-        end
+      if client.name ~= "copilot" then
+        num_client_names = num_client_names + 1
+        buf_client_names[num_client_names] = client.name
       end
     end
 

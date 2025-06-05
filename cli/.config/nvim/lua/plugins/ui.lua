@@ -263,7 +263,7 @@ return {
       },
     },
   },
-  --[[ { "AndreM222/copilot-lualine" }, ]]
+  { "AndreM222/copilot-lualine" },
 
   {
     "nvim-lualine/lualine.nvim",
@@ -299,7 +299,7 @@ return {
           },
         },
         lualine_x = {
-          -- "copilot",
+          "copilot",
           "searchcount",
           "encoding",
           "filetype",
