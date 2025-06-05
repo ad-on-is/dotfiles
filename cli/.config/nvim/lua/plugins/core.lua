@@ -149,6 +149,9 @@ return {
     event = "VeryLazy",
     version = false, -- Never set this value to "*"! Never!
     opts = {
+      hints = {
+        enabled = false,
+      },
       provider = "copilot",
       auto_suggestions_provider = "copilot",
       providers = {
