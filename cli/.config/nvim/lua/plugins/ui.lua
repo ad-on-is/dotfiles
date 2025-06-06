@@ -1,4 +1,5 @@
 local funcs = require("config.functions")
+local icons = LazyVim.config.icons
 
 return {
   {
@@ -278,7 +279,17 @@ return {
       },
       sections = {
         lualine_b = {
-          "branch",
+          {
+            "branch",
+            fmt = function(str)
+              if #str > 40 then
+                local first = str:sub(1, 35)
+                local last = str:sub(-5)
+                return first .. "..." .. last
+              end
+              return str
+            end,
+          },
           {
             "diff",
             symbols = {
@@ -299,16 +310,6 @@ return {
           },
         },
         lualine_x = {
-          "copilot",
-          "searchcount",
-          "encoding",
-          "filetype",
-          {
-            funcs.get_attached_clients,
-            color = {
-              gui = "bold",
-            },
-          },
           {
             function()
               return "  " .. require("dap").status()
@@ -321,13 +322,24 @@ return {
             -- end,
           },
           -- stylua: ignore
-          {
-          require("lazy.status").updates,
-          cond = require("lazy.status").has_updates,
-          --   color = function() return Snacks.util.color("Special") end,
-          },
         },
-        lualine_z = {},
+        lualine_y = {
+          "filetype",
+          {
+            funcs.get_attached_clients,
+            -- color = {
+            --   gui = "bold",
+            -- },
+          },
+          "encoding",
+        },
+        lualine_z = {
+          { "progress", separator = " ", padding = { left = 1, right = 0 } },
+          { "location", padding = { left = 0, right = 1 } },
+          "searchcount",
+
+          "copilot",
+        },
       },
     },
   },

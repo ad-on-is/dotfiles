@@ -132,10 +132,9 @@ local M = {
   toggle_search_replace = function(instance, path)
     local gf = require("grug-far")
     local p = path or ""
-    vim.notify(p)
+    local paths = vim.fn.expand("%")
     if not gf.has_instance(instance) then
       local wcc = "vsplit"
-      local paths = vim.fn.expand("%")
       if instance == "project" then
         wcc = ":vertical topleft split"
         paths = ""
@@ -151,7 +150,12 @@ local M = {
       if gf.is_instance_open(instance) then
         gf.hide_instance(instance)
       else
-        gf.get_instance(instance):open()
+        local inst = gf.get_instance(instance)
+        if not inst then
+          return
+        end
+        inst:update_input_values({ paths = paths }, true)
+        inst:open()
         vim.cmd("vertical resize 60%")
       end
     end
@@ -327,7 +331,7 @@ local M = {
     end
 
     local client_names_str = table.concat(buf_client_names, ", ")
-    local language_servers = string.format("LSP: %s", client_names_str)
+    local language_servers = string.format("%s", client_names_str)
 
     return language_servers
   end,
