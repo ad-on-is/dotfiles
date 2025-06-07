@@ -5,7 +5,6 @@
 --
 
 local funcs = require("config.functions")
--- local mc = require("multicursor-nvim")
 -- local menu = require("menu")
 local map = vim.keymap.set
 -- local menuoptions = require("config.menu")
@@ -163,6 +162,10 @@ end, "Recent files")
 maphelper2("<C-d>", function()
   require("fzf-lua").lsp_document_symbols()
 end, "LSP symbols")
+
+map({ "n", "x" }, "<C-m>", function()
+  vim.cmd("MCunderCursor")
+end)
 
 -- map({ "n", "v" }, "<C-f>", "/", { noremap = true })
 -- map({ "i" }, "<C-f>", "<Esc>/", { noremap = true })

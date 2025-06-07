@@ -24,7 +24,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     if vim.fn.index(ignored_formatonsave_types, type) ~= -1 then
       return
     else
-      require("conform").format({ bufnr = args.buf, async = true })
+      require("conform").format({ bufnr = args.buf, async = false })
     end
   end,
 })

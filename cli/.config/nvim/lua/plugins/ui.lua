@@ -1,5 +1,18 @@
 local funcs = require("config.functions")
 
+local function is_active()
+  local ok, hydra = pcall(require, "hydra.statusline")
+  return ok and hydra.is_active()
+end
+
+local function get_name()
+  local ok, hydra = pcall(require, "hydra.statusline")
+  if ok then
+    return " MultiCursor"
+  end
+  return ""
+end
+
 return {
   {
     "folke/snacks.nvim",
@@ -278,6 +291,7 @@ return {
       },
       sections = {
         lualine_b = {
+          { get_name, cond = is_active },
           "branch",
           {
             "diff",
