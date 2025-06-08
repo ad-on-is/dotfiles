@@ -56,29 +56,6 @@ local M = {
     end
   end,
 
-  -- tree_search = function(self, type, state)
-  --   local node = state.tree:get_node()
-  --   local path = node.path
-  --
-  --   if node.type ~= "directory" then
-  --     -- vim.notify("Cannot " .. type .. " on a file")
-  --     local parts = {}
-  --     for part in path:gmatch("[^/]+") do
-  --       table.insert(parts, part)
-  --     end
-  --     table.remove(parts)
-  --     path = "/" .. table.concat(parts, "/")
-  --     -- vim.notify(path)
-  --     -- return
-  --   end
-  --
-  --   if type == "grep" then
-  --     require("fzf-lua").live_grep({ cwd = path, winopts = { title = path } })
-  --   else
-  --     self:toggle_search_replace("project", path)
-  --   end
-  -- end,
-
   close_window = function()
     local buffers = {}
     for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
