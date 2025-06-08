@@ -18,21 +18,6 @@ end
 
 local M = {
 
-  -- diff_format = function(args)
-  --   local hunks = require("gitsigns").get_hunks()
-  --   local format = require("conform").format
-  --   for i = #hunks, 1, -1 do
-  --     local hunk = hunks[i]
-  --     if hunk ~= nil and hunk.type ~= "delete" then
-  --       local start = hunk.added.start
-  --       local last = start + hunk.added.count
-  --       -- nvim_buf_get_lines uses zero-based indexing -> subtract from last
-  --       local last_hunk_line = vim.api.nvim_buf_get_lines(0, last - 2, last - 1, true)[1]
-  --       local range = { start = { start, 0 }, ["end"] = { last - 1, last_hunk_line:len() } }
-  --       format({ range = range })
-  --     end
-  --   end
-  -- end,
   cycle_through_marks = function()
     local marks = vim.fn.getmarklist("%")
 
@@ -71,28 +56,28 @@ local M = {
     end
   end,
 
-  tree_search = function(self, type, state)
-    local node = state.tree:get_node()
-    local path = node.path
-
-    if node.type ~= "directory" then
-      -- vim.notify("Cannot " .. type .. " on a file")
-      local parts = {}
-      for part in path:gmatch("[^/]+") do
-        table.insert(parts, part)
-      end
-      table.remove(parts)
-      path = "/" .. table.concat(parts, "/")
-      -- vim.notify(path)
-      -- return
-    end
-
-    if type == "grep" then
-      require("fzf-lua").live_grep({ cwd = path, winopts = { title = path } })
-    else
-      self:toggle_search_replace("project", path)
-    end
-  end,
+  -- tree_search = function(self, type, state)
+  --   local node = state.tree:get_node()
+  --   local path = node.path
+  --
+  --   if node.type ~= "directory" then
+  --     -- vim.notify("Cannot " .. type .. " on a file")
+  --     local parts = {}
+  --     for part in path:gmatch("[^/]+") do
+  --       table.insert(parts, part)
+  --     end
+  --     table.remove(parts)
+  --     path = "/" .. table.concat(parts, "/")
+  --     -- vim.notify(path)
+  --     -- return
+  --   end
+  --
+  --   if type == "grep" then
+  --     require("fzf-lua").live_grep({ cwd = path, winopts = { title = path } })
+  --   else
+  --     self:toggle_search_replace("project", path)
+  --   end
+  -- end,
 
   close_window = function()
     local buffers = {}
@@ -130,29 +115,58 @@ local M = {
   end,
 
   toggle_search_replace = function(instance, path)
-    local gf = require("grug-far")
-    local p = path or ""
-    vim.notify(p)
-    if not gf.has_instance(instance) then
-      local wcc = "vsplit"
-      local paths = vim.fn.expand("%")
-      if instance == "project" then
-        wcc = ":vertical topleft split"
-        paths = ""
+    local neo_tree_win = nil
+    local main_win = nil
+    local treeselection = ""
+    for _, win in ipairs(vim.api.nvim_list_wins()) do
+      local buf = vim.api.nvim_win_get_buf(win)
+      local filetype = vim.api.nvim_buf_get_option(buf, "filetype")
+      if filetype == "neo-tree" then
+        neo_tree_win = win
+      else
+        main_win = win
       end
+    end
+    if main_win and vim.api.nvim_get_current_win() == neo_tree_win then
+      local sm = require("neo-tree.sources.manager")
+      local state = sm:_get_all_states()[1]
+      local node = state.tree:get_node()
+      treeselection = node.path
+      if node.type ~= "directory" then
+        local parts = {}
+        for part in treeselection:gmatch("[^/]+") do
+          table.insert(parts, part)
+        end
+        table.remove(parts)
+        treeselection = "/" .. table.concat(parts, "/")
+      end
+
+      vim.api.nvim_set_current_win(main_win)
+    end
+    local gf = require("grug-far")
+    local paths = vim.fn.expand("%")
+    if instance == "project" then
+      -- wcc = ":vertical topleft split"
+      paths = treeselection
+    end
+    local prefills = { paths = paths, flags = "--multiline" }
+    if not gf.has_instance(instance) then
       gf.open({
         instanceName = instance,
-        windowCreationCommand = wcc,
-        prefills = { paths = paths, flags = "--multiline" },
+        windowCreationCommand = "split",
+        prefills = prefills,
       })
-      vim.cmd("vertical resize 60%")
+      -- vim.cmd("vertical resize 60%")
     else
-      -- vim.notify(vim.inspect(i))
       if gf.is_instance_open(instance) then
         gf.hide_instance(instance)
       else
-        gf.get_instance(instance):open()
-        vim.cmd("vertical resize 60%")
+        local inst = gf.get_instance(instance)
+        if not inst then
+          return
+        end
+        inst:update_input_values(prefills, true)
+        inst:open()
       end
     end
   end,

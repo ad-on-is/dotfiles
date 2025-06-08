@@ -216,18 +216,6 @@ return {
         },
       },
       close_if_last_window = true,
-      window = {
-        mappings = {
-          ["<A-q>"] = ":qa",
-          ["<A-e>"] = ":wincmd p",
-          ["\\"] = function(state)
-            funcs:tree_search("grep", state)
-          end,
-          ["<A-f>"] = function(state)
-            funcs:tree_search("search-replace", state)
-          end,
-        },
-      },
       default_component_configs = {
         name = { use_git_status_colors = false },
         modified = {

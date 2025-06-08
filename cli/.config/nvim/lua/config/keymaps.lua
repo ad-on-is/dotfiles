@@ -163,7 +163,7 @@ maphelper2("<C-d>", function()
   require("fzf-lua").lsp_document_symbols()
 end, "LSP symbols")
 
-map({ "n", "x" }, "<C-m>", function()
+map({ "n" }, "<C-m>", function()
   vim.cmd("MCunderCursor")
 end)
 
