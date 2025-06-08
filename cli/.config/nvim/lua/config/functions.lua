@@ -16,15 +16,97 @@ local function scandir(directory)
   return t
 end
 
+local get_filtered_marks = function()
+  local marks = vim.fn.getmarklist("%")
+
+  for i = #marks, 1, -1 do
+    local mark = marks[i]
+    if
+      mark.mark == "'["
+      or mark.mark == "'."
+      or mark.mark == "'\""
+      or mark.mark == "''"
+      or mark.mark == "']"
+      or mark.mark == "'^"
+    then
+      table.remove(marks, i)
+    else
+    end
+  end
+  return marks
+end
+
 local M = {
 
+  definition_in_float = function()
+    local params = vim.lsp.util.make_position_params(0, "utf-8")
+    vim.lsp.buf_request(0, "textDocument/definition", params, function(_, result, _, _)
+      if not result or vim.tbl_isempty(result) then
+        return
+      end
+
+      local location = result[1]
+      local bufnr = vim.uri_to_bufnr(location.uri)
+      vim.fn.bufload(bufnr)
+
+      local win_id = vim.api.nvim_open_win(bufnr, true, {
+        relative = "cursor",
+        width = 80,
+        height = 20,
+        row = 1,
+        col = 0,
+        style = "minimal",
+        border = "rounded",
+      })
+
+      vim.api.nvim_win_set_cursor(win_id, { location.range.start.line + 1, location.range.start.character })
+
+      -- Close on <Esc>
+      vim.keymap.set("n", "<Esc>", function()
+        vim.cmd("close")
+      end, { buffer = bufnr, nowait = true })
+    end)
+  end,
+
+  delete_automarks = function()
+    local marks = get_filtered_marks()
+    for _, mark in ipairs(marks) do
+      local m = mark.mark:sub(-1)
+      vim.api.nvim_buf_del_mark(0, m)
+    end
+  end,
+
+  automark = function()
+    ms = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    local marks = get_filtered_marks()
+    local ct = 0
+    for _, mark in ipairs(marks) do
+      local m = mark.mark:sub(-1)
+      local pos = string.find(ms, m)
+      if pos and pos > ct then
+        ct = pos
+      end
+    end
+
+    local mark = ms:sub(ct + 1, ct + 1)
+    vim.api.nvim_buf_set_mark(0, mark, vim.api.nvim_win_get_cursor(0)[1], vim.api.nvim_win_get_cursor(0)[2], {})
+  end,
+
   cycle_through_marks = function()
-    local marks = vim.fn.getmarklist("%")
+    local marks = get_filtered_marks()
 
     for i = #marks, 1, -1 do
       local mark = marks[i]
-      if mark.mark == "'[" or mark.mark == "'." or mark.mark == "'\"" or mark.mark == "''" or mark.mark == "']" then
+      if
+        mark.mark == "'["
+        or mark.mark == "'."
+        or mark.mark == "'\""
+        or mark.mark == "''"
+        or mark.mark == "']"
+        or mark.mark == "'^"
+      then
         table.remove(marks, i)
+      else
       end
     end
 
