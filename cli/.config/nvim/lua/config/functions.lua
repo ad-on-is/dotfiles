@@ -38,6 +38,8 @@ end
 
 local M = {
 
+  -- open definition in a floating window next to the cursor, but stay in the window if the def
+
   definition_in_float = function()
     local params = vim.lsp.util.make_position_params(0, "utf-8")
     vim.lsp.buf_request(0, "textDocument/definition", params, function(_, result, _, _)
@@ -46,10 +48,28 @@ local M = {
       end
 
       local location = result[1]
-      local bufnr = vim.uri_to_bufnr(location.uri)
-      vim.fn.bufload(bufnr)
+      local target_uri = location.uri
+      local target_bufnr = vim.uri_to_bufnr(target_uri)
 
-      local win_id = vim.api.nvim_open_win(bufnr, true, {
+      -- Check if we're in a floating window
+      local current_win = vim.api.nvim_get_current_win()
+      local current_bufnr = vim.api.nvim_win_get_buf(current_win)
+      local win_config = vim.api.nvim_win_get_config(current_win)
+
+      -- If we're in a floating window and the definition is in the same buffer
+      if win_config.relative ~= "" and current_bufnr == target_bufnr then
+        -- Just jump to the location in the current floating window
+        vim.api.nvim_win_set_cursor(current_win, { location.range.start.line + 1, location.range.start.character })
+        return
+      end
+
+      -- Otherwise, create a new floating window
+      vim.fn.bufload(target_bufnr)
+
+      -- Get filename for title
+      local filename = vim.uri_to_fname(target_uri)
+
+      local win_id = vim.api.nvim_open_win(target_bufnr, true, {
         relative = "cursor",
         width = 80,
         height = 20,
@@ -57,14 +77,18 @@ local M = {
         col = 0,
         style = "minimal",
         border = "rounded",
+        title = filename,
+        title_pos = "center",
       })
 
       vim.api.nvim_win_set_cursor(win_id, { location.range.start.line + 1, location.range.start.character })
 
       -- Close on <Esc>
       vim.keymap.set("n", "<Esc>", function()
-        vim.cmd("close")
-      end, { buffer = bufnr, nowait = true })
+        if vim.api.nvim_win_is_valid(win_id) then
+          vim.api.nvim_win_close(win_id, true)
+        end
+      end, { buffer = target_bufnr, nowait = true })
     end)
   end,
 
