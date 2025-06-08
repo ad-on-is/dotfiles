@@ -71,6 +71,11 @@ end)
 map({ "n", "v", "i" }, "<A-g>", function()
   funcs.cycle_through_marks()
 end)
+
+map({ "n", "v", "i" }, "<A-u>", function()
+  funcs.cycle_through_marks(true)
+end)
+
 -- map({ "n", "v" }, "f", "s", { remap = true })
 -- map({ "n", "v" }, "s", "ys", { remap = true })
 
@@ -192,7 +197,10 @@ end)
 
 maphelper2("<C-h>", vim.lsp.buf.hover, "LSP hover", true)
 map("n", "M", function()
-  funcs.automark()
+  funcs.automark(false)
+end)
+map("n", "U", function()
+  funcs.automark(true)
 end)
 
 map("n", "|", function()
@@ -202,8 +210,13 @@ map("n", "&", function()
   vim.cmd("split")
 end)
 map("n", "dmö", function()
-  funcs.delete_automarks()
+  funcs.delete_automarks(false)
 end)
+
+map("n", "dmÖ", function()
+  funcs.delete_automarks(true)
+end)
+
 map("n", "<esc>", function()
   funcs.smart_close()
 end, { buffer = false, noremap = true })

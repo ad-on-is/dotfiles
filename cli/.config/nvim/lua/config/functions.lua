@@ -16,25 +16,21 @@ local function scandir(directory)
   return t
 end
 
-local get_filtered_marks = function()
-  local marks = vim.fn.getmarklist("%")
-
+local get_filtered_marks = function(global)
+  local marks = global and vim.fn.getmarklist() or vim.fn.getmarklist("%")
+  local regex = global and "[A-Z]" or "[a-z]"
   for i = #marks, 1, -1 do
-    local mark = marks[i]
-    if
-      mark.mark == "'["
-      or mark.mark == "'."
-      or mark.mark == "'\""
-      or mark.mark == "''"
-      or mark.mark == "']"
-      or mark.mark == "'^"
-    then
+    local m = marks[i].mark:sub(-1)
+    if not m:match(regex) then
       table.remove(marks, i)
-    else
     end
   end
+
   return marks
 end
+
+local deleted_marks = {}
+local deleted_marks_global = {}
 
 local M = {
 
@@ -92,17 +88,37 @@ local M = {
     end)
   end,
 
-  delete_automarks = function()
-    local marks = get_filtered_marks()
-    for _, mark in ipairs(marks) do
-      local m = mark.mark:sub(-1)
-      vim.api.nvim_buf_del_mark(0, m)
-    end
+  delete_automarks = function(global)
+    vim.cmd(global and "delmarks A-Z" or "delmarks a-z")
   end,
 
-  automark = function()
-    ms = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    local marks = get_filtered_marks()
+  automark = function(global)
+    global = global or false
+    local ms = global and "ABCDEFGHIJKLMNOPQRSTUVWXYZ" or "abcdefghijklmnopqrstuvwxyz"
+
+    local line = vim.api.nvim_win_get_cursor(0)[1]
+    local pos = vim.api.nvim_win_get_cursor(0)[2]
+
+    local marks = get_filtered_marks(global)
+
+    for _, mark in ipairs(marks) do
+      -- vim.notify(vim.inspect({ mark, line, global }))
+      if mark.pos[2] == line then
+        local m = mark.mark:sub(-1)
+        vim.api.nvim_buf_del_mark(0, m)
+        table.insert(global and deleted_marks_global or deleted_marks, m)
+        return
+      end
+    end
+
+    local dm = global and deleted_marks_global or deleted_marks
+
+    if #dm > 0 then
+      local mark = table.remove(global and deleted_marks_global or deleted_marks, 1)
+      vim.api.nvim_buf_set_mark(0, mark, line, pos, {})
+      return
+    end
+
     local ct = 0
     for _, mark in ipairs(marks) do
       local m = mark.mark:sub(-1)
@@ -113,26 +129,11 @@ local M = {
     end
 
     local mark = ms:sub(ct + 1, ct + 1)
-    vim.api.nvim_buf_set_mark(0, mark, vim.api.nvim_win_get_cursor(0)[1], vim.api.nvim_win_get_cursor(0)[2], {})
+    vim.api.nvim_buf_set_mark(0, mark, line, pos, {})
   end,
 
-  cycle_through_marks = function()
-    local marks = get_filtered_marks()
-
-    for i = #marks, 1, -1 do
-      local mark = marks[i]
-      if
-        mark.mark == "'["
-        or mark.mark == "'."
-        or mark.mark == "'\""
-        or mark.mark == "''"
-        or mark.mark == "']"
-        or mark.mark == "'^"
-      then
-        table.remove(marks, i)
-      else
-      end
-    end
+  cycle_through_marks = function(global)
+    local marks = get_filtered_marks(global or false)
 
     if #marks == 0 then
       return
@@ -158,24 +159,11 @@ local M = {
     next_mark = next_mark or marks[1]
 
     if next_mark then
-      vim.cmd("normal! " .. next_mark.pos[2] .. "G" .. next_mark.pos[3] .. "|")
+      vim.api.nvim_feedkeys("`" .. next_mark.mark:sub(-1), "n", true)
     end
-  end,
-
-  close_window = function()
-    local buffers = {}
-    for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
-      local buf = vim.api.nvim_win_get_buf(win)
-      vim.notify(vim.inspect(vim.fn.getbufinfo(buf)))
-      buffers[buf] = true
-    end
-    vim.notify("Visible buffers in this tab: " .. vim.tbl_count(buffers))
   end,
 
   open_dialog = function(type, title)
-    -- vim.ui.input({ prompt = title .. ": " }, function(input)
-    --   vim.notify(input)
-    -- end)
     local target_dir = vim.fn.input(title .. ": ", vim.fn.getcwd() .. "/", type)
     if target_dir ~= "" then
       vim.cmd("e " .. vim.fn.fnameescape(target_dir))
@@ -256,7 +244,6 @@ local M = {
 
   code_actions = function()
     local function apply_specific_code_action(res)
-      -- vim.notify(vim.inspect(res))
       vim.lsp.buf.code_action({
         filter = function(action)
           return action.title == res.title
