@@ -5,6 +5,7 @@ import {
   getMonitors,
   getClients,
   monitors,
+  type Monitor,
 } from "./hyprland";
 import { $ } from "bun";
 
@@ -96,26 +97,42 @@ const pinWindow = async () => {
   // await $`hyprctl dispatch pin`;
 };
 
+const getMontiorLayout = async () => {
+  const monitors = await getMonitors();
+  const am = (await getActiveWorkspace()).monitorID;
+  const active = monitors.find((m) => m.id == am);
+  if (!active) {
+    return;
+  }
+  const left = monitors.find((m) => m.x < active.x);
+  const right = monitors.find((m) => m.x > active.x);
+  const top = monitors.find((m) => m.y < active.y);
+  const bottom = monitors.find((m) => m.y > active.y);
+
+  return [top, bottom, left, right];
+};
+
 const focusWindow = async () => {
   const dir = process.argv[4];
   const aws = await getActiveWorkspace();
   const clients = await getClients();
+  const [top, bottom, left, right] = await getMontiorLayout();
   const wHasClients =
     clients.filter((c) => c.workspace.id == aws.id).length > 1;
 
   if (!wHasClients) {
     switch (dir) {
       case "t":
-        await $`hyprctl dispatch focusmonitor DP-2`;
+        await $`hyprctl dispatch focusmonitor ${top.name}`;
         break;
       case "b":
-        await $`hyprctl dispatch focusmonitor DP-1`;
+        await $`hyprctl dispatch focusmonitor ${bottom.name}`;
         break;
       case "l":
-        await $`hyprctl dispatch focusmonitor DP-3`;
+        await $`hyprctl dispatch focusmonitor ${left.name}`;
         break;
       case "r":
-        await $`hyprctl dispatch focusmonitor HDMI-A-1`;
+        await $`hyprctl dispatch focusmonitor ${right.name}`;
         break;
     }
   } else {

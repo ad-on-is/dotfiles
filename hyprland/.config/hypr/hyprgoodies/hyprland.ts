@@ -11,7 +11,6 @@ export const monitors = {
 export type Workspace = {
   id: number;
   name: string;
-  monitor: string;
   monitorID: number;
 };
 
@@ -65,7 +64,7 @@ export async function getActiveWorkspace(): Promise<Workspace> {
   return JSON.parse(ctl) as Workspace;
 }
 
-export async function getMonitors(): Promise<any[]> {
+export async function getMonitors(): Promise<Monitor[]> {
   const ctl = await $`hyprctl monitors -j`.text();
   return JSON.parse(ctl);
 }
