@@ -82,6 +82,20 @@ const moveWindow = async () => {
   }
 };
 
+const pinWindow = async () => {
+  const c = await getActiveClient();
+  let [w, h] = c.size;
+  let [x, y] = c.at;
+  const nw = Math.round(w * 0.95);
+  const nh = Math.round(h * 0.95);
+  const nx = Math.round(x + (w - nw) / 2);
+  const ny = Math.round(y + (h - nh) / 2);
+  await $`hyprctl dispatch togglefloating`;
+  await $`hyprctl dispatch resizeactive exact ${nw} ${nh}`;
+  await $`hyprctl dispatch movewindow exact ${nx} ${ny}`;
+  // await $`hyprctl dispatch pin`;
+};
+
 const focusWindow = async () => {
   const dir = process.argv[4];
   const aws = await getActiveWorkspace();
@@ -163,6 +177,9 @@ switch (action) {
         break;
       case "focus":
         focusWindow();
+        break;
+      case "pin":
+        pinWindow();
         break;
     }
     break;

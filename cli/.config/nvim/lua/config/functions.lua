@@ -16,32 +16,124 @@ local function scandir(directory)
   return t
 end
 
+local get_filtered_marks = function(global)
+  local marks = global and vim.fn.getmarklist() or vim.fn.getmarklist("%")
+  local regex = global and "[A-Z]" or "[a-z]"
+  for i = #marks, 1, -1 do
+    local m = marks[i].mark:sub(-1)
+    if not m:match(regex) then
+      table.remove(marks, i)
+    end
+  end
+
+  return marks
+end
+
+local deleted_marks = {}
+local deleted_marks_global = {}
+
 local M = {
 
-  -- diff_format = function(args)
-  --   local hunks = require("gitsigns").get_hunks()
-  --   local format = require("conform").format
-  --   for i = #hunks, 1, -1 do
-  --     local hunk = hunks[i]
-  --     if hunk ~= nil and hunk.type ~= "delete" then
-  --       local start = hunk.added.start
-  --       local last = start + hunk.added.count
-  --       -- nvim_buf_get_lines uses zero-based indexing -> subtract from last
-  --       local last_hunk_line = vim.api.nvim_buf_get_lines(0, last - 2, last - 1, true)[1]
-  --       local range = { start = { start, 0 }, ["end"] = { last - 1, last_hunk_line:len() } }
-  --       format({ range = range })
-  --     end
-  --   end
-  -- end,
-  cycle_through_marks = function()
-    local marks = vim.fn.getmarklist("%")
+  -- open definition in a floating window next to the cursor, but stay in the window if the def
 
-    for i = #marks, 1, -1 do
-      local mark = marks[i]
-      if mark.mark == "'[" or mark.mark == "'." or mark.mark == "'\"" or mark.mark == "''" or mark.mark == "']" then
-        table.remove(marks, i)
+  definition_in_float = function()
+    local params = vim.lsp.util.make_position_params(0, "utf-8")
+    vim.lsp.buf_request(0, "textDocument/definition", params, function(_, result, _, _)
+      if not result or vim.tbl_isempty(result) then
+        return
+      end
+
+      local location = result[1]
+      local target_uri = location.uri
+      local target_bufnr = vim.uri_to_bufnr(target_uri)
+
+      -- Check if we're in a floating window
+      local current_win = vim.api.nvim_get_current_win()
+      local current_bufnr = vim.api.nvim_win_get_buf(current_win)
+      local win_config = vim.api.nvim_win_get_config(current_win)
+
+      -- If we're in a floating window and the definition is in the same buffer
+      if win_config.relative ~= "" and current_bufnr == target_bufnr then
+        -- Just jump to the location in the current floating window
+        vim.api.nvim_win_set_cursor(current_win, { location.range.start.line + 1, location.range.start.character })
+        return
+      end
+
+      -- Otherwise, create a new floating window
+      vim.fn.bufload(target_bufnr)
+
+      -- Get filename for title
+      local filename = vim.uri_to_fname(target_uri)
+
+      local win_id = vim.api.nvim_open_win(target_bufnr, true, {
+        relative = "cursor",
+        width = 80,
+        height = 20,
+        row = 1,
+        col = 0,
+        style = "minimal",
+        border = "rounded",
+        title = filename,
+        title_pos = "center",
+      })
+
+      vim.api.nvim_win_set_cursor(win_id, { location.range.start.line + 1, location.range.start.character })
+
+      -- Close on <Esc>
+      vim.keymap.set("n", "<Esc>", function()
+        if vim.api.nvim_win_is_valid(win_id) then
+          vim.api.nvim_win_close(win_id, true)
+        end
+      end, { buffer = target_bufnr, nowait = true })
+    end)
+  end,
+
+  delete_automarks = function(global)
+    vim.cmd(global and "delmarks A-Z" or "delmarks a-z")
+  end,
+
+  automark = function(global)
+    global = global or false
+    local ms = global and "ABCDEFGHIJKLMNOPQRSTUVWXYZ" or "abcdefghijklmnopqrstuvwxyz"
+
+    local line = vim.api.nvim_win_get_cursor(0)[1]
+    local pos = vim.api.nvim_win_get_cursor(0)[2]
+
+    local marks = get_filtered_marks(global)
+
+    for _, mark in ipairs(marks) do
+      -- vim.notify(vim.inspect({ mark, line, global }))
+      if mark.pos[2] == line then
+        local m = mark.mark:sub(-1)
+        vim.api.nvim_buf_del_mark(0, m)
+        table.insert(global and deleted_marks_global or deleted_marks, m)
+        return
       end
     end
+
+    local dm = global and deleted_marks_global or deleted_marks
+
+    if #dm > 0 then
+      local mark = table.remove(global and deleted_marks_global or deleted_marks, 1)
+      vim.api.nvim_buf_set_mark(0, mark, line, pos, {})
+      return
+    end
+
+    local ct = 0
+    for _, mark in ipairs(marks) do
+      local m = mark.mark:sub(-1)
+      local pos = string.find(ms, m)
+      if pos and pos > ct then
+        ct = pos
+      end
+    end
+
+    local mark = ms:sub(ct + 1, ct + 1)
+    vim.api.nvim_buf_set_mark(0, mark, line, pos, {})
+  end,
+
+  cycle_through_marks = function(global)
+    local marks = get_filtered_marks(global or false)
 
     if #marks == 0 then
       return
@@ -67,47 +159,11 @@ local M = {
     next_mark = next_mark or marks[1]
 
     if next_mark then
-      vim.cmd("normal! " .. next_mark.pos[2] .. "G" .. next_mark.pos[3] .. "|")
+      vim.api.nvim_feedkeys("`" .. next_mark.mark:sub(-1), "n", true)
     end
-  end,
-
-  tree_search = function(self, type, state)
-    local node = state.tree:get_node()
-    local path = node.path
-
-    if node.type ~= "directory" then
-      -- vim.notify("Cannot " .. type .. " on a file")
-      local parts = {}
-      for part in path:gmatch("[^/]+") do
-        table.insert(parts, part)
-      end
-      table.remove(parts)
-      path = "/" .. table.concat(parts, "/")
-      -- vim.notify(path)
-      -- return
-    end
-
-    if type == "grep" then
-      require("fzf-lua").live_grep({ cwd = path, winopts = { title = path } })
-    else
-      self:toggle_search_replace("project", path)
-    end
-  end,
-
-  close_window = function()
-    local buffers = {}
-    for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
-      local buf = vim.api.nvim_win_get_buf(win)
-      vim.notify(vim.inspect(vim.fn.getbufinfo(buf)))
-      buffers[buf] = true
-    end
-    vim.notify("Visible buffers in this tab: " .. vim.tbl_count(buffers))
   end,
 
   open_dialog = function(type, title)
-    -- vim.ui.input({ prompt = title .. ": " }, function(input)
-    --   vim.notify(input)
-    -- end)
     local target_dir = vim.fn.input(title .. ": ", vim.fn.getcwd() .. "/", type)
     if target_dir ~= "" then
       vim.cmd("e " .. vim.fn.fnameescape(target_dir))
@@ -133,20 +189,46 @@ local M = {
     local gf = require("grug-far")
     local p = path or ""
     local paths = vim.fn.expand("%")
-    if not gf.has_instance(instance) then
-      local wcc = "vsplit"
-      if instance == "project" then
-        wcc = ":vertical topleft split"
-        paths = ""
+    local neo_tree_win = nil
+    local main_win = nil
+    local treeselection = ""
+    for _, win in ipairs(vim.api.nvim_list_wins()) do
+      local buf = vim.api.nvim_win_get_buf(win)
+      local filetype = vim.api.nvim_buf_get_option(buf, "filetype")
+      if filetype == "neo-tree" then
+        neo_tree_win = win
+      else
+        main_win = win
       end
+    end
+    if main_win and vim.api.nvim_get_current_win() == neo_tree_win then
+      local sm = require("neo-tree.sources.manager")
+      local state = sm:_get_all_states()[1]
+      local node = state.tree:get_node()
+      treeselection = node.path
+      if node.type ~= "directory" then
+        local parts = {}
+        for part in treeselection:gmatch("[^/]+") do
+          table.insert(parts, part)
+        end
+        table.remove(parts)
+        treeselection = "/" .. table.concat(parts, "/")
+      end
+
+      vim.api.nvim_set_current_win(main_win)
+    end
+    local gf = require("grug-far")
+    if instance == "project" then
+      paths = treeselection
+    end
+    local prefills = { paths = paths, flags = "--multiline" }
+    if not gf.has_instance(instance) then
       gf.open({
         instanceName = instance,
-        windowCreationCommand = wcc,
-        prefills = { paths = paths, flags = "--multiline" },
+        windowCreationCommand = "split",
+        prefills = prefills,
       })
-      vim.cmd("vertical resize 60%")
     else
-      -- vim.notify(vim.inspect(i))
       if gf.is_instance_open(instance) then
         gf.hide_instance(instance)
       else
@@ -154,16 +236,14 @@ local M = {
         if not inst then
           return
         end
-        inst:update_input_values({ paths = paths }, true)
+        inst:update_input_values(prefills, true)
         inst:open()
-        vim.cmd("vertical resize 60%")
       end
     end
   end,
 
   code_actions = function()
     local function apply_specific_code_action(res)
-      -- vim.notify(vim.inspect(res))
       vim.lsp.buf.code_action({
         filter = function(action)
           return action.title == res.title

@@ -5,7 +5,6 @@
 --
 
 local funcs = require("config.functions")
--- local mc = require("multicursor-nvim")
 -- local menu = require("menu")
 local map = vim.keymap.set
 -- local menuoptions = require("config.menu")
@@ -65,9 +64,18 @@ map("n", "<BS>", "i<right><bs>", { remap = true })
 map({ "n", "v" }, "d", '"_d')
 map({ "n", "v" }, "D", '"_D')
 map({ "n", "v" }, "c", '"_c')
-map({ "n", "v" }, "<A-g>", function()
+map("n", "€", function()
+  -- goto definitin
+  funcs.definition_in_float()
+end)
+map({ "n", "v", "i" }, "<A-g>", function()
   funcs.cycle_through_marks()
 end)
+
+map({ "n", "v", "i" }, "<A-u>", function()
+  funcs.cycle_through_marks(true)
+end)
+
 -- map({ "n", "v" }, "f", "s", { remap = true })
 -- map({ "n", "v" }, "s", "ys", { remap = true })
 
@@ -164,6 +172,8 @@ maphelper2("<C-d>", function()
   require("fzf-lua").lsp_document_symbols()
 end, "LSP symbols")
 
+-- map("n", "<C-M>", "<cmd>MCunderCursor<cr>")
+
 -- map({ "n", "v" }, "<C-f>", "/", { noremap = true })
 -- map({ "i" }, "<C-f>", "<Esc>/", { noremap = true })
 maphelper2("<C-f>", function()
@@ -186,9 +196,25 @@ map("n", "\\", function()
 end)
 
 maphelper2("<C-h>", vim.lsp.buf.hover, "LSP hover", true)
+map("n", "M", function()
+  funcs.automark(false)
+end)
+map("n", "U", function()
+  funcs.automark(true)
+end)
 
 map("n", "|", function()
   vim.cmd("vsplit")
+end)
+map("n", "&", function()
+  vim.cmd("split")
+end)
+map("n", "dmö", function()
+  funcs.delete_automarks(false)
+end)
+
+map("n", "dmÖ", function()
+  funcs.delete_automarks(true)
 end)
 
 map("n", "<esc>", function()

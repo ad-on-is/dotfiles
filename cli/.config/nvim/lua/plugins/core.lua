@@ -19,10 +19,36 @@ return {
     },
   },
 
-  -- {
-  --   "jake-stewart/multicursor.nvim",
-  --   opts = {},
-  -- },
+  {
+    "smoka7/multicursors.nvim",
+    dependencies = {
+      "nvimtools/hydra.nvim",
+    },
+    opts = function(_, opts)
+      local N = require("multicursors.normal_mode")
+
+      return {
+        normal_keys = {
+          ["m"] = { method = N.create_char, opts = { desc = "Create char" } },
+          ["M"] = { method = N.create_char, opts = { desc = "Create" } },
+        },
+        hint_config = {
+          float_opts = {
+            border = "rounded",
+          },
+          position = "bottom-right",
+        },
+        generate_hints = {
+          normal = true,
+          insert = true,
+          extend = true,
+          config = {
+            column_count = 1,
+          },
+        },
+      }
+    end,
+  },
 
   {
     "nvim-treesitter/nvim-treesitter",

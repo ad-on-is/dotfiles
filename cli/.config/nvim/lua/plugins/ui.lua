@@ -1,6 +1,19 @@
 local funcs = require("config.functions")
 local icons = LazyVim.config.icons
 
+local function is_active()
+  local ok, hydra = pcall(require, "hydra.statusline")
+  return ok and hydra.is_active()
+end
+
+local function get_name()
+  local ok, hydra = pcall(require, "hydra.statusline")
+  if ok then
+    return " MultiCursor"
+  end
+  return ""
+end
+
 return {
   {
     "folke/snacks.nvim",
@@ -204,18 +217,6 @@ return {
         },
       },
       close_if_last_window = true,
-      window = {
-        mappings = {
-          ["<A-q>"] = ":qa",
-          ["<A-e>"] = ":wincmd p",
-          ["\\"] = function(state)
-            funcs:tree_search("grep", state)
-          end,
-          ["<A-f>"] = function(state)
-            funcs:tree_search("search-replace", state)
-          end,
-        },
-      },
       default_component_configs = {
         name = { use_git_status_colors = false },
         modified = {
