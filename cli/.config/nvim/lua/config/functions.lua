@@ -44,7 +44,8 @@ local M = {
       end
 
       local location = result[1]
-      local target_uri = location.uri
+
+      local target_uri = location.uri or location.targetUri
       local target_bufnr = vim.uri_to_bufnr(target_uri)
 
       -- Check if we're in a floating window
@@ -77,7 +78,20 @@ local M = {
         title_pos = "center",
       })
 
-      vim.api.nvim_win_set_cursor(win_id, { location.range.start.line + 1, location.range.start.character })
+      local startLine = -1
+      local startChar = -1
+
+      if location.range and location.range.start then
+        startLine = location.range.start.line
+        startChar = location.range.start.character
+      end
+
+      if location.targetRange and location.targetRange.start then
+        startLine = location.targetRange.start.line
+        startChar = location.targetRange.start.character
+      end
+
+      vim.api.nvim_win_set_cursor(win_id, { startLine + 1, startChar })
 
       -- Close on <Esc>
       vim.keymap.set("n", "<Esc>", function()
