@@ -110,7 +110,7 @@ function http() {
 alias ..="cd .."
 alias cat="bat --style=plain  --paging=never --theme='Catppuccin Mocha'"
 
-alias ls='eza --icons --group --git-repos-no-status --group-directories-first --octal-permissions --no-permissions --color=auto --time-style=long-iso --modified'
+alias ls='eza --icons --group --group-directories-first --octal-permissions --no-permissions --color=auto --time-style=long-iso --modified'
 alias ll='ls -la -M'
 alias la='ls -a'
 alias find='fd -H'

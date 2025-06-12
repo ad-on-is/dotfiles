@@ -29,6 +29,7 @@ export type Client = {
   initialTitle: string;
   focusHistoryID: number;
   class: string;
+  grouped: string[];
   swallowing: string;
   initialClass: string;
   floating: boolean;
