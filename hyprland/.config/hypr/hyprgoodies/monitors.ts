@@ -5,7 +5,7 @@ let urgents: string[] = [];
 
 type MonitorSetup = {
   config: string;
-  workspaces: number[];
+  workspacePrefix: number;
 };
 
 function replaceBetween(
@@ -28,22 +28,26 @@ function replaceBetween(
   );
 }
 
-async function handleMonitors() {
+async function handleMonitors(workspaces: number) {
   const monitors = await getMonitors();
   let config = "";
 
   monitors.forEach((monitor) => {
-    const m = monitorSetup[monitor.description] as MonitorSetup | undefined;
+    const m =
+      monitorSetup[monitor.description] ||
+      (monitorSetup[`${monitor.name}-${monitor.description}`] as
+        | MonitorSetup
+        | undefined);
 
     if (m) {
       config += `\nmonitor=${monitor.name},${m.config}`;
-      m.workspaces.forEach((w: number, i: number) => {
-        config += `\nworkspace=${w}, monitor:${monitor.name}, persistent:true${i === 0 ? ", default:true" : ""}`;
-      });
+      for (let w = 1; w <= workspaces; w++) {
+        config += `\nworkspace=${m.workspacePrefix}${w}, monitor:${monitor.name}, persistent:true${w === 1 ? ", default:true" : ""}`;
+      }
       config += `\n\n`;
     }
   });
-  const MONITOR_FILE = "../config/monitors.conf.bak";
+  const MONITOR_FILE = "../config/monitors.conf";
 
   const mc = await Bun.file(MONITOR_FILE).text();
   const nc = replaceBetween(
@@ -54,7 +58,7 @@ async function handleMonitors() {
   );
 
   console.log(nc);
-  await Bun.write(MONITOR_FILE, nc);
+  // await Bun.write(MONITOR_FILE, nc);
 }
 await Bun.connect({
   unix: socketAddr,
@@ -68,8 +72,10 @@ await Bun.connect({
       msgs.forEach((msg) => {
         const sp = msg.split(">>");
         const dispatcher = sp[0].trim();
-        if (["monitoradded", "monitorremoved"].includes(dispatcher)) {
-          handleMonitors();
+        if (
+          ["monitoradded", "monitorremoved", "windowtitle"].includes(dispatcher)
+        ) {
+          handleMonitors(3);
         }
       });
     },
