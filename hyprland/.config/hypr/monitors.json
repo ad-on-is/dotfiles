@@ -1,0 +1,22 @@
+{
+  "LG Electronics LG ULTRAWIDE 0x0001A02A": {
+    "config": "3440x1440@180,0x0,1,vrr,2,bitdepth,10,cm,hdredid,sdrbrightness,1.5,sdrsaturation,1",
+    "workspaces": [11, 12, 13]
+  },
+  "LG Electronics 34GP950G #GTIYMxgwAAZG": {
+    "config": "3440x1440,0x-1440,1",
+    "workspaces": [21, 22, 23]
+  },
+  "left-TBD": {
+    "config": "1920x1080,-1080x0,1,transform,1",
+    "workspaces": [41, 42, 43]
+  },
+  "right-TBD": {
+    "config": "1920x1080,3440x0,1,transform,1",
+    "workspaces": [31, 22, 33]
+  },
+  "Chimei Innolux Corporation 0x1614": {
+    "config": "1920x1080@60,0x-1440,1",
+    "workspaces": [51, 52, 53]
+  }
+}

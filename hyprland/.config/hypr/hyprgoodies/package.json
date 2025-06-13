@@ -9,6 +9,9 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
-    "lowdb": "^7.0.1"
+    "lowdb": "^7.0.1",
+    "@types/lodash": "^4.17.17",
+    "lodash": "^4.17.21"
   }
 }
+

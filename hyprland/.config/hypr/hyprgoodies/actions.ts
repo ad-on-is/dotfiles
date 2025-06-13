@@ -6,9 +6,12 @@ import {
   getClients,
   monitors,
   type Monitor,
+  type Client,
 } from "./hyprland";
 import { $ } from "bun";
 import { JSONFilePreset } from "lowdb/node";
+
+import _ from "lodash";
 
 const toggleFloating = async () => {
   // CONFIG
@@ -115,6 +118,67 @@ const getMontiorLayout = async () => {
   return [top, bottom, left, right];
 };
 
+const toggleGroup = async () => {
+  const c = await getActiveClient();
+  const am = (await getActiveWorkspace()).monitorID;
+
+  const groupedClients = (await getClients())
+    .filter((c) => c.monitor == am && c.grouped.length > 0)
+    .sort((a, b) => (a.at[0] <= b.at[0] && a.at[1] <= b.at[1] ? -1 : 1));
+
+  const groupedAdresses = groupedClients.map((c) => c.grouped).flat();
+  const grouped = groupedAdresses.find((g) => g == c.address);
+  if (grouped) {
+    await $`hyprctl dispatch moveoutofgroup`;
+    return;
+  }
+
+  const nearestDirection = await getNearestGroupDirectiopn(c, groupedClients);
+  if (!nearestDirection) {
+    await $`hyprctl dispatch togglegroup`;
+    return;
+  }
+
+  await $`hyprctl dispatch moveintogroup ${nearestDirection}`;
+};
+
+const getNearestGroupDirectiopn = async (c: Client, clients: Client[]) => {
+  if (clients.length == 0) {
+    return null;
+  }
+  const am = (await getActiveWorkspace()).monitorID;
+  const grouped = _.uniqBy(clients, (c) => c.grouped.join(","));
+  if (grouped.length == 0) {
+    return;
+  }
+  const [cx, cy] = c.at;
+
+  const [nearest] = grouped.sort((a, b) => {
+    const [ax, ay] = a.at;
+    const [bx, by] = b.at;
+    const adist = Math.sqrt(Math.pow(ax - cx, 2) + Math.pow(ay - cy, 2));
+    const bdist = Math.sqrt(Math.pow(bx - cx, 2) + Math.pow(by - cy, 2));
+    return adist - bdist;
+  });
+
+  // get cardinal point of nearest in relation to cx, cy
+  const [nx, ny] = nearest.at;
+  // console.log(nearest.at, c.at);
+  let dir = "";
+
+  if (nx < cx) {
+    dir += "l";
+  } else if (nx > cx) {
+    dir += "r";
+  }
+  if (ny < cy) {
+    dir += "t";
+  } else if (ny > cy) {
+    dir += "b";
+  }
+  return dir.charAt(0);
+};
+
 const focusWindow = async () => {
   const dir = process.argv[4];
   const aws = await getActiveWorkspace();
@@ -191,6 +255,7 @@ switch (action) {
     switch (process.argv[3]) {
       case "toggleFloating":
         toggleFloating();
+        break;
       case "move":
         moveWindow();
         break;
@@ -199,6 +264,12 @@ switch (action) {
         break;
       case "fixToMonitor":
         fixWindowToMonitor();
+        break;
+      case "toggleGroup":
+        toggleGroup();
+        break;
+      case "pin":
+        // pinWindow();
         break;
     }
     break;
