@@ -172,18 +172,8 @@ maphelper2("<C-d>", function()
   require("fzf-lua").lsp_document_symbols()
 end, "LSP symbols")
 
--- map("n", "<C-M>", "<cmd>MCunderCursor<cr>")
-
--- map({ "n", "v" }, "<C-f>", "/", { noremap = true })
--- map({ "i" }, "<C-f>", "<Esc>/", { noremap = true })
 maphelper2("<C-f>", function()
   funcs.toggle_search_replace("buffer")
-  -- local gf = require("")
-  -- require("grug-far").open({
-  --   instanceName = "search-replace",
-  --   prefills = { paths = vim.fn.expand("%"), flags = "--multiline" },
-  -- })
-  -- vim.cmd("vertical resize 60%")
 end, "Search and replace")
 maphelper2("<A-f>", function()
   funcs.toggle_search_replace("project")
@@ -240,11 +230,3 @@ maphelper2("<A-i>", "<C-w>k", "Go to top window", true)
 maphelper2("<A-k>", "<C-w>j", "Go to bottom window", true)
 maphelper2("<A-v>", "<C-w>v", "Split window vertically", true)
 maphelper2("<A-c>", "<C-w>s", "Split window", true)
--- maphelper2("<A-x>", "<C-w>q", "Go to bottom window", true)
--- map("n", "<RightMouse>", function()
---   vim.cmd.exec('"normal! \\<RightMouse>"')
---
---   -- local options = vim.bo.ft == "NvimTree" and "nvimtree" or menuoptions
---   -- menu.open(options, { mouse = true })
---   funcs.code_actions(true)
--- end, {})

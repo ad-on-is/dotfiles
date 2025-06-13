@@ -58,7 +58,7 @@ async function handleMonitors(workspaces: number) {
   );
 
   console.log(nc);
-  // await Bun.write(MONITOR_FILE, nc);
+  await Bun.write(MONITOR_FILE, nc);
 }
 await Bun.connect({
   unix: socketAddr,
@@ -72,9 +72,7 @@ await Bun.connect({
       msgs.forEach((msg) => {
         const sp = msg.split(">>");
         const dispatcher = sp[0].trim();
-        if (
-          ["monitoradded", "monitorremoved", "windowtitle"].includes(dispatcher)
-        ) {
+        if (["monitoradded", "monitorremoved"].includes(dispatcher)) {
           handleMonitors(3);
         }
       });
