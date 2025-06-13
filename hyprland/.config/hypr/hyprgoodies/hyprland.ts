@@ -37,6 +37,7 @@ export type Client = {
   fullscreenClient: number;
   at: [number, number];
   size: [number, number];
+  tags: string[];
   workspace: {
     id: number;
     name: string;

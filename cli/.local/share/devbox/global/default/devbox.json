@@ -35,7 +35,8 @@
     "fcp@latest",
     "gitoxide@latest",
     "swaks@latest",
-    "watchexec@latest"
+    "watchexec@latest",
+    "corefonts@latest"
   ],
   "shell": {
     "init_hook": [

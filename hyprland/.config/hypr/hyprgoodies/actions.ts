@@ -8,11 +8,13 @@ import {
   type Monitor,
 } from "./hyprland";
 import { $ } from "bun";
+import { JSONFilePreset } from "lowdb/node";
 
 const toggleFloating = async () => {
   // CONFIG
   const [width, height] = [80, 80]; // width and height in percent
   const CENTER = true; // center window when floating
+  const PIN = process.argv[4] || false;
   // CONFIG
   //
   //
@@ -24,35 +26,15 @@ const toggleFloating = async () => {
     if (CENTER) {
       await $`hyprctl dispatch centerwindow`;
     }
+    if (PIN) {
+      await $`hyprctl dispatch pin`;
+    }
   } else {
     await $`hyprctl dispatch settiled`;
   }
 };
 
 // WIP
-const getArrangement = async () => {
-  const workspace = await getActiveWorkspace();
-  const monitor = (await getMonitors()).find(
-    (m) => m.id == workspace.monitorID,
-  );
-  let clients = (await getClients()).filter(
-    (c) => c.workspace.id == workspace.id,
-  );
-
-  let swallowed = clients
-    .filter((c) => c.swallowing !== "0x0")
-    .map((c) => c.swallowing);
-
-  clients = clients.filter((c) => !swallowed.includes(c.address));
-  console.log(swallowed);
-  const w = monitor.width;
-  const h = monitor.height;
-  console.log(clients);
-  const matrix = [];
-  // for (const c of clients) {
-  //
-  // }
-};
 
 const moveWindow = async () => {
   // await getArrangement();
@@ -83,18 +65,39 @@ const moveWindow = async () => {
   }
 };
 
-const pinWindow = async () => {
+type FixedWindowsData = {
+  fixedWindows: string[];
+};
+const fixWindowToMonitor = async () => {
+  const db = await JSONFilePreset<FixedWindowsData>(
+    ".hyprgoodies-fixed-windows.json",
+    {
+      fixedWindows: [],
+    },
+  );
+
+  await db.read();
+
   const c = await getActiveClient();
-  let [w, h] = c.size;
-  let [x, y] = c.at;
-  const nw = Math.round(w * 0.95);
-  const nh = Math.round(h * 0.95);
-  const nx = Math.round(x + (w - nw) / 2);
-  const ny = Math.round(y + (h - nh) / 2);
-  await $`hyprctl dispatch togglefloating`;
-  await $`hyprctl dispatch resizeactive exact ${nw} ${nh}`;
-  await $`hyprctl dispatch movewindow exact ${nx} ${ny}`;
-  // await $`hyprctl dispatch pin`;
+  if (!db.data.fixedWindows.includes(c.class)) {
+    await $`hyprctl keyword windowrule "monitor ${c.monitor},class:^(${c.class})$"`;
+    await $`hyprctl dispatch tagwindow +fixedToMonitor`;
+    db.data.fixedWindows.push(c.class);
+  } else {
+    db.data.fixedWindows = db.data.fixedWindows.filter((x) => x !== c.class);
+    await $`hyprctl keyword windowrule unset, "class:^(${c.class})$"`;
+    await $`hyprctl dispatch tagwindow -- -fixedToMonitor`;
+  }
+  await db.write();
+  console.log(db.data.fixedWindows);
+  // if (!c.floating) {
+  //   await $`hyprctl dispatch setfloating`;
+  //   await $`hyprctl dispatch pin`;
+  //   await $`hyprctl dispatch resizeactive exact ${nw} ${nh}`;
+  //   await $`hyprctl dispatch centerwindow`;
+  // } else {
+  //   await $`hyprctl dispatch settiled`;
+  // }
 };
 
 const getMontiorLayout = async () => {
@@ -184,19 +187,18 @@ const workspace = async () => {
 const action = process.argv[2];
 
 switch (action) {
-  case "toggleFloating":
-    toggleFloating();
-    break;
   case "window":
     switch (process.argv[3]) {
+      case "toggleFloating":
+        toggleFloating();
       case "move":
         moveWindow();
         break;
       case "focus":
         focusWindow();
         break;
-      case "pin":
-        pinWindow();
+      case "fixToMonitor":
+        fixWindowToMonitor();
         break;
     }
     break;
