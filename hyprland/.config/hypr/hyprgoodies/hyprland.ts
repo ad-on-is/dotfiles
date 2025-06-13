@@ -15,11 +15,13 @@ export type Workspace = {
 };
 
 export type Monitor = {
+  id: number;
   name: string;
   x: number;
   y: number;
   width: number;
   height: number;
+  description: string;
 };
 
 export type Client = {
