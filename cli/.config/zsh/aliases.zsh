@@ -107,6 +107,16 @@ function http() {
   echo $body | bat --style=plain --paging=never --theme='Catppuccin Mocha'
 }
 
+function updatezsh() {
+  echo "$ZPLUGINDIR"
+  /bin/rm -rf "$ZPLUGINDIR"
+  zsh
+}
+
+function zshplugins() {
+  ll "$ZPLUGINDIR"
+}
+
 alias ..="cd .."
 alias cat="bat --style=plain  --paging=never --theme='Catppuccin Mocha'"
 

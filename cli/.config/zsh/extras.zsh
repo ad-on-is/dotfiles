@@ -1,24 +1,28 @@
 # Custom widget that works with fzf-tab
+
 fzf_cd_complete_or_space() {
   if [[ "$LBUFFER" =~ ^cd\ +[^\ ]+$ ]]; then
-    # Store original state
-    local original_buffer="$LBUFFER"
+    local current_path="${LBUFFER#cd }"
 
-    # Try fzf-tab completion
-    zle fzf-tab-complete
+    # Check if there are any directory matches
+    local matches=()
+    matches=(${current_path}*(/N)) # N flag makes glob return empty if no matches
 
-    # If buffer unchanged (no completions), add space and try again
-    if [[ "$LBUFFER" == "$original_buffer" ]]; then
-      LBUFFER="$LBUFFER "
-      # Automatically invoke completion again after adding the space
+    if [[ ${#matches[@]} -gt 0 ]]; then
+      # There are potential matches, use normal completion
       zle fzf-tab-complete
+    else
+
+      before="$LBUFFER"
+      LBUFFER="$LBUFFER "
+      zle fzf-tab-complete
+      LBUFFER="$before"
+      # set buffer to non-space version again to prvent adding more spaces
     fi
   else
-    # For non-cd commands, use normal fzf-tab completion
     zle fzf-tab-complete
   fi
 }
-
 # Create the widget and bind it
 zle -N fzf_cd_complete_or_space
 bindkey '^I' fzf_cd_complete_or_space

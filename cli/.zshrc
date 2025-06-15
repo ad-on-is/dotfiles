@@ -13,7 +13,7 @@ fi
 source "$ZPLUGINDIR"/zsh_unplugged/zsh_unplugged.zsh
 
 # ohmyzsh plugins
-plugins=(
+export plugins=(
   sudo
 )
 
