@@ -74,17 +74,18 @@ symbol = "󱇶 "
 
 [git_branch]
 symbol = " "
-# format = "[$symbol$branch]($style)[:$remote_name/$remote_branch](#f7768e)"
+# truncation_length = 30
 style = "#ff9e64 bold"
 always_show_remote = false
 
 [git_commit]
 tag_symbol = "  "
-format = "[\\[$hash$tag\\]]($style) "
-disabled = true
-# only_detached = true
+format = "[at $hash$tag]($style) "
+disabled = false
+only_detached = true
+tag_max_candidates = 5
 # tag_disabled = true
-style = "#e0af68 bold dimmed"
+style = "#ff9e64 bold"
 
 [git_metrics]
 disabled = true
