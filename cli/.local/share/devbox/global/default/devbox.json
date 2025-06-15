@@ -36,7 +36,8 @@
     "gitoxide@latest",
     "swaks@latest",
     "watchexec@latest",
-    "corefonts@latest"
+    "corefonts@latest",
+    "delta@latest"
   ],
   "shell": {
     "init_hook": [

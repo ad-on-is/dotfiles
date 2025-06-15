@@ -1,4 +1,4 @@
-# Custom widget that works with fzf-tab
+# Custom widget that works with fzf-tab and shows zoxide directories if cd does not provide any suggestions.
 
 fzf_cd_complete_or_space() {
   if [[ "$LBUFFER" =~ ^cd\ +[^\ ]+$ ]]; then
@@ -23,6 +23,5 @@ fzf_cd_complete_or_space() {
     zle fzf-tab-complete
   fi
 }
-# Create the widget and bind it
 zle -N fzf_cd_complete_or_space
 bindkey '^I' fzf_cd_complete_or_space

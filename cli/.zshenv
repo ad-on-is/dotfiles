@@ -138,7 +138,7 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
   --preview-window="border-rounded" --prompt="» " --marker="› " --pointer="◆"
   --separator="─" --scrollbar="│" --info="right"'
 
-export _ZO_FZF_OPTS="$FZF_DEFAULT_OPTS --exact --height=45% --layout=reverse --preview='eza --icons -1 --color=always {2..}'"
+export _ZO_FZF_OPTS="$FZF_DEFAULT_OPTS --exact --height=5% --layout=reverse --preview='eza --icons -1 --color=always {2..}'"
 
 # remove duplicates
 typeset -U PATH

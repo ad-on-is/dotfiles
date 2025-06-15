@@ -17,7 +17,7 @@ const toggleFloating = async () => {
   // CONFIG
   const [width, height] = [80, 80]; // width and height in percent
   const CENTER = true; // center window when floating
-  const PIN = process.argv[4] || false;
+  const PIN = process.argv[4] === "true" ? true : false;
   // CONFIG
   //
   //
@@ -126,8 +126,7 @@ const toggleGroup = async () => {
     .filter((c) => c.monitor == am && c.grouped.length > 0)
     .sort((a, b) => (a.at[0] <= b.at[0] && a.at[1] <= b.at[1] ? -1 : 1));
 
-  const groupedAdresses = groupedClients.map((c) => c.grouped).flat();
-  const grouped = groupedAdresses.find((g) => g == c.address);
+  const grouped = (await getGroupedAddersses(am)).find((g) => g == c.address);
   if (grouped) {
     await $`hyprctl dispatch moveoutofgroup`;
     return;
@@ -140,13 +139,24 @@ const toggleGroup = async () => {
   }
 
   await $`hyprctl dispatch moveintogroup ${nearestDirection}`;
+  if (!(await getGroupedAddersses(am)).includes(c.address)) {
+    await $`hyprctl dispatch togglegroup`;
+    return;
+  }
+};
+
+const getGroupedAddersses = async (am: number) => {
+  const groupedClients = (await getClients())
+    .filter((c) => c.monitor == am && c.grouped.length > 0)
+    .sort((a, b) => (a.at[0] <= b.at[0] && a.at[1] <= b.at[1] ? -1 : 1));
+
+  return groupedClients.map((c) => c.grouped).flat();
 };
 
 const getNearestGroupDirectiopn = async (c: Client, clients: Client[]) => {
   if (clients.length == 0) {
     return null;
   }
-  const am = (await getActiveWorkspace()).monitorID;
   const grouped = _.uniqBy(clients, (c) => c.grouped.join(","));
   if (grouped.length == 0) {
     return;
