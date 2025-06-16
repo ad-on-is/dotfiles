@@ -1,3 +1,7 @@
+[include]
+path = ~/.local/share/git/catppuccin.gitconfig
+[delta]
+	features = catppuccin-mocha
 [pager]
 	status = false
 	branch = false
