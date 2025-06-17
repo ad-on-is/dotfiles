@@ -51,12 +51,17 @@ async function handleMonitors(workspaces: number) {
   const MONITOR_FILE = "../config/monitors.conf";
 
   const mc = await Bun.file(MONITOR_FILE).text();
-  const nc = replaceBetween(
-    mc,
-    "#HYPRGOODIES-MONITORS-START",
-    "#HYPRGOODIES-MONITORS-END",
-    config,
-  );
+  let nc = `#HYPRGOODIES-MONITORS-START\n${mc}\n${config}\n#HYPRGOODIES-MONITORS-END`;
+  if (mc.includes("#HYPRGOODIES-MONITORS-START")) {
+    nc = replaceBetween(
+      mc,
+      "#HYPRGOODIES-MONITORS-START",
+      "#HYPRGOODIES-MONITORS-END",
+      config,
+    );
+  }
+
+  console.log(config);
 
   await Bun.write(MONITOR_FILE, nc);
   await $`hyprctl reload`;
