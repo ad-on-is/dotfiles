@@ -6,6 +6,17 @@ return {
     opts = {},
   },
   {
+    "f-person/git-blame.nvim",
+    event = "VeryLazy",
+    opts = {
+      enabled = true,
+      message_template = " <date> • <author>",
+      date_format = "%m-%d-%Y %H:%M",
+      virtual_text_column = 1,
+      display_virtual_text = 0,
+    },
+  },
+  {
     "MagicDuck/grug-far.nvim",
     opts = {
       debounceMs = 200,

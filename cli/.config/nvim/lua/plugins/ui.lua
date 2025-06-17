@@ -14,6 +14,11 @@ local function get_name()
   return ""
 end
 
+local git_blame = require("gitblame")
+
+git_blame.is_blame_text_available() -- Returns a boolean value indicating whether blame message is available
+git_blame.get_current_blame_text()
+
 return {
   {
     "folke/snacks.nvim",
@@ -333,6 +338,7 @@ return {
             -- },
           },
           "encoding",
+          { git_blame.get_current_blame_text, cond = git_blame.is_blame_text_available },
         },
         lualine_z = {
           { "progress", separator = " ", padding = { left = 1, right = 0 } },

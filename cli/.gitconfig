@@ -1,17 +1,22 @@
 [include]
 path = ~/.local/share/git/catppuccin.gitconfig
 [delta]
-	features = catppuccin-mocha
+  features = catppuccin-mocha
+  line-numbers = true
 [pager]
 	status = false
 	branch = false
 	log = false
 [user]
 	email = adurakovic@anexia.com
-	name = Adis Durakovic
+  name = Adis Durakovic
+[merge]
+  conflictStyle = zdiff3
 [core]
 	filemode = false
 	autocrlf = false
+  pager = delta
+[blame]
   pager = delta
 [init]
 	defaultBranch = main
@@ -25,6 +30,9 @@ path = ~/.local/share/git/catppuccin.gitconfig
     co = checkout
     cb = checkout -b
     ct = checkout -t
+    d= diff HEAD~1 HEAD
+
+
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f

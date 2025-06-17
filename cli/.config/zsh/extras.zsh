@@ -25,3 +25,15 @@ fzf_cd_complete_or_space() {
 }
 zle -N fzf_cd_complete_or_space
 bindkey '^I' fzf_cd_complete_or_space
+
+_my_ssh_completion() {
+  local -a ssh_hosts
+
+  if [[ -f ~/.ssh/config ]]; then
+    ssh_hosts+=($(grep -i '^host ' ~/.ssh/config | awk '{print $2}' | grep -v '*' | sort -fbu))
+  fi
+
+  _describe 'ssh hosts' ssh_hosts
+}
+
+compdef _my_ssh_completion ssh

@@ -282,26 +282,26 @@ local M = {
     }
 
     vim.lsp.buf_request(bufnr, "textDocument/codeAction", params, function(_, results, _, _)
-      if not results or #results == 0 then
-        return
-      end
-      for i, res in ipairs(results) do
-        local prio = 10
-        if res.isPreferred then
-          if res.kind == "quickfix" then
-            prio = 0
-          else
-            prio = 1
-          end
-        end
-        actions[res.title] = {
-          priority = prio,
-          call = function()
-            apply_specific_code_action(res)
-          end,
-        }
-      end
       local items = {}
+      if #results > 0 then
+        for i, res in ipairs(results) do
+          local prio = 10
+          if res.isPreferred then
+            if res.kind == "quickfix" then
+              prio = 0
+            else
+              prio = 1
+            end
+          end
+          actions[res.title] = {
+            priority = prio,
+            call = function()
+              apply_specific_code_action(res)
+            end,
+          }
+        end
+      end
+
       for t, action in pairs(actions) do
         table.insert(items, { title = t, priority = action.priority })
       end
