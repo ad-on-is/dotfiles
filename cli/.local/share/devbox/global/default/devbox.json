@@ -37,7 +37,8 @@
     "swaks@latest",
     "watchexec@latest",
     "corefonts@latest",
-    "delta@latest"
+    "delta@latest",
+    "razer-cli@latest"
   ],
   "shell": {
     "init_hook": [
