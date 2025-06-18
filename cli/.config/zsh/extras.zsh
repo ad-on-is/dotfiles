@@ -26,14 +26,17 @@ fzf_cd_complete_or_space() {
 zle -N fzf_cd_complete_or_space
 bindkey '^I' fzf_cd_complete_or_space
 
-_my_ssh_completion() {
+_ssh_completion() {
+script_path=${(%):-%x}
+script_dir=${script_path:h}
   local -a ssh_hosts
 
   if [[ -f ~/.ssh/config ]]; then
-    ssh_hosts+=($(grep -i '^host ' ~/.ssh/config | awk '{print $2}' | grep -v '*' | sort -fbu))
+  ssh_hosts+=($(grep -i '^host ' ~/.ssh/config | awk '{print $2}' | grep -v '*' | sort -fbu))
+    # ssh_hosts+=($(grep '^[[:space:]]*Host[[:space:]]' ~/.ssh/config | grep -v '*' | cut -d ' ' -f 2 | awk '{print " SSH: "$0}' | fzf --reverse --height 20% --preview="awk -v HOST={3} -f $script_dir/ssh_completion_parser.awk ~/.ssh/config" | awk '{print $3}'))
   fi
 
   _describe 'ssh hosts' ssh_hosts
 }
 
-compdef _my_ssh_completion ssh
+compdef _ssh_completion ssh
