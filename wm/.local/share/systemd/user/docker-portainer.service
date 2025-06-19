@@ -1,0 +1,13 @@
+[Unit]
+After=graphical-session.target
+
+[Service]
+Type=exec
+# ExecCondition=/lib/systemd/systemd-xdg-autostart-condition "wlroots:sway:Wayfire:labwc:Hyprland" ""
+ExecStart=bash -c 'docker stop portainer ; docker rm portainer ; docker run -p 8000:8000 -p 9443:9443 --name portainer  --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v /home/adonis/Development/Docker/portainer_data:/data portainer/portainer-ce:sts'
+Restart=on-failure
+Slice=app-graphical.slice
+
+[Install]
+WantedBy=graphical-session.target
+

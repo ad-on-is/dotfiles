@@ -1,0 +1,13 @@
+[Unit]
+After=graphical-session.target docker-portainer.service
+
+[Service]
+Type=exec
+# ExecCondition=/lib/systemd/systemd-xdg-autostart-condition "wlroots:sway:Wayfire:labwc:Hyprland" ""
+ExecStart=bash -c 'docker compose -f $HOME/Development/Docker/docker-compose.yaml up --remove-orphans'
+Restart=on-failure
+Slice=app-graphical.slice
+
+[Install]
+WantedBy=graphical-session.target
+
