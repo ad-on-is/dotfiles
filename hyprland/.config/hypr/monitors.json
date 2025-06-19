@@ -1,6 +1,6 @@
 {
   "LG Electronics 34GP950G #GTIYMxgwAAZG": {
-    "config": "3440x1440@180,0x0,1,vrr,2,bitdepth,10,cm,hdredid,sdrbrightness,1.5,sdrsaturation,1",
+    "config": "3440x1440@180,0x0,1,vrr,2,bitdepth,10,cm,auto,sdrbrightness,1.5,sdrsaturation,1",
     "workspacePrefix": 1
   },
   "LG Electronics LG ULTRAWIDE 0x0001A02A": {
