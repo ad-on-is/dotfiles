@@ -56,11 +56,11 @@ function clear-scrollback-widget {
 zle -N clear-scrollback-widget
 bindkey '^k' clear-scrollback-widget
 
-function open-select-widget {
-  "$HOME"/.local/bin/ssh-select.sh
-}
-zle -N open-select-widget
-bindkey '^P' open-select-widget
+# function open-select-widget {
+#   "$HOME"/.local/bin/ssh-select.sh
+# }
+# zle -N open-select-widget
+# bindkey '^P' open-select-widget
 
 if [[ -f $HOME/.local/share/bash-completion/completions/appman ]]; then
   autoload bashcompinit
