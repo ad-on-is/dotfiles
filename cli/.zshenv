@@ -62,7 +62,12 @@ export BUN_INSTALL="$HOME/.bun"
 
 export CHROME_EXECUTABLE=/usr/bin/chromium-browser
 
-export EDITOR=/bin/nvim
+export EDITOR=nvim
+
+if [ -n "$DISPLAY" ]; then
+  export EDITOR=neovide
+fi
+
 export PIPX_BIN_DIR="$XDG_DATA_HOME"/pipx/bin
 export ANDROID_HOME=$HOME/Development/Android/Sdk
 export FLUTTER_ROOT=$HOME/Development/Flutter/Sdk

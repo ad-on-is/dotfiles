@@ -27,6 +27,9 @@ return {
         style = "minimal",
       },
       picker = {
+        jump = {
+          reuse_win = true,
+        },
         formatters = {
           file = {
             truncate = 1000,

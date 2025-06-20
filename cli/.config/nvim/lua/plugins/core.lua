@@ -85,7 +85,17 @@ return {
   },
   {
     "mikavilpas/yazi.nvim",
-    opts = {},
+    opts = {
+      hooks = {
+        yazi_closed_successfully = function(chosen, config, state)
+          if vim.fn.isdirectory(chosen) == 1 then
+            vim.cmd("e " .. vim.fn.fnameescape(chosen))
+            vim.cmd("cd " .. vim.fn.fnameescape(chosen))
+            vim.cmd("SessionRestore")
+          end
+        end,
+      },
+    },
   },
 
   {

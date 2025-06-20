@@ -145,14 +145,16 @@ maphelper2("<C-Space>", function()
   vim.lsp.buf.hover()
 end, "Code actions")
 
-maphelper2("<C-S-o>", function()
-  funcs.open_dialog("dir", "Open folder")
-end, "Open folder dialog")
+-- maphelper2("<C-S-o>", function()
+--   vim.cmd("Yazi")
+--   -- funcs.open_dialog("dir", "Open folder")
+-- end, "Open folder dialog")
 
 -- yank with flash
 
 maphelper2("<C-o>", function()
-  funcs.open_dialog("file", "Open file")
+  vim.cmd("Yazi")
+  -- funcs.open_dialog("file", "Open file")
 end, "Open folder dialog")
 
 maphelper2("<C-p>", function()

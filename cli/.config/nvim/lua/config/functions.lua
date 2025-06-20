@@ -1,21 +1,3 @@
--- local M = {}
---
--- M.code_actions = function(mouse)
---
---
--- end
---
-local function scandir(directory)
-  local i, t, popen = 0, {}, io.popen
-  local pfile = popen('ls -a "' .. directory .. '"')
-  for filename in pfile:lines() do
-    i = i + 1
-    t[i] = filename
-  end
-  pfile:close()
-  return t
-end
-
 local get_filtered_marks = function(global)
   local marks = global and vim.fn.getmarklist() or vim.fn.getmarklist("%")
   local regex = global and "[A-Z]" or "[a-z]"
@@ -34,12 +16,13 @@ local deleted_marks_global = {}
 
 local M = {
 
-  get_path_from_file = function(self, file)
+  get_path_from_file = function(_, file)
     local parts = {}
     for part in file:gmatch("[^/]+") do
       table.insert(parts, part)
     end
     table.remove(parts)
+    return table.concat(parts, "/")
   end,
 
   get_neotree_selection = function(self)
