@@ -26,6 +26,13 @@ return {
       notifier = {
         style = "minimal",
       },
+      picker = {
+        formatters = {
+          file = {
+            truncate = 1000,
+          },
+        },
+      },
       terminal = {
         -- your terminal configuration comes here
         -- or leave it empty to use the default settings

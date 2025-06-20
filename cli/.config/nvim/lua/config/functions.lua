@@ -34,8 +34,40 @@ local deleted_marks_global = {}
 
 local M = {
 
-  -- open definition in a floating window next to the cursor, but stay in the window if the def
+  get_path_from_file = function(self, file)
+    local parts = {}
+    for part in file:gmatch("[^/]+") do
+      table.insert(parts, part)
+    end
+    table.remove(parts)
+  end,
 
+  get_neotree_selection = function(self)
+    local sm = require("neo-tree.sources.manager")
+    local state = sm:_get_all_states()[1]
+    local node = state.tree:get_node()
+    local treeselection = node.path
+    if node.type ~= "directory" then
+      treeselection = self:get_path_from_file(treeselection)
+    end
+    return treeselection
+  end,
+
+  live_grep = function(self)
+    local treeselection = ""
+    local neotree = false
+    if vim.bo.filetype == "neo-tree" then
+      neotree = true
+      treeselection = self:get_neotree_selection()
+    end
+    if neotree then
+      Snacks.picker.grep({ dirs = { treeselection }, title = treeselection })
+    else
+      Snacks.picker.grep_buffers({ title = "Buffers" })
+    end
+  end,
+
+  -- open definition in a floating window next to the cursor, but stay in the window if the def
   definition_in_float = function()
     local params = vim.lsp.util.make_position_params(0, "utf-8")
     vim.lsp.buf_request(0, "textDocument/definition", params, function(_, result, _, _)
@@ -116,7 +148,6 @@ local M = {
     local marks = get_filtered_marks(global)
 
     for _, mark in ipairs(marks) do
-      -- vim.notify(vim.inspect({ mark, line, global }))
       if mark.pos[2] == line then
         local m = mark.mark:sub(-1)
         vim.api.nvim_buf_del_mark(0, m)
@@ -199,13 +230,13 @@ local M = {
     end
   end,
 
-  toggle_search_replace = function(instance, path)
+  toggle_search_replace = function(self, instance)
     local gf = require("grug-far")
-    local p = path or ""
     local paths = vim.fn.expand("%")
     local neo_tree_win = nil
     local main_win = nil
     local treeselection = ""
+
     for _, win in ipairs(vim.api.nvim_list_wins()) do
       local buf = vim.api.nvim_win_get_buf(win)
       local filetype = vim.api.nvim_buf_get_option(buf, "filetype")
@@ -216,22 +247,9 @@ local M = {
       end
     end
     if main_win and vim.api.nvim_get_current_win() == neo_tree_win then
-      local sm = require("neo-tree.sources.manager")
-      local state = sm:_get_all_states()[1]
-      local node = state.tree:get_node()
-      treeselection = node.path
-      if node.type ~= "directory" then
-        local parts = {}
-        for part in treeselection:gmatch("[^/]+") do
-          table.insert(parts, part)
-        end
-        table.remove(parts)
-        treeselection = "/" .. table.concat(parts, "/")
-      end
-
+      treeselection = self:get_neotree_selection()
       vim.api.nvim_set_current_win(main_win)
     end
-    local gf = require("grug-far")
     if instance == "project" then
       paths = treeselection
     end
