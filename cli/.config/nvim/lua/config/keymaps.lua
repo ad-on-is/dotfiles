@@ -183,7 +183,6 @@ end, "Search and replace in files", true)
 
 map("n", "\\", function()
   funcs:live_grep()
-  -- Snacks.picker.grep()
 end)
 
 maphelper2("<C-h>", vim.lsp.buf.hover, "LSP hover", true)
@@ -209,7 +208,7 @@ map("n", "dmÖ", function()
 end)
 
 map("n", "<esc>", function()
-  funcs.smart_close()
+  funcs:smart_close()
 end, { buffer = false, noremap = true })
 
 maphelper("<A-q>", ":qa<CR>", ":qa<CR>", "<Esc>:qa<CR>", "Quit", true)
@@ -221,7 +220,7 @@ maphelper2("<A-b>", function()
 end, "Close current file")
 
 maphelper2("<A-e>", function()
-  funcs.toggle_tree()
+  funcs:toggle_tree()
 end, "Toggle tree")
 maphelper2("<A-h>", "<cmd>BufferLineCyclePrev<cr>", "Previous buffer", true)
 maphelper2("<A-ö>", "<cmd>BufferLineCycleNext<cr>", "Previous buffer", true)

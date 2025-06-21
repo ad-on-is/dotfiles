@@ -37,17 +37,11 @@ local M = {
   end,
 
   live_grep = function(self)
-    local treeselection = ""
-    local neotree = false
+    local treeselection = vim.fn.getcwd()
     if vim.bo.filetype == "neo-tree" then
-      neotree = true
       treeselection = self:get_neotree_selection()
     end
-    if neotree then
-      Snacks.picker.grep({ dirs = { treeselection }, title = treeselection })
-    else
-      Snacks.picker.grep_buffers({ title = "Buffers" })
-    end
+    Snacks.picker.grep({ dirs = { treeselection }, title = treeselection })
   end,
 
   -- open definition in a floating window next to the cursor, but stay in the window if the def
@@ -200,7 +194,7 @@ local M = {
     end -- funcs.open_folder_dialog(nil, "/home")
   end,
 
-  smart_close = function()
+  smart_close = function(self)
     local buftype = vim.bo.buftype
 
     local bts = { "nofile", "quickfix", "help", "terminal", "prompt" }
@@ -213,23 +207,34 @@ local M = {
     end
   end,
 
+  get_tree_main_win = function(_)
+    local neotree_win = nil
+    local main_win = nil
+
+    for _, win in ipairs(vim.api.nvim_list_wins()) do
+      local b = vim.api.nvim_win_get_buf(win)
+      local buf = vim.bo[b]
+      local filetype = buf.filetype
+      if filetype == "neo-tree" then
+        neotree_win = win
+      else
+        if buf.buftype == "" then
+          main_win = win
+        end
+      end
+    end
+    return { neotree_win = neotree_win, main_win = main_win }
+  end,
+
   toggle_search_replace = function(self, instance)
     local gf = require("grug-far")
     local paths = vim.fn.expand("%")
-    local neo_tree_win = nil
-    local main_win = nil
     local treeselection = ""
+    local wins = self:get_tree_main_win()
+    local neotree_win = wins.neotree_win
+    local main_win = wins.main_win
 
-    for _, win in ipairs(vim.api.nvim_list_wins()) do
-      local buf = vim.api.nvim_win_get_buf(win)
-      local filetype = vim.api.nvim_buf_get_option(buf, "filetype")
-      if filetype == "neo-tree" then
-        neo_tree_win = win
-      else
-        main_win = win
-      end
-    end
-    if main_win and vim.api.nvim_get_current_win() == neo_tree_win then
+    if main_win and vim.api.nvim_get_current_win() == neotree_win then
       treeselection = self:get_neotree_selection()
       vim.api.nvim_set_current_win(main_win)
     end
@@ -322,20 +327,24 @@ local M = {
     end)
   end,
 
-  toggle_tree = function()
-    if vim.bo.filetype == "neo-tree" then
-      vim.cmd("wincmd p")
+  toggle_tree = function(self)
+    local wins = self:get_tree_main_win()
+    local neotree_win = wins.neotree_win
+    local main_win = wins.main_win
+
+    if main_win and vim.api.nvim_get_current_win() == neotree_win then
+      vim.api.nvim_set_current_win(main_win)
     else
-      -- Snacks.picker.explorer()
-      local neotree = require("neo-tree.command")
-      neotree.execute({ action = "focus" })
+      vim.api.nvim_set_current_win(neotree_win)
       vim.cmd("vertical resize 40%")
     end
 
     -- if vim.bo.filetype == "neo-tree" then
     --   vim.cmd("wincmd p")
     -- else
+    --   local neotree = require("neo-tree.command")
     --   neotree.execute({ action = "focus" })
+    --   vim.cmd("vertical resize 40%")
     -- end
   end,
 
