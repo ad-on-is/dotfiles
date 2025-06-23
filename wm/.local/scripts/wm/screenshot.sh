@@ -1,5 +1,11 @@
 #!/bin/bash
 
+SDIR="$HOME"/Pictures/Screenshots
+
+if [[ ! -d "$SDIR" ]]; then
+  mkdir -p "$SDIR"
+fi
+
 WORKSPACES="$(hyprctl monitors -j | jq -r 'map(.activeWorkspace.id)')"
 MONITOR="$(hyprctl activeworkspace -j | jq -r '.monitorID')"
 MWH="$(hyprctl monitors -j | jq -r '.[] | select(.id=='"$MONITOR"') | .width,.height' | xargs | tr ' ' x)"
@@ -12,7 +18,7 @@ if [[ -z "$GEOM" ]]; then
 fi
 
 fname=$(date +'%Y-%m-%d_%H-%M-%S.png')
-file=/home/adonis/Pictures/Screenshots/$fname
+file="$SDIR/$fname"
 res=""
 if [[ "$MWH" = "$GEOMWH" ]]; then
   res=$(grim -g "$GEOM" - | satty -o "$file" -f -)

@@ -267,6 +267,9 @@ return {
         {
           { "<leader>fh", group = "File history", icon = { icon = " ", color = "green" } },
         },
+        {
+          { "<leader>fi", group = "File info", icon = { icon = " ", color = "blue" } },
+        },
       },
     },
   },

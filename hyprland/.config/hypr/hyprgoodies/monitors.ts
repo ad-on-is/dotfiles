@@ -1,5 +1,5 @@
 import { getMonitors, socketAddr } from "./hyprland";
-import monitorSetup from "../monitors.json";
+import monitorSetup from "./monitors.json";
 import { $ } from "bun";
 
 let urgents: string[] = [];
@@ -66,6 +66,12 @@ async function handleMonitors(workspaces: number) {
   await Bun.write(MONITOR_FILE, nc);
   await $`hyprctl reload`;
 }
+
+if (process.argv[2] && process.argv[2] === "run") {
+  await handleMonitors(3);
+  process.exit(0);
+}
+
 await Bun.connect({
   unix: socketAddr,
   socket: {
