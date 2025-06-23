@@ -14,7 +14,42 @@ end
 local deleted_marks = {}
 local deleted_marks_global = {}
 
+function bytes_to_human(bytes)
+  local units = { "B", "KB", "MB", "GB", "TB", "PB" }
+  local size = bytes
+  local unit_index = 1
+
+  while size >= 1024 and unit_index < #units do
+    size = size / 1024
+    unit_index = unit_index + 1
+  end
+
+  if unit_index == 1 then
+    return string.format("%d %s", size, units[unit_index])
+  else
+    return string.format("%.1f %s", size, units[unit_index])
+  end
+end
+
 local M = {
+
+  show_file_info_popup = function()
+    local file = vim.fn.expand("%:p")
+    local size = vim.fn.getfsize(file)
+    local modified = vim.fn.getftime(file)
+    local modified_str = os.date("%Y-%m-%d %H:%M:%S", modified)
+
+    local info = "File: "
+      .. file
+      .. "\n"
+      .. "Size: "
+      .. (size > 0 and bytes_to_human(size))
+      .. "\n"
+      .. "Modified: "
+      .. modified_str
+
+    vim.notify(info, vim.log.levels.INFO)
+  end,
 
   get_path_from_file = function(_, file)
     local parts = {}

@@ -1,7 +1,17 @@
 os:
   editPreset: "nvim-remote"
 gui:
+  authorColors:
+    '*': "#b4befe"
+  nerdFontsVersion: "3"
   theme:
+    unstagedChangesColor:
+      - "#f38ba8"
+    selectedLineBgColor:
+      - "#45475a"
+    searchingActiveBorderColor:
+      - "#fab387"
+      - "bold"
     optionsTextColor:
       - "#89b4fa"
     inactiveBorderColor:
@@ -15,13 +25,3 @@ gui:
     activeBorderColor:
       - "#fab387"
       - "bold"
-    unstagedChangesColor:
-      - "#f38ba8"
-    selectedLineBgColor:
-      - "#45475a"
-    searchingActiveBorderColor:
-      - "#fab387"
-      - "bold"
-  authorColors:
-    '*': "#b4befe"
-  nerdFontsVersion: "3"
