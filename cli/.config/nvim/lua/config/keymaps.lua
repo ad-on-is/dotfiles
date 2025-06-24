@@ -64,8 +64,7 @@ map("n", "<BS>", "i<right><bs>", { remap = true })
 map({ "n", "v" }, "d", '"_d')
 map({ "n", "v" }, "D", '"_D')
 map({ "n", "v" }, "c", '"_c')
-map("n", "€", function()
-  -- goto definitin
+map("n", "!", function()
   funcs.definition_in_float()
 end)
 map({ "n", "v", "i" }, "<A-g>", function()
@@ -89,7 +88,10 @@ map({ "n", "v" }, "<S-ScrollWheelUp>", "10zl", { silent = true })
 map({ "n", "v" }, "<S-ScrollWheelDown>", "10zh", { silent = true })
 
 -- maphelper2("<esc>", "<C-c>", "Fix escape")
-map("n", "?", vim.diagnostic.open_float)
+map("n", "?", function()
+  vim.lsp.buf.hover()
+end)
+map("n", "~", vim.diagnostic.open_float)
 map(
   "n",
   "<space>dh",
@@ -240,8 +242,6 @@ maphelper2("<A-k>", "<C-w>j", "Go to bottom window", true)
 maphelper2("<A-v>", "<C-w>v", "Split window vertically", true)
 maphelper2("<A-c>", "<C-w>s", "Split window", true)
 
-maphelper("<leader>fi", function()
+map("n", "<leader>fi", function()
   funcs.show_file_info_popup()
-end, function()
-  funcs.show_file_info_popup()
-end, "<nop>", "Show file info", true)
+end)
