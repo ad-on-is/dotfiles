@@ -30,3 +30,6 @@ keybind = ctrl+8=resize_split:up,10
 keybind = ctrl+9=resize_split:down,10
 keybind = ctrl+6=resize_split:left,10
 keybind = ctrl+7=resize_split:right,10
+keybind = performable:ctrl+c=copy_to_clipboard
+keybind = performable:ctrl+v=paste_from_clipboard
+

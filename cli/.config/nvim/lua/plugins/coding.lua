@@ -11,7 +11,6 @@ return {
       -- add any options here
     },
   },
-  { "echasnovski/mini.comment", enabled = false },
   {
     "kylechui/nvim-surround",
     config = function()

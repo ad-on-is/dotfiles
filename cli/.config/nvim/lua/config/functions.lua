@@ -14,7 +14,7 @@ end
 local deleted_marks = {}
 local deleted_marks_global = {}
 
-function bytes_to_human(bytes)
+local function bytes_to_human(bytes)
   local units = { "B", "KB", "MB", "GB", "TB", "PB" }
   local size = bytes
   local unit_index = 1
@@ -48,7 +48,7 @@ local M = {
       .. "Modified: "
       .. modified_str
 
-    vim.notify(info, vim.log.levels.INFO)
+    Snacks.notify.info(info)
   end,
 
   get_path_from_file = function(_, file)
@@ -69,6 +69,15 @@ local M = {
       treeselection = self:get_path_from_file(treeselection)
     end
     return treeselection
+  end,
+
+  pick_files = function(self)
+    local treeselection = vim.fn.getcwd()
+    if vim.bo.filetype == "neo-tree" then
+      treeselection = self:get_neotree_selection()
+    end
+
+    Snacks.picker.files({ title = treeselection, dirs = { treeselection } })
   end,
 
   live_grep = function(self)
