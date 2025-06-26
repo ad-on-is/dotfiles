@@ -8,6 +8,9 @@ export XDG_CACHE_HOME=${XDG_CACHE_HOME:-"$HOME/.cache"}
 # HSTR configuration - add this to ~/.zshrc
 # setopt histignorespace           # skip cmds w/ leading space from history
 
+# required for gnome keyring to work
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/keyring/ssh"
+
 export HISTFILESIZE=100000000
 export HISTSIZE=${HISTFILESIZE}
 export SAVEHIST=${HISTFILESIZE}

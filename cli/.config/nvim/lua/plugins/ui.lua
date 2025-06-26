@@ -522,6 +522,52 @@ return {
       opts = {},
     },
     {
+      "folke/trouble.nvim",
+      opts = {
+        auto_preview = false,
+        focus = true,
+        warn_no_results = false,
+        open_no_results = true,
+        keys = {
+          ["<esc>"] = function()
+            require("trouble").cancel()
+            vim.cmd("Trouble qflist close")
+          end,
+        },
+      },
+      init = function()
+        vim.api.nvim_create_autocmd("BufRead", {
+          callback = function(ev)
+            if require("trouble").is_open("qflist") then
+              vim.cmd([[Trouble qflist close]])
+            end
+
+            if vim.bo[ev.buf].buftype == "quickfix" then
+              vim.schedule(function()
+                vim.cmd([[cclose]])
+                vim.cmd([[Trouble qflist open]])
+              end)
+            end
+          end,
+        })
+        -- vim.api.nvim_create_autocmd("BufWinEnter", {
+        --   callback = function()
+        --     if vim.bo.buftype == "quickfix" then
+        --       vim.schedule(function()
+        --         vim.cmd("cclose")
+        --         require("trouble").open("qflist")
+        --       end)
+        --     end
+        --   end,
+        -- })
+      end,
+    },
+    -- {
+    --   "kevinhwang91/nvim-bqf",
+    --   event = "FileType qf",
+    --   opts = {},
+    -- },
+    {
       "shellRaining/hlchunk.nvim",
       event = { "BufReadPre", "BufNewFile" },
       opts = {

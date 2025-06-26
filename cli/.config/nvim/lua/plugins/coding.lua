@@ -222,14 +222,15 @@ return {
   {
     "mfussenegger/nvim-dap",
     optional = true,
-    opts = function(opts)
+    init = function()
       local dap = require("dap")
-      vim.notify(vim.inspect(dap.configurations.php))
       dap.configurations.php = {
         {
           type = "php",
           request = "launch",
           name = "Adis: Listen for Xebug",
+          cwd = "${workspaceFolder}",
+          stopOnEntry = true,
           port = 9001,
           -- env = {XDEBUG_TRIGGER = "PHPSTORM"}
         },
