@@ -7,7 +7,7 @@ local function is_active()
 end
 
 local function get_name()
-  local ok, hydra = pcall(require, "hydra.statusline")
+       local ok, hydra = pcall(require, "hydra.statusline")
   if ok then
     return " MultiCursor"
   end
@@ -26,7 +26,7 @@ return {
       notifier = {
         style = "minimal",
       },
-      picker = {
+         picker = {
         jump = {
           reuse_win = true,
         },
@@ -61,10 +61,13 @@ return {
       dashboard = {
         sections = {
           { section = "header" },
-          { title = [[
+          {
+            title = [[
 
 
-          ]], pane = 2 },
+          ]],
+            pane = 2,
+          },
           {
             pane = 2,
             section = "terminal",
@@ -93,24 +96,29 @@ return {
         },
         preset = {
           header = [[
-	                                                                    
-	       ████ ██████           █████      ██                    
-	      ███████████             █████                            
-	      █████████ ███████████████████ ███   ███████████  
-	     █████████  ███    █████████████ █████ ██████████████  
-	    █████████ ██████████ █████████ █████ █████ ████ █████  
-	  ███████████ ███    ███ █████████ █████ █████ ████ █████ 
+	                                              
+	       ████ ██████           █████      ██
+	      ███████████             █████ 
+	      █████████ ███████████████████ ███   ███████████
+	     █████████  ███    █████████████ █████ ██████████████
+	    █████████ ██████████ █████████ █████ █████ ████ █████
+	  ███████████ ███    ███ █████████ █████ █████ ████ █████
 	 ██████  █████████████████████ ████ █████ █████ ████ ██████
  ]],
         },
       },
     },
   },
-  { "ibhagwan/fzf-lua", opts = {
-    winopts = { preview = {
-      wrap = true,
-    } },
-  } },
+  {
+    "ibhagwan/fzf-lua",
+    opts = {
+      winopts = {
+        preview = {
+          wrap = true,
+        },
+      },
+    },
+  },
 
   {
     "Isrothy/neominimap.nvim",

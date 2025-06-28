@@ -15,19 +15,32 @@
 local ignored_formatonsave_types = { "phtml" }
 local funcs = require("config.functions")
 
-vim.api.nvim_create_autocmd("BufWritePre", {
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePre" }, {
   pattern = "*",
   callback = function(args)
     local f = args.file
     local type = vim.fn.fnamemodify(f, ":e")
-
     if vim.fn.index(ignored_formatonsave_types, type) ~= -1 then
-      return
+      vim.g.autoformat = false
     else
-      require("conform").format({ bufnr = args.buf, async = false })
+      vim.g.autoformat = true
     end
   end,
 })
+
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+--   pattern = "*",
+--   callback = function(args)
+--     local f = args.file
+--     local type = vim.fn.fnamemodify(f, ":e")
+--
+--     if vim.fn.index(ignored_formatonsave_types, type) ~= -1 then
+--       return
+--     else
+--       require("conform").format({ bufnr = args.buf, async = false })
+--     end
+--   end,
+-- })
 
 -- vim.api.nvim_create_user_command("DiffFormat", function(args)
 --   funcs.diff_format(args)
