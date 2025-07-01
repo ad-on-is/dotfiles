@@ -11,6 +11,15 @@ local get_filtered_marks = function(global)
   return marks
 end
 
+local function findIndex(array, value)
+  for i, v in ipairs(array) do
+    if v == value then
+      return i
+    end
+  end
+  return nil -- not found
+end
+
 local deleted_marks = {}
 local deleted_marks_global = {}
 
@@ -77,7 +86,13 @@ local M = {
       treeselection = self:get_neotree_selection()
     end
 
-    Snacks.picker.files({ title = treeselection, dirs = { treeselection } })
+    vim.notify(treeselection)
+
+    Snacks.picker.smart({
+      title = "SMART:" .. treeselection,
+      dirs = { treeselection },
+      matcher = { sort_empty = false },
+    })
   end,
 
   live_grep = function(self)
@@ -85,7 +100,34 @@ local M = {
     if vim.bo.filetype == "neo-tree" then
       treeselection = self:get_neotree_selection()
     end
-    Snacks.picker.grep({ dirs = { treeselection }, title = treeselection })
+    Snacks.picker.grep({
+      dirs = { treeselection },
+      title = "GREP: " .. treeselection,
+      hook = function(args, _)
+        local new_args = {}
+        local dir_args = ""
+        for _, arg in ipairs(args) do
+          local part1, part2 = arg:match("(.+) // (.+)")
+          if part1 and part2 then
+            table.insert(new_args, part1)
+            if not string.find(part2, "%*") then
+              part2 = part2 .. "/*"
+            end
+            dir_args = "**/" .. part2
+          else
+            table.insert(new_args, arg)
+          end
+          -- end
+        end
+        local i = findIndex(new_args, "--")
+        if i and dir_args ~= "" then
+          table.insert(new_args, i, dir_args)
+          table.insert(new_args, i, "-g")
+        end
+
+        return new_args
+      end,
+    })
   end,
 
   -- open definition in a floating window next to the cursor, but stay in the window if the def

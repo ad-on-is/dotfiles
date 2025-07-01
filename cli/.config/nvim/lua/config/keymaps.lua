@@ -80,9 +80,9 @@ end)
 
 -- map("n", "?", "<cmd>WhichKey<cr>", { noremap = true, desc = "Show WhichKey" })
 
-map({ "n", "v" }, "<space>t", function()
-  Snacks.terminal.toggle()
-end, { desc = "Toggle terminal" })
+-- map({ "n", "v" }, "<space>t", function()
+--   Snacks.terminal.toggle()
+-- end, { desc = "Toggle terminal" })
 
 map({ "n", "v" }, "<S-ScrollWheelUp>", "10zl", { silent = true })
 map({ "n", "v" }, "<S-ScrollWheelDown>", "10zh", { silent = true })
@@ -91,7 +91,7 @@ map({ "n", "v" }, "<S-ScrollWheelDown>", "10zh", { silent = true })
 map("n", "?", function()
   vim.lsp.buf.hover()
 end)
-map("n", "~", vim.diagnostic.open_float)
+map("n", ">", vim.diagnostic.open_float)
 map(
   "n",
   "<space>dh",
@@ -160,9 +160,7 @@ maphelper2("<C-o>", function()
 end, "Open folder dialog")
 
 maphelper2("<C-p>", function()
-  local t = vim.fn.getcwd()
-  Snacks.picker.smart({ matcher = { sort_empty = false } })
-  -- funcs:pick_files()
+  funcs:pick_files() -- funcs:pick_files()
 end, "Worktree files")
 maphelper2("<C-u>", function()
   Snacks.picker.buffers({ title = "Buffers" })

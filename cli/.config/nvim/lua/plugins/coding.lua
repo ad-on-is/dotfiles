@@ -127,6 +127,7 @@ return {
         bashls = {
           filetypes = { "sh", "bash", "zsh" },
         },
+        qmlls = { cmd = { "qmlls", "-E" } },
         emmet_language_server = {
           enabled = false,
           filetypes = {
@@ -172,7 +173,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     event = "VeryLazy",
-    opts = { ensure_installed = { "dart" } },
+    opts = { ensure_installed = { "dart", "qmljs" } },
   },
 
   {
