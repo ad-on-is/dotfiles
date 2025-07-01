@@ -34,6 +34,10 @@ map("n", "<leader>upe", function()
 	]])
 end, { desc = "Profile End" })
 
+map("n", "<", function()
+  funcs.blame_current_line()
+end)
+
 --
 maphelper("<S-down>", "V<Down>", "<Down>", "<Esc>v<Down>", "Select line up")
 maphelper("<S-up>", "V<Up>", "<Up>", "<Esc>v<Up>", "Select line down")
