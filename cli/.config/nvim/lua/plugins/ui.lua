@@ -7,7 +7,7 @@ local function is_active()
 end
 
 local function get_name()
-       local ok, hydra = pcall(require, "hydra.statusline")
+  local ok, hydra = pcall(require, "hydra.statusline")
   if ok then
     return " MultiCursor"
   end
@@ -26,7 +26,7 @@ return {
       notifier = {
         style = "minimal",
       },
-         picker = {
+      picker = {
         jump = {
           reuse_win = true,
         },
@@ -262,6 +262,10 @@ return {
     opts_extend = { "spec" },
     opts = {
       spec = {
+        {
+          { "<leader>/", group = "Search history", icon = { icon = " ", color = "blue" } },
+        },
+
         {
           { "<leader>gC", group = "Conflict", icon = { icon = " ", color = "blue" } },
         },

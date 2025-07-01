@@ -119,6 +119,7 @@ return {
           BlinkCmpKindTypeParameter = { fg = C.blue, bg = mc(C.blue) },
           BlinkCmpKindCopilot = { fg = C.teal, bg = mc(C.teal) },
           BlinkCmpKindCodeium = { fg = C.teal, bg = mc(C.teal) },
+          DiffChange = { bg = mc(C.blue, 0.3) },
           NeoTreeNormal = { fg = C.text, bg = "#0e0f16" },
           NeoTreeNormalNC = { fg = C.text, bg = "#0e0f16" },
           NeoTreeDirectoryName = { fg = C.text },

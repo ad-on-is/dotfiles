@@ -19,6 +19,7 @@ vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,
 vim.g.neovide_scale_factor = 1
 vim.g.neovide_cursor_vfx_mode = "railgun"
 vim.g.maplocalleader = ","
+vim.opt.fillchars:append({ diff = " " })
 
 vim.g.neovide_padding_top = 10
 vim.g.neovide_padding_bottom = 0
