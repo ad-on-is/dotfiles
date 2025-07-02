@@ -87,7 +87,7 @@ end)
 -- map({ "n", "v" }, "<space>t", function()
 --   Snacks.terminal.toggle()
 -- end, { desc = "Toggle terminal" })
-
+map("n", "<leader>ga", "<cmd>Gitsigns blame<cr>")
 map({ "n", "v" }, "<S-ScrollWheelUp>", "10zl", { silent = true })
 map({ "n", "v" }, "<S-ScrollWheelDown>", "10zh", { silent = true })
 

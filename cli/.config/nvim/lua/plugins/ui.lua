@@ -265,6 +265,9 @@ return {
         {
           { "<leader>/", group = "Search history", icon = { icon = " ", color = "blue" } },
         },
+        {
+          { "<leader>ga", group = "Annotate with Git Blame", icon = { icon = " ", color = "blue" } },
+        },
 
         {
           { "<leader>gC", group = "Conflict", icon = { icon = " ", color = "blue" } },
