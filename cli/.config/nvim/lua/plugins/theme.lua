@@ -7,20 +7,6 @@ return {
     end,
   },
 
-  -- {
-  --   "supermaven-inc/supermaven-nvim",
-  --
-  --   opts = {
-  --     keymaps = {
-  --       accept_suggestion = "<A-Tab>",
-  --     },
-  --     color = {
-  --       suggestion_color = vim.api.nvim_get_hl(0, { name = "NonText" }).fg,
-  --       cterm = vim.api.nvim_get_hl(0, { name = "NonText" }).cterm,
-  --     },
-  --   },
-  -- },
-
   {
     "catppuccin/nvim",
     name = "catppuccin",
