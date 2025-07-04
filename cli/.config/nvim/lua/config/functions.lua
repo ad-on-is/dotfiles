@@ -11,6 +11,24 @@ local get_filtered_marks = function(global)
   return marks
 end
 
+local function arrayHas(array, value)
+  for _, a in ipairs(array) do
+    if a == value then
+      return true
+    end
+  end
+  return false
+end
+
+local function findIndex(array, value)
+  for i, v in ipairs(array) do
+    if v == value then
+      return i
+    end
+  end
+  return nil -- not found
+end
+
 local deleted_marks = {}
 local deleted_marks_global = {}
 
@@ -32,6 +50,156 @@ local function bytes_to_human(bytes)
 end
 
 local M = {
+
+  blame_current_line = function()
+    local line = vim.api.nvim_win_get_cursor(0)[1]
+    local file = vim.api.nvim_buf_get_name(0)
+    local relative_file = vim.fn.fnamemodify(file, ":.")
+
+    -- Get detailed blame info
+    local blame_cmd = string.format("git blame -L %d,%d --porcelain %s", line, line, file)
+    local blame_result = vim.fn.system(blame_cmd)
+
+    if vim.v.shell_error ~= 0 then
+      vim.notify("Git blame failed: " .. blame_result, vim.log.levels.ERROR)
+      return
+    end
+
+    -- Parse porcelain format
+    local lines = vim.split(blame_result, "\n")
+    local commit_hash = lines[1]:match("^(%w+)")
+
+    local author, author_mail, author_time, author_tz
+    local committer, committer_mail, committer_time, committer_tz
+    local summary, previous, filename
+
+    for _, blame_line in ipairs(lines) do
+      if blame_line:match("^author ") then
+        author = blame_line:match("^author (.+)")
+      elseif blame_line:match("^author%-mail") then
+        author_mail = blame_line:match("^author%-mail <(.+)>")
+      elseif blame_line:match("^author%-time") then
+        author_time = blame_line:match("^author%-time (%d+)")
+      elseif blame_line:match("^author%-tz") then
+        author_tz = blame_line:match("^author%-tz (.+)")
+      elseif blame_line:match("^committer ") then
+        committer = blame_line:match("^committer (.+)")
+      elseif blame_line:match("^committer%-time") then
+        committer_time = blame_line:match("^committer%-time (%d+)")
+      elseif blame_line:match("^summary") then
+        summary = blame_line:match("^summary (.+)")
+      elseif blame_line:match("^previous") then
+        previous = blame_line:match("^previous (%w+)")
+      elseif blame_line:match("^filename") then
+        filename = blame_line:match("^filename (.+)")
+      end
+    end
+
+    -- Get commit details
+    local show_cmd = string.format('git show --no-patch --format="%%B" %s', commit_hash)
+    local commit_message = vim.fn.system(show_cmd)
+
+    -- Get file changes in this commit
+    local stat_cmd = string.format("git show --stat --oneline %s", commit_hash)
+    local commit_stats = vim.fn.system(stat_cmd)
+
+    -- Format date
+    local formatted_date = "Unknown"
+    if author_time then
+      formatted_date = vim.fn.strftime("%Y-%m-%d %H:%M:%S", tonumber(author_time))
+    end
+
+    -- Build display content
+    local content = {
+      "",
+      "📝 Commit: " .. (commit_hash or "Unknown"),
+      "👤 Author: " .. (author or "Unknown") .. " <" .. (author_mail or "") .. ">",
+      "📅 Date: " .. formatted_date .. " " .. (author_tz or ""),
+      "📄 File: " .. (filename or relative_file),
+      "",
+      "💬 Message:",
+      "──────────────────────────────────────────",
+    }
+
+    -- Add commit message lines
+    if commit_message and commit_message ~= "" then
+      local msg_lines = vim.split(vim.trim(commit_message), "\n")
+      for _, msg_line in ipairs(msg_lines) do
+        table.insert(content, "  " .. msg_line)
+      end
+    else
+      table.insert(content, "  " .. (summary or "No message"))
+    end
+
+    table.insert(content, "")
+    table.insert(content, "📊 Changes in this commit:")
+    table.insert(
+      content,
+      "──────────────────────────────────────────"
+    )
+
+    -- Add commit stats
+    if commit_stats and commit_stats ~= "" then
+      local stat_lines = vim.split(vim.trim(commit_stats), "\n")
+      --   for i, stat_line in ipairs(stat_lines) do
+      --     if i > 1 then -- Skip the first line (commit hash + summary)
+      table.insert(content, "  " .. stat_lines[#stat_lines])
+      --     end
+      --   end
+    end
+
+    -- Create popup
+    local buf = vim.api.nvim_create_buf(false, true)
+    vim.api.nvim_buf_set_lines(buf, 0, -1, false, content)
+
+    -- Set syntax highlighting
+    vim.api.nvim_buf_set_option(buf, "filetype", "gitblame")
+
+    -- Calculate dimensions
+    local width = math.min(vim.o.columns - 8, 100)
+    local height = math.min(#content + 2, vim.o.lines - 10)
+
+    local opts = {
+      relative = "editor",
+      width = width,
+      height = height,
+      col = math.floor((vim.o.columns - width) / 2),
+      row = math.floor((vim.o.lines - height) / 2),
+      style = "minimal",
+      border = "rounded",
+      title = " Git Blame Line " .. line .. " ",
+      title_pos = "center",
+    }
+
+    local win = vim.api.nvim_open_win(buf, true, opts)
+
+    -- Set buffer options
+    vim.api.nvim_buf_set_option(buf, "modifiable", false)
+    vim.api.nvim_buf_set_option(buf, "readonly", true)
+
+    -- Close on escape or q
+    vim.api.nvim_buf_set_keymap(buf, "n", "q", "<cmd>close<cr>", { silent = true })
+    vim.api.nvim_buf_set_keymap(buf, "n", "<Esc>", "<cmd>close<cr>", { silent = true })
+
+    -- Add some basic syntax highlighting
+    vim.api.nvim_buf_add_highlight(buf, -1, "Title", 0, 0, -1)
+    vim.api.nvim_buf_add_highlight(buf, -1, "Comment", 1, 0, -1)
+
+    for i, content_line in ipairs(content) do
+      if
+        content_line:match("^📝")
+        or content_line:match("^👤")
+        or content_line:match("^📅")
+        or content_line:match("^📄")
+      then
+        vim.api.nvim_buf_add_highlight(buf, -1, "Identifier", i - 1, 0, -1)
+      elseif content_line:match("^💬") or content_line:match("^📊") or content_line:match("^⬅️") then
+        vim.api.nvim_buf_add_highlight(buf, -1, "Special", i - 1, 0, -1)
+      elseif content_line:match("^──") or content_line:match("^══") then
+        vim.api.nvim_buf_add_highlight(buf, -1, "Comment", i - 1, 0, -1)
+      end
+    end
+  end,
 
   show_file_info_popup = function()
     local file = vim.fn.expand("%:p")
@@ -77,7 +245,11 @@ local M = {
       treeselection = self:get_neotree_selection()
     end
 
-    Snacks.picker.files({ title = treeselection, dirs = { treeselection } })
+    Snacks.picker.smart({
+      title = "SMART:" .. treeselection,
+      dirs = { treeselection },
+      matcher = { sort_empty = false },
+    })
   end,
 
   live_grep = function(self)
@@ -85,7 +257,34 @@ local M = {
     if vim.bo.filetype == "neo-tree" then
       treeselection = self:get_neotree_selection()
     end
-    Snacks.picker.grep({ dirs = { treeselection }, title = treeselection })
+    Snacks.picker.grep({
+      dirs = { treeselection },
+      title = "GREP: " .. treeselection,
+      hook = function(args, _)
+        local new_args = {}
+        local dir_args = ""
+        for _, arg in ipairs(args) do
+          local part1, part2 = arg:match("(.+) // (.+)")
+          if part1 and part2 then
+            table.insert(new_args, part1)
+            if not string.find(part2, "%*") then
+              part2 = part2 .. "/*"
+            end
+            dir_args = "**/" .. part2
+          else
+            table.insert(new_args, arg)
+          end
+          -- end
+        end
+        local i = findIndex(new_args, "--")
+        if i and dir_args ~= "" then
+          table.insert(new_args, i, dir_args)
+          table.insert(new_args, i, "-g")
+        end
+
+        return new_args
+      end,
+    })
   end,
 
   -- open definition in a floating window next to the cursor, but stay in the window if the def
@@ -239,15 +438,21 @@ local M = {
   end,
 
   smart_close = function(self)
-    local buftype = vim.bo.buftype
-
     local bts = { "nofile", "quickfix", "help", "terminal", "prompt" }
-
-    for _, ft in ipairs(bts) do
-      if buftype == ft then
-        vim.cmd(":q")
-        return
+    local fts = { "DiffviewFileHistory" }
+    local bt = vim.bo.buftype
+    local ft = vim.bo.filetype
+    if arrayHas(fts, ft) then
+      vim.cmd(":q")
+      if ft == "DiffviewFileHistory" then
+        vim.cmd(":tabclose")
       end
+      return
+    end
+
+    if arrayHas(bts, bt) then
+      vim.cmd(":q")
+      return
     end
   end,
 

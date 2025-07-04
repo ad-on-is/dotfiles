@@ -1,6 +1,6 @@
 # Custom widget that works with fzf-tab and shows zoxide directories if cd does not provide any suggestions.
 
-fzf_cd_complete_or_space() {
+fzf_cd_complete_or_zoxide() {
   if [[ "$LBUFFER" =~ ^cd\ +[^\ ]+$ ]]; then
     local current_path="${LBUFFER#cd }"
 
@@ -23,8 +23,8 @@ fzf_cd_complete_or_space() {
     zle fzf-tab-complete
   fi
 }
-zle -N fzf_cd_complete_or_space
-bindkey '^I' fzf_cd_complete_or_space
+zle -N fzf_cd_complete_or_zoxide
+bindkey '^I' fzf_cd_complete_or_zoxide
 
 _ssh_completion() {
 script_path=${(%):-%x}
@@ -40,3 +40,16 @@ script_dir=${script_path:h}
 }
 
 compdef _ssh_completion ssh
+
+
+# _zsh_autosuggest_strategy_curdir() {
+#   p=($1)
+#   s="${p[1]}"
+#   echo "$1"
+#   suggestion=$(fd -t d "$1" -d 1 --color=never | head -n 1)
+#   # echo "$suggestion"
+# # suggestion=$(ATUIN_QUERY="$1" atuin search --cmd-only --limit 1 --search-mode prefix)
+# }
+#
+# ZSH_AUTOSUGGEST_STRATEGY=("curdir")
+# # echo "$ZSH_AUTOSUGGEST_STRATEGY"

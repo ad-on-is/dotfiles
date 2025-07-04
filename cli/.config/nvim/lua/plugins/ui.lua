@@ -7,7 +7,7 @@ local function is_active()
 end
 
 local function get_name()
-       local ok, hydra = pcall(require, "hydra.statusline")
+  local ok, hydra = pcall(require, "hydra.statusline")
   if ok then
     return " MultiCursor"
   end
@@ -26,7 +26,7 @@ return {
       notifier = {
         style = "minimal",
       },
-         picker = {
+      picker = {
         jump = {
           reuse_win = true,
         },
@@ -36,11 +36,8 @@ return {
           },
         },
       },
-      terminal = {
-        -- your terminal configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      },
+      terminal = {},
+      quickfile = {},
       bigfile = {
         size = 5 * 1024 * 1024, -- 5MB
       },
@@ -56,55 +53,6 @@ return {
         enabled = false,
         animate = {
           enabled = false,
-        },
-      },
-      dashboard = {
-        sections = {
-          { section = "header" },
-          {
-            title = [[
-
-
-          ]],
-            pane = 2,
-          },
-          {
-            pane = 2,
-            section = "terminal",
-            cmd = "colorscript -e square",
-            padding = 1,
-            height = 7,
-          },
-          { section = "keys", pane = 2, padding = 1, indent = 2 },
-          { icon = " ", title = "Recent Files", section = "recent_files", padding = 1 },
-          { icon = " ", title = "Projects", section = "projects", padding = 1 },
-          {
-
-            icon = " ",
-            title = "Git Status",
-            section = "terminal",
-            enabled = function()
-              return Snacks.git.get_root() ~= nil
-            end,
-            cmd = "git l -n 5",
-            height = 5,
-            padding = 1,
-            ttl = 5 * 60,
-            indent = 3,
-          },
-          { section = "startup" },
-        },
-        preset = {
-          header = [[
-	                                              
-	       ████ ██████           █████      ██
-	      ███████████             █████ 
-	      █████████ ███████████████████ ███   ███████████
-	     █████████  ███    █████████████ █████ ██████████████
-	    █████████ ██████████ █████████ █████ █████ ████ █████
-	  ███████████ ███    ███ █████████ █████ █████ ████ █████
-	 ██████  █████████████████████ ████ █████ █████ ████ ██████
- ]],
         },
       },
     },
@@ -263,6 +211,9 @@ return {
     opts = {
       spec = {
         {
+          { "<leader>/", group = "Search history", icon = { icon = " ", color = "blue" } },
+        },
+        {
           { "<leader>gC", group = "Conflict", icon = { icon = " ", color = "blue" } },
         },
         {
@@ -271,12 +222,6 @@ return {
 
         {
           { "<leader>up", group = "Profiler", icon = { icon = "󰾆 ", color = "green" } },
-        },
-        {
-          { "<leader>fh", group = "File history", icon = { icon = " ", color = "green" } },
-        },
-        {
-          { "<leader>fi", group = "File info", icon = { icon = " ", color = "blue" } },
         },
       },
     },

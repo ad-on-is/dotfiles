@@ -7,20 +7,6 @@ return {
     end,
   },
 
-  -- {
-  --   "supermaven-inc/supermaven-nvim",
-  --
-  --   opts = {
-  --     keymaps = {
-  --       accept_suggestion = "<A-Tab>",
-  --     },
-  --     color = {
-  --       suggestion_color = vim.api.nvim_get_hl(0, { name = "NonText" }).fg,
-  --       cterm = vim.api.nvim_get_hl(0, { name = "NonText" }).cterm,
-  --     },
-  --   },
-  -- },
-
   {
     "catppuccin/nvim",
     name = "catppuccin",
@@ -119,6 +105,7 @@ return {
           BlinkCmpKindTypeParameter = { fg = C.blue, bg = mc(C.blue) },
           BlinkCmpKindCopilot = { fg = C.teal, bg = mc(C.teal) },
           BlinkCmpKindCodeium = { fg = C.teal, bg = mc(C.teal) },
+          DiffChange = { bg = mc(C.blue, 0.3) },
           NeoTreeNormal = { fg = C.text, bg = "#0e0f16" },
           NeoTreeNormalNC = { fg = C.text, bg = "#0e0f16" },
           NeoTreeDirectoryName = { fg = C.text },

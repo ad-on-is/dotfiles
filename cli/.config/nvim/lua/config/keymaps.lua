@@ -34,6 +34,10 @@ map("n", "<leader>upe", function()
 	]])
 end, { desc = "Profile End" })
 
+map("n", "<", function()
+  funcs.blame_current_line()
+end)
+
 --
 maphelper("<S-down>", "V<Down>", "<Down>", "<Esc>v<Down>", "Select line up")
 maphelper("<S-up>", "V<Up>", "<Up>", "<Esc>v<Up>", "Select line down")
@@ -80,10 +84,10 @@ end)
 
 -- map("n", "?", "<cmd>WhichKey<cr>", { noremap = true, desc = "Show WhichKey" })
 
-map({ "n", "v" }, "<space>t", function()
-  Snacks.terminal.toggle()
-end, { desc = "Toggle terminal" })
-
+-- map({ "n", "v" }, "<space>t", function()
+--   Snacks.terminal.toggle()
+-- end, { desc = "Toggle terminal" })
+map("n", "<leader>ga", "<cmd>Gitsigns blame<cr>", { desc = "Annotate with Git Blame" })
 map({ "n", "v" }, "<S-ScrollWheelUp>", "10zl", { silent = true })
 map({ "n", "v" }, "<S-ScrollWheelDown>", "10zh", { silent = true })
 
@@ -91,7 +95,7 @@ map({ "n", "v" }, "<S-ScrollWheelDown>", "10zh", { silent = true })
 map("n", "?", function()
   vim.lsp.buf.hover()
 end)
-map("n", "~", vim.diagnostic.open_float)
+map("n", ">", vim.diagnostic.open_float)
 map(
   "n",
   "<space>dh",
@@ -130,7 +134,7 @@ map("n", "<leaer>gCl", "<cmd>GitConflictChooseNextConflict<cr>", { desc = "Next"
 map("n", "<leader>gCj", "<cmd>GitConflictChoosePrevConflict<cr>", { desc = "Previous" })
 map("n", "<leader>gCa", "<cmd>GitConflictListQf<cr>", { desc = "Show All" })
 map("n", "<leader>fh", function()
-  vim.cmd("DiffviewFileHistory %")
+  vim.cmd("DiffviewFileHistory % --no-merges")
 end, { desc = "File history" })
 
 map("n", "<tab>", "i<tab>")
@@ -160,9 +164,7 @@ maphelper2("<C-o>", function()
 end, "Open folder dialog")
 
 maphelper2("<C-p>", function()
-  local t = vim.fn.getcwd()
-  Snacks.picker.smart({ matcher = { sort_empty = false } })
-  -- funcs:pick_files()
+  funcs:pick_files() -- funcs:pick_files()
 end, "Worktree files")
 maphelper2("<C-u>", function()
   Snacks.picker.buffers({ title = "Buffers" })
@@ -245,4 +247,4 @@ maphelper2("<C-q>", "<cmd>copen<cr>", "Open quickfix", true)
 
 map("n", "<leader>fi", function()
   funcs.show_file_info_popup()
-end)
+end, { desc = "File info" })
