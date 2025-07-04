@@ -11,6 +11,15 @@ local get_filtered_marks = function(global)
   return marks
 end
 
+local function arrayHas(array, value)
+  for _, a in ipairs(array) do
+    if a == value then
+      return true
+    end
+  end
+  return false
+end
+
 local function findIndex(array, value)
   for i, v in ipairs(array) do
     if v == value then
@@ -236,8 +245,6 @@ local M = {
       treeselection = self:get_neotree_selection()
     end
 
-    vim.notify(treeselection)
-
     Snacks.picker.smart({
       title = "SMART:" .. treeselection,
       dirs = { treeselection },
@@ -431,15 +438,21 @@ local M = {
   end,
 
   smart_close = function(self)
-    local buftype = vim.bo.buftype
-
     local bts = { "nofile", "quickfix", "help", "terminal", "prompt" }
-
-    for _, ft in ipairs(bts) do
-      if buftype == ft then
-        vim.cmd(":q")
-        return
+    local fts = { "DiffviewFileHistory" }
+    local bt = vim.bo.buftype
+    local ft = vim.bo.filetype
+    if arrayHas(fts, ft) then
+      vim.cmd(":q")
+      if ft == "DiffviewFileHistory" then
+        vim.cmd(":tabclose")
       end
+      return
+    end
+
+    if arrayHas(bts, bt) then
+      vim.cmd(":q")
+      return
     end
   end,
 

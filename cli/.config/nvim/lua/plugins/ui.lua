@@ -214,10 +214,6 @@ return {
           { "<leader>/", group = "Search history", icon = { icon = " ", color = "blue" } },
         },
         {
-          { "<leader>ga", group = "Annotate with Git Blame", icon = { icon = " ", color = "blue" } },
-        },
-
-        {
           { "<leader>gC", group = "Conflict", icon = { icon = " ", color = "blue" } },
         },
         {
@@ -226,12 +222,6 @@ return {
 
         {
           { "<leader>up", group = "Profiler", icon = { icon = "󰾆 ", color = "green" } },
-        },
-        {
-          { "<leader>fh", group = "File history", icon = { icon = " ", color = "green" } },
-        },
-        {
-          { "<leader>fi", group = "File info", icon = { icon = " ", color = "blue" } },
         },
       },
     },
