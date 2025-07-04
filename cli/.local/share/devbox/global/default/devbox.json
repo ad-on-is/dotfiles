@@ -39,7 +39,8 @@
     "corefonts@latest",
     "delta@latest",
     "razer-cli@latest",
-    "direnv@latest"
+    "direnv@latest",
+    "neovide@latest"
   ],
   "shell": {
     "init_hook": [

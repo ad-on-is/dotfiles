@@ -148,6 +148,7 @@ return {
         emmet_ls = { enabled = false },
         css_variables = { enabled = false },
         cssls = {},
+        qmlls = {},
         somesass_ls = {},
         -- vala_ls = {},
         denols = { enabled = false },
@@ -172,7 +173,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     event = "VeryLazy",
-    opts = { ensure_installed = { "dart" } },
+    opts = { ensure_installed = { "dart", "qmljs" } },
   },
 
   {

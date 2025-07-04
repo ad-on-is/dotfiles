@@ -30,7 +30,7 @@ plugin-load $repos
 source "$HOME"/.config/zsh/aliases.zsh
 source "$HOME"/.config/zsh/zstyle.zsh
 
-autoload -U compinit && compinit -i # BEFORE zoxide init
+# autoload -U compinit && compinit -i # BEFORE zoxide init
 # compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
 
 [ -x "$(command -v starship)" ] && eval "$(starship init zsh)"
