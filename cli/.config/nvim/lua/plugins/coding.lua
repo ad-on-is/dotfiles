@@ -149,6 +149,7 @@ return {
         emmet_ls = { enabled = false },
         css_variables = { enabled = false },
         cssls = {},
+        qmlls = {},
         somesass_ls = {},
         -- vala_ls = {},
         denols = { enabled = false },

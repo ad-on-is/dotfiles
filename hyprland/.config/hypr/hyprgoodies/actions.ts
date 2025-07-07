@@ -91,6 +91,7 @@ const fixWindowToMonitor = async () => {
     await $`hyprctl keyword windowrule unset, "class:^(${c.class})$"`;
     await $`hyprctl dispatch tagwindow -- -fixedToMonitor`;
   }
+  await $`hyprctl reload`;
   await db.write();
   console.log(db.data.fixedWindows);
   // if (!c.floating) {
