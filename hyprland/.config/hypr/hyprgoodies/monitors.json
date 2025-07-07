@@ -16,7 +16,7 @@
     "workspacePrefix": 4
   },
   "Chimei Innolux Corporation 0x1614": {
-    "config": "1920x1080@60,0x-1440,1",
+    "config": "1920x1200,3440x0,1",
     "workspacePrefix": 5
   }
 }

@@ -39,7 +39,9 @@
     "corefonts@latest",
     "delta@latest",
     "razer-cli@latest",
-    "direnv@latest"
+    "direnv@latest",
+    "sd@latest",
+    "ruplacer@latest"
   ],
   "shell": {
     "init_hook": [
