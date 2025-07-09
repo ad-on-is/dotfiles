@@ -51,9 +51,9 @@ fi
 
 # If --go flag is set, apply changes immediately
 if [ "$GO_FLAG" = true ]; then
-  echo "Applying changes..."
+  count=$(rg "$SEARCH_PATTERN" -l | wc -l)
   rg "$SEARCH_PATTERN" -l | xargs sd "$SEARCH_PATTERN" "$REPLACEMENT"
-  echo "Changes applied successfully!"
+  echo "Changes applied to $count files."
   exit 0
 fi
 
@@ -75,23 +75,23 @@ echo "=================="
 echo
 
 # Process each file
+count=$(echo "$FILES" | wc -l)
 echo "$FILES" | while IFS= read -r file; do
   echo "$file"
 
   # Get the original lines that match
   rg "$SEARCH_PATTERN" -n "$file" | while IFS=: read -r line_num line_content; do
-    echo -e "${RED}- $line_content${NC}"
+    echo -e "${RED}-$line_num: $SEARCH_PATTERN${NC}"
   done
 
   # Get the replaced lines using sd on each matching line
   rg "$SEARCH_PATTERN" -n "$file" | while IFS=: read -r line_num line_content; do
-    replaced_line=$(echo "$line_content" | sd "$SEARCH_PATTERN" "$REPLACEMENT")
-    echo -e "${GREEN}+ $replaced_line${NC}"
+    echo -e "${GREEN}+$line_num: $REPLACEMENT${NC}"
   done
 
   echo
 done
 
 echo "=================="
-echo "To apply these changes, run:"
-echo "$0 '$SEARCH_PATTERN' '$REPLACEMENT' --go"
+echo "To apply changes for $count files, run:"
+echo "rgsd '$SEARCH_PATTERN' '$REPLACEMENT' --go"
