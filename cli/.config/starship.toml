@@ -38,7 +38,8 @@ symbol = " "
 [dart]
 symbol = " "
 style = "#7aa2f7 bold"
-
+[direnv]
+disabled = false
 [directory]
 truncation_length = 3
 truncate_to_repo = false

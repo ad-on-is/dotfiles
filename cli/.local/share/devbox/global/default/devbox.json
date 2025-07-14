@@ -41,7 +41,8 @@
     "razer-cli@latest",
     "direnv@latest",
     "sd@latest",
-    "ruplacer@latest"
+    "ruplacer@latest",
+    "temporal@latest"
   ],
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],

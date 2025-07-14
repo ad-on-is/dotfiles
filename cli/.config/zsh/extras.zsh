@@ -26,20 +26,24 @@ fzf_cd_complete_or_zoxide() {
 zle -N fzf_cd_complete_or_zoxide
 bindkey '^I' fzf_cd_complete_or_zoxide
 
-_ssh_completion() {
 script_path=${(%):-%x}
 script_dir=${script_path:h}
+_ssh_completion() {
   local -a ssh_hosts
 
   if [[ -f ~/.ssh/config ]]; then
   ssh_hosts+=($(grep -i '^host ' ~/.ssh/config | awk '{print $2}' | grep -v '*' | sort -fbu))
-    # ssh_hosts+=($(grep '^[[:space:]]*Host[[:space:]]' ~/.ssh/config | grep -v '*' | cut -d ' ' -f 2 | awk '{print " SSH: "$0}' | fzf --reverse --height 20% --preview="awk -v HOST={3} -f $script_dir/ssh_completion_parser.awk ~/.ssh/config" | awk '{print $3}'))
+    # selection=($(grep '^[[:space:]]*Host[[:space:]]' ~/.ssh/config | grep -v '*' | cut -d ' ' -f 2 | awk '{print " SSH: "$0}' | fzf --reverse --height 20% --preview="awk -v HOST={3} -f $script_dir/ssh_completion_parser.awk ~/.ssh/config" | awk '{print $3}'))
+  
+    # ssh_hosts+="$selection\n"
   fi
 
   _describe 'ssh hosts' ssh_hosts
 }
 
 compdef _ssh_completion ssh
+zstyle ':fzf-tab:complete:ssh:*' fzf-preview 'awk -v HOST=$word -f $HOME/.config/zsh/ssh_completion_parser.awk ~/.ssh/config'
+
 
 
 # Auto Virtual Environment Activation Hook
