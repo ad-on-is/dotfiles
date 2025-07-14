@@ -1,34 +1,33 @@
 return {
-  {
-    "igorlfs/nvim-dap-view",
-    opts = {
-      winbar = {
-        controls = { enabled = true },
-      },
-    },
-    init = function()
-      local dap, dv = require("dap"), require("dap-view")
-      dap.listeners.before.attach["dap-view-config"] = function()
-        dv.open()
-      end
-      dap.listeners.before.launch["dap-view-config"] = function()
-        dv.open()
-      end
-      dap.listeners.before.event_terminated["dap-view-config"] = function()
-        dv.close()
-      end
-      dap.listeners.before.event_exited["dap-view-config"] = function()
-        dv.close()
-      end
-    end,
-  },
-  {
-    "mfussenegger/nvim-dap",
-    dependencies = {
-      { "igorlfs/nvim-dap-view", opts = {} },
-    },
-  },
-  { "rcarriga/nvim-dap-ui", enabled = false },
+  -- {
+  --   "igorlfs/nvim-dap-view",
+  --   opts = {
+  --     winbar = {
+  --       controls = { enabled = true },
+  --     },
+  --   },
+  --   init = function()
+  --     local dap, dv = require("dap"), require("dap-view")
+  --     dap.listeners.before.attach["dap-view-config"] = function()
+  --       dv.open()
+  --     end
+  --     dap.listeners.before.launch["dap-view-config"] = function()
+  --       dv.open()
+  --     end
+  --     dap.listeners.before.event_terminated["dap-view-config"] = function()
+  --       dv.close()
+  --     end
+  --     dap.listeners.before.event_exited["dap-view-config"] = function()
+  --       dv.close()
+  --     end
+  --   end,
+  -- },
+  -- {
+  --   "mfussenegger/nvim-dap",
+  --   dependencies = {
+  --     { "igorlfs/nvim-dap-view", opts = {} },
+  --   },
+  -- },
   {
     "akinsho/git-conflict.nvim",
     version = "*",

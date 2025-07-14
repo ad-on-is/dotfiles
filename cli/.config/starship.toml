@@ -2,7 +2,7 @@ add_newline = false
 continuation_prompt = "› "
 
 format = """
-$sudo$directory$time$container$custom$all
+$sudo$directory$direnv$time$container$custom$all
 """
 
 #format = """$character"""
@@ -49,7 +49,14 @@ home_symbol = "~"
 truncation_symbol = "../"
 use_logical_path = false
 
-
+[direnv]
+format = '[$loaded$symbol]($style)'
+# allowed_msg = "OK"symbol = "direnv "
+style = 'bold red'
+# denied_msg = ""
+loaded_msg = " "
+unloaded_msg = " "
+disabled = false
 [docker_context]
 symbol = " "
 

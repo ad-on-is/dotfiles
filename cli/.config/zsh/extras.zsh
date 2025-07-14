@@ -42,14 +42,65 @@ script_dir=${script_path:h}
 compdef _ssh_completion ssh
 
 
-# _zsh_autosuggest_strategy_curdir() {
-#   p=($1)
-#   s="${p[1]}"
-#   echo "$1"
-#   suggestion=$(fd -t d "$1" -d 1 --color=never | head -n 1)
-#   # echo "$suggestion"
-# # suggestion=$(ATUIN_QUERY="$1" atuin search --cmd-only --limit 1 --search-mode prefix)
-# }
-#
-# ZSH_AUTOSUGGEST_STRATEGY=("curdir")
-# # echo "$ZSH_AUTOSUGGEST_STRATEGY"
+# Auto Virtual Environment Activation Hook
+# Add this to your ~/.zshrc file
+
+# Function to handle virtual environment activation/deactivation
+auto_venv() {
+    # Deactivate current virtual environment if active
+    if [[ -n "$VIRTUAL_ENV" ]]; then
+        deactivate
+    fi
+    
+    # Check if current directory contains requirements.txt
+    if [[ -f "requirements.txt" ]]; then
+        # Look for common virtual environment directory names
+        local venv_dirs=("venv" ".venv" "env" ".env" "virtualenv")
+        local venv_found=false
+        
+        for venv_dir in "${venv_dirs[@]}"; do
+            if [[ -d "$venv_dir" && -f "$venv_dir/bin/activate" ]]; then
+                source "$venv_dir/bin/activate"
+                venv_found=true
+                break
+            fi
+        done
+        
+        # If no virtual environment found, create one automatically
+        if [[ "$venv_found" = false ]]; then
+            echo "🔨 Creating virtual environment..."
+            
+            # Create virtual environment
+            python -m venv venv
+            
+            if [[ $? -eq 0 ]]; then
+                echo "✅ Virtual environment created successfully!"
+                source venv/bin/activate
+                
+                # Ask to install packages from requirements.txt
+                echo -n "📦 Install packages from requirements.txt? [Y/n]: "
+                read -r response
+                
+                # Default to yes if empty response or starts with y/Y
+                if [[ -z "$response" || "$response" =~ ^[Yy] ]]; then
+                    pip install -r requirements.txt
+                    
+                    if [[ $? -eq 0 ]]; then
+                        echo "✅ Packages installed successfully!"
+                    else
+                        echo "❌ Failed to install some packages. Check requirements.txt"
+                    fi
+                fi
+            else
+                echo "❌ Failed to create virtual environment"
+            fi
+        fi
+    fi
+}
+
+# Hook the function to directory changes
+autoload -U add-zsh-hook
+add-zsh-hook chpwd auto_venv
+
+# Also run when shell starts (in case you're already in a project directory)
+auto_venv
