@@ -1,19 +1,6 @@
 local funcs = require("config.functions")
 local icons = LazyVim.config.icons
 
-local function is_active()
-  local ok, hydra = pcall(require, "hydra.statusline")
-  return ok and hydra.is_active()
-end
-
-local function get_name()
-  local ok, hydra = pcall(require, "hydra.statusline")
-  if ok then
-    return " MultiCursor"
-  end
-  return ""
-end
-
 local git_blame = require("gitblame")
 
 git_blame.is_blame_text_available() -- Returns a boolean value indicating whether blame message is available
@@ -245,9 +232,9 @@ return {
     -- },
     opts = {
       refresh = {
-        statusline = 1500,
-        tabline = 1500,
-        winbar = 1500,
+        statusline = 500,
+        tabline = 500,
+        winbar = 500,
       },
       sections = {
         lualine_b = {
