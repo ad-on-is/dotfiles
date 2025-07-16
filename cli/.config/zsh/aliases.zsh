@@ -164,3 +164,5 @@ function quitawesome() {
   apid=$(ps -H -t /dev/tty2 | grep "awesome" | awk '{print $1}')
   kill -SIGKILL $apid
 }
+
+git config --global alias.d '!git diff $(git symbolic-ref refs/remotes/origin/HEAD | sed "s@^refs/remotes/origin/@@")'

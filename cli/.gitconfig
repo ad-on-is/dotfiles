@@ -30,7 +30,9 @@ path = ~/.local/share/git/catppuccin.gitconfig
     co = checkout
     cb = checkout -b
     ct = checkout -t
-    d= diff HEAD~1 HEAD
+    s = status
+	d = !git diff $(git symbolic-ref refs/remotes/origin/HEAD | sed \"s@^refs/remotes/origin/@@\")
+
 
 
 [filter "lfs"]
