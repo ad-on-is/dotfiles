@@ -108,6 +108,11 @@ return {
           Color = "●",
         },
       },
+      sources = {
+        per_filetype = {
+          AvanteInput = nil,
+        },
+      },
       cmdline = {
         sources = function()
           local type = vim.fn.getcmdtype()
