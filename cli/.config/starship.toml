@@ -2,7 +2,7 @@ add_newline = false
 continuation_prompt = "› "
 
 format = """
-$sudo$directory$direnv$time$container$custom$all
+$sudo$directory$direnv$nix_shell$time$container$custom$all
 """
 
 #format = """$character"""
@@ -49,9 +49,9 @@ truncation_symbol = "../"
 use_logical_path = false
 
 [direnv]
-format = '[$loaded$symbol]($style)'
+format = '[\[direnv\]]($style)'
 # allowed_msg = "OK"symbol = "direnv "
-style = 'bold red'
+style = '#fab387 dimmed'
 # denied_msg = ""
 loaded_msg = " "
 unloaded_msg = " "
@@ -120,8 +120,8 @@ symbol = " "
 symbol = " "
 
 [nix_shell]
-symbol = " "
-
+format = '[\[$name\]]($style) '
+style = "#fab387 dimmed"
 [nodejs]
 detect_extensions = []
 

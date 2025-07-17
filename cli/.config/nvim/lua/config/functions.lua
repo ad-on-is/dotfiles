@@ -203,12 +203,16 @@ local M = {
 
   show_file_info_popup = function()
     local file = vim.fn.expand("%:p")
+    local name = vim.fn.expand("%:t")
+    local dir = vim.fn.expand("%:h")
     local size = vim.fn.getfsize(file)
     local modified = vim.fn.getftime(file)
     local modified_str = os.date("%Y-%m-%d %H:%M:%S", modified)
 
     local info = "File: "
-      .. file
+      .. name
+      .. "\n"
+      .. dir
       .. "\n"
       .. "Size: "
       .. (size > 0 and bytes_to_human(size))
