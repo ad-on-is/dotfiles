@@ -42,7 +42,8 @@
     "direnv@latest",
     "sd@latest",
     "ruplacer@latest",
-    "temporal@latest"
+    "temporal@latest",
+    "gitlab-ci-local@latest"
   ],
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],

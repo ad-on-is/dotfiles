@@ -228,13 +228,14 @@ return {
       },
     },
   },
-  { "AndreM222/copilot-lualine" },
 
   {
     "nvim-lualine/lualine.nvim",
-    -- dependencies = {
-    --   { "nvim-lua/lsp-status.nvim" },
-    -- },
+    dependencies = {
+      { "AndreM222/copilot-lualine" },
+
+      -- { "nvim-lua/lsp-status.nvim" },
+    },
     opts = {
       refresh = {
         statusline = 500,

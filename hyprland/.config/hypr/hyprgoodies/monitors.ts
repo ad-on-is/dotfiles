@@ -1,4 +1,4 @@
-import { getMonitors, socketAddr } from "./hyprland";
+import { getMonitors, socketAddr, getClients, getWorkspaces } from "./hyprland";
 import monitorSetup from "./monitors.json";
 import { $ } from "bun";
 
@@ -61,6 +61,19 @@ async function handleMonitors(workspaces: number) {
 
   await Bun.write(MONITOR_FILE, nc);
   await $`hyprctl reload`;
+  // await fixClients();
+}
+
+async function fixClients() {
+  const workspaces = await getWorkspaces();
+  const clients = await getClients();
+
+  for (const c of clients) {
+    if (c.workspace.name.length === 1) {
+      const w = workspaces.find((w) => w.monitorID === c.monitor);
+      await $`hyprctl dispatch movetoworkspacesilent ${w!.name},address:"${c.address}`;
+    }
+  }
 }
 
 await handleMonitors(3);
