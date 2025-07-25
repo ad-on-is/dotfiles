@@ -182,7 +182,19 @@ return {
 
   {
     "mvllow/modes.nvim",
-    opts = {},
+    opts = function(_, opts)
+      local C = require("catppuccin.palettes").get_palette("mocha")
+      opts = {
+        colors = {
+          change = C.peach,
+          delete = C.red,
+          insert = C.green,
+          visual = C.blue,
+          select = C.pink,
+        },
+      }
+      return opts
+    end,
   },
   {
     "folke/snacks.nvim",
