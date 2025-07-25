@@ -181,8 +181,8 @@ return {
   -- },
 
   {
-    "rasulomaroff/reactive.nvim",
-    opts = { load = { "catppuccin-mocha-cursorline", "catppuccin-mocha-cursor" } },
+    "mvllow/modes.nvim",
+    opts = {},
   },
   {
     "folke/snacks.nvim",

@@ -14,9 +14,9 @@ return {
         style = "minimal",
       },
       picker = {
-        jump = {
-          reuse_win = true,
-        },
+        -- jump = {
+        --   reuse_win = true,
+        -- },
         formatters = {
           file = {
             truncate = 1000,
@@ -233,8 +233,6 @@ return {
     "nvim-lualine/lualine.nvim",
     dependencies = {
       { "AndreM222/copilot-lualine" },
-
-      -- { "nvim-lua/lsp-status.nvim" },
     },
     opts = {
       refresh = {
