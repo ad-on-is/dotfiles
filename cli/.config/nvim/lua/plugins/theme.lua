@@ -115,6 +115,8 @@ return {
           SnacksIndent = { fg = C.crust },
           SnacksIndentScope = { fg = mc(C.lavender, 0.3) },
           SnacksIndentChunk = { fg = mc(C.lavender, 0.3) },
+          TreesitterContext = { bg = C.surface0 },
+          TreesitterContextLineNumber = { bg = C.surface0 },
         }
       end,
       color_overrides = {
@@ -166,7 +168,7 @@ return {
             local hls = require("catppuccin.groups.integrations.bufferline").get()
             opts.highlights = hls()
             local C = require("catppuccin.palettes").get_palette("mocha")
-            local bg = C.surface1
+            local bg = C.surface0
             opts.highlights.buffer_selected = { bg = bg }
             opts.highlights.diagnostic_selected = { bg = bg }
             opts.highlights.info_selected = { bg = bg }
