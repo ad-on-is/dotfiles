@@ -236,9 +236,9 @@ return {
       build = "make",
     },
     opts = {
-      bar = {
-        truncate = false,
-      },
+      -- bar = {
+      --   truncate = false,
+      -- },
     },
   },
 
