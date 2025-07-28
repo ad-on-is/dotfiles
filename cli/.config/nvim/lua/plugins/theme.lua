@@ -20,6 +20,7 @@ return {
         cmp = true,
         blink_cmp = true,
         dashboard = true,
+        dropbar = true,
         flash = true,
         grug_far = true,
         gitsigns = true,
