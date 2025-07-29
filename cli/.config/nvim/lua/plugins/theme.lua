@@ -20,6 +20,7 @@ return {
         cmp = true,
         blink_cmp = true,
         dashboard = true,
+        dropbar = true,
         flash = true,
         grug_far = true,
         gitsigns = true,
@@ -115,6 +116,8 @@ return {
           SnacksIndent = { fg = C.crust },
           SnacksIndentScope = { fg = mc(C.lavender, 0.3) },
           SnacksIndentChunk = { fg = mc(C.lavender, 0.3) },
+          TreesitterContext = { bg = C.surface0 },
+          TreesitterContextLineNumber = { bg = C.surface0 },
         }
       end,
       color_overrides = {
@@ -161,10 +164,25 @@ return {
     specs = {
       {
         "akinsho/bufferline.nvim",
-        optional = true,
         opts = function(_, opts)
           if (vim.g.colors_name or ""):find("catppuccin") then
-            opts.highlights = require("catppuccin.groups.integrations.bufferline").get()
+            local hls = require("catppuccin.groups.integrations.bufferline").get()
+            opts.highlights = hls()
+            local C = require("catppuccin.palettes").get_palette("mocha")
+            local bg = C.surface1
+            opts.highlights.buffer_selected = { bg = bg }
+            opts.highlights.diagnostic_selected = { bg = bg }
+            opts.highlights.info_selected = { bg = bg }
+            opts.highlights.indicator_selected = { fg = C.base }
+            opts.highlights.hint_selected = { bg = bg }
+            opts.highlights.hint_diagnostic_selected = { bg = bg }
+            opts.highlights.warning_selected = { bg = bg }
+            opts.highlights.warning_diagnostic_selected = { bg = bg }
+            opts.highlights.error_selected = { bg = bg }
+            opts.highlights.error_diagnostic_selected = { bg = bg }
+            opts.highlights.modified_selected = { bg = bg }
+            opts.highlights.numbers_selected = { bg = bg }
+            opts.highlights.close_button_selected = { bg = bg, fg = C.red }
           end
         end,
       },
@@ -181,8 +199,20 @@ return {
   -- },
 
   {
-    "rasulomaroff/reactive.nvim",
-    opts = { load = { "catppuccin-mocha-cursorline", "catppuccin-mocha-cursor" } },
+    "mvllow/modes.nvim",
+    opts = function(_, opts)
+      local C = require("catppuccin.palettes").get_palette("mocha")
+      opts = {
+        colors = {
+          change = C.peach,
+          delete = C.red,
+          insert = C.green,
+          visual = C.blue,
+          select = C.pink,
+        },
+      }
+      return opts
+    end,
   },
   {
     "folke/snacks.nvim",

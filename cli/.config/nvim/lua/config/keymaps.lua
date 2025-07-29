@@ -192,7 +192,11 @@ map("n", "\\", function()
 end)
 
 map("n", "<leader>/", function()
-  Snacks.picker.search_history()
+  Snacks.picker.search_history({ layout = { preset = "select" } })
+end, { noremap = true })
+
+map("n", "<leader>:", function()
+  Snacks.picker.command_history({ layout = { preset = "select" } })
 end, { noremap = true })
 
 maphelper2("<C-h>", vim.lsp.buf.hover, "LSP hover", true)

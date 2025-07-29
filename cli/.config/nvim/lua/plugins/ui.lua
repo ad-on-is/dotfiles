@@ -14,9 +14,9 @@ return {
         style = "minimal",
       },
       picker = {
-        jump = {
-          reuse_win = true,
-        },
+        -- jump = {
+        --   reuse_win = true,
+        -- },
         formatters = {
           file = {
             truncate = 1000,
@@ -220,21 +220,19 @@ return {
   },
   {
     "akinsho/bufferline.nvim",
-    event = "VeryLazy",
     opts = {
       options = {
         always_show_bufferline = true,
-        indicator = { style = "underline" },
+        -- indicator = { style = "underline" },
       },
     },
   },
-  { "AndreM222/copilot-lualine" },
 
   {
     "nvim-lualine/lualine.nvim",
-    -- dependencies = {
-    --   { "nvim-lua/lsp-status.nvim" },
-    -- },
+    dependencies = {
+      { "AndreM222/copilot-lualine" },
+    },
     opts = {
       refresh = {
         statusline = 500,
@@ -242,18 +240,11 @@ return {
         winbar = 500,
       },
       sections = {
-        lualine_b = {
-          {
-            "branch",
-            fmt = function(str)
-              if #str > 40 then
-                local first = str:sub(1, 35)
-                local last = str:sub(-5)
-                return first .. "..." .. last
-              end
-              return str
-            end,
-          },
+        lualine_b = {},
+        lualine_c = {
+          LazyVim.lualine.root_dir(),
+          -- { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
+          { LazyVim.lualine.pretty_path({ length = 10 }) },
           {
             "diff",
             symbols = {
@@ -272,8 +263,45 @@ return {
               end
             end,
           },
+
+          {
+            "diagnostics",
+            symbols = {
+              error = icons.diagnostics.Error,
+              warn = icons.diagnostics.Warn,
+              info = icons.diagnostics.Info,
+              hint = icons.diagnostics.Hint,
+            },
+          },
         },
         lualine_x = {
+          {
+            funcs.get_attached_clients,
+            -- color = {
+            --   gui = "bold",
+            -- },
+          },
+          "encoding",
+        },
+        lualine_y = {
+          {
+            "branch",
+            fmt = function(str)
+              if #str > 40 then
+                local first = str:sub(1, 35)
+                local last = str:sub(-5)
+                return first .. "..." .. last
+              end
+              return str
+            end,
+          },
+          { git_blame.get_current_blame_text, cond = git_blame.is_blame_text_available },
+        },
+        lualine_z = {
+          { "progress", separator = " ", padding = { left = 1, right = 0 } },
+          { "location", padding = { left = 0, right = 1 } },
+          "searchcount",
+          "copilot",
           {
             function()
               return "  " .. require("dap").status()
@@ -285,25 +313,6 @@ return {
             --   return Snacks.util.color("Debug")
             -- end,
           },
-          -- stylua: ignore
-        },
-        lualine_y = {
-          "filetype",
-          {
-            funcs.get_attached_clients,
-            -- color = {
-            --   gui = "bold",
-            -- },
-          },
-          "encoding",
-          { git_blame.get_current_blame_text, cond = git_blame.is_blame_text_available },
-        },
-        lualine_z = {
-          { "progress", separator = " ", padding = { left = 1, right = 0 } },
-          { "location", padding = { left = 0, right = 1 } },
-          "searchcount",
-
-          "copilot",
         },
       },
     },
