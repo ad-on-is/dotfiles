@@ -35,6 +35,23 @@ return {
     opts = {},
   },
   {
+    "Bekaboo/dropbar.nvim",
+    -- optional, but required for fuzzy finder support
+    dependencies = {
+      "nvim-telescope/telescope-fzf-native.nvim",
+      build = "make",
+    },
+    opts = {
+      menu = {
+        preview = false,
+      },
+      -- bar = {
+      --   truncate = false,
+      -- },
+    },
+  },
+
+  {
     "f-person/git-blame.nvim",
     event = "VeryLazy",
     opts = {
