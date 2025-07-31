@@ -42,12 +42,13 @@ return {
       build = "make",
     },
     opts = {
+      bar = {
+        --   truncate = false,
+        update_debounce = 200,
+      },
       menu = {
         preview = false,
       },
-      -- bar = {
-      --   truncate = false,
-      -- },
     },
   },
 

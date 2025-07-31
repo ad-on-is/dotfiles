@@ -257,38 +257,43 @@ local M = {
   end,
 
   live_grep = function(self)
-    local treeselection = vim.fn.getcwd()
+    local treeselection = ""
     if vim.bo.filetype == "neo-tree" then
       treeselection = self:get_neotree_selection()
     end
-    Snacks.picker.grep({
-      dirs = { treeselection },
-      title = "GREP: " .. treeselection,
-      hook = function(args, _)
-        local new_args = {}
-        local dir_args = ""
-        for _, arg in ipairs(args) do
-          local part1, part2 = arg:match("(.+) // (.+)")
-          if part1 and part2 then
-            table.insert(new_args, part1)
-            if not string.find(part2, "%*") then
-              part2 = part2 .. "/*"
-            end
-            dir_args = "**/" .. part2
-          else
-            table.insert(new_args, arg)
-          end
-          -- end
-        end
-        local i = findIndex(new_args, "--")
-        if i and dir_args ~= "" then
-          table.insert(new_args, i, dir_args)
-          table.insert(new_args, i, "-g")
-        end
 
-        return new_args
-      end,
-    })
+    if treeselection == "" then
+      Snacks.picker.grep_buffers({ title = "GREP: Open files" })
+    else
+      Snacks.picker.grep({
+        dirs = { treeselection },
+        title = "GREP: " .. treeselection,
+        -- hook = function(args, _)
+        --   local new_args = {}
+        --   local dir_args = ""
+        --   for _, arg in ipairs(args) do
+        --     local part1, part2 = arg:match("(.+) // (.+)")
+        --     if part1 and part2 then
+        --       table.insert(new_args, part1)
+        --       if not string.find(part2, "%*") then
+        --         part2 = part2 .. "/*"
+        --       end
+        --       dir_args = "**/" .. part2
+        --     else
+        --       table.insert(new_args, arg)
+        --     end
+        --     -- end
+        --   end
+        --   local i = findIndex(new_args, "--")
+        --   if i and dir_args ~= "" then
+        --     table.insert(new_args, i, dir_args)
+        --     table.insert(new_args, i, "-g")
+        --   end
+        --
+        --   return new_args
+        -- end,
+      })
+    end
   end,
 
   -- open definition in a floating window next to the cursor, but stay in the window if the def
