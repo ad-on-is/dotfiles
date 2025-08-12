@@ -225,6 +225,10 @@ map("n", "<esc>", function()
   funcs:smart_close()
 end, { buffer = false, noremap = true })
 
+map("n", "<C-\\>", function()
+  vim.cmd("terminal")
+end, { desc = "Open terminal" })
+
 maphelper("<A-q>", ":qa<CR>", ":qa<CR>", "<Esc>:qa<CR>", "Quit", true)
 maphelper2("<C-w>", function()
   Snacks.bufdelete()

@@ -16,6 +16,7 @@ alias devwatch='find $1 | entr -cr ${@: 2}'
 alias watchgo='watchexec -r -e go --stop-signal SIGINT -- ${@:1}'
 alias sctl='systemctl --user'
 alias jctl='journalctl --user'
+alias lg='lazygit'
 
 function gitpr() {
   git fetch origin pull/$1/head:PR-$1

@@ -59,3 +59,5 @@ vim.api.nvim_create_autocmd({ "ModeChanged" }, {
     vim.lsp.inlay_hint.enable(false) -- disable hints in insert mode
   end,
 })
+
+LazyVim.cmp.actions.ai_accept = function() end
