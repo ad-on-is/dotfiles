@@ -17,6 +17,9 @@ return {
         -- jump = {
         --   reuse_win = true,
         -- },
+        matcher = {
+          history_bonus = true,
+        },
         formatters = {
           file = {
             truncate = 1000,

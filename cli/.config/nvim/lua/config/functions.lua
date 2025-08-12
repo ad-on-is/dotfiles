@@ -252,6 +252,8 @@ local M = {
     Snacks.picker.smart({
       title = "SMART:" .. treeselection,
       dirs = { treeselection },
+      hidden = true,
+      multi = { "buffers", "files" },
       matcher = { sort_empty = false },
     })
   end,
@@ -263,11 +265,12 @@ local M = {
     end
 
     if treeselection == "" then
-      Snacks.picker.grep_buffers({ title = "GREP: Open files" })
+      Snacks.picker.grep_buffers({ title = "GREP: Open files", hidden = true })
     else
       Snacks.picker.grep({
         dirs = { treeselection },
         title = "GREP: " .. treeselection,
+        hidden = true,
         -- hook = function(args, _)
         --   local new_args = {}
         --   local dir_args = ""
