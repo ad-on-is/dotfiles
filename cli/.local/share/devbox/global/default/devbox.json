@@ -43,7 +43,9 @@
     "sd@latest",
     "ruplacer@latest",
     "temporal@latest",
-    "gitlab-ci-local@latest"
+    "gitlab-ci-local@latest",
+    "tty-share@latest",
+    "sshx@latest"
   ],
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
