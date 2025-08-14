@@ -1,5 +1,5 @@
-; [include]
-;   path = ~/.local/share/git/catppuccin.gitconfig
+[include]
+  path = ~/.local/share/git/catppuccin.gitconfig
 [delta]
   features = catppuccin-mocha
   line-numbers = true
@@ -31,6 +31,7 @@
     cb = checkout -b
     ct = checkout -t
     s = status
+	d = !git diff $(git symbolic-ref refs/remotes/origin/HEAD | sed \"s@^refs/remotes/origin/@@\")
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
