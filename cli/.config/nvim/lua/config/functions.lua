@@ -205,9 +205,16 @@ local M = {
     local file = vim.fn.expand("%:p")
     local name = vim.fn.expand("%:t")
     local dir = vim.fn.expand("%:h")
-    local size = vim.fn.getfsize(file)
-    local modified = vim.fn.getftime(file)
-    local modified_str = os.date("%Y-%m-%d %H:%M:%S", modified)
+    local size = 0
+    local modified_str = ""
+    if name ~= "" then
+      size = vim.fn.getfsize(file) or 0
+      local modified = vim.fn.getftime(file)
+      modified_str = os.date("%Y-%m-%d %H:%M:%S", modified) or ""
+    end
+    -- local size = vim.fn.getfsize(file) or 0
+    -- local modified = vim.fn.getftime(file) or ""
+    -- local modified_str = os.date("%Y-%m-%d %H:%M:%S", modified) or ""
 
     local info = "File: "
       .. name

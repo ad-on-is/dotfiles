@@ -166,4 +166,4 @@ function quitawesome() {
   kill -SIGKILL $apid
 }
 
-git config --global alias.d '!git diff $(git symbolic-ref refs/remotes/origin/HEAD | sed "s@^refs/remotes/origin/@@")'
+# git config --global alias.d '!git diff $(git symbolic-ref refs/remotes/origin/HEAD | sed "s@^refs/remotes/origin/@@")'
