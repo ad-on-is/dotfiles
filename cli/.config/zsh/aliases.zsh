@@ -161,9 +161,5 @@ alias gibr='git checkout -b'
 alias gilo='git l $(git branch --show-current)'
 alias gipl='git pull'
 alias giph='git push'
-function quitawesome() {
-  apid=$(ps -H -t /dev/tty2 | grep "awesome" | awk '{print $1}')
-  kill -SIGKILL $apid
-}
 
 git config --global alias.d '!git diff $(git symbolic-ref refs/remotes/origin/HEAD | sed "s@^refs/remotes/origin/@@")'

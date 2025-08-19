@@ -140,7 +140,7 @@ symbol = " "
 
 [php]
 symbol = " "
-disabled = false
+disabled = true
 
 [python]
 symbol = " "
