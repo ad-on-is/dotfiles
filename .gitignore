@@ -5,3 +5,4 @@ cli/.local/share/devbox/global/default/devbox.lock
 hyprland/.config/hypr/config/overrides.conf
 hyprland/.config/hypr/config/monitors.conf
 gtk/**/bookmarks
+cli/.config/yazi/plugins/

@@ -132,6 +132,9 @@ return {
   },
   {
     "mikavilpas/yazi.nvim",
+    keys = {
+      { "<esc>", "q" },
+    },
     opts = {
       hooks = {
         yazi_closed_successfully = function(chosen, config, state)
