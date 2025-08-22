@@ -46,7 +46,8 @@
     "gitlab-ci-local@latest",
     "tty-share@latest",
     "sshx@latest",
-    "duckdb@latest"
+    "duckdb@latest",
+    "cmatrix@latest"
   ],
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],

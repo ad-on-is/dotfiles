@@ -63,6 +63,10 @@ function distrobox-restore() {
 
 alias fix-datagrip='fd -H "\\.lock" ~/.var/app/com.jetbrains.DataGrip -x rm'
 
+function nva() {
+  NVIM_APPNAME=astronvim nv "$@"
+}
+
 function http() {
   set -e
   out=$(curl -sSLv "$@" 2>&1)
@@ -127,7 +131,7 @@ function y() {
 }
 
 alias ..="cd .."
-alias cat="bat --style=plain  --paging=never --theme='Catppuccin Mocha'"
+alias cat="bat"
 
 alias ls='eza --icons --group --group-directories-first --octal-permissions --no-permissions --color=auto --time-style=long-iso --modified'
 alias ll='ls -la -M'
