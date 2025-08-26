@@ -67,6 +67,10 @@ function nva() {
   NVIM_APPNAME=astronvim nv "$@"
 }
 
+function nvam() {
+  NVIM_APPNAME=astronvim nvim "$@"
+}
+
 function http() {
   set -e
   out=$(curl -sSLv "$@" 2>&1)
