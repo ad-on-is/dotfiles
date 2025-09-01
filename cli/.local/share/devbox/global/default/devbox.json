@@ -47,7 +47,8 @@
     "tty-share@latest",
     "sshx@latest",
     "duckdb@latest",
-    "cmatrix@latest"
+    "cmatrix@latest",
+    "superfile@latest"
   ],
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],

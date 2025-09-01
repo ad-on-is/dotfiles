@@ -162,13 +162,14 @@ maphelper2("<C-o>", function()
   vim.cmd("Yazi")
   -- funcs.open_dialog("file", "Open file")
 end, "Open folder dialog")
--- TODO: test
 maphelper2("<C-t>", function()
   Snacks.picker.todo_comments()
   -- funcs.open_dialog("file", "Open file")
 end, "Open folder dialog")
 
 maphelper2("<C-p>", function()
+  -- require("fff").find_files()
+
   funcs:pick_files() -- funcs:pick_files()
 end, "Worktree files")
 maphelper2("<C-u>", function()

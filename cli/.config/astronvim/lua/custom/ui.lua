@@ -1,7 +1,7 @@
-local funcs = require("config.functions")
-local icons = LazyVim.config.icons
+local funcs = require "functions"
+local icons = require("astroui").config.icons
 
-local git_blame = require("gitblame")
+local git_blame = require "gitblame"
 
 git_blame.is_blame_text_available() -- Returns a boolean value indicating whether blame message is available
 git_blame.get_current_blame_text()
@@ -120,13 +120,9 @@ return {
         sources = function()
           local type = vim.fn.getcmdtype()
           -- Search forward and backward
-          if type == "/" or type == "?" then
-            return { "buffer" }
-          end
+          if type == "/" or type == "?" then return { "buffer" } end
           -- Commands
-          if type == ":" or type == "@" then
-            return { "cmdline" }
-          end
+          if type == ":" or type == "@" then return { "cmdline" } end
           return { "path" }
         end,
       },
@@ -149,9 +145,7 @@ return {
                 highlight = function(ctx)
                   local highlights = {}
                   local highlights_info = require("colorful-menu").blink_highlights(ctx)
-                  if highlights_info ~= nil then
-                    highlights = highlights_info.highlights
-                  end
+                  if highlights_info ~= nil then highlights = highlights_info.highlights end
                   for _, idx in ipairs(ctx.label_matched_indices) do
                     table.insert(highlights, { idx, idx + 1, group = "BlinkCmpLabelMatch" })
                   end
@@ -225,10 +219,8 @@ return {
     "akinsho/bufferline.nvim",
 
     init = function()
-      local bufline = require("catppuccin.groups.integrations.bufferline")
-      function bufline.get()
-        return bufline.get_theme()
-      end
+      local bufline = require "catppuccin.groups.integrations.bufferline"
+      function bufline.get() return bufline.get_theme() end
     end,
     opts = {
       options = {
@@ -251,35 +243,35 @@ return {
       sections = {
         lualine_b = {},
         lualine_c = {
-          LazyVim.lualine.root_dir(),
-          -- { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-          { LazyVim.lualine.pretty_path({ length = 10 }) },
-          {
-            "diff",
-            symbols = {
-              added = LazyVim.config.icons.git.added,
-              modified = LazyVim.config.icons.git.modified,
-              removed = LazyVim.config.icons.git.removed,
-            },
-            source = function()
-              local gitsigns = vim.b.gitsigns_status_dict
-              if gitsigns then
-                return {
-                  added = gitsigns.added,
-                  modified = gitsigns.changed,
-                  removed = gitsigns.removed,
-                }
-              end
-            end,
-          },
+          -- LazyVim.lualine.root_dir(),
+          -- -- { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
+          -- { LazyVim.lualine.pretty_path { length = 10 } },
+          -- {
+          --   "diff",
+          --   symbols = {
+          --     -- added = LazyVim.config.icons.git.added,
+          --     -- modified = LazyVim.config.icons.git.modified,
+          --     -- removed = LazyVim.config.icons.git.removed,
+          --   },
+          --   source = function()
+          --     local gitsigns = vim.b.gitsigns_status_dict
+          --     if gitsigns then
+          --       return {
+          --         added = gitsigns.added,
+          --         modified = gitsigns.changed,
+          --         removed = gitsigns.removed,
+          --       }
+          --     end
+          --   end,
+          -- },
 
           {
             "diagnostics",
             symbols = {
-              error = icons.diagnostics.Error,
-              warn = icons.diagnostics.Warn,
-              info = icons.diagnostics.Info,
-              hint = icons.diagnostics.Hint,
+              -- error = icons.diagnostics.Error,
+              -- warn = icons.diagnostics.Warn,
+              -- info = icons.diagnostics.Info,
+              -- hint = icons.diagnostics.Hint,
             },
           },
         },
@@ -312,12 +304,8 @@ return {
           "searchcount",
           "copilot",
           {
-            function()
-              return "  " .. require("dap").status()
-            end,
-            cond = function()
-              return package.loaded["dap"] and require("dap").status() ~= ""
-            end,
+            function() return "  " .. require("dap").status() end,
+            cond = function() return package.loaded["dap"] and require("dap").status() ~= "" end,
             -- color = function()
             --   return Snacks.util.color("Debug")
             -- end,
@@ -494,21 +482,19 @@ return {
         keys = {
           ["<esc>"] = function()
             require("trouble").cancel()
-            vim.cmd("Trouble qflist close")
+            vim.cmd "Trouble qflist close"
           end,
         },
       },
       init = function()
         vim.api.nvim_create_autocmd("BufRead", {
           callback = function(ev)
-            if require("trouble").is_open("qflist") then
-              vim.cmd([[Trouble qflist close]])
-            end
+            if require("trouble").is_open "qflist" then vim.cmd [[Trouble qflist close]] end
 
             if vim.bo[ev.buf].buftype == "quickfix" then
               vim.schedule(function()
-                vim.cmd([[cclose]])
-                vim.cmd([[Trouble qflist open]])
+                vim.cmd [[cclose]]
+                vim.cmd [[Trouble qflist open]]
               end)
             end
           end,

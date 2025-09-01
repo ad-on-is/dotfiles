@@ -3,7 +3,7 @@
 -- Add any additional keymaps here
 --
 --
-
+-- vim.notify(vim.inspect(LV))
 local funcs = require "functions"
 -- local menu = require("menu")
 local map = vim.keymap.set
