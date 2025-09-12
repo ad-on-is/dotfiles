@@ -199,4 +199,4 @@ alias gilo='git l $(git branch --show-current)'
 alias gipl='git pull'
 alias giph='git push'
 
-git config --global alias.d '!git diff $(git symbolic-ref refs/remotes/origin/HEAD | sed "s@^refs/remotes/origin/@@")'
+# git config --global alias.d '!git diff $(git symbolic-ref refs/remotes/origin/HEAD | sed "s@^refs/remotes/origin/@@")'

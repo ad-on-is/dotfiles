@@ -32,7 +32,10 @@
     cb = checkout -b
     ct = checkout -t
     s = status
-	d = !git diff $(git symbolic-ref refs/remotes/origin/HEAD | sed \"s@^refs/remotes/origin/@@\")
+    d = diff
+    d1 = diff HEAD~1
+    d2 = diff HEAD~2
+
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f

@@ -1,5 +1,3 @@
-os:
-  editPreset: "nvim-remote"
 gui:
   theme:
     unstagedChangesColor:
@@ -22,6 +20,8 @@ gui:
     activeBorderColor:
       - "#fab387"
       - "bold"
+  nerdFontsVersion: "3"
   authorColors:
     '*': "#b4befe"
-  nerdFontsVersion: "3"
+os:
+  editPreset: "nvim-remote"
