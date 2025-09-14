@@ -265,10 +265,14 @@ local M = {
     })
   end,
 
-  live_grep = function(self)
+  live_grep = function(self, global)
     local treeselection = ""
     if vim.bo.filetype == "neo-tree" then
       treeselection = self:get_neotree_selection()
+    end
+
+    if global then
+      treeselection = vim.fn.getcwd()
     end
 
     if treeselection == "" then

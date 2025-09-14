@@ -1,0 +1,9 @@
+[mgr]
+prepend_keymap = [
+  # { on = [
+  #   "<Esc>",
+  # ], run = [
+  #   "escape",
+  #   "close",
+  # ], desc = "Exit the process" },
+]

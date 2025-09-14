@@ -194,7 +194,11 @@ maphelper2("<A-f>", function()
 end, "Search and replace in files", true)
 
 map("n", "\\", function()
-  funcs:live_grep()
+  funcs:live_grep(false)
+end)
+
+map("n", "°", function()
+  funcs:live_grep(true)
 end)
 
 map("n", "<leader>/", function()
