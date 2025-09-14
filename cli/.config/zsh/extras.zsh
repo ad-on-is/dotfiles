@@ -33,9 +33,6 @@ _ssh_completion() {
 
   if [[ -f ~/.ssh/config ]]; then
   ssh_hosts+=($(grep -i '^host ' ~/.ssh/config | awk '{print $2}' | grep -v '*' | sort -fbu))
-    # selection=($(grep '^[[:space:]]*Host[[:space:]]' ~/.ssh/config | grep -v '*' | cut -d ' ' -f 2 | awk '{print " SSH: "$0}' | fzf --reverse --height 20% --preview="awk -v HOST={3} -f $script_dir/ssh_completion_parser.awk ~/.ssh/config" | awk '{print $3}'))
-  
-    # ssh_hosts+="$selection\n"
   fi
 
   _describe 'ssh hosts' ssh_hosts
@@ -55,13 +52,11 @@ auto_venv() {
     if [[ -n "$VIRTUAL_ENV" ]]; then
         deactivate
     fi
-    
     # Check if current directory contains requirements.txt
     if [[ -f "requirements.txt" ]]; then
         # Look for common virtual environment directory names
         local venv_dirs=("venv" ".venv" "env" ".env" "virtualenv")
         local venv_found=false
-        
         for venv_dir in "${venv_dirs[@]}"; do
             if [[ -d "$venv_dir" && -f "$venv_dir/bin/activate" ]]; then
                 source "$venv_dir/bin/activate"
@@ -69,26 +64,20 @@ auto_venv() {
                 break
             fi
         done
-        
         # If no virtual environment found, create one automatically
         if [[ "$venv_found" = false ]]; then
             echo "🔨 Creating virtual environment..."
-            
             # Create virtual environment
             python -m venv venv
-            
             if [[ $? -eq 0 ]]; then
                 echo "✅ Virtual environment created successfully!"
                 source venv/bin/activate
-                
                 # Ask to install packages from requirements.txt
                 echo -n "📦 Install packages from requirements.txt? [Y/n]: "
                 read -r response
-                
                 # Default to yes if empty response or starts with y/Y
                 if [[ -z "$response" || "$response" =~ ^[Yy] ]]; then
                     pip install -r requirements.txt
-                    
                     if [[ $? -eq 0 ]]; then
                         echo "✅ Packages installed successfully!"
                     else

@@ -5,6 +5,16 @@ export XDG_DATA_HOME=${XDG_DATA_HOME:-"$HOME/.local/share"}
 export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-"$HOME/.config"}
 export XDG_CACHE_HOME=${XDG_CACHE_HOME:-"$HOME/.cache"}
 
+export LANGUAGE="C.UTF-8"
+export LANG="C.UTF-8"
+export LC_COLLATE="C.UTF-8"
+export LC_CTYPE="C.UTF-8"
+export LC_MONETARY="C.UTF-8"
+export LC_NUMERIC="C.UTF-8"
+export LC_TIME="C.UTF-8"
+export LC_MESSAGES="C.UTF-8"
+export LC_ALL="C.UTF-8"
+
 # HSTR configuration - add this to ~/.zshrc
 # setopt histignorespace           # skip cmds w/ leading space from history
 
@@ -144,8 +154,15 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
   --color=hl:#5f87af,hl+:#89b4fa,info:#afaf87,marker:#74c7ec
   --color=prompt:#f5e0dc,spinner:#cba6f7,pointer:#cba6f7,header:#87afaf
   --color=border:#313244,label:#aeaeae,query:#d9d9d9
-  --preview-window="border-rounded" --prompt="» " --marker="› " --pointer="◆"
-  --separator="─" --scrollbar="│" --info="right"'
+  --preview-window="border-rounded" 
+  --prompt="» " 
+  --marker="› " 
+  --pointer="◆"
+  --separator="─" 
+  --scrollbar="│" 
+  --info="right"
+  --select-1
+  '
 
 export _ZO_FZF_OPTS="$FZF_DEFAULT_OPTS --exact --height=5% --layout=reverse --preview='eza --icons -1 --color=always {2..}'"
 

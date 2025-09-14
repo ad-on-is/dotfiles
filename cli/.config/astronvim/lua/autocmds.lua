@@ -11,6 +11,8 @@
 -- })
 --
 --
+--
+require "lazyvim.config.autocmds"
 
 local ignored_formatonsave_types = { "phtml" }
 local funcs = require "functions"

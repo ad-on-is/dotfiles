@@ -1,5 +1,5 @@
 cli/.config/zsh/plugins/*
-cli/.config/nvim/lazy-lock.json
+lazy-lock.json
 cli/.config/nvim/lazyvim.json
 cli/.local/share/devbox/global/default/devbox.lock
 hyprland/.config/hypr/config/overrides.conf
