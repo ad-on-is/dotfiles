@@ -561,6 +561,9 @@ local M = {
 
     vim.lsp.buf_request(bufnr, "textDocument/codeAction", params, function(_, results, _, _)
       local items = {}
+      if not results then
+        return
+      end
       if #results > 0 then
         for i, res in ipairs(results) do
           local prio = 10
