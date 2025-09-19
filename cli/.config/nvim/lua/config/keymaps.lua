@@ -38,6 +38,10 @@ map("n", "<", function()
   funcs.blame_current_line()
 end)
 
+map("n", "<leader>gc", function()
+  funcs.blame_current_line()
+end, { desc = "Blame current line" })
+
 --
 maphelper("<S-down>", "V<Down>", "<Down>", "<Esc>v<Down>", "Select line up")
 maphelper("<S-up>", "V<Up>", "<Up>", "<Esc>v<Up>", "Select line down")
