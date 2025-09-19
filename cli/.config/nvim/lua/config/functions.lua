@@ -174,8 +174,8 @@ local M = {
     local win = vim.api.nvim_open_win(buf, true, opts)
 
     -- Set buffer options
-    vim.api.nvim_buf_set_option(buf, "modifiable", false)
-    vim.api.nvim_buf_set_option(buf, "readonly", true)
+    vim.api.nvim_set_option_value("modifiable", false, { buf = buf })
+    vim.api.nvim_set_option_value("readonly", true, { buf = buf })
 
     -- Close on escape or q
     vim.api.nvim_buf_set_keymap(buf, "n", "q", "<cmd>close<cr>", { silent = true })
@@ -282,30 +282,6 @@ local M = {
         dirs = { treeselection },
         title = "GREP: " .. treeselection,
         hidden = true,
-        -- hook = function(args, _)
-        --   local new_args = {}
-        --   local dir_args = ""
-        --   for _, arg in ipairs(args) do
-        --     local part1, part2 = arg:match("(.+) // (.+)")
-        --     if part1 and part2 then
-        --       table.insert(new_args, part1)
-        --       if not string.find(part2, "%*") then
-        --         part2 = part2 .. "/*"
-        --       end
-        --       dir_args = "**/" .. part2
-        --     else
-        --       table.insert(new_args, arg)
-        --     end
-        --     -- end
-        --   end
-        --   local i = findIndex(new_args, "--")
-        --   if i and dir_args ~= "" then
-        --     table.insert(new_args, i, dir_args)
-        --     table.insert(new_args, i, "-g")
-        --   end
-        --
-        --   return new_args
-        -- end,
       })
     end
   end,
@@ -686,9 +662,9 @@ local M = {
     if #buf_clients == 0 then
       return "LSP: inactive"
     end
-    local buf_ft = vim.bo.filetype
+    -- local buf_ft = vim.bo.filetype
     local buf_client_names = {}
-    local buf_formater_names = {}
+    -- local buf_formater_names = {}
     local num_client_names = #buf_client_names
 
     -- Add lsp-clients active in the current buffer

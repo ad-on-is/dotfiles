@@ -1,8 +1,10 @@
 [include]
   path = ~/.local/share/git/catppuccin.gitconfig
 [delta]
-  features = catppuccin-mocha
-  line-numbers = true
+features = catppuccin-mocha
+hunk-header-decoration-style = none
+    file-decoration-style = box
+line-numbers = true
 [pager]
 	status = false
 	branch = false
@@ -34,7 +36,7 @@
     s = status
     d = diff
     d1 = diff HEAD~1
-    d2 = diff HEAD~2
+    dm = diff master HEAD
 
 [filter "lfs"]
 	clean = git-lfs clean -- %f
