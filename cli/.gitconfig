@@ -48,3 +48,7 @@ autoSetupRemote = true
 [includeIf "gitdir:~/ANX/**"]
   path = ~/.gitconfig-anexia
 
+[color "status"]
+	changed = yellow
+	deleted = red
+	updated = green

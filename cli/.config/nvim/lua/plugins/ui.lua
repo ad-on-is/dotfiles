@@ -378,6 +378,13 @@ return {
 
       routes = {
         {
+          filter = {
+            event = "notify",
+            find = "Request textDocument/inlayHint failed",
+          },
+          opts = { skip = true },
+        },
+        {
           view = "vsplit",
           filter = { event = "msg_show", min_height = 20 },
         },
