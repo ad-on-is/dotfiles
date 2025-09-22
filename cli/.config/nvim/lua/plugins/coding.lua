@@ -131,6 +131,7 @@ return {
           filetypes = { "sh", "bash", "zsh" },
         },
         qmlls = { cmd = { "qmlls", "-E" } },
+        tailwindcss = { filetypes_exclude = { "markdown", "php" } },
         emmet_language_server = {
           enabled = false,
           filetypes = {
@@ -152,7 +153,6 @@ return {
         emmet_ls = { enabled = false },
         css_variables = { enabled = false },
         cssls = {},
-        qmlls = {},
         somesass_ls = {},
         -- vala_ls = {},
         denols = { enabled = false },
