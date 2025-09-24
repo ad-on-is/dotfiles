@@ -1,6 +1,6 @@
 gui:
   authorColors:
-    '*': "#b4befe"
+    "*": "#b4befe"
   nerdFontsVersion: "3"
   theme:
     unstagedChangesColor:
