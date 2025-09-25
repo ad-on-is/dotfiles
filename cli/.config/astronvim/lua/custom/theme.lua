@@ -152,34 +152,34 @@ return {
         },
       },
     },
-    specs = {
-      {
-        "akinsho/bufferline.nvim",
-        opts = function(_, opts)
-          -- if (vim.g.colors_name or ""):find "catppuccin" then
-          -- local hls = require("catppuccin.groups.integrations.bufferline").get()
-          -- opts.highlights = hls()
-          -- local C = require("catppuccin.palettes").get_palette "mocha"
-          -- local bg = C.surface1
-          -- opts.highlights.buffer_selected = { bg = bg }
-          -- opts.highlights.diagnostic_selected = { bg = bg }
-          -- opts.highlights.info_selected = { bg = bg }
-          -- opts.highlights.indicator_selected = { fg = C.base }
-          -- opts.highlights.hint_selected = { bg = bg }
-          -- opts.highlights.hint_diagnostic_selected = { bg = bg }
-          -- opts.highlights.warning_selected = { bg = bg }
-          -- opts.highlights.warning_diagnostic_selected = { bg = bg }
-          -- opts.highlights.error_selected = { bg = bg }
-          -- opts.highlights.error_diagnostic_selected = { bg = bg }
-          -- opts.highlights.modified_selected = { bg = bg }
-          -- opts.highlights.numbers_selected = { bg = bg }
-          -- opts.highlights.close_button_selected = { bg = bg, fg = C.red }
-          -- end
-        end,
-      },
-    },
+    -- specs = {
+    --   {
+    --     "akinsho/bufferline.nvim",
+    --     opts = function(_, opts)
+    --       if (vim.g.colors_name or ""):find "catppuccin" then
+    --         local hls = require("catppuccin.groups.integrations.bufferline").get()
+    --         opts.highlights = hls()
+    --         local C = require("catppuccin.palettes").get_palette "mocha"
+    --         local bg = C.surface1
+    --         opts.highlights.buffer_selected = { bg = bg }
+    --         opts.highlights.diagnostic_selected = { bg = bg }
+    --         opts.highlights.info_selected = { bg = bg }
+    --         opts.highlights.indicator_selected = { fg = C.base }
+    --         opts.highlights.hint_selected = { bg = bg }
+    --         opts.highlights.hint_diagnostic_selected = { bg = bg }
+    --         opts.highlights.warning_selected = { bg = bg }
+    --         opts.highlights.warning_diagnostic_selected = { bg = bg }
+    --         opts.highlights.error_selected = { bg = bg }
+    --         opts.highlights.error_diagnostic_selected = { bg = bg }
+    --         opts.highlights.modified_selected = { bg = bg }
+    --         opts.highlights.numbers_selected = { bg = bg }
+    --         opts.highlights.close_button_selected = { bg = bg, fg = C.red }
+    --       end
+    --     end,
+    --   },
+    -- },
   },
-
+  --
   -- {
   --   "mvllow/modes.nvim",
   --   opts = function(_, opts)
@@ -196,41 +196,41 @@ return {
   --     return opts
   --   end,
   -- },
-  {
-    "folke/snacks.nvim",
-    ---@type snacks.Config
-    opts = {
-      lazygit = {
-        configure = true,
-        config = {
-          os = { editPreset = "nvim-remote" },
-          gui = {
-            authorColors = {
-              ["'*'"] = "#b4befe",
-            },
-            -- set to an empty string "" to disable icons
-          },
-        },
-        theme_path = vim.fs.normalize(os.getenv "HOME" .. "/.config/lazygit/catppuccin.yml"),
-      },
-    },
-  },
-  {
-    "shellRaining/hlchunk.nvim",
-    opts = {
-      chunk = {
-        style = {
-          { fg = "#74c7ec" },
-          { fg = "#f38ba8" }, -- error
-        },
-      },
-      blank = {
-        style = {
-          { fg = "#313244" },
-          -- { fg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("cursorline")), "bg", "gui") },
-        },
-      },
-      -- indent = { enable = true },
-    },
-  },
+  -- {
+  --   "folke/snacks.nvim",
+  --   ---@type snacks.Config
+  --   opts = {
+  --     lazygit = {
+  --       configure = true,
+  --       config = {
+  --         os = { editPreset = "nvim-remote" },
+  --         gui = {
+  --           authorColors = {
+  --             ["'*'"] = "#b4befe",
+  --           },
+  --           -- set to an empty string "" to disable icons
+  --         },
+  --       },
+  --       theme_path = vim.fs.normalize(os.getenv "HOME" .. "/.config/lazygit/catppuccin.yml"),
+  --     },
+  --   },
+  -- },
+  -- {
+  --   "shellRaining/hlchunk.nvim",
+  --   opts = {
+  --     chunk = {
+  --       style = {
+  --         { fg = "#74c7ec" },
+  --         { fg = "#f38ba8" }, -- error
+  --       },
+  --     },
+  --     blank = {
+  --       style = {
+  --         { fg = "#313244" },
+  --         -- { fg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("cursorline")), "bg", "gui") },
+  --       },
+  --     },
+  --     -- indent = { enable = true },
+  --   },
+  -- },
 }

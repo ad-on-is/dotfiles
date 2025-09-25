@@ -1,7 +1,9 @@
 [include]
   path = ~/.local/share/git/catppuccin.gitconfig
 [delta]
-features = catppuccin-mocha
+  features = catppuccin-mocha
+    grep-output-color = "TODO:|FIXME:|XXX:|HACK:"
+    grep-output-color-style = "bold red"
   hunk-header-decoration-style = none
   hunk-header-file-style = gray
   hunk-header-line-number-style = yellow

@@ -11,7 +11,6 @@ require("lazy").setup({
       update_notifications = true, -- Enable/disable notification about running `:Lazy update` twice to update pinned plugins
     },
   },
-  -- { import = "lazyvim.config.keymaps" },
   { import = "community" },
   { import = "plugins" },
   { import = "custom" },
@@ -33,7 +32,7 @@ require("lazy").setup({
   },
 } --[[@as LazyConfig]])
 
-require "options"
+-- require "options"
 require "functions"
-require "autocmds"
+-- require "autocmds"
 require "keymaps"

@@ -48,7 +48,8 @@
     "sshx@latest",
     "duckdb@latest",
     "cmatrix@latest",
-    "superfile@latest"
+    "superfile@latest",
+    "lazydocker@latest"
   ],
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
