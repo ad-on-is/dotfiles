@@ -1,7 +1,7 @@
 ---@type LazySpec
 return {
   "AstroNvim/astrocommunity",
-  { import = "astrocommunity.colorscheme.catppuccin" },
+
   { import = "astrocommunity.pack.ansible" },
   { import = "astrocommunity.pack.astro" },
   { import = "astrocommunity.pack.bash" },
@@ -34,14 +34,20 @@ return {
   { import = "astrocommunity.pack.xml" },
   { import = "astrocommunity.pack.yaml" },
 
-  { import = "astrocommunity.recipes.astrolsp-no-insert-inlay-hints" },
-  { import = "astrocommunity.recipes.auto-session-restore" },
-  { import = "astrocommunity.split-and-window.neominimap-nvim" },
-  { import = "astrocommunity.split-and-window.windows-nvim" },
+  { import = "astrocommunity.colorscheme.catppuccin" },
   { import = "astrocommunity.color.transparent-nvim" },
 
+  { import = "astrocommunity.motion.flash-nvim" },
+  { import = "astrocommunity.motion.mini-surround" },
+
+  { import = "astrocommunity.recipes.astrolsp-no-insert-inlay-hints" },
+  { import = "astrocommunity.recipes.auto-session-restore" },
+
+  { import = "astrocommunity.split-and-window.neominimap-nvim" },
+  { import = "astrocommunity.split-and-window.windows-nvim" },
+
   --
-  -- { import = "astrocommunity.remote-development.distant-nvim" },
+  { import = "astrocommunity.remote-development.distant-nvim" },
   -- { import = "astrocommunity.workflow.hardtime-nvim" },
-  -- { import = "astrocommunity.workflow.precognition-nvim" },
+  { import = "astrocommunity.workflow.precognition-nvim" },
 }
