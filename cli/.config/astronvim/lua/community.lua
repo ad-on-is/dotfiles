@@ -22,7 +22,6 @@ return {
   { import = "astrocommunity.pack.php" },
   { import = "astrocommunity.pack.prettier" },
   { import = "astrocommunity.pack.prisma" },
-  { import = "astrocommunity.pack.python" },
   { import = "astrocommunity.pack.python-ruff" },
   { import = "astrocommunity.pack.rust" },
   { import = "astrocommunity.pack.sql" },
@@ -34,4 +33,15 @@ return {
   { import = "astrocommunity.pack.vue" },
   { import = "astrocommunity.pack.xml" },
   { import = "astrocommunity.pack.yaml" },
+
+  { import = "astrocommunity.recipes.astrolsp-no-insert-inlay-hints" },
+  { import = "astrocommunity.recipes.auto-session-restore" },
+  { import = "astrocommunity.split-and-window.neominimap-nvim" },
+  { import = "astrocommunity.split-and-window.windows-nvim" },
+  { import = "astrocommunity.color.transparent-nvim" },
+
+  --
+  -- { import = "astrocommunity.remote-development.distant-nvim" },
+  -- { import = "astrocommunity.workflow.hardtime-nvim" },
+  -- { import = "astrocommunity.workflow.precognition-nvim" },
 }

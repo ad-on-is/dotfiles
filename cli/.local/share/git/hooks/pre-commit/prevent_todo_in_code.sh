@@ -14,25 +14,28 @@ files=$(git diff --cached --name-only --diff-filter=ACM)
 # Flag to track if TODOs were found
 todo_found=false
 
-echo "Checking for TODO comments in staged files..."
+echo "Checking for TODO comments in your changes..."
 
-# Check each staged file for TODO: comments
+# Check each staged file for TODO: comments in added/modified lines only
 for file in $files; do
   # Skip binary files and files that don't exist (deleted files)
   if [[ -f "$file" ]] && file -b --mime-type "$file" | grep -q "^text/"; then
-    # Search for TODO: (case insensitive) in the file
-    todo_lines=$(grep -n -i "TODO:" "$file" 2>/dev/null)
+    # Get the diff for this file to see only added/modified lines
+    # Use git diff --cached to get staged changes with line numbers
+    added_lines=$(git diff --cached -U0 "$file" | grep "^+" | grep -v "^+++" | grep -i "TODO:")
 
-    if [[ $? -eq 0 ]]; then
+    if [[ -n "$added_lines" ]]; then
       if [[ "$todo_found" == false ]]; then
-        echo -e "${RED}ERROR: Found TODO comments in staged files:${NC}"
+        echo -e "${RED}ERROR: Found TODO comments in your changes:${NC}"
         todo_found=true
       fi
 
       echo -e "${YELLOW}$file:${NC}"
-      # Display the lines with TODO comments
-      echo "$todo_lines" | while read -r line; do
-        echo "  $line"
+      # Display the added lines with TODO comments
+      echo "$added_lines" | while read -r line; do
+        # Remove the leading + from diff output for cleaner display
+        clean_line=$(echo "$line" | sed 's/^+//')
+        echo "  + $clean_line"
       done
       echo
     fi
@@ -41,13 +44,7 @@ done
 
 # If TODOs were found, reject the commit
 if [[ "$todo_found" == true ]]; then
-  echo -e "${RED}Commit rejected!${NC}"
-  echo "Please resolve all TODO comments before committing."
-  echo "If you need to commit with TODOs, you can:"
-  echo "  1. Remove or resolve the TODO comments"
-  echo "  2. Use 'git commit --no-verify' to bypass this hook (not recommended)"
   exit 1
 fi
 
-echo "No TODO comments found. Proceeding with commit."
 exit 0
