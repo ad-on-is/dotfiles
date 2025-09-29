@@ -166,7 +166,7 @@ return {
         "akinsho/bufferline.nvim",
         opts = function(_, opts)
           if (vim.g.colors_name or ""):find("catppuccin") then
-            local hls = require("catppuccin.groups.integrations.bufferline").get()
+            local hls = require("catppuccin.special.bufferline").get_theme()
             opts.highlights = hls()
             local C = require("catppuccin.palettes").get_palette("mocha")
             local bg = C.surface1
