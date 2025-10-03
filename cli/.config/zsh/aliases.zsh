@@ -54,6 +54,7 @@ alias get_addcerts='scp -r adis_durakovic@dnmc.in:/home/adis_durakovic/webserver
 
 alias docker-compose='docker compose'
 alias rg='rg --smart-case --hidden'
+alias rgp='rg --passthru'
 
 function rgmulti() {
 }

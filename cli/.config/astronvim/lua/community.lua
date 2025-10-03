@@ -36,18 +36,30 @@ return {
 
   { import = "astrocommunity.colorscheme.catppuccin" },
   { import = "astrocommunity.color.transparent-nvim" },
+  { import = "astrocommunity.color.nvim-highlight-colors" },
+  { import = "astrocommunity.utility.noice-nvim" },
+  { import = "astrocommunity.recipes.heirline-nvchad-statusline" },
+  { import = "astrocommunity.recipes.heirline-vscode-winbar" },
+
+  -- { import = "astrocommunity.bars-and-lines.bufferline-nvim" },
+  -- { import = "astrocommunity.bars-and-lines.lualine-nvim" },
+  -- { import = "astrocommunity.bars-and-lines.statuscol-nvim" },
 
   { import = "astrocommunity.motion.flash-nvim" },
   { import = "astrocommunity.motion.mini-surround" },
 
   { import = "astrocommunity.recipes.astrolsp-no-insert-inlay-hints" },
-  { import = "astrocommunity.recipes.auto-session-restore" },
 
   { import = "astrocommunity.split-and-window.neominimap-nvim" },
   { import = "astrocommunity.split-and-window.windows-nvim" },
 
   --
   { import = "astrocommunity.remote-development.distant-nvim" },
+  { import = "astrocommunity.git.gitgraph-nvim" },
+
+  { import = "astrocommunity.search.grug-far-nvim" },
+  { import = "astrocommunity.completion.blink-cmp" },
+  { import = "astrocommunity.completion.copilot-lua" },
   -- { import = "astrocommunity.workflow.hardtime-nvim" },
-  { import = "astrocommunity.workflow.precognition-nvim" },
+  -- { import = "astrocommunity.workflow.precognition-nvim" },
 }

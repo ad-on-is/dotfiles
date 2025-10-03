@@ -58,22 +58,22 @@ return {
     },
   },
 
-  -- {
-  --   "Isrothy/neominimap.nvim",
-  --   init = function()
-  --     vim.opt.sidescrolloff = 36 -- Set a large value
-  --
-  --     vim.g.neominimap = {
-  --       layout = "float",
-  --       auto_enable = true,
-  --       x_multiplier = 4,
-  --       y_multiplier = 1,
-  --       float = { minimap_width = 10, window_border = "none" },
-  --       split = { minimap_width = 10 },
-  --       click = { enabled = true },
-  --     }
-  --   end,
-  -- },
+  {
+    "Isrothy/neominimap.nvim",
+    init = function(plugin)
+      vim.opt.sidescrolloff = 36 -- Set a large value
+
+      vim.g.neominimap = {
+        layout = "float",
+        auto_enable = true,
+        x_multiplier = 4,
+        y_multiplier = 1,
+        float = { minimap_width = 10, window_border = "none" },
+        split = { minimap_width = 10 },
+        click = { enabled = true },
+      }
+    end,
+  },
 
   {
     "lewis6991/gitsigns.nvim",
