@@ -1,36 +1,5 @@
 return {
   {
-    "AstroNvim/astrocore",
-    ---@type AstroCoreOpts
-    opts = {
-      autocmds = {
-        myneotree = {
-          {
-            event = "VimEnter",
-            callback = function()
-              local timer = vim.loop.new_timer()
-
-              if not timer then return end
-
-              timer:start(
-                100,
-                0,
-                vim.schedule_wrap(function()
-                  if timer then
-                    timer:stop()
-                    timer:close()
-                    timer = nil
-                  end
-                  if vim.fn.argc() == 0 then vim.cmd "Neotree show" end
-                end)
-              )
-            end,
-          },
-        },
-      },
-    },
-  },
-  {
     "akinsho/git-conflict.nvim",
     version = "*",
     event = "VeryLazy",

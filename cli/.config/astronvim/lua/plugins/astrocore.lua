@@ -3,13 +3,53 @@
 -- NOTE: We highly recommend setting up the Lua Language Server (`:LspInstall lua_ls`)
 --       as this provides autocomplete and documentation while editing
 
+local ignored_formatonsave_types = { "phtml" }
+
 ---@type LazySpec
 return {
   "AstroNvim/astrocore",
   ---@type AstroCoreOpts
   opts = {
     -- Configure core features of AstroNvim
-    autocmds = {},
+    autocmds = {
+      no_phtml_format = {
+        {
+          event = { "BufEnter", "BufWritePre" },
+          callback = function(args)
+            local f = args.file
+            local type = vim.fn.fnamemodify(f, ":e")
+            if vim.fn.index(ignored_formatonsave_types, type) ~= -1 then
+              vim.g.autoformat = false
+            else
+              vim.g.autoformat = true
+            end
+          end,
+        },
+      },
+      neotree_startup = {
+        {
+          event = "VimEnter",
+          callback = function()
+            local timer = vim.loop.new_timer()
+
+            if not timer then return end
+
+            timer:start(
+              100,
+              0,
+              vim.schedule_wrap(function()
+                if timer then
+                  timer:stop()
+                  timer:close()
+                  timer = nil
+                end
+                if vim.fn.argc() == 0 then vim.cmd "Neotree show" end
+              end)
+            )
+          end,
+        },
+      },
+    },
 
     features = {
       large_buf = { size = 1024 * 256, lines = 10000 }, -- set global limits for large files for disabling features like treesitter

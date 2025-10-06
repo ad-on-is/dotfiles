@@ -20,6 +20,7 @@ return {
   { import = "astrocommunity.pack.mdx" },
   { import = "astrocommunity.pack.nginx" },
   { import = "astrocommunity.pack.php" },
+  { import = "astrocommunity.pack.laravel" },
   { import = "astrocommunity.pack.prettier" },
   { import = "astrocommunity.pack.prisma" },
   { import = "astrocommunity.pack.python-ruff" },

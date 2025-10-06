@@ -23,7 +23,7 @@ return {
           -- "go",
         },
         ignore_filetypes = { -- disable format on save for specified filetypes
-          -- "python",
+          "phtml",
         },
       },
       disabled = { -- disable formatting capabilities for the listed language servers
@@ -37,11 +37,16 @@ return {
     },
     -- enable servers that you already have installed without mason
     servers = {
-      -- "pyright"
+      "intelephense",
     },
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
     config = {
+      intelephense = {
+        -- root_dir = vim.fn.getcwd(),
+        filetypes = { "php" },
+        { files = { associations = { "*.php", "*.module", "*.inc" } } },
+      },
       -- clangd = { capabilities = { offsetEncoding = "utf-8" } },
     },
     -- customize how language servers are attached
