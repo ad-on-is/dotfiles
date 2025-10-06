@@ -1,4 +1,37 @@
 return {
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    opts_extend = { "spec" },
+    opts = {
+      preset = "helix",
+    },
+
+    keys = {
+      {
+        "<leader>?",
+        function() require("which-key").show { global = false } end,
+        desc = "Buffer Keymaps (which-key)",
+      },
+      {
+        "<c-w><space>",
+        function() require("which-key").show { keys = "<c-w>", loop = true } end,
+        desc = "Window Hydra Mode (which-key)",
+      },
+    },
+  },
+
+  {
+    "folke/noice.nvim",
+    opts = {
+      presets = {
+        bottom_search = false, -- use a classic bottom cmdline for search
+        command_palette = true, -- position the cmdline and popupmenu together
+        long_message_to_split = true, -- long messages will be sent to a split
+        lsp_doc_border = false, -- add a border to hover docs and signature help
+      },
+    },
+  },
 
   {
     "nvim-neo-tree/neo-tree.nvim",

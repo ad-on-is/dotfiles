@@ -34,9 +34,11 @@ return {
   { import = "astrocommunity.pack.xml" },
   { import = "astrocommunity.pack.yaml" },
 
+  -- { import = "astrocommunity.pack.nvchad-ui" },
   { import = "astrocommunity.colorscheme.catppuccin" },
   { import = "astrocommunity.color.transparent-nvim" },
   { import = "astrocommunity.color.nvim-highlight-colors" },
+  { import = "astrocommunity.color.modes-nvim" },
   { import = "astrocommunity.utility.noice-nvim" },
   { import = "astrocommunity.recipes.heirline-nvchad-statusline" },
   { import = "astrocommunity.recipes.heirline-vscode-winbar" },
@@ -49,6 +51,7 @@ return {
   { import = "astrocommunity.motion.mini-surround" },
 
   { import = "astrocommunity.recipes.astrolsp-no-insert-inlay-hints" },
+  { import = "astrocommunity.recipes.diagnostic-virtual-lines-current-line" },
 
   { import = "astrocommunity.split-and-window.neominimap-nvim" },
   { import = "astrocommunity.split-and-window.windows-nvim" },
