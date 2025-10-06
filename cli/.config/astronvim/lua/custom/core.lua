@@ -21,7 +21,6 @@ return {
                     timer:close()
                     timer = nil
                   end
-                  funcs = require "functions"
                   if vim.fn.argc() == 0 then vim.cmd "Neotree show" end
                 end)
               )
