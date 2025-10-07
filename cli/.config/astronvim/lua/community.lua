@@ -44,6 +44,11 @@ return {
   { import = "astrocommunity.utility.noice-nvim" },
   { import = "astrocommunity.recipes.heirline-nvchad-statusline" },
   { import = "astrocommunity.recipes.heirline-vscode-winbar" },
+  { import = "astrocommunity.editing-support.nvim-treesitter-context" },
+  { import = "astrocommunity.editing-support.rainbow-delimiters-nvim" },
+  { import = "astrocommunity.editing-support.text-case-nvim" },
+  { import = "astrocommunity.editing-support.treesj" },
+  { import = "astrocommunity.editing-support.yanky-nvim" },
 
   -- { import = "astrocommunity.bars-and-lines.bufferline-nvim" },
   -- { import = "astrocommunity.bars-and-lines.lualine-nvim" },
@@ -64,6 +69,7 @@ return {
 
   { import = "astrocommunity.search.grug-far-nvim" },
   { import = "astrocommunity.completion.blink-cmp" },
+  -- { import = "astrocommunity.completion.blink-cmp-git" },
   { import = "astrocommunity.completion.copilot-lua" },
   -- { import = "astrocommunity.workflow.hardtime-nvim" },
   -- { import = "astrocommunity.workflow.precognition-nvim" },

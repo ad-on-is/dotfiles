@@ -1,9 +1,11 @@
 local get_filtered_marks = function(global)
-  local marks = global and vim.fn.getmarklist() or vim.fn.getmarklist "%"
+  local marks = global and vim.fn.getmarklist() or vim.fn.getmarklist("%")
   local regex = global and "[A-Z]" or "[a-z]"
   for i = #marks, 1, -1 do
     local m = marks[i].mark:sub(-1)
-    if not m:match(regex) then table.remove(marks, i) end
+    if not m:match(regex) then
+      table.remove(marks, i)
+    end
   end
 
   return marks
@@ -11,14 +13,18 @@ end
 
 local function arrayHas(array, value)
   for _, a in ipairs(array) do
-    if a == value then return true end
+    if a == value then
+      return true
+    end
   end
   return false
 end
 
 local function findIndex(array, value)
   for i, v in ipairs(array) do
-    if v == value then return i end
+    if v == value then
+      return i
+    end
   end
   return nil -- not found
 end
@@ -61,31 +67,31 @@ local M = {
 
     -- Parse porcelain format
     local lines = vim.split(blame_result, "\n")
-    local commit_hash = lines[1]:match "^(%w+)"
+    local commit_hash = lines[1]:match("^(%w+)")
 
     local author, author_mail, author_time, author_tz
     local committer, committer_mail, committer_time, committer_tz
     local summary, previous, filename
 
     for _, blame_line in ipairs(lines) do
-      if blame_line:match "^author " then
-        author = blame_line:match "^author (.+)"
-      elseif blame_line:match "^author%-mail" then
-        author_mail = blame_line:match "^author%-mail <(.+)>"
-      elseif blame_line:match "^author%-time" then
-        author_time = blame_line:match "^author%-time (%d+)"
-      elseif blame_line:match "^author%-tz" then
-        author_tz = blame_line:match "^author%-tz (.+)"
-      elseif blame_line:match "^committer " then
-        committer = blame_line:match "^committer (.+)"
-      elseif blame_line:match "^committer%-time" then
-        committer_time = blame_line:match "^committer%-time (%d+)"
-      elseif blame_line:match "^summary" then
-        summary = blame_line:match "^summary (.+)"
-      elseif blame_line:match "^previous" then
-        previous = blame_line:match "^previous (%w+)"
-      elseif blame_line:match "^filename" then
-        filename = blame_line:match "^filename (.+)"
+      if blame_line:match("^author ") then
+        author = blame_line:match("^author (.+)")
+      elseif blame_line:match("^author%-mail") then
+        author_mail = blame_line:match("^author%-mail <(.+)>")
+      elseif blame_line:match("^author%-time") then
+        author_time = blame_line:match("^author%-time (%d+)")
+      elseif blame_line:match("^author%-tz") then
+        author_tz = blame_line:match("^author%-tz (.+)")
+      elseif blame_line:match("^committer ") then
+        committer = blame_line:match("^committer (.+)")
+      elseif blame_line:match("^committer%-time") then
+        committer_time = blame_line:match("^committer%-time (%d+)")
+      elseif blame_line:match("^summary") then
+        summary = blame_line:match("^summary (.+)")
+      elseif blame_line:match("^previous") then
+        previous = blame_line:match("^previous (%w+)")
+      elseif blame_line:match("^filename") then
+        filename = blame_line:match("^filename (.+)")
       end
     end
 
@@ -99,7 +105,9 @@ local M = {
 
     -- Format date
     local formatted_date = "Unknown"
-    if author_time then formatted_date = vim.fn.strftime("%Y-%m-%d %H:%M:%S", tonumber(author_time)) end
+    if author_time then
+      formatted_date = vim.fn.strftime("%Y-%m-%d %H:%M:%S", tonumber(author_time))
+    end
 
     -- Build display content
     local content = {
@@ -166,8 +174,8 @@ local M = {
     local win = vim.api.nvim_open_win(buf, true, opts)
 
     -- Set buffer options
-    vim.api.nvim_buf_set_option(buf, "modifiable", false)
-    vim.api.nvim_buf_set_option(buf, "readonly", true)
+    vim.api.nvim_set_option_value("modifiable", false, { buf = buf })
+    vim.api.nvim_set_option_value("readonly", true, { buf = buf })
 
     -- Close on escape or q
     vim.api.nvim_buf_set_keymap(buf, "n", "q", "<cmd>close<cr>", { silent = true })
@@ -179,24 +187,24 @@ local M = {
 
     for i, content_line in ipairs(content) do
       if
-        content_line:match "^📝"
-        or content_line:match "^👤"
-        or content_line:match "^📅"
-        or content_line:match "^📄"
+        content_line:match("^📝")
+        or content_line:match("^👤")
+        or content_line:match("^📅")
+        or content_line:match("^📄")
       then
         vim.api.nvim_buf_add_highlight(buf, -1, "Identifier", i - 1, 0, -1)
-      elseif content_line:match "^💬" or content_line:match "^📊" or content_line:match "^⬅️" then
+      elseif content_line:match("^💬") or content_line:match("^📊") or content_line:match("^⬅️") then
         vim.api.nvim_buf_add_highlight(buf, -1, "Special", i - 1, 0, -1)
-      elseif content_line:match "^──" or content_line:match "^══" then
+      elseif content_line:match("^──") or content_line:match("^══") then
         vim.api.nvim_buf_add_highlight(buf, -1, "Comment", i - 1, 0, -1)
       end
     end
   end,
 
   show_file_info_popup = function()
-    local file = vim.fn.expand "%:p"
-    local name = vim.fn.expand "%:t"
-    local dir = vim.fn.expand "%:h"
+    local file = vim.fn.expand("%:p")
+    local name = vim.fn.expand("%:t")
+    local dir = vim.fn.expand("%:h")
     local size = 0
     local modified_str = ""
     if name ~= "" then
@@ -224,7 +232,7 @@ local M = {
 
   get_path_from_file = function(_, file)
     local parts = {}
-    for part in file:gmatch "[^/]+" do
+    for part in file:gmatch("[^/]+") do
       table.insert(parts, part)
     end
     table.remove(parts)
@@ -232,63 +240,49 @@ local M = {
   end,
 
   get_neotree_selection = function(self)
-    local sm = require "neo-tree.sources.manager"
+    local sm = require("neo-tree.sources.manager")
     local state = sm:_get_all_states()[1]
     local node = state.tree:get_node()
     local treeselection = node.path
-    if node.type ~= "directory" then treeselection = self:get_path_from_file(treeselection) end
+    if node.type ~= "directory" then
+      treeselection = self:get_path_from_file(treeselection)
+    end
     return treeselection
   end,
 
   pick_files = function(self)
     local treeselection = vim.fn.getcwd()
-    if vim.bo.filetype == "neo-tree" then treeselection = self:get_neotree_selection() end
+    if vim.bo.filetype == "neo-tree" then
+      treeselection = self:get_neotree_selection()
+    end
 
-    Snacks.picker.smart {
+    Snacks.picker.smart({
       title = "SMART:" .. treeselection,
       dirs = { treeselection },
       hidden = true,
       multi = { "buffers", "files" },
       matcher = { sort_empty = false },
-    }
+    })
   end,
 
-  live_grep = function(self)
+  live_grep = function(self, global)
     local treeselection = ""
-    if vim.bo.filetype == "neo-tree" then treeselection = self:get_neotree_selection() end
+    if vim.bo.filetype == "neo-tree" then
+      treeselection = self:get_neotree_selection()
+    end
+
+    if global then
+      treeselection = vim.fn.getcwd()
+    end
 
     if treeselection == "" then
-      Snacks.picker.grep_buffers { title = "GREP: Open files", hidden = true }
+      Snacks.picker.grep_buffers({ title = "GREP: Open files", hidden = true })
     else
-      Snacks.picker.grep {
+      Snacks.picker.grep({
         dirs = { treeselection },
         title = "GREP: " .. treeselection,
         hidden = true,
-        -- hook = function(args, _)
-        --   local new_args = {}
-        --   local dir_args = ""
-        --   for _, arg in ipairs(args) do
-        --     local part1, part2 = arg:match("(.+) // (.+)")
-        --     if part1 and part2 then
-        --       table.insert(new_args, part1)
-        --       if not string.find(part2, "%*") then
-        --         part2 = part2 .. "/*"
-        --       end
-        --       dir_args = "**/" .. part2
-        --     else
-        --       table.insert(new_args, arg)
-        --     end
-        --     -- end
-        --   end
-        --   local i = findIndex(new_args, "--")
-        --   if i and dir_args ~= "" then
-        --     table.insert(new_args, i, dir_args)
-        --     table.insert(new_args, i, "-g")
-        --   end
-        --
-        --   return new_args
-        -- end,
-      }
+      })
     end
   end,
 
@@ -296,7 +290,9 @@ local M = {
   definition_in_float = function()
     local params = vim.lsp.util.make_position_params(0, "utf-8")
     vim.lsp.buf_request(0, "textDocument/definition", params, function(_, result, _, _)
-      if not result or vim.tbl_isempty(result) then return end
+      if not result or vim.tbl_isempty(result) then
+        return
+      end
 
       local location = result[1]
 
@@ -350,12 +346,16 @@ local M = {
 
       -- Close on <Esc>
       vim.keymap.set("n", "<Esc>", function()
-        if vim.api.nvim_win_is_valid(win_id) then vim.api.nvim_win_close(win_id, true) end
+        if vim.api.nvim_win_is_valid(win_id) then
+          vim.api.nvim_win_close(win_id, true)
+        end
       end, { buffer = target_bufnr, nowait = true })
     end)
   end,
 
-  delete_automarks = function(global) vim.cmd(global and "delmarks A-Z" or "delmarks a-z") end,
+  delete_automarks = function(global)
+    vim.cmd(global and "delmarks A-Z" or "delmarks a-z")
+  end,
 
   automark = function(global)
     global = global or false
@@ -387,7 +387,9 @@ local M = {
     for _, mark in ipairs(marks) do
       local m = mark.mark:sub(-1)
       local pos = string.find(ms, m)
-      if pos and pos > ct then ct = pos end
+      if pos and pos > ct then
+        ct = pos
+      end
     end
 
     local mark = ms:sub(ct + 1, ct + 1)
@@ -397,12 +399,16 @@ local M = {
   cycle_through_marks = function(global)
     local marks = get_filtered_marks(global or false)
 
-    if #marks == 0 then return end
+    if #marks == 0 then
+      return
+    end
 
     -- Sort marks by line number
-    table.sort(marks, function(a, b) return a.pos[2] < b.pos[2] end)
+    table.sort(marks, function(a, b)
+      return a.pos[2] < b.pos[2]
+    end)
 
-    local current_line = vim.fn.line "."
+    local current_line = vim.fn.line(".")
     local next_mark = nil
 
     -- Find next mark after current line
@@ -416,7 +422,9 @@ local M = {
     -- If no mark found after current line, wrap to first mark
     next_mark = next_mark or marks[1]
 
-    if next_mark then vim.api.nvim_feedkeys("`" .. next_mark.mark:sub(-1), "n", true) end
+    if next_mark then
+      vim.api.nvim_feedkeys("`" .. next_mark.mark:sub(-1), "n", true)
+    end
   end,
 
   open_dialog = function(type, title)
@@ -424,7 +432,7 @@ local M = {
     if target_dir ~= "" then
       vim.cmd("e " .. vim.fn.fnameescape(target_dir))
       vim.cmd("cd " .. vim.fn.fnameescape(target_dir))
-      vim.cmd "SessionRestore"
+      vim.cmd("SessionRestore")
     end -- funcs.open_folder_dialog(nil, "/home")
   end,
 
@@ -434,13 +442,15 @@ local M = {
     local bt = vim.bo.buftype
     local ft = vim.bo.filetype
     if arrayHas(fts, ft) then
-      vim.cmd ":q"
-      if ft == "DiffviewFileHistory" then vim.cmd ":tabclose" end
+      vim.cmd(":q")
+      if ft == "DiffviewFileHistory" then
+        vim.cmd(":tabclose")
+      end
       return
     end
 
     if arrayHas(bts, bt) then
-      vim.cmd ":q"
+      vim.cmd(":q")
       return
     end
   end,
@@ -456,15 +466,17 @@ local M = {
       if filetype == "neo-tree" then
         neotree_win = win
       else
-        if buf.buftype == "" then main_win = win end
+        if buf.buftype == "" then
+          main_win = win
+        end
       end
     end
     return { neotree_win = neotree_win, main_win = main_win }
   end,
 
   toggle_search_replace = function(self, instance)
-    local gf = require "grug-far"
-    local paths = vim.fn.expand "%"
+    local gf = require("grug-far")
+    local paths = vim.fn.expand("%")
     local treeselection = ""
     local wins = self:get_tree_main_win()
     local neotree_win = wins.neotree_win
@@ -474,20 +486,24 @@ local M = {
       treeselection = self:get_neotree_selection()
       vim.api.nvim_set_current_win(main_win)
     end
-    if instance == "project" then paths = treeselection end
+    if instance == "project" then
+      paths = treeselection
+    end
     local prefills = { paths = paths, flags = "--multiline" }
     if not gf.has_instance(instance) then
-      gf.open {
+      gf.open({
         instanceName = instance,
         windowCreationCommand = "split",
         prefills = prefills,
-      }
+      })
     else
       if gf.is_instance_open(instance) then
         gf.hide_instance(instance)
       else
         local inst = gf.get_instance(instance)
-        if not inst then return end
+        if not inst then
+          return
+        end
         inst:update_input_values(prefills, true)
         inst:open()
       end
@@ -496,10 +512,12 @@ local M = {
 
   code_actions = function()
     local function apply_specific_code_action(res)
-      vim.lsp.buf.code_action {
-        filter = function(action) return action.title == res.title end,
+      vim.lsp.buf.code_action({
+        filter = function(action)
+          return action.title == res.title
+        end,
         apply = true,
-      }
+      })
     end
 
     local actions = {}
@@ -519,6 +537,9 @@ local M = {
 
     vim.lsp.buf_request(bufnr, "textDocument/codeAction", params, function(_, results, _, _)
       local items = {}
+      if not results then
+        return
+      end
       if #results > 0 then
         for i, res in ipairs(results) do
           local prio = 10
@@ -531,7 +552,9 @@ local M = {
           end
           actions[res.title] = {
             priority = prio,
-            call = function() apply_specific_code_action(res) end,
+            call = function()
+              apply_specific_code_action(res)
+            end,
           }
         end
       end
@@ -539,13 +562,17 @@ local M = {
       for t, action in pairs(actions) do
         table.insert(items, { title = t, priority = action.priority })
       end
-      table.sort(items, function(a, b) return a.priority < b.priority end)
+      table.sort(items, function(a, b)
+        return a.priority < b.priority
+      end)
       local titles = {}
       for _, item in ipairs(items) do
         table.insert(titles, item.title)
       end
       vim.ui.select(titles, {}, function(choice)
-        if choice == nil then return end
+        if choice == nil then
+          return
+        end
         actions[choice].call()
       end)
     end)
@@ -560,7 +587,7 @@ local M = {
       vim.api.nvim_set_current_win(main_win)
     else
       vim.api.nvim_set_current_win(neotree_win)
-      vim.cmd "vertical resize 40%"
+      vim.cmd("vertical resize 40%")
     end
 
     -- if vim.bo.filetype == "neo-tree" then
@@ -574,56 +601,70 @@ local M = {
 
   open_nvim_tree = function(data)
     local directory = vim.fn.isdirectory(data.file) == 1
-    if not directory then return end
+    if not directory then
+      return
+    end
     vim.cmd.cd(data.file)
     require("nvim-tree.api").tree.open()
   end,
 
   smart_save = function()
-    if vim.bo.filetype == "neo-tree" then return end
+    if vim.bo.filetype == "neo-tree" then
+      return
+    end
 
     if vim.api.nvim_buf_get_name(0) == "" then
-      local filename = vim.fn.input "Save file as: "
-      if filename ~= "" then vim.cmd("write " .. filename) end
+      local filename = vim.fn.input("Save file as: ")
+      if filename ~= "" then
+        vim.cmd("write " .. filename)
+      end
     else
       -- Save existing file
-      vim.cmd "write"
+      vim.cmd("write")
     end
   end,
 
-  toggle_comment = function() require("Comment.api").call("comment.linewise.current", "g@$") end,
+  toggle_comment = function()
+    require("Comment.api").call("comment.linewise.current", "g@$")
+  end,
 
   move_block_vertically = function(direction)
-    local start_line = vim.fn.line "'<"
-    local end_line = vim.fn.line "'>"
-    local last_line = vim.fn.line "$"
+    local start_line = vim.fn.line("'<")
+    local end_line = vim.fn.line("'>")
+    local last_line = vim.fn.line("$")
 
     if direction == "down" then
-      if end_line < last_line then vim.cmd "normal! :m '>+1<CR>gv=gv" end
+      if end_line < last_line then
+        vim.cmd("normal! :m '>+1<CR>gv=gv")
+      end
     elseif direction == "up" then
-      if start_line > 1 then vim.cmd "normal! gv:move '<-2<CR>gv" end
+      if start_line > 1 then
+        vim.cmd("normal! gv:move '<-2<CR>gv")
+      end
     end
   end,
 
   restore_cursor_position = function()
-    local line = vim.fn.line "'\""
+    local line = vim.fn.line("'\"")
     if
       line > 1
-      and line <= vim.fn.line "$"
+      and line <= vim.fn.line("$")
       and vim.bo.filetype ~= "commit"
       and vim.fn.index({ "xxd", "gitrebase" }, vim.bo.filetype) == -1
     then
-      vim.cmd 'normal! g`"'
+      vim.cmd('normal! g`"')
     end
   end,
 
   get_attached_clients = function()
     -- Get active clients for current buffer
-    local buf_clients = vim.lsp.get_clients { bufnr = 0 }
-    if #buf_clients == 0 then return "LSP: inactive" end
-    local buf_ft = vim.bo.filetype
+    local buf_clients = vim.lsp.get_clients({ bufnr = 0 })
+    if #buf_clients == 0 then
+      return "LSP: inactive"
+    end
+    -- local buf_ft = vim.bo.filetype
     local buf_client_names = {}
-    local buf_formater_names = {}
+    -- local buf_formater_names = {}
     local num_client_names = #buf_client_names
 
     -- Add lsp-clients active in the current buffer

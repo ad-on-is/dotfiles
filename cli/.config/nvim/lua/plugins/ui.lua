@@ -18,7 +18,7 @@ return {
         --   reuse_win = true,
         -- },
         matcher = {
-          history_bonus = truee,
+          history_bonus = true,
         },
         formatters = {
           file = {

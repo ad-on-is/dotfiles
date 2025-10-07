@@ -69,6 +69,7 @@ return {
           MultiCursorMain = { bg = C.peach, fg = C.base },
           BlinkCmpMenu = { bg = "#0e0f16" },
           CursorLineNr = { fg = C.peach },
+          LineNr = { bg = C.crust },
           BlinkCmpMenuSelection = { bg = mc(C.text) },
           BlinkCmpKindSnippet = { fg = C.mauve, bg = mc(C.mauve) },
           BlinkCmpKindKeyword = { fg = C.red, bg = mc(C.red) },

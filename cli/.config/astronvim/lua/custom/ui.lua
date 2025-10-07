@@ -1,5 +1,24 @@
 return {
   {
+    "folke/snacks.nvim",
+    opts = {
+
+      picker = {
+        -- jump = {
+        --   reuse_win = true,
+        -- },
+        matcher = {
+          history_bonus = true,
+        },
+        formatters = {
+          file = {
+            truncate = 1000,
+          },
+        },
+      },
+    },
+  },
+  {
     "folke/which-key.nvim",
     event = "VeryLazy",
     opts_extend = { "spec" },
@@ -81,5 +100,70 @@ return {
         click = { enabled = true },
       }
     end,
+  },
+
+  {
+    "saghen/blink.cmp",
+    dependencies = {
+
+      {
+        "xzbdmw/colorful-menu.nvim",
+        event = "VeryLazy",
+        opts = {},
+      },
+    },
+    opts = {
+      appearance = {
+        kind_icons = {
+          Color = "●",
+        },
+      },
+      sources = {
+        per_filetype = {
+          AvanteInput = nil,
+        },
+      },
+      cmdline = {
+        sources = function()
+          local type = vim.fn.getcmdtype()
+          -- Search forward and backward
+          if type == "/" or type == "?" then return { "buffer" } end
+          -- Commands
+          if type == ":" or type == "@" then return { "cmdline" } end
+          return { "path" }
+        end,
+      },
+      completion = {
+        menu = {
+          draw = {
+            columns = { { "kind_icon" }, { "label", gap = 1 }, { "source_name" } },
+            components = {
+              label = {
+                width = { fill = true, max = 60 },
+                text = function(ctx)
+                  local highlights_info = require("colorful-menu").blink_highlights(ctx)
+                  if highlights_info ~= nil then
+                    -- Or you want to add more item to label
+                    return highlights_info.label
+                  else
+                    return ctx.label
+                  end
+                end,
+                highlight = function(ctx)
+                  local highlights = {}
+                  local highlights_info = require("colorful-menu").blink_highlights(ctx)
+                  if highlights_info ~= nil then highlights = highlights_info.highlights end
+                  for _, idx in ipairs(ctx.label_matched_indices) do
+                    table.insert(highlights, { idx, idx + 1, group = "BlinkCmpLabelMatch" })
+                  end
+                  -- Do something else
+                  return highlights
+                end,
+              },
+            },
+          },
+        },
+      },
+    },
   },
 }
