@@ -36,6 +36,9 @@ return {
   { import = "astrocommunity.pack.yaml" },
   { import = "astrocommunity.markdown-and-latex.markview-nvim" },
 
+  { import = "astrocommunity.lsp.actions-preview-nvim" },
+  { import = "astrocommunity.lsp.dev-tools-nvim" },
+
   -- { import = "astrocommunity.pack.nvchad-ui" },
   { import = "astrocommunity.colorscheme.catppuccin" },
   { import = "astrocommunity.color.transparent-nvim" },

@@ -1,4 +1,32 @@
 return {
+
+  {
+    "yarospace/dev-tools.nvim",
+
+    opts = {
+      ---@type Action[]|fun():Action[]
+      actions = {
+
+        {
+          name = "Go to definition",
+          fn = function(_) vim.lsp.buf.definition() end,
+        },
+        {
+          name = "Go to implementation",
+          fn = function(_) vim.lsp.buf.implementation() end,
+        },
+        {
+          name = "Show references",
+          fn = function(_) vim.lsp.buf.references() end,
+        },
+        {
+          name = "Rename",
+          fn = function(_) vim.lsp.buf.rename() end,
+        },
+      },
+    },
+  },
+
   {
     "williamboman/mason-lspconfig.nvim",
     optional = true,

@@ -22,8 +22,8 @@ return {
         allow_filetypes = { -- enable format on save for specified filetypes only
           -- "go",
         },
-        ignore_filetypes = { -- disable format on save for specified filetypes
-          "phtml",
+        ignore_filetypes = {
+          "phtml", -- disable format on save for specified filetypes
         },
       },
       disabled = { -- disable formatting capabilities for the listed language servers
@@ -44,7 +44,7 @@ return {
     config = {
       intelephense = {
         -- root_dir = vim.fn.getcwd(),
-        filetypes = { "php" },
+        filetypes = { "php", "phtml" },
         { files = { associations = { "*.php", "*.module", "*.inc" } } },
       },
       -- clangd = { capabilities = { offsetEncoding = "utf-8" } },
