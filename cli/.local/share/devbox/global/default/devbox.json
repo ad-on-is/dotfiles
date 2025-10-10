@@ -51,7 +51,10 @@
     "superfile@latest",
     "lazydocker@latest",
     "code-minimap@latest",
-    "scooter@latest"
+    "scooter@latest",
+    "dprint@latest",
+    "just@latest",
+    "gitui@latest"
   ],
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
