@@ -47,6 +47,7 @@ return {
         filetypes = { "php", "phtml" },
         { files = { associations = { "*.php", "*.module", "*.inc" } } },
       },
+      php_cs_fixer = {},
       -- clangd = { capabilities = { offsetEncoding = "utf-8" } },
     },
     -- customize how language servers are attached

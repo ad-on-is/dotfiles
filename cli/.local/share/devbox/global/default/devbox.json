@@ -51,7 +51,10 @@
     "superfile@latest",
     "lazydocker@latest",
     "code-minimap@latest",
-    "scooter@latest"
+    "scooter@latest",
+    "git-extras@latest",
+    "temporal-cli@latest",
+    "roadrunner@latest"
   ],
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
