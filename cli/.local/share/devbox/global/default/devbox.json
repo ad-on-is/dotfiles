@@ -54,7 +54,11 @@
     "scooter@latest",
     "dprint@latest",
     "just@latest",
-    "gitui@latest"
+    "gitui@latest",
+    "scooter@latest",
+    "git-extras@latest",
+    "temporal-cli@latest",
+    "roadrunner@latest"
   ],
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],

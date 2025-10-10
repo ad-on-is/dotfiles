@@ -18,18 +18,18 @@
 local ignored_formatonsave_types = { "phtml" }
 local funcs = require "functions"
 
-vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePre" }, {
-  pattern = "*",
-  callback = function(args)
-    local f = args.file
-    local type = vim.fn.fnamemodify(f, ":e")
-    if vim.fn.index(ignored_formatonsave_types, type) ~= -1 then
-      vim.g.autoformat = false
-    else
-      vim.g.autoformat = true
-    end
-  end,
-})
+-- vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePre" }, {
+--   pattern = "*",
+--   callback = function(args)
+--     local f = args.file
+--     local type = vim.fn.fnamemodify(f, ":e")
+--     if vim.fn.index(ignored_formatonsave_types, type) ~= -1 then
+--       vim.g.autoformat = false
+--     else
+--       vim.g.autoformat = true
+--     end
+--   end,
+-- })
 
 -- vim.api.nvim_create_autocmd("BufWritePre", {
 --   pattern = "*",
@@ -49,18 +49,18 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePre" }, {
 --   funcs.diff_format(args)
 -- end, { desc = "Format changed lines" })
 
-vim.api.nvim_create_autocmd({ "ModeChanged" }, {
-  pattern = "*:n",
-  callback = function()
-    vim.lsp.inlay_hint.enable(true) -- disable hints in insert mode
-  end,
-})
-
-vim.api.nvim_create_autocmd({ "ModeChanged" }, {
-  pattern = "n:*",
-  callback = function()
-    vim.lsp.inlay_hint.enable(false) -- disable hints in insert mode
-  end,
-})
+-- vim.api.nvim_create_autocmd({ "ModeChanged" }, {
+--   pattern = "*:n",
+--   callback = function()
+--     vim.lsp.inlay_hint.enable(true) -- disable hints in insert mode
+--   end,
+-- })
+--
+-- vim.api.nvim_create_autocmd({ "ModeChanged" }, {
+--   pattern = "n:*",
+--   callback = function()
+--     vim.lsp.inlay_hint.enable(false) -- disable hints in insert mode
+--   end,
+-- })
 
 -- LazyVim.cmp.actions.ai_accept = function() end

@@ -138,7 +138,7 @@ map("n", "<leaer>gCl", "<cmd>GitConflictChooseNextConflict<cr>", { desc = "Next"
 map("n", "<leader>gCj", "<cmd>GitConflictChoosePrevConflict<cr>", { desc = "Previous" })
 map("n", "<leader>gCa", "<cmd>GitConflictListQf<cr>", { desc = "Show All" })
 map("n", "<leader>fh", function()
-  vim.cmd("DiffviewFileHistory % --no-merges")
+  vim.cmd("DiffviewFileHistory % --no-merges --show-pulls")
 end, { desc = "File history" })
 
 map("n", "<tab>", "i<tab>")
