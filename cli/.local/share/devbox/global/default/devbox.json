@@ -58,7 +58,9 @@
     "scooter@latest",
     "git-extras@latest",
     "temporal-cli@latest",
-    "roadrunner@latest"
+    "roadrunner@latest",
+    "emojify@latest",
+    "gitflow@latest"
   ],
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
