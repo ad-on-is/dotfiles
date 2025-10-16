@@ -1,0 +1,78 @@
+theme = "catppuccin_mocha"
+
+
+[editor]
+bufferline = "always"
+line-number = "relative"
+mouse = true
+middle-click-paste = false
+cursorline = true
+true-color = true
+gutters = ["diff", "diagnostics", "line-numbers", "spacer"]
+end-of-line-diagnostics = "hint"
+auto-format = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = true
+
+[editor.statusline]
+left = ["mode", "read-only-indicator"]
+center = ["spinner", "file-modification-indicator", "file-name"]
+right = [
+  "version-control",
+  "spacer",
+  "diagnostics",
+  "selections",
+  "position-percentage",
+  "position",
+  "total-line-numbers",
+  "file-encoding",
+  "file-line-ending",
+  "file-type",
+  "register",
+]
+separator = "│"
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+diagnostics = ["warning", "error"]
+workspace-diagnostics = ["warning", "error"]
+
+[editor.indent-guides]
+render = true
+
+[editor.lsp]
+display-progress-messages = true
+display-inlay-hints = true
+
+
+[keys.normal]
+"C-s" = ":w"
+"C-." = "code_action"
+"C-v" = "paste_clipboard_after"
+"C-z" = "undo"
+"C-ö" = "toggle_line_comments"
+# "S-down" = "extend_line_down"
+# "S-up" = "extend_line_up"
+# "S-right" = "extend_char_right"
+# "S-left" = "extend_char_left"
+# "S-end" = "extend_to_line_end"
+# "S-home" = "extend_to_line_start"
+
+[keys.insert]
+"S-end" = "extend_to_line_end"
+"S-home" = "extend_to_line_start"
+"C-." = "code_action"
+"C-s" = ":w"
+"C-v" = "paste_clipboard_after"
+"C-z" = "undo"
+"C-ö" = "toggle_line_comments"
+# "S-down" = "extend_line_down"
+# "S-up" = "extend_line_up"
+# "S-right" = "extend_char_right"
+# "S-left" = "extend_char_left"
