@@ -18,9 +18,11 @@ export plugins=(
   direnv
 )
 
+
 repos=(
   ohmyzsh/ohmyzsh
   zsh-users/zsh-autosuggestions
+  zsh-users/zsh-completions
   Aloxaf/fzf-tab
   Freed-Wu/fzf-tab-source
   zsh-users/zsh-syntax-highlighting
