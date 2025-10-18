@@ -13,5 +13,5 @@ function set_wallpaper() {
 
 while true; do
   set_wallpaper "$1"
-  sleep 300
+  sleep 1500
 done

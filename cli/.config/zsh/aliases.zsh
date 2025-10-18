@@ -17,6 +17,9 @@ alias watchgo='watchexec -r -e go --stop-signal SIGINT -- ${@:1}'
 alias sctl='systemctl --user'
 alias jctl='journalctl --user'
 alias lg='lazygit'
+alias dg='devbox global'
+alias http='xh -Fb'
+alias download='xh -b --download'
 
 function gitpr() {
   git fetch origin pull/$1/head:PR-$1
@@ -91,51 +94,6 @@ function nva() {
 
 function nvam() {
   NVIM_APPNAME=astronvim nvim "$@"
-}
-
-function http() {
-  set -e
-  out=$(curl -sSLv "$@" 2>&1)
-  body=""
-  isBody="false"
-  headers=""
-  method=""
-  while read -r line; do
-    if [[ $isBody == "true" ]]; then
-      body+="$line\n"
-    fi
-    # if [[ $isMethod == "true" ]]; then
-    #     method="$line"
-    #     isMethod="false"
-    # fi
-    if [[ $line == *"> "* ]]; then
-      l=${line//> /}
-      if [[ $method == "" ]]; then
-        method="URI: $l"
-      fi
-    fi
-    if [[ $line == *"* Connection"* ]]; then
-      isBody="true"
-    fi
-    if [[ $line == *"< "* ]]; then
-      l=${line//< /}
-      # l=${l//: /' = '}
-      l=${l//'HTTP\/'/'Status: HTTP/'}
-
-      # if line is not empty or a new line
-      if [ -n "$l" ]; then
-        headers+="$l\n"
-      fi
-
-    fi
-    combheaders="$method\n$headers"
-  done <<<"$out"
-  # echo $combheaders | bat --style=plain --paging=never --theme='Catppuccin Mocha' -l makefile
-  # jqbody=$(echo $body | jq >2 /dev/null )
-  # if [ -n "$jqbody" ]; then
-  #     $body = $jqbody
-  # fi
-  echo $body | bat --style=plain --paging=never --theme='Catppuccin Mocha'
 }
 
 function updatezsh() {
