@@ -6,7 +6,7 @@ alias gatekeeper-disable='sudo spctl --master-disable'
 alias drminone='docker rmi $(docker images -f "dangling=true" -q)'
 alias dsynctime='docker run --rm --privileged alpine hwclock -s'
 alias drmex='docker ps -a | grep Exit | cut -d " " -f 1 | xargs sudo docker rm'
-alias dclogs='docker-compose -f ~/Development/Docker/docker-compose.yaml logs -f --tail=100'
+alias dclogs='docker compose -f ~/Development/Docker/docker-compose.yaml logs -f --tail=100'
 alias docker-ports='docker ps -a --format="table {{.Image}}\t{{.Names}}\t{{.Ports}}"'
 alias docker-status='docker ps -a --format="table {{.ID}}\t{{.Image}}\t{{.Names}}\t{{.Status}}"'
 alias docker-update-images='docker images | grep -v ^REPO | sed "s/ \+/:/g" | cut -d: -f1,2 | xargs -L1 docker pull && drminone -f'
@@ -55,7 +55,6 @@ alias gobuildrpi='env GOOS=linux GOARCH=arm GOARM=5 go build'
 
 alias get_addcerts='scp -r adis_durakovic@dnmc.in:/home/adis_durakovic/webserver/config/nginx/ssl/archive/add.dnmc.in ~/Docker/conf/nginx/ssl/archive/add.dnmc.in'
 
-alias docker-compose='docker compose'
 alias rg='rg --smart-case --hidden'
 alias rgp='rg --passthru'
 
