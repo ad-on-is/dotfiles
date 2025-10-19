@@ -5,6 +5,7 @@ local role_map = {
 }
 
 return {
+  { "isobit/vim-caddyfile" },
   {
     "numToStr/Comment.nvim",
     opts = {
@@ -85,8 +86,17 @@ return {
     opts = {
       formatters_by_ft = {
         python = { "ruff_format" },
+        ["_"] = { "caddy" },
       },
       formatters = {
+        caddy = {
+          command = "caddy",
+          args = { "fmt", "$FILENAME" },
+          exit_codes = { 0, 1 },
+          condition = function(self, ctx)
+            return vim.fs.basename(ctx.filename) == "Caddyfile"
+          end,
+        },
         php_cs_fixer = {
           args = { "fix", "$FILENAME" },
         },
