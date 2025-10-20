@@ -32,4 +32,7 @@ keybind = ctrl+7=resize_split:right,10
 keybind = performable:ctrl+c=copy_to_clipboard
 keybind = performable:ctrl+v=paste_from_clipboard
 
-palette = 7=#ffffff
+
+# better background
+palette = 7=#11111b
+palette = 15=#11111b
