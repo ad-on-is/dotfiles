@@ -86,16 +86,13 @@ return {
     opts = {
       formatters_by_ft = {
         python = { "ruff_format" },
-        ["_"] = { "caddy" },
+        caddyfile = { "caddy" },
       },
       formatters = {
         caddy = {
           command = "caddy",
-          args = { "fmt", "$FILENAME" },
-          exit_codes = { 0, 1 },
-          condition = function(self, ctx)
-            return vim.fs.basename(ctx.filename) == "Caddyfile"
-          end,
+          args = { "fmt", "-" },
+          stdin = true,
         },
         php_cs_fixer = {
           args = { "fix", "$FILENAME" },
