@@ -33,6 +33,5 @@ keybind = performable:ctrl+c=copy_to_clipboard
 keybind = performable:ctrl+v=paste_from_clipboard
 
 
-# better background
 palette = 7=#11111b
 palette = 15=#11111b
