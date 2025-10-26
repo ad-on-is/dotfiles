@@ -65,7 +65,8 @@
     "skim@latest",
     "dust@latest",
     "dua@latest",
-    "ctop@latest"
+    "ctop@latest",
+    "coredns@latest"
   ],
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
