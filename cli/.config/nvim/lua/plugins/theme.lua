@@ -170,6 +170,7 @@ return {
             opts.highlights = hls()
             local C = require("catppuccin.palettes").get_palette("mocha")
             local bg = C.surface1
+
             opts.highlights.buffer_selected = { bg = bg }
             opts.highlights.diagnostic_selected = { bg = bg }
             opts.highlights.info_selected = { bg = bg }
