@@ -23,7 +23,7 @@ return {
   { import = "astrocommunity.pack.laravel" },
   { import = "astrocommunity.pack.prettier" },
   { import = "astrocommunity.pack.prisma" },
-  { import = "astrocommunity.pack.python-ruff" },
+  -- { import = "astrocommunity.pack.python-ruff" },
   { import = "astrocommunity.pack.rust" },
   { import = "astrocommunity.pack.sql" },
   { import = "astrocommunity.pack.svelte" },

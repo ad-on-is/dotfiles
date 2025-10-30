@@ -18,6 +18,7 @@ vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,
 -- vim.g.autoformat = false
 vim.g.neovide_scale_factor = 1
 vim.g.neovide_cursor_vfx_mode = "railgun"
+vim.g.neovide_cursor_smooth_blink = false
 vim.g.maplocalleader = ","
 vim.opt.fillchars:append({ diff = " " })
 

@@ -215,7 +215,7 @@ return {
         -- capabilities = function(config)
         --   return require("blink.cmp").get_lsp_capabilities(config)
         -- end,
-        color = { -- show the derived colours for dart variables
+        color = {          -- show the derived colours for dart variables
           enabled = false, -- whether or not to highlight color variables at all, only supported on flutter >= 2.10
           -- background = false, -- highlight the background
           -- background_color = { r = 19, g = 17, b = 24 }, -- required, when background is transparent (i.e. background_color = { r = 19, g = 17, b = 24},)
@@ -247,7 +247,7 @@ return {
   },
   {
     "linux-cultist/venv-selector.nvim",
-    dependencies = { "neovim/nvim-lspconfig", "nvim-telescope/telescope.nvim", "mfussenegger/nvim-dap-python" },
+    dependencies = { "neovim/nvim-lspconfig", "nvim-telescope/telescope.nvim" },
     opts = {
       -- Your options go here
       -- name = "venv",

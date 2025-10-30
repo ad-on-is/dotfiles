@@ -42,12 +42,48 @@ return {
 
   {
     "folke/noice.nvim",
+
+    dependencies = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" },
     opts = {
+      views = {
+        cmdline_popup = {
+          backend = "popup",
+          relative = "editor",
+          zindex = 200,
+          position = {
+            row = "40%", -- 40% from top of the screen. This will position it almost at the center.
+            col = "50%",
+          },
+          size = {
+            width = 60,
+            height = "auto",
+          },
+          win_options = {
+            winhighlight = {
+              Normal = "NoiceCmdlinePopup",
+              FloatTitle = "NoiceCmdlinePopupTitle",
+              FloatBorder = "NoiceCmdlinePopupBorder",
+              IncSearch = "",
+              CurSearch = "",
+              Search = "",
+            },
+            winbar = "",
+            foldenable = false,
+            cursorline = false,
+          },
+        },
+      },
       presets = {
-        bottom_search = false, -- use a classic bottom cmdline for search
-        command_palette = true, -- position the cmdline and popupmenu together
-        long_message_to_split = true, -- long messages will be sent to a split
-        lsp_doc_border = false, -- add a border to hover docs and signature help
+        bottom_search = false,
+        command_palette = true,
+        long_message_to_split = true,
+      },
+
+      cmdline = {
+        view = "cmdline_popup",
+        format = {
+          conceal = false,
+        },
       },
     },
   },

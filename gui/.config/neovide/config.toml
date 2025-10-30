@@ -1,5 +1,6 @@
 idle = false
-no-multigrid = true
+# no-multigrid = true
+vsync = false
 [font]
 normal = ["Maple Mono NF"]
 size = 9
