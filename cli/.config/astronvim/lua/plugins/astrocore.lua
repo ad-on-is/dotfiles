@@ -26,6 +26,15 @@ return {
           end,
         },
       },
+      winblend = {
+        {
+          event = { "TermOpen" },
+          callback = function()
+            vim.opt.winblend = 20
+            vim.opt.pumblend = 20
+          end,
+        },
+      },
       neotree_startup = {
         {
           event = "VimEnter",
