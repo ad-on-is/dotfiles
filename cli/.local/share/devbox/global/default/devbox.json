@@ -67,7 +67,12 @@
     "dua@latest",
     "ctop@latest",
     "luarocks@latest",
-    "coredns@latest"
+    "coredns@latest",
+    "github-cli@latest",
+    "ghfetch@latest",
+    "findimagedupes@latest",
+    "tftp-hpa@latest",
+    "prmt@latest"
   ],
   "shell": {
     "init_hook": [

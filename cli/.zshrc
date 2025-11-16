@@ -5,6 +5,7 @@ source "$HOME"/.zshenv
 bindkey -e
 
 ZPLUGINDIR=${ZPLUGINDIR:-${ZDOTDIR:-$HOME/.config/zsh}/plugins}
+touch "$HISTFILE"
 
 # get zsh_unplugged and store it with your other plugins
 if [[ ! -d $ZPLUGINDIR/zsh_unplugged ]]; then
