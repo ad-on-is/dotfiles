@@ -1,0 +1,14 @@
+[Unit]
+After=graphical-session.target
+Requires=elephant.service
+
+[Service]
+Type=exec
+ExecCondition=/lib/systemd/systemd-xdg-autostart-condition "wlroots:sway:Wayfire:labwc:Hyprland" ""
+ExecStart=walker --gapplication-service
+Restart=on-failure
+Slice=app-graphical.slice
+
+[Install]
+WantedBy=graphical-session.target
+

@@ -1,10 +1,9 @@
-local role_map = {
-  user = "human",
-  assistant = "assistant",
-  system = "system",
-}
-
 return {
+
+  {
+    "NoahTheDuke/vim-just",
+    ft = { "just" },
+  },
   {
     "olimorris/codecompanion.nvim",
     dependencies = {
@@ -17,7 +16,6 @@ return {
       },
     },
   },
-
   { "isobit/vim-caddyfile" },
   {
     "numToStr/Comment.nvim",
@@ -228,7 +226,7 @@ return {
         -- capabilities = function(config)
         --   return require("blink.cmp").get_lsp_capabilities(config)
         -- end,
-        color = {          -- show the derived colours for dart variables
+        color = { -- show the derived colours for dart variables
           enabled = false, -- whether or not to highlight color variables at all, only supported on flutter >= 2.10
           -- background = false, -- highlight the background
           -- background_color = { r = 19, g = 17, b = 24 }, -- required, when background is transparent (i.e. background_color = { r = 19, g = 17, b = 24},)
