@@ -1,0 +1,42 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "bindings": {
+      "ctrl-s": "workspace::Save",
+      "ctrl-c": "editor::Copy",
+      "ctrl-v": "editor::Paste",
+      "shift shift": "file_finder::Toggle",
+      "ctrl-ö": "editor::ToggleComments",
+      "alt-d": "editor::DuplicateLineDown",
+      "alt-r": "pane::ActivatePreviousItem",
+      "alt-t": "pane::ActivateNextItem"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "shift shift": "file_finder::Toggle",
+      "ctrl-ö": "editor::ToggleComments"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      // "j k": "vim::NormalBefore"
+    }
+  },
+
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+      "|": "pane::SplitRight",
+      "&": "pane::SplitDown"
+    }
+  }
+]

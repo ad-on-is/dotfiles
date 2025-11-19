@@ -21,6 +21,7 @@ alias lad='lazydocker'
 alias dbg='devbox global'
 alias http='xh -Fb'
 alias download='xh -b --download'
+alias ze='/bin/zed'
 
 function gitpr() {
   git fetch origin pull/$1/head:PR-$1

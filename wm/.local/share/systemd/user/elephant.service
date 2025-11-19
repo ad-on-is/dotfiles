@@ -4,7 +4,7 @@ After=graphical-session.target
 [Service]
 Type=exec
 ExecCondition=/lib/systemd/systemd-xdg-autostart-condition "wlroots:sway:Wayfire:labwc:Hyprland" ""
-ExecStart=/usr/local/bin/elephant
+ExecStart=elephant
 Restart=on-failure
 Slice=app-graphical.slice
 
