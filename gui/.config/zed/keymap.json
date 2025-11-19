@@ -36,7 +36,8 @@
     "context": "Editor && vim_mode == normal",
     "bindings": {
       "|": "pane::SplitRight",
-      "&": "pane::SplitDown"
+      "&": "pane::SplitDown",
+      "\\": "pane::DeploySearch"
     }
   }
 ]
