@@ -72,7 +72,8 @@
     "ghfetch@latest",
     "findimagedupes@latest",
     "tftp-hpa@latest",
-    "prmt@latest"
+    "prmt@latest",
+    "wakeonlan@latest"
   ],
   "shell": {
     "init_hook": [

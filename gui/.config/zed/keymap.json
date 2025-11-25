@@ -11,6 +11,7 @@
       "ctrl-s": "workspace::Save",
       "ctrl-c": "editor::Copy",
       "ctrl-v": "editor::Paste",
+      "ctrl-f": "buffer_search::DeployReplace",
       "shift shift": "file_finder::Toggle",
       "ctrl-ö": "editor::ToggleComments",
       "alt-d": "editor::DuplicateLineDown",
