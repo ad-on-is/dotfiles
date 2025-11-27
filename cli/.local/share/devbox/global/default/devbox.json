@@ -73,7 +73,8 @@
     "findimagedupes@latest",
     "tftp-hpa@latest",
     "prmt@latest",
-    "wakeonlan@latest"
+    "wakeonlan@latest",
+    "television@latest"
   ],
   "shell": {
     "init_hook": [
