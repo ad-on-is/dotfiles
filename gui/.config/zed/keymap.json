@@ -10,7 +10,10 @@
     "bindings": {
       "ctrl-s": "workspace::Save",
       "ctrl-c": "editor::Copy",
+      "ctrl-w": "pane::CloseActiveItem",
       "ctrl-v": "editor::Paste",
+      "ctrl-o": "workspace::OpenFiles",
+      "ctrl-shift-o": "workspace::Open",
       "ctrl-f": "buffer_search::DeployReplace",
       "shift shift": "file_finder::Toggle",
       "ctrl-ö": "editor::ToggleComments",
@@ -28,9 +31,7 @@
   },
   {
     "context": "Editor && vim_mode == insert",
-    "bindings": {
-      // "j k": "vim::NormalBefore"
-    }
+    "bindings": {}
   },
 
   {
@@ -38,7 +39,21 @@
     "bindings": {
       "|": "pane::SplitRight",
       "&": "pane::SplitDown",
-      "\\": "pane::DeploySearch"
+      "\\": ["pane::DeploySearch", { "replace_enabled": true }],
+      "°": "pane::DeploySearch",
+      "€": "project_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "ProjectPanel",
+    "bindings": {
+      "€": "editor::ToggleFocus"
+    }
+  },
+  {
+    "context": "Editor && edit_prediction",
+    "bindings": {
+      "ctrl-l": "editor::AcceptEditPrediction"
     }
   }
 ]

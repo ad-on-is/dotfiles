@@ -7,17 +7,29 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "relative_line_numbers": "enabled",
+  "tab_size": 2,
   "debugger": {
-    "format_dap_log_messages": true
+    "format_dap_log_messages": true,
+    "log_dap_communications": true
+  },
+  "inlay_hints": {
+    "show_value_hints": true
   },
   "vim_mode": true,
-  "icon_theme": "Catppuccin Latte",
-  "ui_font_size": 16,
+  "icon_theme": "Colored Zed Icons Theme Dark",
+  "ui_font_size": 14,
   "buffer_font_size": 12,
+  "ui_font_family": "Maple Mono NF",
+  "buffer_font_family": "Maple Mono NF",
   "theme": {
     "mode": "dark",
     "light": "One Light",
     "dark": "Kanso Zen"
+  },
+
+  "features": {
+    "edit_prediction_provider": "copilot"
   },
 
   "close_on_file_delete": true,
@@ -29,6 +41,8 @@
 
   "git": {
     "inline_blame": {
+      "min_column": 0,
+      "padding": 4,
       "delay_ms": 200,
       "show_commit_summary": true
     }
@@ -47,6 +61,13 @@
     "show_user_picture": false,
     "show_onboarding_banner": true,
     "show_sign_in": true
+  },
+
+  "toolbar": {
+    "code_actions": true,
+    "breadcrumbs": true,
+    "quick_actions": true,
+    "selections_menu": true
   },
 
   "tab_bar": {
@@ -74,7 +95,7 @@
 
   "minimap": {
     "show": "always",
-    "max_width_columns": 50
+    "max_width_columns": 35
   },
 
   "collaboration_panel": {
@@ -91,7 +112,7 @@
   },
 
   "tabs": {
-    "git_status": true,
+    "git_status": false,
     "file_icons": true,
     "close_position": "right",
     "activate_on_close": "neighbour"
@@ -114,16 +135,15 @@
   "seed_search_query_from_cursor": "selection",
 
   "preview_tabs": {
-    "enable_preview_from_code_navigation": true,
-    "enable_preview_from_file_finder": true
+    "enable_preview_from_code_navigation": true
   },
 
   "scrollbar": {
-    "show": "system"
+    "show": "never"
   },
 
   "vim": {
-    "toggle_relative_line_numbers": true,
+    // "toggle_relative_line_numbers": true,
     "use_system_clipboard": "always",
     "use_smartcase_find": true,
     "highlight_on_yank_duration": 500
@@ -131,16 +151,12 @@
 
   "indent_guides": {
     "enabled": true,
-    "coloring": "indent_aware"
+    "coloring": "indent_aware",
+    "active_line_width": 2
   },
 
   "use_smartcase_search": true,
-  "toolbar": {
-    "code_actions": true,
-    "breadcrumbs": true,
-    "quick_actions": true,
-    "selections_menu": true
-  },
+
   "lsp": {
     "intelephense": {
       "binary": {
@@ -157,14 +173,15 @@
       }
     }
   },
+
   "languages": {
     "PHP": {
-      "language_servers": ["intelephense"],
+      "language_servers": ["intelephense", "!phpactor"],
       "format_on_save": "on",
       "formatter": {
         "external": {
-          "command": "bash",
-          "arguments": ["-c", "php-cs-fixer --quiet fix {buffer_path} && cat {buffer_path}"]
+          "command": "php-cs-fixer-stdin",
+          "arguments": ["-"]
         }
       }
     }
