@@ -125,14 +125,18 @@ alias find='fd -H'
 alias tree="ls --tree -L 2"
 # alias rm='gio trash'
 function rm() {
-  cmd=""
+  local args=()
   for arg in "$@"; do
     if [[ "$arg" != "-rf" && "$arg" != "-r" ]]; then
-      cmd="$cmd$arg "
+      args+=("$arg")
     fi
   done
-
-  eval "gio trash $cmd"
+  error=$(gio trash "${args[@]}" 2>&1 >/dev/null)
+  if [[ $? -ne 0 && "$error" == *"not supported"* ]]; then
+    /bin/rm "$@"
+  else
+    echo "$error"
+  fi
 }
 alias usage='\gdu --no-cross'
 

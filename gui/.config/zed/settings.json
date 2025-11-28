@@ -144,7 +144,7 @@
 
   "vim": {
     // "toggle_relative_line_numbers": true,
-    "use_system_clipboard": "always",
+    "use_system_clipboard": "on_yank",
     "use_smartcase_find": true,
     "highlight_on_yank_duration": 500
   },
@@ -156,6 +156,7 @@
   },
 
   "use_smartcase_search": true,
+  "lsp_document_colors": "inlay",
 
   "lsp": {
     "intelephense": {
@@ -177,7 +178,7 @@
   "languages": {
     "PHP": {
       "language_servers": ["intelephense", "!phpactor"],
-      "format_on_save": "on",
+      "format_on_save": "off",
       "formatter": {
         "external": {
           "command": "php-cs-fixer-stdin",
@@ -193,6 +194,7 @@
     "csv": true,
     "docker-compose": true,
     "dockerfile": true,
+    "dart": true,
     "env": true,
     "git-firefly": true,
     "github-actions": true,
