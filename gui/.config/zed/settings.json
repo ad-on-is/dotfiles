@@ -144,7 +144,7 @@
 
   "vim": {
     // "toggle_relative_line_numbers": true,
-    "use_system_clipboard": "never",
+    "use_system_clipboard": "on_yank",
     "use_smartcase_find": true,
     "highlight_on_yank_duration": 500
   },
