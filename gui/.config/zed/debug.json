@@ -6,6 +6,7 @@
     "pathMappings": {
       "/app": "$ZED_WORKTREE_ROOT"
     },
+    "test": "best",
     "port": 9001
   }
 ]
