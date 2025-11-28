@@ -1,6 +1,6 @@
 [
   {
-    "label": "ANX-PHP: Listen to Xdebug",
+    "label": "PHP: Listen to Xdebug",
     "adapter": "Xdebug",
     "request": "launch",
     "pathMappings": {

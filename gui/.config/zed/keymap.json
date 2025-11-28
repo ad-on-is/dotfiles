@@ -19,7 +19,8 @@
       "ctrl-ö": "editor::ToggleComments",
       "alt-d": "editor::DuplicateLineDown",
       "alt-r": "pane::ActivatePreviousItem",
-      "alt-t": "pane::ActivateNextItem"
+      "alt-t": "pane::ActivateNextItem",
+      "ctrl-d": "outline_panel::ToggleFocus"
     }
   },
   {
@@ -48,6 +49,12 @@
     "context": "ProjectPanel",
     "bindings": {
       "€": "editor::ToggleFocus"
+    }
+  },
+  {
+    "context": "OutlinePanel",
+    "bindings": {
+      "escape": "workspace::ToggleRightDock"
     }
   },
   {
