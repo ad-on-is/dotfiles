@@ -1,7 +1,8 @@
 #!/usr/bin/env php
-
 <?php
 
+error_reporting(E_ALL);
+ini_set('display_errors', '0');
 
 // Inspired from https://gist.github.com/vuon9/be16429f751e12f72e220c18777d9bc7
 //
@@ -57,11 +58,12 @@ if (! $createdTempFile) {
 // Check if PHP-CS-Fixer is installed
 
 // $whichBinary = exec('which php-cs-fixer');
-// if ('' === $whichBinary) {
-//     error_exit('php-cs-fixer binary not found in $PATH folders');
-// }
+$whichBinary = '/home/adurakovic/.local/share/nvim/mason/bin/php-cs-fixer';
+if ('' === $whichBinary) {
+    error_exit('php-cs-fixer binary not found in $PATH folders');
+}
 
-$cmd = sprintf('/home/adurakovic/.local/share/nvim/mason/bin/php-cs-fixer --quiet fix %s', $tmpFile);
+$cmd = sprintf('%s --quiet fix %s', $whichBinary, $tmpFile);
 
 // Run the command
 
@@ -82,9 +84,12 @@ if (false === $newContents) {
     error_exit('couldnt read from temp file after fixing');
 }
 
-if (! empty($newContents)) {
-    fwrite(STDOUT, trim($newContents) . PHP_EOL);
+
+if (!empty($newContents)) {
+    ob_clean();
+    fwrite(STDOUT, trim($newContents));
 }
+
 
 if (false === @unlink($tmpFile)) {
     error_exit('couldnt delete temp file');

@@ -1,5 +1,3 @@
-os:
-  editPreset: "nvim-remote"
 gui:
   authorColors:
     '*': "#b4befe"
@@ -25,3 +23,5 @@ gui:
     activeBorderColor:
       - "#fab387"
       - "bold"
+os:
+  editPreset: "nvim-remote"

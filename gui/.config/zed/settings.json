@@ -174,15 +174,20 @@
       }
     }
   },
+  "file_types": {
+    "PHP": ["phtml"]
+  },
 
   "languages": {
     "PHP": {
       "language_servers": ["intelephense", "!phpactor"],
-      "format_on_save": "off",
+      "format_on_save": "on",
       "formatter": {
         "external": {
-          "command": "php-cs-fixer-stdin",
-          "arguments": ["-"]
+          // "command": "php-cs-fixer-stdin",
+          // "arguments": ["-"]
+          "command": "sh",
+          "arguments": ["-c", "if [[ \"$1\" == *.phtml ]]; then cat; else php-cs-fixer-stdin -; fi", "_", "{buffer_path}"]
         }
       }
     }

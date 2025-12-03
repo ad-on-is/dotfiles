@@ -51,7 +51,7 @@
         "status_bar.background": "#09090b",
         "title_bar.background": "#09090b",
         "title_bar.inactive_background": "#09090b",
-        "toolbar.background": "#09090b",
+        "toolbar.background": "#111014",
         "tab_bar.background": "#111014",
         "tab.inactive_background": "#111014",
         "tab.active_background": "#18191e",
