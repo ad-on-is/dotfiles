@@ -42,6 +42,7 @@ line-numbers = true
     s = status
     d = diff
 	  dm = !git diff $(git symbolic-ref refs/remotes/origin/HEAD | sed \"s@^refs/remotes/origin/@@\")
+		lb = !git log --pretty='%C(yellow)%h %C(cyan)%cd %Cblue%aN%C(auto)%d %Creset%s' --date=human --date-order -20 $(git symbolic-ref refs/remotes/origin/HEAD | sed \"s@^refs/remotes/origin/@@\")..HEAD
 
 [filter "lfs"]
 	clean = git-lfs clean -- %f
