@@ -79,7 +79,7 @@
 
   "project_panel": {
     "hide_hidden": true,
-    "hide_gitignore": false,
+    "hide_gitignore": true,
     "file_icons": true,
     "folder_icons": true,
     "default_width": 300,
