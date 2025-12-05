@@ -179,6 +179,15 @@
   },
 
   "languages": {
+    "Go": {
+      "language_servers": ["gopls"],
+      "formatter": {
+        "external": {
+          "command": "goimports",
+          "arguments": []
+        }
+      }
+    },
     "PHP": {
       "language_servers": ["intelephense", "!phpactor"],
       "format_on_save": "on",

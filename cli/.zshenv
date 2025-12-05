@@ -89,7 +89,7 @@ PATH=$PATH:$ANDROID_HOME/platform-tools
 PATH=$PATH:$XDG_DATA_HOME/fnm
 PATH=$FLUTTER_ROOT/bin:$PATH
 PATH=$PATH:/usr/lib/dart/bin
-PATH=$PATH:$GOROOT/bin:$GOPATH/tools/bin:$GOPATH/bin
+PATH=$PATH:$GOPATH/bin
 
 PATH=$PATH:$HOME/.pub-cache/bin
 PATH=$PATH:$HOME/.local/bin
@@ -153,12 +153,12 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
   --color=hl:#5f87af,hl+:#89b4fa,info:#afaf87,marker:#74c7ec
   --color=prompt:#f5e0dc,spinner:#cba6f7,pointer:#cba6f7,header:#87afaf
   --color=border:#313244,label:#aeaeae,query:#d9d9d9
-  --preview-window="border-rounded" 
-  --prompt="» " 
-  --marker="› " 
+  --preview-window="border-rounded"
+  --prompt="» "
+  --marker="› "
   --pointer="◆"
-  --separator="─" 
-  --scrollbar="│" 
+  --separator="─"
+  --scrollbar="│"
   --info="right"
   --select-1
   '
