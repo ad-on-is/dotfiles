@@ -31,8 +31,8 @@ line-numbers = true
 [interactive]
   diffFilter = delta --color-only
 [alias]
-    l = log --pretty='%C(yellow)%h %C(cyan)%cd %Cblue%aN%C(auto)%d %Creset%s' --date=human --date-order -20
-    lg= log --pretty='%C(yellow)%h %C(cyan)%cd %Cblue%aN%C(auto)%d %Creset%s' --graph --date=human --date-order -20
+    l = log --pretty='%C(yellow)%h %C(cyan)%cd %Cblue%aN%C(auto)%d %Creset%s' --date=short --date-order -50
+    lg= log --pretty='%C(yellow)%h %C(cyan)%cd %Cblue%aN%C(auto)%d %Creset%s' --graph --date=short --date-order -50
     ph = push
     pl = pull
     pr = "push -u origin \"$(git rev-parse --abbrev-ref HEAD)\""
@@ -42,6 +42,7 @@ line-numbers = true
     s = status
     d = diff
 	  dm = !git diff $(git symbolic-ref refs/remotes/origin/HEAD | sed \"s@^refs/remotes/origin/@@\")
+		lb = !git log --pretty='%C(yellow)%h %C(cyan)%cd %Cblue%aN%C(auto)%d %Creset%s' --date=short --date-order $(git symbolic-ref refs/remotes/origin/HEAD | sed \"s@^refs/remotes/origin/@@\")..HEAD
 
 [filter "lfs"]
 	clean = git-lfs clean -- %f

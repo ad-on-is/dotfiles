@@ -19,6 +19,9 @@
       "ctrl-ö": "editor::ToggleComments",
       "alt-d": "editor::DuplicateLineDown",
       "alt-r": "pane::ActivatePreviousItem",
+      "ctrl-r": "projects::OpenRecent",
+      "ctrl-shift-r": "projects::OpenRemote",
+
       "alt-t": "pane::ActivateNextItem",
       "ctrl-d": "outline_panel::ToggleFocus"
     }
@@ -42,7 +45,10 @@
       "&": "pane::SplitDown",
       "\\": ["pane::DeploySearch", { "replace_enabled": true }],
       "°": "pane::DeploySearch",
-      "€": "project_panel::ToggleFocus"
+      "€": "project_panel::ToggleFocus",
+      "g r": "editor::FindAllReferences",
+      "ctrl-.": "editor::OpenContextMenu",
+      "shift-m": "vim::ToggleMarksView"
     }
   },
   {

@@ -18,9 +18,10 @@
   },
   "vim_mode": true,
   "icon_theme": "Colored Zed Icons Theme Dark",
-  "ui_font_size": 14,
+  "ui_font_size": 13.4,
   "buffer_font_size": 12,
   "ui_font_family": "Maple Mono NF",
+  "ui_font_weight": 700,
   "buffer_font_family": "Maple Mono NF",
   "theme": {
     "mode": "dark",
@@ -77,6 +78,7 @@
   },
 
   "project_panel": {
+    "hide_hidden": true,
     "hide_gitignore": true,
     "file_icons": true,
     "folder_icons": true,
@@ -210,6 +212,7 @@
     "dockerfile": true,
     "dart": true,
     "env": true,
+    "comment": true,
     "git-firefly": true,
     "github-actions": true,
     "golangci-lint": true,

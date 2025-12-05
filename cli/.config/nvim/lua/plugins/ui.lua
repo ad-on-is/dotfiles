@@ -7,6 +7,7 @@ git_blame.is_blame_text_available() -- Returns a boolean value indicating whethe
 git_blame.get_current_blame_text()
 
 return {
+
   {
     "folke/snacks.nvim",
     opts = {

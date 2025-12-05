@@ -74,7 +74,9 @@
     "tftp-hpa@latest",
     "prmt@latest",
     "wakeonlan@latest",
-    "television@latest"
+    "television@latest",
+    "serie@latest",
+    "tig@latest"
   ],
   "shell": {
     "init_hook": [

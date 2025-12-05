@@ -44,10 +44,10 @@ gui:
   showListFooter: true
   showFileTree: true
   showRandomTip: true
-  showCommandLog: true
+  showCommandLog: false
   showBottomLine: true
   showPanelJumps: true
-  showIcons: false
+  showIcons: true
   nerdFontsVersion: ""
   showFileIcons: true
   showBranchCommitHash: false
@@ -56,12 +56,12 @@ gui:
   border: rounded
   animateExplosion: true
   portraitMode: auto
-  filterMode: substring
+  filterMode: fuzzy
 git:
   pagers:
     - colorArg: always
       pager: "delta --paging=never"
-      useConfig: false
+      # useConfig: false
       externalDiffCommand: ""
   commit:
     signOff: false
@@ -258,4 +258,4 @@ disableStartupPopups: false
 customCommands: []
 services: {}
 notARepository: prompt
-promptToReturnFromSubprocess: true
+promptToReturnFromSubprocess: false
