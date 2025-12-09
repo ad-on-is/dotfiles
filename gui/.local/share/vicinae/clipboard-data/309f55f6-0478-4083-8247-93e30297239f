@@ -1,7 +1,0 @@
-/**
-     * @param Application $bootstrap
-     *
-     * @return mixed
-     *
-     * @throws Exception
-     */

@@ -1,1 +1,0 @@
-echo "" | php /home/adurakovic/.local/bin/php-cs-fixer-stdin -

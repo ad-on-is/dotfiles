@@ -1,1 +1,0 @@
-        $result = array_merge($result, array_keys(InterfaceModuleRepository::getAllByResourceGroupIds($result)));

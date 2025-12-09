@@ -1,4 +1,0 @@
-/*
-Overwrite original function since count($value), where $value is null throws an error in php 8.2.
-In php 7 it used to return 0, but with a warning message.
-*/

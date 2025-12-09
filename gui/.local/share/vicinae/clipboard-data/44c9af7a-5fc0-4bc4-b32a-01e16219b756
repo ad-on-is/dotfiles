@@ -1,3 +1,0 @@
-if (!empty($newContents)) {
-    fwrite(STDOUT, trim($newContents) . PHP_EOL);
-}

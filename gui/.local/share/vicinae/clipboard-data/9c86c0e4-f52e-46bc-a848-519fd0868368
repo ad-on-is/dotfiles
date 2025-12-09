@@ -1,3 +1,0 @@
-cat empty | php-cs-fixer-stdin -
-
- ../.local/tmp/phptest 13:44:52 on  main took 243ms

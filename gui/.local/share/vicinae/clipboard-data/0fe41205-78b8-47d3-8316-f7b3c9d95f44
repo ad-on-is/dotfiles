@@ -1,9 +1,0 @@
-$resellerModuleIds = [];
-        if ($role instanceof User) {
-            $org = $role->getOrganization();
-            $res = $org->getReseller();
-            if ($res !== null) {
-                $resellerModuleIds = $this->getModulesByRole($res->getACLRole());
-                $resellerModuleIds = array_keys(ArrayUtil::referenced($resellerModuleIds, 'interface_id'));
-            }
-        }

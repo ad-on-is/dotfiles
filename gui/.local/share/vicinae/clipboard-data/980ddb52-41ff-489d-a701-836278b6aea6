@@ -1,2 +1,0 @@
-var_dump(substr($newContents, 0, 50));
-var_dump(bin2hex(substr($newContents, 0, 10)));
