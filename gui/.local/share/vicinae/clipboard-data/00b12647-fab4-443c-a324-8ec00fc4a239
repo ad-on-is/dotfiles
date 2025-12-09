@@ -1,0 +1,8 @@
+{
+  'tim-harding/neophyte',
+  tag = '0.3.0',
+  event = 'VeryLazy',
+  opts = {
+    -- Same as neophyte.setup({ ... })
+  },
+}

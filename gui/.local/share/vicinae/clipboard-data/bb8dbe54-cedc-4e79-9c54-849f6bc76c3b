@@ -1,0 +1,16 @@
+root@engine:/etc/supervisor/conf.d# cat 60-cron-internal.conf 
+[program:cron-internal]
+directory = /usr/local/bin/engine-utils-internal/
+command = /usr/local/bin/engine-utils-internal/engine-utils cron -c ./config.toml
+user=www-data
+environment=APP_MODE="internal",APPLICATION_ENV="%(ENV_APPLICATION_ENV)s"
+autostart = false
+stopasgroup = true
+killasgroup = true
+stopsignal = TERM
+stopwaitsecs = 60
+
+stdout_logfile = /dev/stdout
+stdout_logfile_maxbytes = 0
+stderr_logfile = /dev/stderr
+stderr_logfile_maxbytes = 0

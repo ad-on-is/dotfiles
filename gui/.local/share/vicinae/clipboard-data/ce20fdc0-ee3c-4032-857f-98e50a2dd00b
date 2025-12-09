@@ -1,0 +1,8 @@
+<meta http-equiv="content-type" content="text/html; charset=utf-8"><pre>{
+  <span class="pl-s"><span class="pl-pds">'</span>tim-harding/neophyte<span class="pl-pds">'</span></span>,
+  <span class="pl-smi">tag</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>0.3.0<span class="pl-pds">'</span></span>,
+  <span class="pl-smi">event</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>VeryLazy<span class="pl-pds">'</span></span>,
+  <span class="pl-smi">opts</span> <span class="pl-k">=</span> {
+    <span class="pl-c"><span class="pl-c">--</span> Same as neophyte.setup({ ... })</span>
+  },
+}</pre>

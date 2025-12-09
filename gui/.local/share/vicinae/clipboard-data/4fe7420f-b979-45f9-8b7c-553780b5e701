@@ -1,0 +1,1 @@
+protected function _model($className, $instance = null)

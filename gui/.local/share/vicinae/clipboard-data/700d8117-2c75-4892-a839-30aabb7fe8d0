@@ -1,0 +1,4 @@
+$modulesReseller = $this->getResellerModules($bootstrap);
+            if($modulesReseller !== null) {
+                $modulesUser = array_intersect($modulesUser, $modulesReseller);
+            }

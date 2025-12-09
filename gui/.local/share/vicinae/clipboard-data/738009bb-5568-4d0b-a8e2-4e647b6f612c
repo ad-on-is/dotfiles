@@ -1,0 +1,49 @@
+<meta http-equiv="content-type" content="text/html; charset=utf-8"><pre><span class="pl-smi">fonts</span> <span class="pl-k">=</span> {
+    {
+      <span class="pl-smi">name</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>Cascadia Code PL<span class="pl-pds">'</span></span>,
+      <span class="pl-smi">features</span> <span class="pl-k">=</span> {
+        {
+          <span class="pl-smi">name</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>calt<span class="pl-pds">'</span></span>,
+          <span class="pl-smi">value</span> <span class="pl-k">=</span> <span class="pl-c1">1</span>,
+        },
+        <span class="pl-c"><span class="pl-c">--</span> Shorthand to set a feature to 1</span>
+        <span class="pl-s"><span class="pl-pds">'</span>ss01<span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>ss02<span class="pl-pds">'</span></span>,
+      },
+    },
+    <span class="pl-c"><span class="pl-c">--</span> Fallback fonts</span>
+    {
+      <span class="pl-smi">name</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>Monaspace Argon Var<span class="pl-pds">'</span></span>,
+      <span class="pl-c"><span class="pl-c">--</span> Variable font axes</span>
+      <span class="pl-smi">variations</span> <span class="pl-k">=</span> {
+        {
+          <span class="pl-smi">name</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>slnt<span class="pl-pds">'</span></span>,
+          <span class="pl-smi">value</span> <span class="pl-k">=</span> <span class="pl-k">-</span><span class="pl-c1">11</span>,
+        },
+      },
+    },
+    <span class="pl-c"><span class="pl-c">--</span> Shorthand for no features or variations</span>
+    <span class="pl-s"><span class="pl-pds">'</span>Symbols Nerd Font<span class="pl-pds">'</span></span>,
+    <span class="pl-s"><span class="pl-pds">'</span>Noto Color Emoji<span class="pl-pds">'</span></span>,
+  },
+  <span class="pl-smi">font_size</span> <span class="pl-k">=</span> {
+    <span class="pl-smi">kind</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>width<span class="pl-pds">'</span></span>, <span class="pl-c"><span class="pl-c">--</span> 'width' | 'height'</span>
+    <span class="pl-smi">size</span> <span class="pl-k">=</span> <span class="pl-c1">10</span>,
+  },
+  <span class="pl-c"><span class="pl-c">--</span> Multipliers of the base animation speed.</span>
+  <span class="pl-c"><span class="pl-c">--</span> To disable animations, set these to large values like 1000.</span>
+  <span class="pl-smi">cursor_speed</span> <span class="pl-k">=</span> <span class="pl-c1">2</span>,
+  <span class="pl-smi">scroll_speed</span> <span class="pl-k">=</span> <span class="pl-c1">2</span>,
+  <span class="pl-c"><span class="pl-c">--</span> Increase or decrease the distance from the baseline for underlines.</span>
+  <span class="pl-smi">underline_offset</span> <span class="pl-k">=</span> <span class="pl-c1">1</span>,
+  <span class="pl-c"><span class="pl-c">--</span> For transparent window effects, use this to set the default background color.</span>
+  <span class="pl-c"><span class="pl-c">--</span> This is because most colorschemes in transparent mode unset the background,</span>
+  <span class="pl-c"><span class="pl-c">--</span> which normally defaults to the terminal background, but we don't have that here.</span>
+  <span class="pl-c"><span class="pl-c">--</span> You must also pass --transparent as a command-line argument to see the effect.</span>
+  <span class="pl-c"><span class="pl-c">--</span> Channel values are in the range 0-255.</span>
+  <span class="pl-smi">bg_override</span> <span class="pl-k">=</span> {
+    <span class="pl-smi">r</span> <span class="pl-k">=</span> <span class="pl-c1">48</span>,
+    <span class="pl-smi">g</span> <span class="pl-k">=</span> <span class="pl-c1">52</span>,
+    <span class="pl-smi">b</span> <span class="pl-k">=</span> <span class="pl-c1">70</span>,
+    <span class="pl-smi">a</span> <span class="pl-k">=</span> <span class="pl-c1">128</span>,
+  },</pre>

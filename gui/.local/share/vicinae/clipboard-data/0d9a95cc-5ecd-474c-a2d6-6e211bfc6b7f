@@ -1,0 +1,1 @@
+argsRef+=("--env" "XDEBUG_SESSION=$IDEKEY")

@@ -1,0 +1,18 @@
+[utils]
+version = "1.0.0"
+port = 8101
+[tools]
+casperjs = "/usr/local/bin/casperjs"
+phantomjs = "/usr/local/bin/phantomjs"
+[cloudlog]
+casperjs_dir = "./res/cloudlog/casperjs/"
+reports_dir = "./res/cloudlog/reports/"
+[cron]
+workers_count=5
+php_path="/usr/local/bin/cron-php"
+command="internal /app/bin/manage.php core:cron-single"
+log_file_path="/app/log/cron-internal.log"
+sleep_interval=5
+concurrency=5
+monitoring_port=0
+warning_amount_workers=40

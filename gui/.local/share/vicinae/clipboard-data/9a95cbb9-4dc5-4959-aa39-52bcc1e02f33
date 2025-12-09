@@ -1,0 +1,5 @@
+gitlab-runner@2281007-ps-gsdev:~/builds$ ls -al
+total 8
+drwxr-x---+ 1 gitlab-runner www-data       134 Oct  1 10:39 .
+drwxr-xr-x  1 gitlab-runner gitlab-runner  170 Dec  2 11:08 ..
+-rw-r-----  1 gitlab-runner www-data      1995 Dec  6  2024 fucking.patch

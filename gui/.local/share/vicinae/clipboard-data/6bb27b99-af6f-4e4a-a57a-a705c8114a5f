@@ -1,0 +1,24 @@
+<meta http-equiv="content-type" content="text/html; charset=utf-8"><pre><span class="pl-ent">"constant.comment.todo"</span>: {
+          <span class="pl-ent">"color"</span>: <span class="pl-s"><span class="pl-pds">"</span>#4078f2ff<span class="pl-pds">"</span></span>
+          <span class="pl-ii">// "background_color": "#00000000",</span>
+          <span class="pl-ii">// "font_weight": "bold",</span>
+          <span class="pl-ii">// "font_style": "italic"</span>
+        },
+        <span class="pl-ent">"string.comment.info"</span>: {
+          <span class="pl-ent">"color"</span>: <span class="pl-s"><span class="pl-pds">"</span>#50a14fff<span class="pl-pds">"</span></span>
+          <span class="pl-ii">// "background_color": "#00000000",</span>
+          <span class="pl-ii">// "font_weight": "bold",</span>
+          <span class="pl-ii">// "font_style": "italic"</span>
+        },
+        <span class="pl-ent">"keyword.comment.warn"</span>: {
+          <span class="pl-ent">"color"</span>: <span class="pl-s"><span class="pl-pds">"</span>#c18401ff<span class="pl-pds">"</span></span>
+          <span class="pl-ii">// "background_color": "#00000000",</span>
+          <span class="pl-ii">// "font_weight": "bold",</span>
+          <span class="pl-ii">// "font_style": "italic"</span>
+        },
+        <span class="pl-ent">"property.comment.error"</span>: {
+          <span class="pl-ent">"color"</span>: <span class="pl-s"><span class="pl-pds">"</span>#ca1243ff<span class="pl-pds">"</span></span>
+          <span class="pl-ii">// "background_color": "#00000000",</span>
+          <span class="pl-ii">// "font_weight": "bold",</span>
+          <span class="pl-ii">// "font_style": "italic"</span>
+        }</pre>

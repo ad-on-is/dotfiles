@@ -1,0 +1,17 @@
+2025-12-02T11:13:01+01:00 INFO  [zed] ========== starting zed version 0.214.7, sha 1617972 ==========
+MESA: warning: Support for this platform is experimental with Xe KMD, bug reports may be ignored.
+2025-12-02T11:13:01+01:00 INFO  [zbus::connection::handshake::client] perform;
+2025-12-02T11:13:01+01:00 INFO  [zbus::connection::handshake::client] authenticate;
+2025-12-02T11:13:01+01:00 INFO  [zbus::connection::handshake::common] read_command;
+2025-12-02T11:13:01+01:00 INFO  [zbus::connection::handshake::client] send_secondary_commands;
+2025-12-02T11:13:01+01:00 INFO  [zbus::proxy] new;
+2025-12-02T11:13:01+01:00 INFO  [zbus::connection::socket_reader] socket reader;
+2025-12-02T11:13:01+01:00 INFO  [zbus::connection::socket_reader] read_socket;
+2025-12-02T11:13:01+01:00 INFO  [zbus::connection::socket_reader] read_socket;
+2025-12-02T11:13:01+01:00 INFO  [zbus::connection::socket_reader] read_socket;
+2025-12-02T11:13:01+01:00 INFO  [zbus::connection::socket_reader] read_socket;
+2025-12-02T11:13:01+01:00 INFO  [zbus::connection::socket_reader] read_socket;
+2025-12-02T11:13:01+01:00 INFO  [zbus::connection::socket_reader] read_socket;
+2025-12-02T11:13:01+01:00 INFO  [zbus::proxy] keep_updated;
+2025-12-02T11:13:01+01:00 INFO  [crashes] spawning crash handler process
+zed is already running

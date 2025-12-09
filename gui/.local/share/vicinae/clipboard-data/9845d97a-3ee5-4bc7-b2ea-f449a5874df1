@@ -1,0 +1,1 @@
+bind=SUPER,SPACE,exec, bash -c 'walker -m desktopapplications'

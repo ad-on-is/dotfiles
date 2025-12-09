@@ -1,0 +1,9 @@
+/home/adurakovic/.dotfiles/cli/.local/bin/php-cs-fixer-stdin:85:
+string(50) "<?php
+
+namespace MyApp;
+
+use Exception;
+use Reflec"
+/home/adurakovic/.dotfiles/cli/.local/bin/php-cs-fixer-stdin:86:
+string(20) "3c3f7068700a0a6e616d"
