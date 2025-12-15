@@ -69,7 +69,7 @@ export COMPOSER_HOME="$XDG_DATA_HOME"/composer
 
 export LG_CONFIG_FILE="/$XDG_CONFIG_HOME/lazygit/config.yml,$XDG_CONFIG_HOME/lazygit/catppuccin.yml"
 
-export JAVA_HOME=/etc/alternatives/jre
+export JAVA_HOME=/usr/lib/jvm/java-21-openjdk
 export BUN_INSTALL="$HOME/.bun"
 
 export CHROME_EXECUTABLE=/usr/bin/chromium-browser

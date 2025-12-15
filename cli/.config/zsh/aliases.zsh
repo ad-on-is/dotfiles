@@ -123,6 +123,8 @@ alias cat="bat"
 
 alias ls='eza --icons --group --group-directories-first --octal-permissions --no-permissions --color=auto --time-style=long-iso --modified'
 alias ll='ls -la -M'
+alias lld='ll -D'
+alias llf='ll -F'
 alias la='ls -a'
 alias find='fd -H'
 alias tree="ls --tree -L 2"
@@ -141,6 +143,11 @@ function rm() {
     echo "$error"
   fi
 }
+# function flutter() {
+#   export JAVA_HOME="/etc/alternatives/jre_21"
+#   fl=$(which flutter)
+#   $fl "$@"
+# }
 alias usage='\gdu --no-cross'
 
 alias ldu='du -h --max-depth=1 | sort -rh'

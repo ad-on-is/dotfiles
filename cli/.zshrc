@@ -15,7 +15,6 @@ source "$ZPLUGINDIR"/zsh_unplugged/zsh_unplugged.zsh
 # ohmyzsh plugins
 export plugins=(
   sudo
-  direnv
 )
 
 
