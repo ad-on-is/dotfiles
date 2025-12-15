@@ -1,0 +1,35 @@
+[meta]
+version = 1
+name = "Catppuccin Mocha (Darker)"
+description = "Cozy feeling with color-rich accents."
+variant = "dark"
+icon = "icons/catppuccin-mocha.png"
+inherits = "vicinae-dark"
+
+
+[colors.core]
+background = "#09090b"
+foreground = "#CDD6F4"
+secondary_background = "#111014"
+border = "#18191e"
+accent = "#89B4FA"
+
+
+
+
+[colors.accents]
+blue = "#89B4FA"
+green = "#A6E3A1"
+magenta = "#F5C2E7"
+orange = "#FAB387"
+purple = "#CBA6F7"
+red = "#F38BA8"
+yellow = "#F9E2AF"
+cyan = "#94E2D5"
+
+[colors.list.item.selection]
+background = { name = "colors.core.secondary_background", opacity = 1 }  # bg_highlight
+secondary_background = "colors.core.border"
+
+[colors.text]
+muted = {name= "colors.core.foreground", opacity = 0.2}

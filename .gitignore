@@ -6,3 +6,6 @@ hyprland/.config/hypr/config/overrides.conf
 hyprland/.config/hypr/config/monitors.conf
 gtk/**/bookmarks
 cli/.config/yazi/plugins/
+gui/.local/share/vicinae/clipboard-data*
+gui/.local/share/vicinae/*.db
+gui/.local/share/vicinae/file-indexer*
