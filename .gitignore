@@ -14,3 +14,4 @@ gtk/.config/gtk-4.0/dank-colors.css
 gui/.config/ghostty/config-dankcolors
 gui/.config/kitty/dank-tabs.conf
 gui/.config/kitty/dank-theme.conf
+wm/.config/DankMaterialShell/firefox.css
