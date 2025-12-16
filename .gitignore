@@ -9,3 +9,8 @@ cli/.config/yazi/plugins/
 gui/.local/share/vicinae/clipboard-data*
 gui/.local/share/vicinae/*.db
 gui/.local/share/vicinae/file-indexer*
+gtk/.config/gtk-3.0/dank-colors.css
+gtk/.config/gtk-4.0/dank-colors.css
+gui/.config/ghostty/config-dankcolors
+gui/.config/kitty/dank-tabs.conf
+gui/.config/kitty/dank-theme.conf
