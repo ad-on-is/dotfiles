@@ -23,19 +23,19 @@
       "ctrl-shift-r": "projects::OpenRemote",
 
       "alt-t": "pane::ActivateNextItem",
-      "ctrl-d": "outline_panel::ToggleFocus"
-    }
+      "ctrl-d": "outline_panel::ToggleFocus",
+    },
   },
   {
     "context": "Workspace",
     "bindings": {
       "shift shift": "file_finder::Toggle",
-      "ctrl-ö": "editor::ToggleComments"
-    }
+      "ctrl-ö": "editor::ToggleComments",
+    },
   },
   {
     "context": "Editor && vim_mode == insert",
-    "bindings": {}
+    "bindings": {},
   },
 
   {
@@ -48,33 +48,35 @@
       "€": "project_panel::ToggleFocus",
       "g r": "editor::FindAllReferences",
       "ctrl-.": "editor::OpenContextMenu",
-      "shift-m": "vim::ToggleMarksView"
-    }
+      "shift-m": "vim::ToggleMarksView",
+    },
   },
   {
     "context": "ProjectPanel",
     "bindings": {
-      "€": "editor::ToggleFocus"
-    }
+      "€": "editor::ToggleFocus",
+      "ctrl-i": "project_panel::ToggleHideGitIgnore",
+      "ctrl-h": "project_panel::ToggleHideHidden",
+    },
   },
   {
     "context": "OutlinePanel",
     "bindings": {
-      "escape": "workspace::ToggleRightDock"
-    }
+      "escape": "workspace::ToggleRightDock",
+    },
   },
   {
     "context": "Editor && edit_prediction",
     "bindings": {
-      "ctrl-l": "editor::AcceptEditPrediction"
-    }
+      "ctrl-l": "editor::AcceptEditPrediction",
+    },
   },
   {
     "context": "vim_operator == a || vim_operator == i || vim_operator == cs",
     "bindings": {
       "q": "vim::MiniQuotes",
-      "b": "vim::MiniBrackets"
-    }
+      "b": "vim::MiniBrackets",
+    },
   },
   {
     "context": "Editor && !menu",
@@ -87,7 +89,7 @@
       "ctrl-o": "workspace::Open", // vim default: go back
       "ctrl-s": "workspace::Save", // vim default: show signature
       "ctrl-a": "editor::SelectAll", // vim default: increment
-      "ctrl-b": "workspace::ToggleLeftDock" // vim default: down
-    }
-  }
+      "ctrl-b": "workspace::ToggleLeftDock", // vim default: down
+    },
+  },
 ]

@@ -11,7 +11,6 @@ window-padding-y = 8
 window-theme = ghostty
 resize-overlay = never
 gtk-wide-tabs = false
-#gtk-adwaita = false
 gtk-tabs-location=bottom
 #confirm-close-surface=false
 

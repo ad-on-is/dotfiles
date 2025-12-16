@@ -23,7 +23,7 @@ alias http='xh -Fb'
 alias download='xh -b --download'
 
 function ze() {
-  ~/.local/bin/zed --new "$@"
+  /usr/bin/zed --new "$@"
 }
 
 function gitpr() {
