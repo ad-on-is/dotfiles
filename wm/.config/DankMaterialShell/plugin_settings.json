@@ -1,0 +1,30 @@
+{
+  "dankActions": {
+    "enabled": false
+  },
+  "easyEffects": {
+    "enabled": false,
+    "currentOutputIndex": -1,
+    "currentInputIndex": -1
+  },
+  "grimblast": {
+    "enabled": false
+  },
+  "powerUsagePlugin": {
+    "enabled": true
+  },
+  "wallpaperBing": {
+    "enabled": true
+  },
+  "wallpaperDiscovery": {
+    "enabled": true,
+    "lastWallpaperUsed": "wallhaven.cc"
+  },
+  "worldClock": {
+    "enabled": true,
+    "timezones": []
+  },
+  "razer": {
+    "enabled": true
+  }
+}

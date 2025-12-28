@@ -1,0 +1,11 @@
+{
+  "id": "razer",
+  "name": "Razer",
+  "description": "Show razer battery",
+  "version": "1.0.0",
+  "author": "adONis",
+  "icon": "widgets",
+  "type": "widget",
+  "component": "./Razer.qml",
+  "settings": "./MySettings.qml"
+}

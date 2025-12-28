@@ -1,7 +1,7 @@
 {
   "currentThemeName": "dynamic",
   "customThemeFile": "",
-  "matugenScheme": "scheme-vibrant",
+  "matugenScheme": "scheme-tonal-spot",
   "runUserMatugenTemplates": true,
   "matugenTargetMonitor": "",
   "popupTransparency": 0.96,
@@ -168,7 +168,7 @@
   "audioOutputDevicePins": {},
   "gtkThemingEnabled": false,
   "qtThemingEnabled": false,
-  "syncModeWithPortal": true,
+  "syncModeWithPortal": false,
   "terminalsAlwaysDark": false,
   "showDock": false,
   "dockAutoHide": false,
@@ -262,6 +262,10 @@
       ],
       "rightWidgets": [
         {
+          "id": "easyEffects",
+          "enabled": true
+        },
+        {
           "id": "controlCenterButton",
           "enabled": true
         },
@@ -288,8 +292,8 @@
       ],
       "spacing": 0,
       "innerPadding": -8,
-      "bottomGap": -10,
-      "transparency": 0.4,
+      "bottomGap": 0,
+      "transparency": 0.9,
       "widgetTransparency": 0,
       "squareCorners": true,
       "noBackground": false,
@@ -378,8 +382,8 @@
       ],
       "spacing": 0,
       "innerPadding": -8,
-      "bottomGap": -10,
-      "transparency": 0.4,
+      "bottomGap": 0,
+      "transparency": 0.9,
       "widgetTransparency": 0,
       "squareCorners": true,
       "noBackground": false,
