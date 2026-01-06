@@ -1,4 +1,4 @@
-skip_global_compinit=1
+# skip_global_compinit=1
 
 export XDG_STATE_HOME=${XDG_STATE_HOME:-"$HOME/.local/state"}
 export XDG_DATA_HOME=${XDG_DATA_HOME:-"$HOME/.local/share"}
@@ -14,6 +14,8 @@ export LC_NUMERIC="C.UTF-8"
 export LC_TIME="C.UTF-8"
 export LC_MESSAGES="C.UTF-8"
 export LC_ALL="C.UTF-8"
+export QML_IMPORT_PATH=/usr/lib64/qt6/qml
+export QML2_IMPORT_PATH=/usr/lib64/qt6/qml
 
 # HSTR configuration - add this to ~/.zshrc
 # setopt histignorespace           # skip cmds w/ leading space from history

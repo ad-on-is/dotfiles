@@ -4,7 +4,7 @@ After=graphical-session.target
 [Service]
 Type=exec
 ExecCondition=/lib/systemd/systemd-xdg-autostart-condition "wlroots:sway:Wayfire:labwc:Hyprland" ""
-ExecStart=bash -c '$HOME/Applications/vicinae/vicinae server'
+ExecStart=bash -c '$HOME/.local/bin/vicinae server'
 Restart=on-failure
 Slice=app-graphical.slice
 

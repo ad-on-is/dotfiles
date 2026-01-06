@@ -48,7 +48,6 @@
     "sshx@latest",
     "duckdb@latest",
     "cmatrix@latest",
-    "superfile@latest",
     "lazydocker@latest",
     "code-minimap@latest",
     "scooter@latest",

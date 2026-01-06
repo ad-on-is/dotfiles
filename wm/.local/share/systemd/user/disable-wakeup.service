@@ -1,0 +1,10 @@
+[Unit]
+Description=Disable device wakeup
+After=multi-user.target
+
+[Service]
+Type=oneshot
+ExecStart=/home/adonis/.local/share/systemd/user/disable-wakeup.sh
+
+[Install]
+WantedBy=multi-user.target

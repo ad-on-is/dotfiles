@@ -13,19 +13,13 @@
       "args": [],
       "projects": [
         {
-          "paths": [
-            "/srv/docker/auth"
-          ]
+          "paths": ["/srv/docker/auth"]
         },
         {
-          "paths": [
-            "/srv/docker/network"
-          ]
+          "paths": ["/srv/docker/network"]
         },
         {
-          "paths": [
-            "/srv/docker/stacks"
-          ]
+          "paths": ["/srv/docker/stacks"]
         }
       ]
     }
@@ -34,10 +28,10 @@
   "tab_size": 2,
   "debugger": {
     "format_dap_log_messages": true,
-    "log_dap_communications": true,
+    "log_dap_communications": true
   },
   "inlay_hints": {
-    "show_value_hints": true,
+    "show_value_hints": true
   },
   "vim_mode": true,
   "icon_theme": "Colored Zed Icons Theme Dark",
@@ -49,11 +43,11 @@
   "theme": {
     "mode": "dark",
     "light": "One Light",
-    "dark": "Catppuccin Mocha (Darker)",
+    "dark": "Catppuccin Mocha (Darker)"
   },
 
   "features": {
-    "edit_prediction_provider": "copilot",
+    "edit_prediction_provider": "copilot"
   },
 
   "close_on_file_delete": true,
@@ -68,14 +62,14 @@
       "min_column": 0,
       "padding": 4,
       "delay_ms": 200,
-      "show_commit_summary": true,
-    },
+      "show_commit_summary": true
+    }
   },
   "diagnostics": {
     "inline": {
-      "enabled": true,
+      "enabled": true
     },
-    "button": true,
+    "button": true
   },
 
   "title_bar": {
@@ -84,20 +78,20 @@
     "show_branch_name": true,
     "show_user_picture": false,
     "show_onboarding_banner": true,
-    "show_sign_in": true,
+    "show_sign_in": true
   },
 
   "toolbar": {
     "code_actions": true,
     "breadcrumbs": true,
     "quick_actions": true,
-    "selections_menu": true,
+    "selections_menu": true
   },
 
   "tab_bar": {
     "show": true,
     "show_nav_history_buttons": false,
-    "show_tab_bar_buttons": false,
+    "show_tab_bar_buttons": false
   },
 
   "project_panel": {
@@ -110,47 +104,47 @@
     "auto_fold_dirs": true,
     "button": true,
     "auto_reveal_entries": true,
-    "entry_spacing": "standard",
+    "entry_spacing": "standard"
   },
 
   "outline_panel": {
     "dock": "right",
-    "button": true,
+    "button": true
   },
 
   "minimap": {
     "show": "always",
-    "max_width_columns": 35,
+    "max_width_columns": 35
   },
 
   "collaboration_panel": {
     "default_width": 300,
-    "button": true,
+    "button": true
   },
   "notification_panel": {
-    "button": true,
+    "button": true
   },
   "git_panel": {
     "sort_by_path": true,
     "default_width": 300,
-    "button": true,
+    "button": true
   },
 
   "tabs": {
     "git_status": false,
     "file_icons": true,
     "close_position": "right",
-    "activate_on_close": "neighbour",
+    "activate_on_close": "neighbour"
   },
 
   "file_finder": {
     "modal_max_width": "medium",
-    "include_ignored": "all",
+    "include_ignored": "all"
   },
 
   "active_pane_modifiers": {
     "inactive_opacity": 0.7,
-    "border_size": 1,
+    "border_size": 1
   },
 
   "preferred_line_length": 140,
@@ -160,58 +154,70 @@
   "seed_search_query_from_cursor": "selection",
 
   "preview_tabs": {
-    "enable_keep_preview_on_code_navigation": true,
+    "enable_keep_preview_on_code_navigation": true
   },
 
   "scrollbar": {
-    "show": "never",
+    "show": "never"
   },
 
   "vim": {
     // "toggle_relative_line_numbers": true,
     "use_system_clipboard": "on_yank",
     "use_smartcase_find": true,
-    "highlight_on_yank_duration": 500,
+    "highlight_on_yank_duration": 500
   },
 
   "indent_guides": {
     "enabled": true,
     "coloring": "indent_aware",
-    "active_line_width": 2,
+    "active_line_width": 2
   },
 
   "use_smartcase_search": true,
   "lsp_document_colors": "inlay",
 
   "lsp": {
+    "qmlls": {
+      "binary": {
+        "arguments": ["-E"]
+      },
+
+      "settings": {
+        "importPaths": ["/usr/lib64/qt6/qml"]
+      }
+    },
     "intelephense": {
       "binary": {
         "path": "intelephense",
-        "arguments": ["--stdio"],
+        "arguments": ["--stdio"]
       },
       "settings": {
         "intelephense": {
           "licenceKey": "~/intelephense/license.txt",
           "files": {
-            "maxSize": 1000000,
-          },
-        },
-      },
-    },
+            "maxSize": 1000000
+          }
+        }
+      }
+    }
   },
   "file_types": {
-    "PHP": ["phtml"],
+    "PHP": ["phtml"]
   },
 
   "languages": {
+    "QML": {
+      "hard_tabs": true
+    },
     "Go": {
       "language_servers": ["gopls"],
       "formatter": {
         "external": {
           "command": "goimports",
-          "arguments": [],
-        },
-      },
+          "arguments": []
+        }
+      }
     },
     "PHP": {
       "language_servers": ["intelephense", "!phpactor"],
@@ -221,10 +227,10 @@
           // "command": "php-cs-fixer-stdin",
           // "arguments": ["-"]
           "command": "sh",
-          "arguments": ["-c", "if [[ \"$1\" == *.phtml ]]; then cat; else php-cs-fixer-stdin -; fi", "_", "{buffer_path}"],
-        },
-      },
-    },
+          "arguments": ["-c", "if [[ \"$1\" == *.phtml ]]; then cat; else php-cs-fixer-stdin -; fi", "_", "{buffer_path}"]
+        }
+      }
+    }
   },
 
   "auto_install_extensions": {
@@ -254,6 +260,6 @@
     "vscode-icons": true,
     "wakatime": true,
     "zig": true,
-    "php": true,
-  },
+    "php": true
+  }
 }
