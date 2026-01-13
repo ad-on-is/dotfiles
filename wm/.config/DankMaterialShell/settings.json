@@ -323,14 +323,7 @@
       "enabled": true,
       "position": 1,
       "screenPreferences": [
-        {
-          "name": "DP-1",
-          "model": "34GP950G"
-        },
-        {
-          "name": "DP-2",
-          "model": "LG ULTRAWIDE"
-        }
+        "all"
       ],
       "showOnLastDisplay": true,
       "leftWidgets": [
