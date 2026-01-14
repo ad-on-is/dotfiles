@@ -1,0 +1,324 @@
+{
+  "id": "catppuccin_darker",
+  "name": "Catppuccin Darker",
+  "version": "1.0.0",
+  "author": "Avenge Media",
+  "description": "Soothing pastel theme for the high-spirited",
+  "dark": {},
+  "light": {},
+  "variants": {
+    "type": "multi",
+    "defaults": {
+      "dark": {
+        "accent": "colorful",
+        "flavor": "mocha"
+      },
+      "light": {
+        "accent": "mauve",
+        "flavor": "latte"
+      }
+    },
+    "flavors": [
+      {
+        "id": "mocha",
+        "name": "Mocha",
+        "dark": {
+          "surface": "#09090b",
+          "surfaceText": "#cdd6f4",
+          "surfaceVariant": "#1e1e2e",
+          "surfaceVariantText": "#a6adc8",
+          "background": "#09090b",
+          "backgroundText": "#cdd6f4",
+          "outline": "#18191e",
+          "surfaceContainer": "#09090b",
+          "surfaceContainerHigh": "#09090b",
+          "surfaceContainerHighest": "#09090b",
+          "error": "#f38ba8",
+          "warning": "#fab387",
+          "info": "#89b4fa"
+        },
+        "light": {}
+      }
+    ],
+    "accents": [
+      {
+        "id": "rosewater",
+        "latte": {
+          "primary": "#dc8a78",
+          "primaryText": "#eff1f5",
+          "primaryContainer": "#f6e7e3",
+          "secondary": "#dd7878",
+          "surfaceTint": "#f6e7e3"
+        },
+
+        "mocha": {
+          "primary": "#f5e0dc",
+          "primaryText": "#1e1e2e",
+          "primaryContainer": "#7d5d56",
+          "secondary": "#f2cdcd",
+          "surfaceTint": "#3d3237"
+        },
+        "name": "Rosewater"
+      },
+      {
+        "id": "flamingo",
+        "latte": {
+          "primary": "#dd7878",
+          "primaryText": "#eff1f5",
+          "primaryContainer": "#f6e5e5",
+          "secondary": "#dc8a78",
+          "surfaceTint": "#f6e5e5"
+        },
+
+        "mocha": {
+          "primary": "#f2cdcd",
+          "primaryText": "#1e1e2e",
+          "primaryContainer": "#7a555a",
+          "secondary": "#f5e0dc",
+          "surfaceTint": "#3c3134"
+        },
+        "name": "Flamingo"
+      },
+      {
+        "id": "pink",
+        "latte": {
+          "primary": "#ea76cb",
+          "primaryText": "#eff1f5",
+          "primaryContainer": "#f7d7ee",
+          "secondary": "#8839ef",
+          "surfaceTint": "#f7d7ee"
+        },
+
+        "mocha": {
+          "primary": "#f5c2e7",
+          "primaryText": "#1e1e2e",
+          "primaryContainer": "#7a3f69",
+          "secondary": "#cba6f7",
+          "surfaceTint": "#3d2f39"
+        },
+        "name": "Pink"
+      },
+      {
+        "id": "mauve",
+        "latte": {
+          "primary": "#cba6f7",
+          "primaryText": "#1e1e2e",
+          "primaryContainer": "#55307f",
+          "secondary": "#b4befe",
+          "surfaceTint": "#33293f"
+        },
+
+        "mocha": {
+          "primary": "#cba6f7",
+          "primaryText": "#1e1e2e",
+          "primaryContainer": "#55307f",
+          "secondary": "#b4befe",
+          "surfaceTint": "#33293f"
+        },
+        "name": "Mauve"
+      },
+      {
+        "id": "red",
+        "latte": {
+          "primary": "#d20f39",
+          "primaryText": "#eff1f5",
+          "primaryContainer": "#f6d0d6",
+          "secondary": "#e64553",
+          "surfaceTint": "#f6d0d6"
+        },
+
+        "mocha": {
+          "primary": "#f38ba8",
+          "primaryText": "#1e1e2e",
+          "primaryContainer": "#6f2438",
+          "secondary": "#eba0ac",
+          "surfaceTint": "#3c2930"
+        },
+        "name": "Red"
+      },
+      {
+        "id": "maroon",
+        "latte": {
+          "primary": "#e64553",
+          "primaryText": "#eff1f5",
+          "primaryContainer": "#f7d8dc",
+          "secondary": "#d20f39",
+          "surfaceTint": "#f7d8dc"
+        },
+
+        "mocha": {
+          "primary": "#eba0ac",
+          "primaryText": "#1e1e2e",
+          "primaryContainer": "#6d3641",
+          "secondary": "#f38ba8",
+          "surfaceTint": "#3a2c31"
+        },
+        "name": "Maroon"
+      },
+      {
+        "id": "peach",
+        "latte": {
+          "primary": "#fe640b",
+          "primaryText": "#eff1f5",
+          "primaryContainer": "#ffe4d5",
+          "secondary": "#df8e1d",
+          "surfaceTint": "#ffe4d5"
+        },
+
+        "mocha": {
+          "primary": "#fab387",
+          "primaryText": "#1e1e2e",
+          "primaryContainer": "#734226",
+          "secondary": "#f9e2af",
+          "surfaceTint": "#3b3028"
+        },
+        "name": "Peach"
+      },
+      {
+        "id": "yellow",
+        "latte": {
+          "primary": "#df8e1d",
+          "primaryText": "#eff1f5",
+          "primaryContainer": "#fff6d6",
+          "secondary": "#40a02b",
+          "surfaceTint": "#fff6d6"
+        },
+
+        "mocha": {
+          "primary": "#f9e2af",
+          "primaryText": "#1e1e2e",
+          "primaryContainer": "#6e5a2f",
+          "secondary": "#a6e3a1",
+          "surfaceTint": "#3a362a"
+        },
+        "name": "Yellow"
+      },
+      {
+        "id": "green",
+        "latte": {
+          "primary": "#40a02b",
+          "primaryText": "#eff1f5",
+          "primaryContainer": "#dff4e0",
+          "secondary": "#179299",
+          "surfaceTint": "#dff4e0"
+        },
+
+        "mocha": {
+          "primary": "#a6e3a1",
+          "primaryText": "#1e1e2e",
+          "primaryContainer": "#2f5f36",
+          "secondary": "#94e2d5",
+          "surfaceTint": "#2b382c"
+        },
+        "name": "Green"
+      },
+      {
+        "id": "teal",
+        "latte": {
+          "primary": "#179299",
+          "primaryText": "#eff1f5",
+          "primaryContainer": "#daf3f1",
+          "secondary": "#04a5e5",
+          "surfaceTint": "#daf3f1"
+        },
+
+        "mocha": {
+          "primary": "#94e2d5",
+          "primaryText": "#1e1e2e",
+          "primaryContainer": "#2e5e59",
+          "secondary": "#89dceb",
+          "surfaceTint": "#2b3836"
+        },
+        "name": "Teal"
+      },
+      {
+        "id": "sky",
+        "latte": {
+          "primary": "#04a5e5",
+          "primaryText": "#eff1f5",
+          "primaryContainer": "#dbf1fb",
+          "secondary": "#209fb5",
+          "surfaceTint": "#dbf1fb"
+        },
+
+        "mocha": {
+          "primary": "#89dceb",
+          "primaryText": "#1e1e2e",
+          "primaryContainer": "#24586a",
+          "secondary": "#74c7ec",
+          "surfaceTint": "#29363a"
+        },
+        "name": "Sky"
+      },
+      {
+        "id": "sapphire",
+        "latte": {
+          "primary": "#209fb5",
+          "primaryText": "#eff1f5",
+          "primaryContainer": "#def3f8",
+          "secondary": "#1e66f5",
+          "surfaceTint": "#def3f8"
+        },
+
+        "mocha": {
+          "primary": "#74c7ec",
+          "primaryText": "#1e1e2e",
+          "primaryContainer": "#1f4d6f",
+          "secondary": "#89b4fa",
+          "surfaceTint": "#27343c"
+        },
+        "name": "Sapphire"
+      },
+      {
+        "id": "blue",
+        "latte": {
+          "primary": "#1e66f5",
+          "primaryText": "#eff1f5",
+          "primaryContainer": "#e0e9ff",
+          "secondary": "#7287fd",
+          "surfaceTint": "#e0e9ff"
+        },
+
+        "mocha": {
+          "primary": "#89b4fa",
+          "primaryText": "#1e1e2e",
+          "primaryContainer": "#243f75",
+          "secondary": "#b4befe",
+          "surfaceTint": "#29313d"
+        },
+        "name": "Blue"
+      },
+      {
+        "id": "colorful",
+        "name": "Colorful",
+        "mocha": {
+          "primary": "#f54900",
+          "primaryText": "#1e1e2e",
+          "primaryContainer": "#3f4481",
+          "secondary": "#f0b100",
+          "surfaceTint": "#f54900"
+        }
+      },
+      {
+        "id": "lavender",
+        "latte": {
+          "primary": "#7287fd",
+          "primaryText": "#eff1f5",
+          "primaryContainer": "#e5e8ff",
+          "secondary": "#8839ef",
+          "surfaceTint": "#e5e8ff"
+        },
+
+        "mocha": {
+          "primary": "#b4befe",
+          "primaryText": "#1e1e2e",
+          "primaryContainer": "#3f4481",
+          "secondary": "#cba6f7",
+          "surfaceTint": "#2f3140"
+        },
+        "name": "Lavender"
+      }
+    ]
+  },
+  "sourceDir": "catppuccin_darker"
+}

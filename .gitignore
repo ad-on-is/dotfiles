@@ -15,3 +15,8 @@ gui/.config/ghostty/config-dankcolors
 gui/.config/kitty/dank-tabs.conf
 gui/.config/kitty/dank-theme.conf
 wm/.config/DankMaterialShell/firefox.css
+gui/.config/ghostty/themes/dankcolors
+cli/.config/nvim/lua/plugins/dankcolors.lua
+hyprland/.config/hypr/dms/
+wm/.config/DankMaterialShell/.changelog*
+wm/.config/DankMaterialShell/.firstlaunch
