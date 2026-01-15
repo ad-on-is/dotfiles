@@ -21,7 +21,7 @@
       "alt-r": "pane::ActivatePreviousItem",
       "ctrl-r": "projects::OpenRecent",
       "ctrl-shift-r": "projects::OpenRemote",
-
+      "ctrl-shift-p": "command_palette::Toggle",
       "alt-t": "pane::ActivateNextItem",
       "ctrl-d": "outline_panel::ToggleFocus",
     },
@@ -49,6 +49,8 @@
       "g r": "editor::FindAllReferences",
       "ctrl-.": "editor::OpenContextMenu",
       "shift-m": "vim::ToggleMarksView",
+      "g a": "git::Add",
+      "g b": "git::Blame",
     },
   },
   {
