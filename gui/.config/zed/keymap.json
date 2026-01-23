@@ -23,7 +23,7 @@
       "ctrl-shift-r": "projects::OpenRemote",
       "ctrl-shift-p": "command_palette::Toggle",
       "alt-t": "pane::ActivateNextItem",
-      "ctrl-d": "outline_panel::ToggleFocus",
+      "ctrl-d": "outline::Toggle",
     },
   },
   {
@@ -39,6 +39,14 @@
   },
 
   {
+    "context": "Editor && vim_mode == visual",
+    "bindings": {
+      "delete": ["workspace::SendKeystrokes", "d i"],
+      "backspace": ["workspace::SendKeystrokes", "d i"],
+    },
+  },
+
+  {
     "context": "Editor && vim_mode == normal",
     "bindings": {
       "|": "pane::SplitRight",
@@ -51,6 +59,12 @@
       "shift-m": "vim::ToggleMarksView",
       "g a": "git::Add",
       "g b": "git::Blame",
+      "s": "vim::PushAddSurrounds",
+      "ds": "vim::PushDeleteSurrounds",
+      "cs": "vim::PushChangeSurrounds",
+      "delete": ["workspace::SendKeystrokes", "i delete"],
+      "backspace": ["workspace::SendKeystrokes", "i backspace"],
+      "enter": ["workspace::SendKeystrokes", "i enter"],
     },
   },
   {

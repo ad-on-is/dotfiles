@@ -78,3 +78,6 @@ fi
 
 
 source "$HOME"/.config/zsh/extras.zsh
+
+# opencode
+export PATH=/home/adurakovic/.opencode/bin:$PATH

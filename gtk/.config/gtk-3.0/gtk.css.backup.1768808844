@@ -1,4 +1,3 @@
-@import url("dank-colors.css");
 
 .background {
 	opacity: 92%;
