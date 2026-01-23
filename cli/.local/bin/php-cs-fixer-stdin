@@ -84,7 +84,7 @@ if (false === $newContents) {
 
 
 if (!empty($newContents)) {
-    fwrite(STDOUT, trim($newContents));
+    fwrite(STDOUT, $newContents);
 }
 
 
