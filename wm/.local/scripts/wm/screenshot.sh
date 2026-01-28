@@ -10,10 +10,10 @@ function gradient() {
   file=$1
   width=$(identify -format "%w" "$file")
   height=$(identify -format "%h" "$file")
-  padding=30
+  padding=70
   new_width=$((width + padding))
   new_height=$((height + padding))
-  radius=$((padding / 3)) # adjust this for more/less rounding
+  radius=$((padding / 5)) # adjust this for more/less rounding
   gradient1="#ff6467"
   gradient2="#ff8904"
   gradient3="#ed6aff"
