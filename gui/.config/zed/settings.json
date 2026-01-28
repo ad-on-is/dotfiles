@@ -32,6 +32,8 @@
     "log_dap_communications": true,
   },
   "inlay_hints": {
+    "show_other_hints": true,
+    "show_background": true,
     "show_value_hints": true,
   },
   "vim_mode": true,
@@ -60,6 +62,7 @@
 
   "git": {
     "inline_blame": {
+      "enabled": false,
       "min_column": 0,
       "padding": 4,
       "delay_ms": 200,
@@ -223,6 +226,9 @@
     "PHP": {
       "language_servers": ["intelephense", "!phpactor"],
       "format_on_save": "on",
+      "inlay_hints": {
+        "show_value_hints": true,
+      },
       "formatter": {
         "external": {
           // "command": "php-cs-fixer-stdin",

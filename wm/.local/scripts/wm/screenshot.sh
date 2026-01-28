@@ -6,6 +6,34 @@ if [[ ! -d "$SDIR" ]]; then
   mkdir -p "$SDIR"
 fi
 
+function gradient() {
+  file=$1
+  width=$(identify -format "%w" "$file")
+  height=$(identify -format "%h" "$file")
+  padding=30
+  new_width=$((width + padding))
+  new_height=$((height + padding))
+  radius=$((padding / 3)) # adjust this for more/less rounding
+  gradient1="#fb64b6"
+  gradient2="#9169f7"
+
+  convert "$file" \
+    -alpha set \
+    \( +clone -alpha transparent -background none \
+    -fill white -draw "roundrectangle 0,0 $((width - 1)),$((height - 1)) ${radius},${radius}" \) \
+    -compose DstIn -composite \
+    "$file"
+
+  # Add shadow and composite onto gradient
+  convert -size ${new_width}x${new_height} "gradient:$gradient1-$gradient2" \
+    \( "$file" \( +clone -background black -shadow 100x5+0+0 \) \
+    +swap -background none -layers merge +repage \) \
+    -gravity center -composite \
+    "$file"
+
+  # rm /tmp/tmp_rounded.png
+}
+
 WORKSPACES="$(hyprctl monitors -j | jq -r 'map(.activeWorkspace.id)')"
 MONITOR="$(hyprctl activeworkspace -j | jq -r '.monitorID')"
 MWH="$(hyprctl monitors -j | jq -r '.[] | select(.id=='"$MONITOR"') | .width,.height' | xargs | tr ' ' x)"
@@ -23,12 +51,12 @@ res=""
 if [[ "$MWH" = "$GEOMWH" ]]; then
   res=$(grim -g "$GEOM" - | satty -o "$file" -f -)
 else
-  grim -g "$GEOM" - | wl-copy
   grim -g "$GEOM" "$file"
+  gradient "$file"
+  cat "$file" | wl-copy
   res="clipboard File saved"
 fi
 
-echo "$res"
 clipboard=$(echo "$res" | grep -o "clipboard")
 saved=$(echo "$res" | grep -o "File saved")
 text=""
