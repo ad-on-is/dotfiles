@@ -14,9 +14,8 @@ function gradient() {
   new_width=$((width + padding))
   new_height=$((height + padding))
   radius=$((padding / 5)) # adjust this for more/less rounding
-  gradient1="#ff6467"
-  gradient2="#ff8904"
-  gradient3="#ed6aff"
+  gradient1="#2f0d68"
+  gradient2="#00d3f2"
 
   convert "$file" \
     -alpha set \
@@ -27,7 +26,7 @@ function gradient() {
 
   # Add shadow and composite onto gradient
   convert -size ${new_width}x${new_height} xc: \
-    -sparse-color Barycentric "0,0 $gradient1 ${new_width},0 $gradient2 $((new_width / 2)),${new_height} $gradient3" \
+    -sparse-color Barycentric "0,0 $gradient1 ${new_width},${new_height} $gradient2" \
     \( "$file" \( +clone -background black -shadow 100x5+0+0 \) \
     +swap -background none -layers merge +repage \) \
     -gravity center -composite \
