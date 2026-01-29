@@ -158,7 +158,7 @@
   "seed_search_query_from_cursor": "selection",
 
   "preview_tabs": {
-    "enable_keep_preview_on_code_navigation": true,
+    "enabled": false,
   },
 
   "scrollbar": {
@@ -206,6 +206,7 @@
       },
     },
   },
+  "file_scan_exclusions": ["**/tmp/cache/**"],
   "file_types": {
     "PHP": ["phtml"],
   },
