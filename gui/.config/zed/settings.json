@@ -62,7 +62,7 @@
 
   "git": {
     "inline_blame": {
-      "enabled": false,
+      "enabled": true,
       "min_column": 0,
       "padding": 4,
       "delay_ms": 200,
@@ -94,7 +94,7 @@
 
   "tab_bar": {
     "show": true,
-    "show_nav_history_buttons": false,
+    "show_nav_history_buttons": true,
     "show_tab_bar_buttons": false,
   },
 
