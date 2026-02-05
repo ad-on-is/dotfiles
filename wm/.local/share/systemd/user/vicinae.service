@@ -7,6 +7,7 @@ ExecCondition=/lib/systemd/systemd-xdg-autostart-condition "wlroots:sway:Wayfire
 ExecStart=bash -c '$HOME/.local/bin/vicinae server'
 Restart=on-failure
 Slice=app-graphical.slice
+Environment=IGNORE_APPIMAGE_WARNING=1
 
 [Install]
 WantedBy=graphical-session.target
