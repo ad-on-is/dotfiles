@@ -486,6 +486,10 @@
           "id": "diskUsage",
           "enabled": true,
           "mountPath": "/run/media/adonis/Backups"
+        },
+        {
+          "id": "razer",
+          "enabled": true
         }
       ],
       "spacing": 0,
