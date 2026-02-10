@@ -7,7 +7,6 @@
 // from the command palette.
 [
   {
-    "context": "Editor",
     "bindings": {
       "ctrl-s": "workspace::Save",
       "ctrl-c": "editor::Copy",
@@ -18,6 +17,7 @@
       "ctrl-O": "workspace::Open",
       "ctrl-f": "buffer_search::DeployReplace",
       "shift shift": "file_finder::Toggle",
+      "ctrl-alt-s": "workspace::SaveWithoutFormat",
       "ctrl-ö": "editor::ToggleComments",
       "alt-d": "editor::DuplicateLineDown",
       "alt-r": "pane::ActivatePreviousItem",

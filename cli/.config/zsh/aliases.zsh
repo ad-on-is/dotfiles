@@ -103,7 +103,7 @@ alias cat="bat"
 alias ls='eza --icons --group --group-directories-first --octal-permissions --no-permissions --color=auto --time-style=long-iso --modified'
 alias ll='ls -la -M'
 alias lld='ll -D'
-alias llf='ll -F'
+alias llf='ll -f'
 alias la='ls -a'
 alias find='fd -H'
 alias tree="ls --tree -L 2"
