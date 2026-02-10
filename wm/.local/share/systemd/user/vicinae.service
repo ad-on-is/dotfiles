@@ -4,10 +4,9 @@ After=graphical-session.target
 [Service]
 Type=exec
 ExecCondition=/lib/systemd/systemd-xdg-autostart-condition "wlroots:sway:Wayfire:labwc:Hyprland" ""
-ExecStart=bash -c '$HOME/.local/bin/vicinae server'
+ExecStart=bash -c 'IGNORE_APPIMAGE_WARNING=1 $HOME/.local/bin/vicinae server'
 Restart=on-failure
 Slice=app-graphical.slice
-Environment=IGNORE_APPIMAGE_WARNING=1
 
 [Install]
 WantedBy=graphical-session.target

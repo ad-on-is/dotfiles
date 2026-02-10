@@ -10,6 +10,7 @@ PluginComponent {
     id: root
 
     property string displayText: "Loading"
+    property bool charging: false
 
     Timer {
         interval: 1000
@@ -23,28 +24,34 @@ PluginComponent {
 
     Process {
         id: razerInfo
-        command: ["bash", "-c", "'razer-cli -ls | tail -n +2 | 2yaml | yq"]
+        command: ["python3", "/home/adonis/.local/scripts/wm/razerbattery.py"]
         running: true
+
         stdout: StdioCollector {
-            onStreamFinished: displayText = this.text
+            onStreamFinished: {
+                const [name, bat, charge, dpi, brightness] = this.text.split("\n");
+                charging = charge === "True";
+                displayText = `${name} ${bat}%`;
+            }
         }
     }
 
     horizontalBarPill: Component {
         Row {
-            spacing: Theme.spacingS
-
+            spacing: 3
             DankIcon {
-                name: "widgets"
-                size: Theme.iconSize
-                color: Theme.primary
+                name: "mouse"
+                size: Theme.barIconSize(root.barThickness)
+                color: {
+                    return charging ? Theme.primary : Theme.widgetTextColor;
+                }
                 anchors.verticalCenter: parent.verticalCenter
             }
 
             StyledText {
                 text: root.displayText
-                font.pixelSize: Theme.fontSizeMedium
-                color: Theme.surfaceText
+                font.pixelSize: Theme.barTextSize(root.barThickness, root.barConfig?.fontScale)
+                color: Theme.widgetTextColor
                 anchors.verticalCenter: parent.verticalCenter
             }
         }
