@@ -75,7 +75,8 @@
     "wakeonlan@latest",
     "television@latest",
     "serie@latest",
-    "tig@latest"
+    "tig@latest",
+    "glab@latest"
   ],
   "shell": {
     "init_hook": [
