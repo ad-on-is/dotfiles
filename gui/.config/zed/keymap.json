@@ -26,13 +26,16 @@
       "ctrl-shift-p": "command_palette::Toggle",
       "alt-t": "pane::ActivateNextItem",
       "ctrl-d": "outline::Toggle",
+      "ctrl-p": "file_finder::Toggle",
+      "ctrl-u": "tab_switcher::ToggleAll",
+      "ctrl-n": "workspace::NewFile",
     },
   },
 
   {
-    "context": "Editor && vim_mode == insert",
+    "context": "Editor",
     "bindings": {
-      "ctrl-p": "project_search::SearchInNew",
+      "ctrl-l": "editor::AcceptEditPrediction",
     },
   },
 
@@ -70,6 +73,7 @@
       "€": "editor::ToggleFocus",
       "ctrl-i": "project_panel::ToggleHideGitIgnore",
       "ctrl-h": "project_panel::ToggleHideHidden",
+      "ctrl-shift-f": ["pane::DeploySearch", { "replace_enabled": true }],
     },
   },
   {
@@ -78,12 +82,7 @@
       "escape": "workspace::ToggleRightDock",
     },
   },
-  {
-    "context": "Editor && edit_prediction",
-    "bindings": {
-      "ctrl-l": "editor::AcceptEditPrediction",
-    },
-  },
+
   {
     "context": "vim_operator == a || vim_operator == i || vim_operator == cs",
     "bindings": {

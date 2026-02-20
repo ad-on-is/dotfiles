@@ -7,6 +7,9 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "edit_predictions": {
+    "provider": "copilot",
+  },
   "ssh_connections": [
     {
       "host": "Earth",
@@ -47,10 +50,6 @@
     "mode": "dark",
     "light": "One Light",
     "dark": "Kanso Zen Darker",
-  },
-
-  "features": {
-    "edit_prediction_provider": "copilot",
   },
 
   "close_on_file_delete": true,
@@ -94,12 +93,12 @@
 
   "tab_bar": {
     "show": true,
-    "show_nav_history_buttons": true,
+    "show_nav_history_buttons": false,
     "show_tab_bar_buttons": false,
   },
 
   "project_panel": {
-    "hide_hidden": false,
+    "hide_hidden": true,
     "hide_gitignore": true,
     "file_icons": true,
     "folder_icons": true,
