@@ -13,6 +13,11 @@ use = "wylie102/duckdb"
 rev = "3f8c863"
 hash = "87b9233a74325e95011670ed20bbd0d4"
 
+[[plugin.deps]]
+use = "KKV9/compress"
+rev = "cb6e8ec"
+hash = "424ada4807b20ccd4fc85d1d7c26d1e4"
+
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-mocha"
 rev = "2d73b79"
