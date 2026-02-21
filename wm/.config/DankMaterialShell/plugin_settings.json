@@ -3,7 +3,7 @@
     "enabled": false
   },
   "easyEffects": {
-    "enabled": false,
+    "enabled": true,
     "currentOutputIndex": -1,
     "currentInputIndex": -1
   },
@@ -25,6 +25,18 @@
     "timezones": []
   },
   "razer": {
+    "enabled": true
+  },
+  "dankGifSearch": {
+    "enabled": true,
+    "trigger": ":g",
+    "preferredFormat": "webp",
+    "pasteUrlOnly": false
+  },
+  "dankKDEConnect": {
+    "enabled": false
+  },
+  "emojiLauncher": {
     "enabled": true
   }
 }
