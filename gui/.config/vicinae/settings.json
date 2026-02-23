@@ -18,6 +18,7 @@
    "providers": {
       "applications": {
          "preferences": {
+            "defaultAction": "launch",
             "paths": [
                "/home/adonis/.local/share/applications",
                "/home/adonis/.local/share/flatpak/exports/share/applications",

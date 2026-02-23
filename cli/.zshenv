@@ -98,7 +98,6 @@ PATH=$PATH:$HOME/.local/bin
 PATH=$PATH:$HOME/.local/bin/docker
 
 PATH=$PATH:$JAVA_HOME/bin
-PATH=$PATH:$HOME/.platformio/penv/bin
 
 PATH=$PATH:$PIPX_BIN_DIR
 PATH="$BUN_INSTALL/bin:$PATH"
