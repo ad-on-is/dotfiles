@@ -8,6 +8,7 @@ gtk/**/bookmarks
 cli/.config/yazi/plugins/
 gui/.local/share/vicinae/clipboard-data*
 gui/.local/share/vicinae/*.db
+gui/.local/share/vicinae/clipboard.*
 gui/.local/share/vicinae/file-indexer*
 gui/.local/share/vicinae/metadata.json
 gtk/.config/gtk-3.0/dank-colors.css
