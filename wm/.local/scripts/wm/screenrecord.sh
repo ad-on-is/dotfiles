@@ -26,4 +26,6 @@ fi
 grim -g "$GEOM" $screenshotfile
 notify-send -i $screenshotfile "󰹑 Recording started!" " $recordfile"
 
-wl-screenrec -g "$GEOM" -f $file
+# echo "wl-screenrec -g \"$GEOM\" -f \"$file\""
+
+wl-screenrec --codec=hevc -g "$GEOM" -f "$file"
