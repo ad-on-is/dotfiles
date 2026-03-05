@@ -195,11 +195,20 @@
         "path": "intelephense",
         "arguments": ["--stdio"],
       },
+      "initialization_options": {
+        "settings": {
+          "files": {
+            "exclude": ["**/.git/**", "**/node_modules/**", "**/tmp/**", "**/tmp/cache/**"],
+          },
+        },
+      },
+
       "settings": {
         "intelephense": {
           "licenceKey": "~/intelephense/license.txt",
           "files": {
             "maxSize": 1000000,
+            "exclude": ["**/.git/**", "**/node_modules/**", "**/tmp/**", "**/tmp/cache/**"],
           },
         },
       },

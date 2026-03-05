@@ -28,6 +28,7 @@
       "ctrl-p": "file_finder::Toggle",
       "ctrl-u": "tab_switcher::ToggleAll",
       "ctrl-n": "workspace::NewFile",
+      // "ctrl-x": ["action::Sequence", ["workspace::CopyRelativePath", ["task::Spawn", { "task_name": "GetPath" }]]],
     },
   },
 
@@ -35,6 +36,13 @@
     "context": "Editor",
     "bindings": {
       "ctrl-l": "editor::AcceptEditPrediction",
+      "ctrl-shift-f": [
+        "action::Sequence",
+        [
+          ["workspace::NewSearch", { "replace_enabled": true, "filter_enabled": true }],
+          ["workspace::SendKeystrokes", "enter"],
+        ],
+      ],
     },
   },
 
@@ -72,7 +80,15 @@
       "€": "editor::ToggleFocus",
       "ctrl-i": "project_panel::ToggleHideGitIgnore",
       "ctrl-h": "project_panel::ToggleHideHidden",
-      "ctrl-shift-f": ["pane::DeploySearch", { "replace_enabled": true }],
+      "ctrl-shift-f": [
+        "action::Sequence",
+        [
+          "workspace::CopyRelativePath",
+          ["workspace::NewSearch", { "filter_enabled": true }],
+          ["workspace::SendKeystrokes", "tab ctrl-v"],
+          ["workspace::SendKeystrokes", "enter"],
+        ],
+      ],
     },
   },
   {
