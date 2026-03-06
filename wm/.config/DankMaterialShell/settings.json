@@ -1,6 +1,6 @@
 {
   "currentThemeName": "custom",
-  "currentThemeCategory": "custom",
+  "currentThemeCategory": "registry",
   "customThemeFile": "/home/adonis/.config/DankMaterialShell/themes/catppuccin_darker/theme.json",
   "registryThemeVariants": {
     "flexoki": "blue",
@@ -12,7 +12,7 @@
   },
   "matugenScheme": "scheme-tonal-spot",
   "runUserMatugenTemplates": true,
-  "matugenTargetMonitor": "",
+  "matugenTargetMonitor": "DP-3",
   "popupTransparency": 0.96,
   "dockTransparency": 1,
   "widgetBackgroundColor": "sth",
@@ -219,7 +219,7 @@
   "useAutoLocation": true,
   "weatherEnabled": true,
   "networkPreference": "auto",
-  "iconTheme": "System Default",
+  "iconTheme": "MoreWaita",
   "cursorSettings": {
     "theme": "System Default",
     "size": 24,

@@ -7,6 +7,33 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "agent": {
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "claude-opus-4.6",
+      "enable_thinking": false,
+    },
+    "favorite_models": [],
+    "model_parameters": [],
+    "tool_permissions": {
+      "default": "allow",
+      "tools": {
+        "terminal": {
+          "default": "confirm",
+          "always_allow": [
+            { "pattern": "^cargo\\s+(build|test|check)" },
+            { "pattern": "^git\\s+(status|log|diff)" },
+            { "pattern": "^(find|grep|cat|locate)" },
+          ],
+          "always_deny": [{ "pattern": "rm\\s+-rf\\s+(/|~)" }],
+          "always_confirm": [{ "pattern": "sudo\\s" }],
+        },
+        "edit_file": {
+          "always_deny": [{ "pattern": "\\.env" }, { "pattern": "\\.(pem|key)$" }],
+        },
+      },
+    },
+  },
   "edit_predictions": {
     "provider": "copilot",
   },
@@ -98,8 +125,8 @@
   },
 
   "project_panel": {
-    "hide_hidden": true,
-    "hide_gitignore": true,
+    "hide_hidden": false,
+    "hide_gitignore": false,
     "file_icons": true,
     "folder_icons": true,
     "default_width": 300,
@@ -118,6 +145,7 @@
   "minimap": {
     "show": "always",
     "max_width_columns": 35,
+    "current_line_highlight": "line",
   },
 
   "collaboration_panel": {
@@ -239,7 +267,6 @@
       },
     },
   },
-
   "auto_install_extensions": {
     "ansible": true,
     "basher": true,
