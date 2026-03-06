@@ -10,7 +10,9 @@ function gradient() {
   file=$1
   width=$(identify -format "%w" "$file")
   height=$(identify -format "%h" "$file")
-  padding=70
+  min_dim=$((width < height ? width : height))
+  padding=$(( (min_dim * 70) / 500 ))
+  [ "$padding" -lt 20 ] && padding=20
   new_width=$((width + padding))
   new_height=$((height + padding))
   radius=$((padding / 5)) # adjust this for more/less rounding

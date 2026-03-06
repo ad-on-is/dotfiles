@@ -24,7 +24,6 @@ alias download='xh -b --download'
 
 function ze() {
   ~/.local/bin/zed --new "$@" &!
-  exit;
 }
 
 function gitpr() {
