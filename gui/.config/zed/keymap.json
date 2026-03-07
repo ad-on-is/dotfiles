@@ -28,8 +28,9 @@
       "ctrl-p": "file_finder::Toggle",
       "ctrl-u": "tab_switcher::ToggleAll",
       "ctrl-n": "workspace::NewFile",
-      "ctrl-t": "task::Spawn"
-    }
+      "ctrl-shift-t": "task::Spawn",
+      "ctrl-t": "terminal_panel::Toggle",
+    },
   },
 
   {
@@ -39,29 +40,26 @@
       "ctrl-shift-f": [
         "action::Sequence",
         [
-          [
-            "workspace::NewSearch",
-            { "replace_enabled": true, "filter_enabled": true }
-          ],
-          ["workspace::SendKeystrokes", "enter"]
-        ]
-      ]
-    }
+          ["workspace::NewSearch", { "replace_enabled": true, "filter_enabled": true }],
+          ["workspace::SendKeystrokes", "enter"],
+        ],
+      ],
+    },
   },
 
   {
     "context": "Editor && vim_mode == visual",
     "bindings": {
       "delete": ["workspace::SendKeystrokes", "d i"],
-      "backspace": ["workspace::SendKeystrokes", "d i"]
-    }
+      "backspace": ["workspace::SendKeystrokes", "d i"],
+    },
   },
 
   {
     "context": "Editor && vim_mode == insert",
     "bindings": {
       // "ctrl-m": ["editor::AddSelectionAbove", { "skip_soft_wrap": true }],
-    }
+    },
   },
 
   {
@@ -82,8 +80,8 @@
       "cs": "vim::PushChangeSurrounds",
       "delete": ["workspace::SendKeystrokes", "i delete"],
       "backspace": ["workspace::SendKeystrokes", "i backspace"],
-      "enter": ["workspace::SendKeystrokes", "i enter"]
-    }
+      "enter": ["workspace::SendKeystrokes", "i enter"],
+    },
   },
   {
     "context": "ProjectPanel",
@@ -97,24 +95,24 @@
           "workspace::CopyRelativePath",
           ["workspace::NewSearch", { "filter_enabled": true }],
           ["workspace::SendKeystrokes", "tab ctrl-v"],
-          ["workspace::SendKeystrokes", "enter"]
-        ]
-      ]
-    }
+          ["workspace::SendKeystrokes", "enter"],
+        ],
+      ],
+    },
   },
   {
     "context": "OutlinePanel",
     "bindings": {
-      "escape": "workspace::ToggleRightDock"
-    }
+      "escape": "workspace::ToggleRightDock",
+    },
   },
 
   {
     "context": "vim_operator == a || vim_operator == i || vim_operator == cs",
     "bindings": {
       "q": "vim::MiniQuotes",
-      "b": "vim::MiniBrackets"
-    }
+      "b": "vim::MiniBrackets",
+    },
   },
   {
     "context": "Editor && !menu",
@@ -127,7 +125,7 @@
       "ctrl-o": "workspace::OpenFiles", // vim default: go back
       "ctrl-s": "workspace::Save", // vim default: show signature
       "ctrl-a": "editor::SelectAll", // vim default: increment
-      "ctrl-b": "workspace::ToggleLeftDock" // vim default: down
-    }
-  }
+      "ctrl-b": "workspace::ToggleLeftDock", // vim default: down
+    },
+  },
 ]
