@@ -34,6 +34,12 @@ source "$HOME"/.config/zsh/zstyle.zsh
 
 # autoload -U compinit && compinit -i # BEFORE zoxide init
 # compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
+#
+export FNM_PATH="$HOME"/.local/share/fnm
+if [ -d "$FNM_PATH" ]; then
+  export PATH="$FNM_PATH:$PATH"
+  eval "$(fnm env)"
+fi
 
 [ -x "$(command -v starship)" ] && eval "$(starship init zsh)"
 [ -x "$(command -v zoxide)" ] && eval "${$(zoxide init --cmd cd zsh):s#_files -/#_dirs#}"
@@ -42,7 +48,9 @@ source "$HOME"/.config/zsh/zstyle.zsh
 [ -x "$(command -v fnm)" ] && eval "$(fnm env --use-on-cd --shell zsh --resolve-engines)"
 [ -x "$(command -v goenv)" ] && eval "$(goenv init -)"
 [ -x "$(command -v atuin)" ] && eval "$(atuin init zsh)"
-[ -x "$(command -v devbox)" ] && eval "$(devbox global shellenv)"
+if [ -x "$(command -v devbox)" ]; then
+  eval "$(echo "$_DEVBOX_SHELLENV" | grep -v 'export PATH')"
+fi
 [ -x "$(command -v direnv)" ] && eval "$(direnv hook zsh)"
 # [ -x "$(command -v zellij)" ] && eval "$(zellij setup --generate-auto-start zsh)"
 [ -x "$(command -v vivid)" ] && export LS_COLORS="$(vivid generate catppuccin-mocha)"
@@ -70,11 +78,7 @@ if [[ -f "$HOME"/.zshrc_custom ]]; then
 fi
 
 # fnm
-export FNM_PATH="$HOME"/.local/share/fnm
-if [ -d "$FNM_PATH" ]; then
-  export PATH="$FNM_PATH:$PATH"
-  eval "$(fnm env)"
-fi
+
 
 
 source "$HOME"/.config/zsh/extras.zsh

@@ -8,6 +8,7 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
   "agent": {
+    "enabled": false,
     "default_model": {
       "provider": "copilot_chat",
       "model": "claude-opus-4.6",
