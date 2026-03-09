@@ -73,7 +73,8 @@
     "serie@latest",
     "tig@latest",
     "glab@latest",
-    "wakatime-cli@latest"
+    "wakatime-cli@latest",
+    "dagger@latest"
   ],
   "shell": {
     "init_hook": [

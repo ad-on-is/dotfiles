@@ -1,3 +1,4 @@
+fpath=(~/.config/zsh/completions $fpath)
 zstyle ':completion:*' cache-path "$XDG_CACHE_HOME"/zsh/zcompcache
 
 source "$HOME"/.zshenv
