@@ -1,3 +1,4 @@
+fpath=(~/.config/zsh/completions $fpath)
 zstyle ':completion:*' cache-path "$XDG_CACHE_HOME"/zsh/zcompcache
 
 source "$HOME"/.zshenv
@@ -49,7 +50,9 @@ fi
 [ -x "$(command -v goenv)" ] && eval "$(goenv init -)"
 [ -x "$(command -v atuin)" ] && eval "$(atuin init zsh)"
 if [ -x "$(command -v devbox)" ]; then
-  eval "$(echo "$_DEVBOX_SHELLENV" | grep -v 'export PATH')"
+  DEVBOX_SHELLENV="$(devbox global shellenv | grep -v 'export PATH')"
+  eval "$DEVBOX_SHELLENV"
+  # eval "$(echo "devbox global shellenv" | grep -v 'export PATH')"
 fi
 [ -x "$(command -v direnv)" ] && eval "$(direnv hook zsh)"
 # [ -x "$(command -v zellij)" ] && eval "$(zellij setup --generate-auto-start zsh)"
