@@ -1,5 +1,4 @@
-theme = "catppuccin-mocha"
-background = #11111b
+theme = "catppuccin-mocha-darker"
 font-family = "Maple Mono NF"
 font-size = 9
 font-style = semibold

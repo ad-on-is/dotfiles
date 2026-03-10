@@ -8,7 +8,6 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
   "agent": {
-    "enabled": false,
     "default_model": {
       "provider": "copilot_chat",
       "model": "claude-opus-4.6",
@@ -145,6 +144,7 @@
 
   "minimap": {
     "show": "always",
+    "display_in": "active_editor",
     "max_width_columns": 35,
     "current_line_highlight": "line",
   },

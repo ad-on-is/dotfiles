@@ -8,7 +8,13 @@
       "flavor": "mocha",
       "accent": "teal"
     },
-    "gruvboxMaterial": "hard"
+    "gruvboxMaterial": "hard",
+    "catppuccin_darker": {
+      "dark": {
+        "flavor": "mocha",
+        "accent": "colorful"
+      }
+    }
   },
   "matugenScheme": "scheme-tonal-spot",
   "runUserMatugenTemplates": true,
