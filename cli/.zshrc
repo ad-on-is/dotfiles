@@ -37,10 +37,6 @@ source "$HOME"/.config/zsh/zstyle.zsh
 # compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
 #
 export FNM_PATH="$HOME"/.local/share/fnm
-if [ -d "$FNM_PATH" ]; then
-  export PATH="$FNM_PATH:$PATH"
-  eval "$(fnm env)"
-fi
 
 [ -x "$(command -v starship)" ] && eval "$(starship init zsh)"
 [ -x "$(command -v zoxide)" ] && eval "${$(zoxide init --cmd cd zsh):s#_files -/#_dirs#}"
@@ -49,15 +45,20 @@ fi
 [ -x "$(command -v fnm)" ] && eval "$(fnm env --use-on-cd --shell zsh --resolve-engines)"
 [ -x "$(command -v goenv)" ] && eval "$(goenv init -)"
 [ -x "$(command -v atuin)" ] && eval "$(atuin init zsh)"
-if [ -x "$(command -v devbox)" ]; then
-  DEVBOX_SHELLENV="$(devbox global shellenv | grep -v 'export PATH')"
-  eval "$DEVBOX_SHELLENV"
-  # eval "$(echo "devbox global shellenv" | grep -v 'export PATH')"
-fi
+[ -x "$(command -v mise)" ] && eval "$(mise activate zsh --shims)"
+# if [ -x "$(command -v devbox)" ]; then
+#   DEVBOX_SHELLENV="$(devbox global shellenv | grep -v 'export PATH')"
+#   eval "$DEVBOX_SHELLENV"
+#   # eval "$(echo "devbox global shellenv" | grep -v 'export PATH')"
+# fi
 [ -x "$(command -v direnv)" ] && eval "$(direnv hook zsh)"
 # [ -x "$(command -v zellij)" ] && eval "$(zellij setup --generate-auto-start zsh)"
 [ -x "$(command -v vivid)" ] && export LS_COLORS="$(vivid generate catppuccin-mocha)"
 
+# if [ -d "$FNM_PATH" ]; then
+#   export PATH="$FNM_PATH:$PATH"
+#   eval "$(fnm env)"
+# fi
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "/$HOME/.bun/_bun"
 #
