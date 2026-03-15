@@ -1,0 +1,9 @@
+[lazydocker]
+short = "lazydocker"
+full = "aqua:jesseduffield/lazydocker"
+explicit_backend = false
+
+[lazygit]
+short = "lazygit"
+full = "aqua:jesseduffield/lazygit"
+explicit_backend = false
