@@ -46,11 +46,6 @@ export FNM_PATH="$HOME"/.local/share/fnm
 [ -x "$(command -v goenv)" ] && eval "$(goenv init -)"
 [ -x "$(command -v atuin)" ] && eval "$(atuin init zsh)"
 [ -x "$(command -v mise)" ] && eval "$(mise activate zsh --shims)"
-# if [ -x "$(command -v devbox)" ]; then
-#   DEVBOX_SHELLENV="$(devbox global shellenv | grep -v 'export PATH')"
-#   eval "$DEVBOX_SHELLENV"
-#   # eval "$(echo "devbox global shellenv" | grep -v 'export PATH')"
-# fi
 [ -x "$(command -v direnv)" ] && eval "$(direnv hook zsh)"
 # [ -x "$(command -v zellij)" ] && eval "$(zellij setup --generate-auto-start zsh)"
 [ -x "$(command -v vivid)" ] && export LS_COLORS="$(vivid generate catppuccin-mocha)"
@@ -86,6 +81,3 @@ fi
 
 
 source "$HOME"/.config/zsh/extras.zsh
-
-# opencode
-export PATH=/home/adurakovic/.opencode/bin:$PATH
