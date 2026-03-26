@@ -27,13 +27,18 @@ function ze() {
   zed --new "$@" &!
 }
 
+
+
+
 ssh() {
   local alert_bg='#220000'
   local target_host="$1"
   local change_bg=false
 
-  if [[ -n "$SSH_CRITICAL_HOSTS" ]]; then          # ✅ matches
-    IFS=',' read -rA hosts <<< "$SSH_CRITICAL_HOSTS"
+  CRITICAL=${SSH_CRITICAL_HOSTS:-}
+
+  if [[ -n "$CRITICAL" ]]; then          # ✅ matches
+    IFS=',' read -rA hosts <<< "$CRITICAL"
     for host in "${hosts[@]}"; do
       if [[ "$target_host" =~ $host ]]; then
         change_bg=true
