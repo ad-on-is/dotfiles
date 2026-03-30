@@ -292,7 +292,7 @@
         "id": "colorful",
         "name": "Colorful",
         "mocha": {
-          "primary": "#f54900",
+          "primary": "#c70036",
           "primaryText": "#1e1e2e",
           "primaryContainer": "#3f4481",
           "secondary": "#f0b100",

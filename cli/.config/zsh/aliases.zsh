@@ -27,6 +27,44 @@ function ze() {
   zed --new "$@" &!
 }
 
+
+
+
+ssh() {
+  local alert_bg='#220000'
+  local target_host="$1"
+  local change_bg=false
+
+  CRITICAL=${SSH_CRITICAL_HOSTS:-}
+
+  if [[ -n "$CRITICAL" ]]; then          # ✅ matches
+    IFS=',' read -rA hosts <<< "$CRITICAL"
+    for host in "${hosts[@]}"; do
+      if [[ "$target_host" =~ $host ]]; then
+        change_bg=true
+        break
+      fi
+    done
+  fi
+
+  if $change_bg; then
+    printf '\033]11;?\033\\'
+    IFS='' read -r -d '\' -s -t 0.1 current_bg < /dev/tty
+    current_bg="${current_bg##*11;}"
+    current_bg="${current_bg:-default}"
+
+    printf '\033]11;%s\033\\' "$alert_bg"
+    trap "printf '\033]11;%s\033\\' '$current_bg'" INT TERM EXIT
+  fi
+
+  env ssh "$@"
+
+  if $change_bg; then
+    printf '\033]11;%s\033\\' "$current_bg"
+    trap - INT TERM EXIT
+  fi
+}
+
 function gitpr() {
   git fetch origin pull/$1/head:PR-$1
   git checkout PR-$1

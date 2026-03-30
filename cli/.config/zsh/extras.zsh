@@ -1,3 +1,21 @@
+
+_gwt_add() {
+  local -a branches
+  branches=(${(f)"$(git branch -a --format='%(refname:short)' 2>/dev/null)"})
+  _describe 'branches' branches
+}
+
+_gwt_remove() {
+  local -a worktrees
+  worktrees=(${(f)"$(git worktree list | grep -v '\[main\]' | grep -v '\[master\]' | awk '{print $1}')"})
+  _describe 'worktrees' worktrees
+}
+
+
+compdef _gwt_add gwt_add
+compdef _gwt_remove gwt_remove
+
+
 # Custom widget that works with fzf-tab and shows zoxide directories if cd does not provide any suggestions.
 
 fzf_cd_complete_or_zoxide() {
