@@ -47,6 +47,7 @@ export FNM_PATH="$HOME"/.local/share/fnm
 [ -x "$(command -v atuin)" ] && eval "$(atuin init zsh)"
 [ -x "$(command -v mise)" ] && eval "$(mise activate zsh --shims)"
 [ -x "$(command -v direnv)" ] && eval "$(direnv hook zsh)"
+[ -x "$(command -v devbox)" ] && eval "$(devbox global shellenv --init-hook)"
 # [ -x "$(command -v zellij)" ] && eval "$(zellij setup --generate-auto-start zsh)"
 [ -x "$(command -v vivid)" ] && export LS_COLORS="$(vivid generate catppuccin-mocha)"
 

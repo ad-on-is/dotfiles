@@ -52,7 +52,8 @@ filter_mode = "host"
 ## which filter mode to use when atuin is invoked from a shell up-key binding
 ## the accepted values are identical to those of "filter_mode"
 ## leave unspecified to use same mode set in "filter_mode"
-filter_mode_shell_up_key_binding = "session"
+filter_mode_shell_up_key_binding = "session-preload"
+inline_height_shell_up_key_binding = 20
 
 ## which search mode to use when atuin is invoked from a shell up-key binding
 ## the accepted values are identical to those of "search_mode"
@@ -153,7 +154,7 @@ keymap_mode = "emacs"
 ## Timeout (in seconds) for acquiring a local database connection (sqlite)
 # local_timeout = 5
 
-## Set this to true and Atuin will minimize motion in the UI - timers will not update live, etc. 
+## Set this to true and Atuin will minimize motion in the UI - timers will not update live, etc.
 ## Alternatively, set env NO_MOTION=true
 prefers_reduced_motion = true
 
