@@ -1,3 +1,8 @@
+[fd]
+short = "fd"
+full = "aqua:sharkdp/fd"
+explicit_backend = false
+
 [lazydocker]
 short = "lazydocker"
 full = "aqua:jesseduffield/lazydocker"
