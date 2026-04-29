@@ -1,6 +1,16 @@
+[ansible]
+short = "ansible"
+full = "pipx:ansible"
+explicit_backend = false
+
 [fd]
 short = "fd"
 full = "aqua:sharkdp/fd"
+explicit_backend = false
+
+[just]
+short = "just"
+full = "aqua:casey/just"
 explicit_backend = false
 
 [lazydocker]
