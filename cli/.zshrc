@@ -14,14 +14,17 @@ fi
 source "$ZPLUGINDIR"/zsh_unplugged/zsh_unplugged.zsh
 source "$HOME/.config/zsh"/unplugged_init.zsh
 
+# autoload -Uz compinit
+# compinit
+
 export plugins=(
-  zsh-defer
-  ohmyzsh/plugins/sudo
-  ohmyzsh/plugins/fancy-ctrl-z
-  ohmyzsh/plugins/extract
+  # zsh-defer
   zsh-autosuggestions
   zsh-completions
   zsh-syntax-highlighting
+  ohmyzsh/plugins/sudo
+  ohmyzsh/plugins/fancy-ctrl-z
+  ohmyzsh/plugins/extract
   fzf-tab
   fzf-tab-source
   # prezto/modules/terminal
@@ -40,15 +43,6 @@ repos=(
 
 plugin-clone $repos
 plugin-source $plugins
-
-if (( ${+functions[compdef]} )); then
-  compdef _gwt_add gwt_add
-  compdef _gwt_remove gwt_remove
-else
-  zsh-defer compdef _gwt_add gwt_add
-  zsh-defer compdef _gwt_remove gwt_remove
-fi
-
 source "$HOME"/.config/zsh/aliases.zsh
 source "$HOME"/.config/zsh/zstyle.zsh
 
