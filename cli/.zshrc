@@ -12,60 +12,42 @@ if [[ ! -d $ZPLUGINDIR/zsh_unplugged ]]; then
   git clone --quiet https://github.com/mattmc3/zsh_unplugged "$ZPLUGINDIR"/zsh_unplugged
 fi
 source "$ZPLUGINDIR"/zsh_unplugged/zsh_unplugged.zsh
+source "$HOME/.config/zsh"/unplugged_init.zsh
 
-# ohmyzsh plugins
 export plugins=(
-  sudo
+  zsh-defer
+  ohmyzsh/plugins/sudo
+  ohmyzsh/plugins/fancy-ctrl-z
+  ohmyzsh/plugins/extract
+  zsh-autosuggestions
+  zsh-completions
+  zsh-syntax-highlighting
+  fzf-tab
+  fzf-tab-source
+  # prezto/modules/terminal
 )
-
 
 repos=(
+  romkatv/zsh-defer
   ohmyzsh/ohmyzsh
+  sorin-ionescu/prezto
   zsh-users/zsh-autosuggestions
   zsh-users/zsh-completions
+  zsh-users/zsh-syntax-highlighting
   Aloxaf/fzf-tab
   Freed-Wu/fzf-tab-source
-  zsh-users/zsh-syntax-highlighting
 )
 
-plugin-load $repos
+plugin-clone $repos
+plugin-source $plugins
 
 source "$HOME"/.config/zsh/aliases.zsh
 source "$HOME"/.config/zsh/zstyle.zsh
 
-# autoload -U compinit && compinit -i # BEFORE zoxide init
-# compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
-#
 export FNM_PATH="$HOME"/.local/share/fnm
+source "$HOME"/.config/zsh/exec.zsh
 
-[ -x "$(command -v starship)" ] && eval "$(starship init zsh)"
-[ -x "$(command -v zoxide)" ] && eval "${$(zoxide init --cmd cd zsh):s#_files -/#_dirs#}"
-[ -x "$(command -v phpenv)" ] && eval "$(phpenv init -)"
-[ -x "$(command -v fzf)" ] && eval "$(fzf --zsh)"
-[ -x "$(command -v fnm)" ] && eval "$(fnm env --use-on-cd --shell zsh --resolve-engines)"
-[ -x "$(command -v goenv)" ] && eval "$(goenv init -)"
-[ -x "$(command -v atuin)" ] && eval "$(atuin init zsh)"
-[ -x "$(command -v mise)" ] && eval "$(mise activate zsh --shims)"
-[ -x "$(command -v direnv)" ] && eval "$(direnv hook zsh)"
-# [ -x "$(command -v devbox)" ] && eval "$(devbox global shellenv --init-hook)"
-# [ -x "$(command -v zellij)" ] && eval "$(zellij setup --generate-auto-start zsh)"
-[ -x "$(command -v vivid)" ] && export LS_COLORS="$(vivid generate catppuccin-mocha)"
-
-# if [ -d "$FNM_PATH" ]; then
-#   export PATH="$FNM_PATH:$PATH"
-#   eval "$(fnm env)"
-# fi
-# bun completions
 [ -s "$HOME/.bun/_bun" ] && source "/$HOME/.bun/_bun"
-#
-bindkey '^l' autosuggest-accept
-
-function clear-scrollback-widget {
-  clear && printf '\e[3J'
-  zle && zle .reset-prompt && zle -R
-}
-zle -N clear-scrollback-widget
-bindkey '^k' clear-scrollback-widget
 
 # function open-select-widget {
 #   "$HOME"/.local/bin/ssh-select.sh
@@ -78,7 +60,5 @@ if [[ -f "$HOME"/.zshrc_custom ]]; then
 fi
 
 # fnm
-
-
 
 source "$HOME"/.config/zsh/extras.zsh

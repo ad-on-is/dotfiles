@@ -7,7 +7,9 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "cli_default_open_behavior": "existing_window",
   "agent": {
+    "dock": "right",
     "default_model": {
       "effort": "high",
       "provider": "copilot_chat",
@@ -44,16 +46,63 @@
       "args": [],
       "projects": [
         {
-          "paths": ["/srv/docker/auth"],
+          "paths": [
+            "/home/adurakovic/ANX/anexia-engine"
+          ]
         },
         {
-          "paths": ["/srv/docker/network"],
+          "paths": [
+            "/mnt/appdata/forgejo/gitea/public/assets/css"
+          ]
         },
         {
-          "paths": ["/srv/docker/stacks"],
+          "paths": [
+            "/srv/docker/auth"
+          ]
         },
-      ],
+        {
+          "paths": [
+            "/srv/docker/network"
+          ]
+        },
+        {
+          "paths": [
+            "/srv/docker/network/caddy"
+          ]
+        },
+        {
+          "paths": [
+            "/srv/docker/stacks"
+          ]
+        }
+      ]
     },
+    {
+      "host": "anxlaptop",
+      "args": [],
+      "projects": [
+        {
+          "paths": [
+            "/home/adurakovic/ANX/anexia-engine"
+          ]
+        },
+        {
+          "paths": [
+            "/home/adurakovic/ANX/engine-ci-pipelines"
+          ]
+        },
+        {
+          "paths": [
+            "/home/adurakovic/ANX/engine-devops"
+          ]
+        }
+      ]
+    },
+    {
+      "host": "Mars",
+      "args": [],
+      "projects": []
+    }
   ],
   "which_key": { "enabled": true, "delay_ms": 0 },
   "relative_line_numbers": "enabled",
@@ -126,6 +175,7 @@
   },
 
   "project_panel": {
+    "dock": "left",
     "git_status": false,
     "hide_root": true,
     "default_width": 300,
@@ -146,6 +196,7 @@
   },
 
   "collaboration_panel": {
+    "dock": "left",
     "default_width": 300,
     "button": true,
   },
@@ -153,6 +204,7 @@
     "button": true,
   },
   "git_panel": {
+    "dock": "left",
     "sort_by_path": true,
     "default_width": 300,
     "button": true,
