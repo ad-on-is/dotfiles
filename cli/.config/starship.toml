@@ -21,6 +21,12 @@ style = "red"
 symbol = ""
 format = "[$symbol $name]($style) "
 
+# [custom.last_cmd_ago]
+# command = 'echo $(( $(date +%s) - ${LAST_CMD_TIME:-$(date +%s)} ))s ago'
+# when = 'true'
+# format = "[⏱ $output]($style) "
+# style = "dimmed yellow"
+
 [custom.distrobox]
 command = "cat /etc/os-release | grep \"NAME=\" | grep -v grep | head -1 | cut -d '\"' -f2"
 style = "red bold"

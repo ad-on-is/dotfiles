@@ -1,0 +1,13 @@
+[ -x "$(command -v starship)" ] && eval "$(starship init zsh)"
+
+[ -x "$(command -v zoxide)" ] && eval "${$(zoxide init --cmd cd zsh):s#_files -/#_dirs#}"
+[ -x "$(command -v phpenv)" ] && eval "$(phpenv init -)"
+[ -x "$(command -v fzf)" ] && eval "$(fzf --zsh)"
+[ -x "$(command -v fnm)" ] && eval "$(fnm env --use-on-cd --shell zsh --resolve-engines)"
+[ -x "$(command -v goenv)" ] && eval "$(goenv init -)"
+[ -x "$(command -v atuin)" ] && eval "$(atuin init zsh)"
+[ -x "$(command -v mise)" ] && eval "$(mise activate zsh --shims)"
+[ -x "$(command -v direnv)" ] && eval "$(direnv hook zsh)"
+# [ -x "$(command -v devbox)" ] && eval "$(devbox global shellenv --init-hook)"
+# [ -x "$(command -v zellij)" ] && eval "$(zellij setup --generate-auto-start zsh)"
+[ -x "$(command -v vivid)" ] && export LS_COLORS="$(vivid generate catppuccin-mocha)"

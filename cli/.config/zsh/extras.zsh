@@ -1,4 +1,13 @@
 
+bindkey '^l' autosuggest-accept
+
+function clear-scrollback-widget {
+  clear && printf '\e[3J'
+  zle && zle .reset-prompt && zle -R
+}
+zle -N clear-scrollback-widget
+bindkey '^k' clear-scrollback-widget
+
 _gwt_add() {
   local -a branches
   branches=(${(f)"$(git branch -a --format='%(refname:short)' 2>/dev/null)"})
@@ -71,7 +80,7 @@ auto_venv() {
         deactivate
     fi
     # Check if current directory contains requirements.txt
-    if [[ -f "requirements.txt" ]]; then
+
         # Look for common virtual environment directory names
         local venv_dirs=("venv" ".venv" "env" ".env" "virtualenv")
         local venv_found=false
@@ -83,10 +92,10 @@ auto_venv() {
             fi
         done
         # If no virtual environment found, create one automatically
-        if [[ "$venv_found" = false ]]; then
+        if [[ "$venv_found" = false && -f "requirements.txt" ]]; then
             echo "🔨 Creating virtual environment..."
             # Create virtual environment
-            python -m venv venv
+            uv venv
             if [[ $? -eq 0 ]]; then
                 echo "✅ Virtual environment created successfully!"
                 source venv/bin/activate
@@ -95,7 +104,7 @@ auto_venv() {
                 read -r response
                 # Default to yes if empty response or starts with y/Y
                 if [[ -z "$response" || "$response" =~ ^[Yy] ]]; then
-                    pip install -r requirements.txt
+                    uv pip install -r requirements.txt
                     if [[ $? -eq 0 ]]; then
                         echo "✅ Packages installed successfully!"
                     else
@@ -105,7 +114,6 @@ auto_venv() {
             else
                 echo "❌ Failed to create virtual environment"
             fi
-        fi
     fi
 }
 
