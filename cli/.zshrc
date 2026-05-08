@@ -41,6 +41,14 @@ repos=(
 plugin-clone $repos
 plugin-source $plugins
 
+if (( ${+functions[compdef]} )); then
+  compdef _gwt_add gwt_add
+  compdef _gwt_remove gwt_remove
+else
+  zsh-defer compdef _gwt_add gwt_add
+  zsh-defer compdef _gwt_remove gwt_remove
+fi
+
 source "$HOME"/.config/zsh/aliases.zsh
 source "$HOME"/.config/zsh/zstyle.zsh
 
@@ -49,16 +57,10 @@ source "$HOME"/.config/zsh/exec.zsh
 
 [ -s "$HOME/.bun/_bun" ] && source "/$HOME/.bun/_bun"
 
-# function open-select-widget {
-#   "$HOME"/.local/bin/ssh-select.sh
-# }
-# zle -N open-select-widget
-# bindkey '^P' open-select-widget
-
 if [[ -f "$HOME"/.zshrc_custom ]]; then
   source "$HOME"/.zshrc_custom
 fi
 
-# fnm
-
 source "$HOME"/.config/zsh/extras.zsh
+
+# fnm
