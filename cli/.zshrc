@@ -14,9 +14,6 @@ fi
 source "$ZPLUGINDIR"/zsh_unplugged/zsh_unplugged.zsh
 source "$HOME/.config/zsh"/unplugged_init.zsh
 
-# autoload -Uz compinit
-# compinit
-
 export plugins=(
   # zsh-defer
   zsh-autosuggestions
@@ -43,6 +40,8 @@ repos=(
 
 plugin-clone $repos
 plugin-source $plugins
+autoload -Uz compinit
+compinit
 source "$HOME"/.config/zsh/aliases.zsh
 source "$HOME"/.config/zsh/zstyle.zsh
 
