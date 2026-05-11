@@ -49,11 +49,10 @@ export FNM_PATH="$HOME"/.local/share/fnm
 source "$HOME"/.config/zsh/exec.zsh
 
 [ -s "$HOME/.bun/_bun" ] && source "/$HOME/.bun/_bun"
+source "$HOME"/.config/zsh/extras.zsh
 
 if [[ -f "$HOME"/.zshrc_custom ]]; then
   source "$HOME"/.zshrc_custom
 fi
-
-source "$HOME"/.config/zsh/extras.zsh
 
 # fnm
