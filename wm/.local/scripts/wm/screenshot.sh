@@ -8,68 +8,90 @@ fi
 
 function gradient() {
   file=$1
-  width=$(identify -format "%w" "$file")
-  height=$(identify -format "%h" "$file")
+
+  # Read both dimensions in one call; subtract shave (1px per edge = 2px total)
+  read -r orig_width orig_height < <(identify -format "%w %h" "$file")
+  width=$((orig_width - 2))
+  height=$((orig_height - 2))
+
   min_dim=$((width < height ? width : height))
-  padding=$(( (min_dim * 70) / 500 ))
+  padding=$(((min_dim * 70) / 500))
   [ "$padding" -lt 20 ] && padding=20
   new_width=$((width + padding))
   new_height=$((height + padding))
   radius=$((padding / 5)) # adjust this for more/less rounding
-  gradient1="#2f0d68"
-  gradient2="#00d3f2"
 
-  convert "$file" \
+  tmp=$(mktemp /tmp/screenshot_XXXXXX.png)
+
+  # Pass 1: shave slurp border + round corners → tmpfs
+  magick "$file" \
+    -depth 8 \
+    -shave 1x1 \
     -alpha set \
     \( +clone -alpha transparent -background none \
     -fill white -draw "roundrectangle 0,0 $((width - 1)),$((height - 1)) ${radius},${radius}" \) \
     -compose DstIn -composite \
-    "$file"
+    "$tmp"
 
-  # Add shadow and composite onto gradient
-  convert -size ${new_width}x${new_height} xc: \
-    -sparse-color Barycentric "0,0 $gradient1 ${new_width},${new_height} $gradient2" \
-    \( "$file" \( +clone -background black -shadow 100x5+0+0 \) \
+  # Pass 2: build blurred background, composite rounded image + shadow on top
+  magick "$tmp" \
+    -depth 8 \
+    -background black -flatten \
+    -resize 4x4! \
+    -rotate 180 \
+    -filter Gaussian \
+    -resize ${new_width}x${new_height}! \
+    \( "$tmp" \( +clone -background black -shadow "100x$radius+0+0" \) \
     +swap -background none -layers merge +repage \) \
     -gravity center -composite \
     "$file"
 
-  # rm /tmp/tmp_rounded.png
+  rm -f "$tmp"
 }
 
-WORKSPACES="$(hyprctl monitors -j | jq -r 'map(.activeWorkspace.id)')"
-MONITOR="$(hyprctl activeworkspace -j | jq -r '.monitorID')"
-MWH="$(hyprctl monitors -j | jq -r '.[] | select(.id=='"$MONITOR"') | .width,.height' | xargs | tr ' ' x)"
-WINDOWS="$(hyprctl clients -j | jq -r --argjson workspaces "$WORKSPACES" 'map(select([.workspace.id] | inside($workspaces)))')"
-GEOM=$(echo "$WINDOWS" | jq -r '.[] | "\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"' | slurp -o -b 11111bdd -c e64553ff -B 11111bdd -d -w 1)
-GEOMWH=$(echo "$GEOM" | awk '{print $2}')
+main() {
 
-if [[ -z "$GEOM" ]]; then
-  exit 0
-fi
+  SCRIPT_DIR=$(dirname "$(realpath "$0")")
+  PICKED=$("$SCRIPT_DIR/"screenpicker.sh 2>/dev/null)
 
-fname=$(date +'%Y-%m-%d_%H-%M-%S.png')
-file="$SDIR/$fname"
-res=""
-if [[ "$MWH" = "$GEOMWH" ]]; then
-  res=$(grim -g "$GEOM" - | satty -o "$file" -f -)
-else
-  grim -g "$GEOM" "$file"
-  gradient "$file"
-  cat "$file" | wl-copy
-  res="clipboard File saved"
-fi
+  if [[ "$?" -ne 0 ]]; then
+    exit 1
+  fi
 
-clipboard=$(echo "$res" | grep -o "clipboard")
-saved=$(echo "$res" | grep -o "File saved")
-text=""
-if [[ -n $saved ]]; then
-  text=" $fname"
-fi
-if [[ -n $clipboard ]]; then
-  text="$text\n󰢨 Copied to clipboard"
-fi
+  # MONITOR=$(echo "$PICKED" | awk '{print $1}')
+  # WINDOW=$(echo "$PICKED" | awk '{print $2}')
+  XY=$(echo "$PICKED" | awk '{print $3}')
+  WH=$(echo "$PICKED" | awk '{print $4}')
+  FULLSCREEN=$(echo "$PICKED" | awk '{print $5}')
+  GEOM="$XY $WH"
 
-if [[ -n $text ]]; then
-  notify-send -i "$file" "Screenshot captured!" "$text"
-fi
+  fname=$(date +'%Y-%m-%d_%H-%M-%S.png')
+  file="$SDIR/$fname"
+  res=""
+  set -x
+  if [[ "$FULLSCREEN" == "true" ]]; then
+    res=$(grim -g "$GEOM" - | satty -o "$file" -f -)
+  else
+    grim -g "$GEOM" "$file"
+    gradient "$file"
+    wl-copy --type image/png <"$file"
+    res="clipboard File saved"
+  fi
+
+  clipboard=$(echo "$res" | grep -o "clipboard")
+  saved=$(echo "$res" | grep -o "File saved")
+  text=""
+  if [[ -n $saved ]]; then
+    text=" $fname"
+  fi
+  if [[ -n $clipboard ]]; then
+    text="$text\n󰢨 Copied to clipboard"
+  fi
+
+  if [[ -n $text ]]; then
+    notify-send -a "Screenshot" -i "$file" "Captured!" "$text"
+  fi
+
+}
+
+main

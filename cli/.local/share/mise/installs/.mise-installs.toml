@@ -3,6 +3,11 @@ short = "ansible"
 full = "pipx:ansible"
 explicit_backend = false
 
+[fastfetch]
+short = "fastfetch"
+full = "aqua:fastfetch-cli/fastfetch"
+explicit_backend = false
+
 [fd]
 short = "fd"
 full = "aqua:sharkdp/fd"
@@ -21,4 +26,14 @@ explicit_backend = false
 [lazygit]
 short = "lazygit"
 full = "aqua:jesseduffield/lazygit"
+explicit_backend = false
+
+[opencode]
+short = "opencode"
+full = "aqua:anomalyco/opencode"
+explicit_backend = false
+
+[watchexec]
+short = "watchexec"
+full = "aqua:watchexec/watchexec"
 explicit_backend = false
