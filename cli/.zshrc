@@ -56,3 +56,6 @@ if [[ -f "$HOME"/.zshrc_custom ]]; then
 fi
 
 # fnm
+
+# bun completions
+[ -s "/home/adonis/.bun/_bun" ] && source "/home/adonis/.bun/_bun"

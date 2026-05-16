@@ -9,14 +9,25 @@ function main() {
   recordfile=$(ps aux | grep wl-screenrec | grep -v grep | awk '{print $(NF-0)}' | awk -F'/' '{print $(NF-0)}')
   screenshotfile=/tmp/screenrecord_screenshot.png
   if [ -n "$recordfile" ]; then
-    notify-send -i $screenshotfile "󰹑 Recording stopped!" " $recordfile"
-    pkill -f wl-screenrec
+    notify-send -a "ScreenRecorder" -i $screenshotfile "󰹑  Finished!" " $recordfile"
+    killall -SIGINT wl-screenrec
     exit 0
   fi
 
-  WORKSPACES="$(hyprctl monitors -j | jq -r 'map(.activeWorkspace.id)')"
-  WINDOWS="$(hyprctl clients -j | jq -r --argjson workspaces "$WORKSPACES" 'map(select([.workspace.id] | inside($workspaces)))')"
-  GEOM=$(echo "$WINDOWS" | jq -r '.[] | "\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"' | slurp -o -b 11111bdd -c e64553ff -B 11111bdd -d -w 1)
+  SCRIPT_DIR=$(dirname "$(realpath "$0")")
+  PICKED=$("$SCRIPT_DIR/"screenpicker.sh 2>/dev/null)
+
+  if [[ "$?" -ne 0 ]]; then
+    exit 1
+  fi
+
+  # MONITOR=$(echo "$PICKED" | awk '{print $1}')
+  # WINDOW=$(echo "$PICKED" | awk '{print $2}')
+  XY=$(echo "$PICKED" | awk '{print $3}')
+  WH=$(echo "$PICKED" | awk '{print $4}')
+  # FULLSCREEN=$(echo "$PICKED" | awk '{print $5}')
+  # ADDRESS=$(echo "$PICKED" | awk '{print $6}')
+  GEOM="$XY $WH"
   recordfile=ScreenCapture-$(date +'%Y-%m-%d_%H:%M:%S.mp4')
   file="$SDIR/$recordfile"
 
@@ -25,9 +36,9 @@ function main() {
   fi
 
   grim -g "$GEOM" $screenshotfile
-  notify-send -i $screenshotfile "󰹑 Recording started!" " $recordfile"
+  notify-send -a "ScreenRecorder" -i $screenshotfile "󰹑 Recording ..." " $recordfile"
 
-  wl-screenrec --codec=hevc -g "$GEOM" -f "$file"
+  wl-screenrec --codec=auto --experimental-ext-image-copy-capture -g "$GEOM" -f "$file"
 }
 
 main "$@"
