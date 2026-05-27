@@ -11,7 +11,7 @@ source "$HOME/.config/zsh"/unplugged_init.zsh
 
 export plugins=(
   # zsh-defer
-  # zsh-autosuggestions
+  zsh-autosuggestions
   zsh-completions
   zsh-syntax-highlighting
   ohmyzsh/plugins/sudo
@@ -19,10 +19,12 @@ export plugins=(
   ohmyzsh/plugins/extract
   fzf-tab
   fzf-tab-source
+  zsh-sage
   # prezto/modules/terminal
 )
 
 repos=(
+  UtsavMandal2022/zsh-sage
   romkatv/zsh-defer
   ohmyzsh/ohmyzsh
   sorin-ionescu/prezto
