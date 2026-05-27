@@ -1,6 +1,5 @@
 
-# bindkey '^l' autosuggest-accept
-bindkey '^l' deja-accept
+bindkey '^l' autosuggest-accept
 
 function clear-scrollback-widget {
   clear && printf '\e[3J'
