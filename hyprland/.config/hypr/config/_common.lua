@@ -4,6 +4,7 @@ M = {
 
   colors = {
     primary = "#f54900",
+    primarygradient = "#f56600",
     secondary = "#18191ef5",
     primary2 = "#40191ef5",
     outline = "#18191ef5",

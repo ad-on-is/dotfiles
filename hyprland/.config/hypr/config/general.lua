@@ -43,5 +43,9 @@ hl.config({
     scroll_event_delay = 0,
     workspace_center_on = 1,
 
-  }
+  },
+  ecosystem = {
+    no_update_news = true,
+    no_donation_nag = true,
+  },
 })

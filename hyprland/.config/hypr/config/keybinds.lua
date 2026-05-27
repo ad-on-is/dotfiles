@@ -5,6 +5,8 @@ local clipboard    = "dms ipc call clipboard toggle"
 local adbKeyBack   = "~/Development/Android/Sdk/platform-tools/adb shell input keyevent KEYCODE_BACK"
 local screenShot   = "~/.local/scripts/wm/screenshot.sh"
 local screenRecord = "~/.local/scripts/wm/screenrecord.sh"
+local cameraZoom   = "~/.local/scripts/wm/camctrl.sh zoom"
+-- local cameraSwitch = "~/.local/scripts/wm/camctrl.sh zoom"
 
 local volUp        = "pactl set-sink-volume @DEFAULT_SINK@ +2%"
 local volDown      = "pactl set-sink-volume @DEFAULT_SINK@ -2%"
@@ -63,10 +65,7 @@ end)
 hl.bind(s .. "P", hl.dsp.window.float({ action = "toggle" })) -- pin
 hl.bind(s .. "Z", hl.dsp.window.float({ action = "toggle" })) -- fix to monitor
 
-hl.bind(s .. "6", hl.dsp.window.resize({ x = -10, y = 0 }))
-hl.bind(s .. "7", hl.dsp.window.resize({ x = 10, y = 0 }))
-hl.bind(s .. "8", hl.dsp.window.resize({ x = 0, y = 10 }))
-hl.bind(s .. "9", hl.dsp.window.resize({ x = 0, y = -10 }))
+
 
 -- hl.bind(s .. "M", hl.dsp.window.move({ workspace = "special:minimized" }))
 -- bring back
@@ -122,10 +121,15 @@ hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = tru
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
 
 hl.bind(ss .. "1", hl.dsp.exec_cmd(screenShot))
-hl.bind(ss .. "2", hl.dsp.exec_cmd(screenRecord))
+hl.bind(ss .. "2", function()
+  hl.dispatch(hl.dsp.window.tag({ tag = "recording" }))
+  -- hl.dispatch(hl.dsp.exec_cmd(screenRecord))
+end)
 
 hl.bind(sa .. "1", hl.dsp.exec_cmd(headphones))
 hl.bind(sa .. "2", hl.dsp.exec_cmd(btSpeaker))
+hl.bind(sa .. "5", hl.dsp.exec_cmd(cameraZoom))
+-- hl.bind(sa .. "6", hl.dsp.exec_cmd(cameraSwitch))
 
 
 -- MOUSE

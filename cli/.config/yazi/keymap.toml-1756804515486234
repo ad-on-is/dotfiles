@@ -1,5 +1,0 @@
-[manager]
-keymap = [
-  { on = ["<Esc>"], run = "quit", desc = "Exit the process" },
-  # ... other keybindings
-]
