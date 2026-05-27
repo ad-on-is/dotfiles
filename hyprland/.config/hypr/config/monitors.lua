@@ -1,4 +1,4 @@
-local common = require("config._common")
+local c = require("config._common")
 
 hl.monitor({
   output   = "",
@@ -25,16 +25,12 @@ hl.monitor({
 
 })
 
-for i = 1, common.workspaces.count do
-  hl.workspace_rule({
-    workspace  = "1" .. i,
-    monitor    = "DP-3",
-    persistent = true,
-  })
-
-  hl.workspace_rule({
-    workspace  = "2" .. i,
-    monitor    = "HDMI-A-1",
-    persistent = true,
-  })
+for i, m in ipairs(hl.get_monitors()) do
+  for w = 1, c.workspaces.count do
+    hl.workspace_rule({
+      workspace  = i .. w,
+      monitor    = m.name,
+      persistent = true,
+    })
+  end
 end

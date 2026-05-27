@@ -2,6 +2,10 @@ local log = require("config._log")
 
 M = {
 
+  ntfy = function(title, text)
+    hl.exec_cmd("notify-send " .. title .. " " .. text)
+  end,
+
   colors = {
     primary = "#f54900",
     primarygradient = "#f56600",
