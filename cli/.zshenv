@@ -35,7 +35,9 @@ setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY
 
 # XDG FIXUP
+export ANDROID_HOME=$XDG_DATA_HOME/android/Sdk
 export ANDROID_USER_HOME="$XDG_DATA_HOME"/android
+export ANDROID_SDK_ROOT="$XDG_DATA_HOME"/android/Sdk
 export ANDROID_EMLUATOR_HOME="$XDG_DATA_HOME"/android
 export ANDROID_AVD_HOME="$XDG_DATA_HOME"/android/avd
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
@@ -83,11 +85,11 @@ if [ -n "$DISPLAY" ]; then
 fi
 
 export PIPX_BIN_DIR="$XDG_DATA_HOME"/pipx/bin
-export ANDROID_HOME=$HOME/Development/Android/Sdk
 export FLUTTER_ROOT=$HOME/Development/Flutter/Sdk
 export CHROME_EXECUTABLE=/usr/bin/chromium-browser
 PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
 PATH=$PATH:$ANDROID_HOME/platform-tools
+PATH=$PATH:$ANDROID_HOME/emulator
 PATH=$PATH:$XDG_DATA_HOME/fnm
 PATH=$FLUTTER_ROOT/bin:$PATH
 PATH=$PATH:/usr/lib/dart/bin

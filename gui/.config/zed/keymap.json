@@ -102,9 +102,9 @@
     },
   },
   {
-    "context": "OutlinePanel",
+    "context": "OutlinePanel || AgentPanel > Editor",
     "bindings": {
-      "escape": "workspace::ToggleRightDock",
+      "escape escape": "workspace::ToggleRightDock",
     },
   },
 

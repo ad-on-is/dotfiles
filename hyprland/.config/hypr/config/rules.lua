@@ -1,12 +1,12 @@
-local common = require("config._common")
+local log = require("config._log")
 
 local floatingWindows = {
   { title = "^(blueberry.py|steam|guifetch|XTerm)$",                                                              class = "" },
   { title = "^(Open File|Select a File|Choose wallpaper|Open Folder|Save As|Do you want to save|Library)))(.*)$", class = "" },
   { title = "",                                                                                                   class = "^(org.quickshell)$" },
   { title = "^(.*)(New archive|Create|Extract|Smart|Done)(.*)$",                                                  class = "(peazip)" },
-  { title = "",                                                                                                   class = "" },
-  { title = "",                                                                                                   class = "" },
+  { title = "Yaak Settings",                                                                                      class = "" },
+  { title = "",                                                                                                   class = "^(io.github.diegopvlk.Cine)$" },
 }
 
 local bluringLayers = {
@@ -34,7 +34,8 @@ local bluringLayers = {
   "walker"
 }
 
-local suppressMaximizeRule = hl.window_rule({
+
+hl.window_rule({
   -- Ignore maximize requests from all apps. You'll probably like this.
   name           = "suppress-maximize-events",
   match          = { class = ".*" },
@@ -62,6 +63,15 @@ hl.window_rule({
     title = "^(.*)satty(.*)$",
   },
   fullscreen = true,
+})
+
+hl.window_rule({
+  name = "recording",
+  match = {
+    tag = "recording",
+  },
+  border_size = 3,
+  border_color = "rgb(7ccf00) rgb(7ccf00)"
 })
 
 
