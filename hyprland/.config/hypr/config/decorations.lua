@@ -66,7 +66,7 @@ hl.config({
       xray               = false,
       size               = 7,
       input_methods      = true,
-      passes             = 3,
+      passes             = 2,
       vibrancy           = 0.4,
       brightness         = 1,
       noise              = 0.1,

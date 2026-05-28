@@ -23,7 +23,6 @@ alias http='xh -Fb'
 alias download='xh -b --download'
 
 function ze() {
-  export WAYLAND_DEBUG=1
   zed --new "$@" &!
 }
 
