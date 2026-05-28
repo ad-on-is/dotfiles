@@ -19,7 +19,6 @@ export plugins=(
   ohmyzsh/plugins/extract
   fzf-tab
   fzf-tab-source
-  zsh-sage
   # prezto/modules/terminal
 )
 

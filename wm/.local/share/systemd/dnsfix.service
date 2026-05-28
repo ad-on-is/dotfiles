@@ -1,0 +1,9 @@
+[Unit]
+Description=Fix resolvconf due to firticlient
+
+[Service]
+Type=simple
+ExecStart=/bin/bash /home/adonis/.local/bin/dnsfix.sh
+
+[Install]
+WantedBy=multi-user.target
