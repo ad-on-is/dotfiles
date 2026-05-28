@@ -1,12 +1,12 @@
 local log = require("config._log")
 
 local floatingWindows = {
-  { title = "^(blueberry.py|steam|guifetch|XTerm)$",                                                              class = "" },
-  { title = "^(Open File|Select a File|Choose wallpaper|Open Folder|Save As|Do you want to save|Library)))(.*)$", class = "" },
-  { title = "",                                                                                                   class = "^(org.quickshell)$" },
-  { title = "^(.*)(New archive|Create|Extract|Smart|Done)(.*)$",                                                  class = "(peazip)" },
-  { title = "Yaak Settings",                                                                                      class = "" },
-  { title = "",                                                                                                   class = "^(io.github.diegopvlk.Cine)$" },
+  { title = "^(blueberry.py|steam|guifetch|XTerm)$",                                                            class = "" },
+  { title = "^(Open File|Select a File|Choose wallpaper|Open Folder|Save As|Do you want to save|Library)(.*)$", class = "" },
+  { title = "",                                                                                                 class = "^(org.quickshell)$" },
+  { title = "^(.*)(New archive|Create|Extract|Smart|Done)(.*)$",                                                class = "(peazip)" },
+  { title = "Yaak Settings",                                                                                    class = "" },
+  { title = "",                                                                                                 class = "^(io.github.diegopvlk.Cine)$" },
 }
 
 local bluringLayers = {
