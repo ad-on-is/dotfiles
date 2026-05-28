@@ -9,7 +9,7 @@ charging = False
 dpiLevel = 0
 brightness = 0
 try:
-    res = str(subprocess.check_output(["/home/adonis/.local/share/devbox/global/default/.devbox/nix/profile/default/bin/razer-cli", "-ls"]))
+    res = str(subprocess.check_output(["razer-cli", "-ls"]))
     parts = res.split("\\n")
     name = parts[1].replace(":", "")
     battery = 0
