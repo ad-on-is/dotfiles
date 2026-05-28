@@ -3,6 +3,11 @@ short = "ansible"
 full = "pipx:ansible"
 explicit_backend = false
 
+[duckdb]
+short = "duckdb"
+full = "aqua:duckdb/duckdb"
+explicit_backend = false
+
 [fastfetch]
 short = "fastfetch"
 full = "aqua:fastfetch-cli/fastfetch"
