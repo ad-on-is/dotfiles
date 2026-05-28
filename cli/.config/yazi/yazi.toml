@@ -17,6 +17,7 @@ prepend_previewers = [
   { url = "*.xlsx", run = "duckdb" },
   { url = "*.db", run = "duckdb" },
   { url = "*.duckdb", run = "duckdb" },
+  { url = "*.{3mf,obj,pts,ply,stl,step,stp}", run="f3d-preview"},
 ]
 
 prepend_preloaders = [
@@ -26,4 +27,14 @@ prepend_preloaders = [
   { url = "*.parquet", run = "duckdb", multi = false },
   { url = "*.txt", run = "duckdb", multi = false },
   { url = "*.xlsx", run = "duckdb", multi = false },
+  { url = "*.{3mf,obj,pts,ply,stl,step,stp}", run="f3d-preview"},
+]
+
+prepend_spotters = [
+  # use the plugin for a specific mime type
+  { mime = "audio/*", run = "spot" },
+  # use as a spotter for all directories
+  { url = "*/", run = "spot" },
+  # use as a fallback for all files that don't have a spotter
+  { url = "*", run = "spot" },
 ]
