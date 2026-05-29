@@ -64,7 +64,7 @@
   },
 
   {
-    "context": "Editor && vim_mode == normal",
+    "context": "Editor && vim_mode == normal || !Editor",
     "bindings": {
       "|": "pane::SplitRight",
       "! !": "agent::Toggle",

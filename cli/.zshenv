@@ -78,6 +78,8 @@ export BUN_INSTALL="$HOME/.bun"
 
 export CHROME_EXECUTABLE=/usr/bin/chromium-browser
 
+export N_PREFIX="$HOME/n"
+
 export EDITOR=nvim
 
 if [ -n "$DISPLAY" ]; then
@@ -112,7 +114,12 @@ PATH=$PATH:$XDG_DATA_HOME/nvim/mason/bin
 PATH=$PNPM_HOME:$PATH
 PATH="$HOME"/.opencode/bin:$PATH
 
-export PATH=$PATH
+[[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"
+
+# remove //home/user (double slashes)
+export PATH=$(echo "$PATH" | tr ':' '\n' | sed 's|//|/|g' | awk '!seen[$0]++' | tr '\n' ':' | sed 's/:$//')
+
+# export PATH=$PATH
 
 if [[ -f ~/.local/.secrets ]]; then
   source ~/.local/.secrets
@@ -136,8 +143,8 @@ export ZELLIJ_AUTO_EXIT=true
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 export ZSH_AUTOSUGGEST_USE_ASYNC=false
 # export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=6"
-export N_PREFIX="$HOME/n"
-[[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin" # Added by n-install (see http://git.io/n-install-repo).
+
+# Added by n-install (see http://git.io/n-install-repo).
 # export MCFLY_LIGHT=TRUE
 # export MCFLY_KEY_SCHEME=vim
 export MCFLY_FUZZY=3
