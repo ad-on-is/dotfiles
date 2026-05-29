@@ -1,12 +1,12 @@
 [[plugin.deps]]
 use = "Rolv-Apneseth/starship"
-rev = "a63550b"
-hash = "c2021386289a0cbb3e152a052f67c177"
+rev = "a837101"
+hash = "635b0feb9215772d22020eb0abf0bb34"
 
 [[plugin.deps]]
 use = "ahkohd/eza-preview"
-rev = "a97cf55"
-hash = "cc3aef07a8b1c3fe820f1fbb9a5a2483"
+rev = "dc9c103"
+hash = "949fc14ee6b6f8565ac7012d338b37c0"
 
 [[plugin.deps]]
 use = "wylie102/duckdb"
@@ -15,8 +15,18 @@ hash = "87b9233a74325e95011670ed20bbd0d4"
 
 [[plugin.deps]]
 use = "KKV9/compress"
-rev = "cb6e8ec"
-hash = "424ada4807b20ccd4fc85d1d7c26d1e4"
+rev = "e60e122"
+hash = "fbaf0adc8efc59555b748d36aab62d40"
+
+[[plugin.deps]]
+use = "ruudjhuu/f3d-preview"
+rev = "76d115d"
+hash = "6b2008327d65fe374d99f6b6ff007cba"
+
+[[plugin.deps]]
+use = "AminurAlam/yazi-plugins:spot"
+rev = "70a03f3"
+hash = "3d83be32b0859360996e167debc123ee"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-mocha"
