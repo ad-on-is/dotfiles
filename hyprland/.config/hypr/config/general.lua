@@ -9,7 +9,6 @@ hl.config({
     },
     allow_tearing     = true,
 
-    layout            = "dwindle",
   },
   gestures = {
     -- workspace_swipe = off
