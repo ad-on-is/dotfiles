@@ -226,7 +226,8 @@
   "spotlightCloseNiriOverview": true,
   "spotlightSectionViewModes": {
     "apps": "list",
-    "plugin_emojiLauncher": "grid"
+    "plugin_emojiLauncher": "grid",
+    "plugin_dankHyprlandWindows": "tile"
   },
   "appDrawerSectionViewModes": {},
   "niriOverviewOverlayEnabled": true,
@@ -488,6 +489,10 @@
           "enabled": true
         },
         {
+          "id": "dankKDEConnect",
+          "enabled": true
+        },
+        {
           "id": "systemTray",
           "enabled": true
         },
@@ -542,8 +547,12 @@
       "centerWidgets": [
         {
           "id": "music",
-          "enabled": true,
+          "enabled": false,
           "mediaSize": 2
+        },
+        {
+          "id": "mediaControlPlus",
+          "enabled": true
         }
       ],
       "rightWidgets": [
@@ -554,6 +563,11 @@
         {
           "id": "cpuUsage",
           "enabled": true
+        },
+        {
+          "id": "cpuTemp",
+          "enabled": true,
+          "minimumWidth": true
         },
         {
           "id": "memUsage",
@@ -579,7 +593,7 @@
           "mountPath": "/run/media/adonis/Backups"
         },
         {
-          "id": "razer",
+          "id": "dankRazer",
           "enabled": true
         }
       ],

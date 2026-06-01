@@ -71,7 +71,7 @@ export PNPM_HOME="$XDG_DATA_HOME"/pnpm
 export NPM_CONFIG_STORE_DIR="$PNPM_HOME"/store
 export COMPOSER_HOME="$XDG_DATA_HOME"/composer
 
-export LG_CONFIG_FILE="/$XDG_CONFIG_HOME/lazygit/config.yml,$XDG_CONFIG_HOME/lazygit/catppuccin.yml"
+export LG_CONFIG_FILE="$XDG_CONFIG_HOME/lazygit/config.yml,$XDG_CONFIG_HOME/lazygit/catppuccin.yml"
 
 export JAVA_HOME=/usr/lib/jvm/java-21-openjdk
 export BUN_INSTALL="$HOME/.bun"

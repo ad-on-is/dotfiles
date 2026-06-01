@@ -1,30 +1,33 @@
-local terminal     = "ghostty"
-local fileManager  = "nemo"
-local launcher     = "dms ipc call spotlight openWith apps"
-local clipboard    = "dms ipc call clipboard toggle"
-local adbKeyBack   = "~/Development/Android/Sdk/platform-tools/adb shell input keyevent KEYCODE_BACK"
-local screenShot   = "~/.local/scripts/wm/screenshot.sh"
-local screenRecord = "~/.local/scripts/wm/screenrecord.sh"
-local cameraZoom   = "~/.local/scripts/wm/camctrl.sh zoom"
+local terminal       = "ghostty"
+local fileManager    = "nemo"
+local launcher       = "dms ipc call spotlight openWith apps"
+local clipboard      = "dms ipc call clipboard toggle"
+local adbKeyBack     = "~/Development/Android/Sdk/platform-tools/adb shell input keyevent KEYCODE_BACK"
+local screenShot     = "~/.local/scripts/wm/screenshot.sh"
+local screenRecord   = "~/.local/scripts/wm/screenrecord.sh"
+local cameraZoom     = "~/.local/scripts/wm/camctrl.sh zoom"
 -- local cameraSwitch = "~/.local/scripts/wm/camctrl.sh zoom"
 
-local volUp        = "pactl set-sink-volume @DEFAULT_SINK@ +2%"
-local volDown      = "pactl set-sink-volume @DEFAULT_SINK@ -2%"
-local volMute      = "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+local volUp          = "pactl set-sink-volume @DEFAULT_SINK@ +2%"
+local volDown        = "pactl set-sink-volume @DEFAULT_SINK@ -2%"
+local volMute        = "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+local windowSwitcher = "dms ipc call spotlight openQuery '!'"
+local emojiPicker    = "dms ipc call spotlight openQuery ':e '"
+local gifPicker      = "dms ipc call spotlight openQuery ':g '"
 
-local micUp        = "pactl set-source-volume @DEFAULT_SOURCE@ +2%"
-local micDown      = "pactl set-source-volume @DEFAULT_SOURCE@ -2%"
-local micMute      = "pactl set-source-mute @DEFAULT_SOURCE@ toggle"
-local headphones   = "pactl set-default-sink alsa_output.pci-0000_0c_00.4.analog-stereo"
-local btSpeaker    = "pactl set-default-sink bluez_output.F8_5C_7D_90_B6_3B.1"
+local micUp          = "pactl set-source-volume @DEFAULT_SOURCE@ +2%"
+local micDown        = "pactl set-source-volume @DEFAULT_SOURCE@ -2%"
+local micMute        = "pactl set-source-mute @DEFAULT_SOURCE@ toggle"
+local headphones     = "pactl set-default-sink alsa_output.pci-0000_0c_00.4.analog-stereo"
+local btSpeaker      = "pactl set-default-sink bluez_output.F8_5C_7D_90_B6_3B.1"
 
-local common       = require("config._common")
+local common         = require("config._common")
 
-local s            = "SUPER + "
-local ss           = s .. "SHIFT + "
-local sc           = s .. "CTRL + "
-local sa           = s .. "ALT + "
-local ssc          = s .. "CTRL + "
+local s              = "SUPER + "
+local ss             = s .. "SHIFT + "
+local sc             = s .. "CTRL + "
+local sa             = s .. "ALT + "
+local ssc            = s .. "CTRL + "
 
 hl.bind(ss .. "ESCAPE", hl.dsp.exec_cmd("systemctl suspend"))
 hl.bind("XF86PowerOff", hl.dsp.exec_cmd("systemctl suspend"))
@@ -42,6 +45,9 @@ hl.bind(s .. "V", hl.dsp.exec_cmd(clipboard))
 
 hl.bind(s .. "ESCAPE", hl.dsp.exec_cmd(adbKeyBack))
 
+hl.bind(sa .. "E", hl.dsp.exec_cmd(emojiPicker))
+hl.bind(sa .. "G", hl.dsp.exec_cmd(gifPicker))
+
 -- GROUPS
 hl.bind(s .. "G", function() common.group() end)
 hl.bind(ss .. "G", hl.dsp.group.toggle())
@@ -51,6 +57,7 @@ hl.bind(sa .. "R", hl.dsp.group.move_window({ forward = false }))
 hl.bind(sa .. "T", hl.dsp.group.move_window())
 
 -- WINDOW
+hl.bind(s .. "tab", hl.dsp.exec_cmd(windowSwitcher))
 hl.bind(s .. "Q", hl.dsp.window.close())
 hl.bind(s .. "F", hl.dsp.window.fullscreen())
 hl.bind(s .. "U", hl.dsp.window.toggle_swallow())
@@ -65,6 +72,29 @@ end)
 hl.bind(s .. "P", hl.dsp.window.float({ action = "toggle" })) -- pin
 hl.bind(s .. "Z", hl.dsp.window.float({ action = "toggle" })) -- fix to monitor
 
+hl.bind(s .. "1", function()
+  hl.config({
+    general = {
+      layout = "dwindle",
+    },
+  })
+end)
+
+hl.bind(s .. "2", function()
+  hl.config({
+    general = {
+      layout = "grid",
+    },
+  })
+end)
+
+hl.bind(s .. "3", function()
+  hl.config({
+    general = {
+      layout = "scrolling",
+    },
+  })
+end)
 
 
 -- hl.bind(s .. "M", hl.dsp.window.move({ workspace = "special:minimized" }))
@@ -123,7 +153,7 @@ hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true 
 hl.bind(ss .. "1", hl.dsp.exec_cmd(screenShot))
 hl.bind(ss .. "2", function()
   hl.dispatch(hl.dsp.window.tag({ tag = "recording" }))
-  -- hl.dispatch(hl.dsp.exec_cmd(screenRecord))
+  hl.dispatch(hl.dsp.exec_cmd(screenRecord))
 end)
 
 hl.bind(sa .. "1", hl.dsp.exec_cmd(headphones))

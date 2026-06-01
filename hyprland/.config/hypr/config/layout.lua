@@ -20,7 +20,7 @@ hl.config({
     new_status = "master"
   },
   scrolling = {
-    fullscreen_on_one_column = true,
+    fullscreen_on_one_column = false,
   },
 
 })

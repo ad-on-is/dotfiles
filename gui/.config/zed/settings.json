@@ -10,6 +10,7 @@
   "diff_view_style": "unified",
   "cli_default_open_behavior": "existing_window",
   "agent": {
+    "default_profile": "ask",
     "dock": "right",
     "default_model": {
       "effort": "high",
@@ -28,6 +29,7 @@
             { "pattern": "^cargo\\s+(build|test|check)" },
             { "pattern": "^git\\s+(status|log|diff)" },
             { "pattern": "^(find|grep|cat|locate)" },
+            { "pattern": "^find\\s+.*\\|\\s*(xargs\\s+)?(grep|head)" },
           ],
           "always_deny": [{ "pattern": "rm\\s+-rf\\s+(/|~)" }],
           "always_confirm": [{ "pattern": "sudo\\s" }],
@@ -47,63 +49,45 @@
       "args": [],
       "projects": [
         {
-          "paths": [
-            "/home/adurakovic/ANX/anexia-engine"
-          ]
+          "paths": ["/home/adurakovic/ANX/anexia-engine"],
         },
         {
-          "paths": [
-            "/mnt/appdata/forgejo/gitea/public/assets/css"
-          ]
+          "paths": ["/mnt/appdata/forgejo/gitea/public/assets/css"],
         },
         {
-          "paths": [
-            "/srv/docker/auth"
-          ]
+          "paths": ["/srv/docker/auth"],
         },
         {
-          "paths": [
-            "/srv/docker/network"
-          ]
+          "paths": ["/srv/docker/network"],
         },
         {
-          "paths": [
-            "/srv/docker/network/caddy"
-          ]
+          "paths": ["/srv/docker/network/caddy"],
         },
         {
-          "paths": [
-            "/srv/docker/stacks"
-          ]
-        }
-      ]
+          "paths": ["/srv/docker/stacks"],
+        },
+      ],
     },
     {
       "host": "anxlaptop",
       "args": [],
       "projects": [
         {
-          "paths": [
-            "/home/adurakovic/ANX/anexia-engine"
-          ]
+          "paths": ["/home/adurakovic/ANX/anexia-engine"],
         },
         {
-          "paths": [
-            "/home/adurakovic/ANX/engine-ci-pipelines"
-          ]
+          "paths": ["/home/adurakovic/ANX/engine-ci-pipelines"],
         },
         {
-          "paths": [
-            "/home/adurakovic/ANX/engine-devops"
-          ]
-        }
-      ]
+          "paths": ["/home/adurakovic/ANX/engine-devops"],
+        },
+      ],
     },
     {
       "host": "Mars",
       "args": [],
-      "projects": []
-    }
+      "projects": [],
+    },
   ],
   "which_key": { "enabled": true, "delay_ms": 0 },
   "relative_line_numbers": "enabled",
@@ -154,7 +138,7 @@
   },
 
   "title_bar": {
-    "show_branch_icon": true,
+    "show_branch_status_icon": true,
     "show_project_items": true,
     "show_branch_name": true,
     "show_user_picture": true,
@@ -365,5 +349,31 @@
     "wakatime": true,
     "zig": true,
     "php": true,
+  },
+
+  "theme_overrides": {
+    "Kanso Zen Darker": {
+      "surface.background": "#09090BFF",
+      "background": "#111014FF",
+      "element.background": "#111014FF",
+      "status_bar.background": "#07070BFF",
+      "title_bar.background": "#07070BFF",
+      "title_bar.inactive_background": "#07070BFF",
+      "toolbar.background": "#09090BFF",
+      "tab_bar.background": "#09090BFF",
+      "tab.inactive_background": "#09090BFF",
+      "panel.background": "#09090BFF",
+      "scrollbar.thumb.background": "#18191EAA",
+      "scrollbar.thumb.hover_background": "#18191EFF",
+      "scrollbar.track.background": "#111014FF",
+      "scrollbar.track.border": "#111014FF",
+      "editor.background": "#09090BFF",
+      "editor.gutter.background": "#09090BFF",
+      "terminal.background": "#09090BFF",
+      "panel.overlay_background": "#09090BFF",
+      "panel.overlay_hover": "#111014FF",
+      "minimap.thumb.background": "#18191EAA",
+      "minimap.thumb.hover_background": "#18191EFF",
+    },
   },
 }

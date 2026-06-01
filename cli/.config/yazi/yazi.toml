@@ -17,7 +17,7 @@ prepend_previewers = [
   { url = "*.xlsx", run = "duckdb" },
   { url = "*.db", run = "duckdb" },
   { url = "*.duckdb", run = "duckdb" },
-  { url = "*.{3mf,obj,pts,ply,stl,step,stp}", run="f3d-preview"},
+  { url = "*.{3mf,obj,pts,ply,stl,step,stp}", run='piper -- f3d --no-background -taq --resolution 100,100 --output /tmp/f3d/preview.png -- $1 && timg -g100x100 -C --fit-width /tmp/f3d/preview.png' },
 ]
 
 prepend_preloaders = [
@@ -27,7 +27,7 @@ prepend_preloaders = [
   { url = "*.parquet", run = "duckdb", multi = false },
   { url = "*.txt", run = "duckdb", multi = false },
   { url = "*.xlsx", run = "duckdb", multi = false },
-  { url = "*.{3mf,obj,pts,ply,stl,step,stp}", run="f3d-preview"},
+  # { url = "*.{3mf,obj,pts,ply,stl,step,stp}", run="f3d-preview"},
 ]
 
 prepend_spotters = [

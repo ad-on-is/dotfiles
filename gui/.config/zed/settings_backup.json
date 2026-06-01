@@ -7,11 +7,51 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "diff_view_style": "unified",
+  "cli_default_open_behavior": "existing_window",
+  "agent": {
+    "dock": "right",
+    "default_model": {
+      "effort": "high",
+      "provider": "copilot_chat",
+      "model": "claude-sonnet-4.6",
+      "enable_thinking": true,
+    },
+    "favorite_models": [],
+    "model_parameters": [],
+    "tool_permissions": {
+      "default": "allow",
+      "tools": {
+        "terminal": {
+          "default": "confirm",
+          "always_allow": [
+            { "pattern": "^cargo\\s+(build|test|check)" },
+            { "pattern": "^git\\s+(status|log|diff)" },
+            { "pattern": "^(find|grep|cat|locate)" },
+          ],
+          "always_deny": [{ "pattern": "rm\\s+-rf\\s+(/|~)" }],
+          "always_confirm": [{ "pattern": "sudo\\s" }],
+        },
+        "edit_file": {
+          "always_deny": [{ "pattern": "\\.env" }, { "pattern": "\\.(pem|key)$" }],
+        },
+      },
+    },
+  },
+  "edit_predictions": {
+    "provider": "copilot",
+  },
   "ssh_connections": [
     {
       "host": "Earth",
       "args": [],
       "projects": [
+        {
+          "paths": ["/home/adurakovic/ANX/anexia-engine"],
+        },
+        {
+          "paths": ["/mnt/appdata/forgejo/gitea/public/assets/css"],
+        },
         {
           "paths": ["/srv/docker/auth"],
         },
@@ -19,9 +59,32 @@
           "paths": ["/srv/docker/network"],
         },
         {
+          "paths": ["/srv/docker/network/caddy"],
+        },
+        {
           "paths": ["/srv/docker/stacks"],
         },
       ],
+    },
+    {
+      "host": "anxlaptop",
+      "args": [],
+      "projects": [
+        {
+          "paths": ["/home/adurakovic/ANX/anexia-engine"],
+        },
+        {
+          "paths": ["/home/adurakovic/ANX/engine-ci-pipelines"],
+        },
+        {
+          "paths": ["/home/adurakovic/ANX/engine-devops"],
+        },
+      ],
+    },
+    {
+      "host": "Mars",
+      "args": [],
+      "projects": [],
     },
   ],
   "which_key": { "enabled": true, "delay_ms": 0 },
@@ -47,10 +110,6 @@
     "mode": "dark",
     "light": "One Light",
     "dark": "Kanso Zen Darker",
-  },
-
-  "features": {
-    "edit_prediction_provider": "copilot",
   },
 
   "close_on_file_delete": true,
@@ -80,7 +139,7 @@
     "show_branch_icon": true,
     "show_project_items": true,
     "show_branch_name": true,
-    "show_user_picture": false,
+    "show_user_picture": true,
     "show_onboarding_banner": true,
     "show_sign_in": true,
   },
@@ -99,16 +158,12 @@
   },
 
   "project_panel": {
-    "hide_hidden": true,
-    "hide_gitignore": true,
-    "file_icons": true,
-    "folder_icons": true,
-    "default_width": 300,
     "dock": "left",
-    "auto_fold_dirs": true,
-    "button": true,
-    "auto_reveal_entries": true,
+    "git_status": false,
+    "hide_root": true,
+    "default_width": 300,
     "entry_spacing": "standard",
+    "bold_folder_labels": true,
   },
 
   "outline_panel": {
@@ -118,10 +173,13 @@
 
   "minimap": {
     "show": "always",
+    "display_in": "active_editor",
     "max_width_columns": 35,
+    "current_line_highlight": "line",
   },
 
   "collaboration_panel": {
+    "dock": "left",
     "default_width": 300,
     "button": true,
   },
@@ -129,6 +187,7 @@
     "button": true,
   },
   "git_panel": {
+    "dock": "left",
     "sort_by_path": true,
     "default_width": 300,
     "button": true,
@@ -139,6 +198,7 @@
     "file_icons": true,
     "close_position": "right",
     "activate_on_close": "neighbour",
+    "show_diagnostics": "all",
   },
 
   "file_finder": {
@@ -196,11 +256,20 @@
         "path": "intelephense",
         "arguments": ["--stdio"],
       },
+      "initialization_options": {
+        "settings": {
+          "files": {
+            "exclude": ["**/.git/**", "**/node_modules/**", "**/tmp/**", "**/tmp/cache/**"],
+          },
+        },
+      },
+
       "settings": {
         "intelephense": {
           "licenceKey": "~/intelephense/license.txt",
           "files": {
             "maxSize": 1000000,
+            "exclude": ["**/.git/**", "**/node_modules/**", "**/tmp/**", "**/tmp/cache/**"],
           },
         },
       },
@@ -224,6 +293,16 @@
         },
       },
     },
+    "Python": {
+      "language_servers": ["ty", "!basedpyright"],
+      "format_on_save": "on",
+      "formatter": {
+        "external": {
+          "command": "ruff",
+          "arguments": ["format", "-"],
+        },
+      },
+    },
     "PHP": {
       "language_servers": ["intelephense", "!phpactor"],
       "format_on_save": "on",
@@ -240,7 +319,6 @@
       },
     },
   },
-
   "auto_install_extensions": {
     "ansible": true,
     "basher": true,
@@ -269,5 +347,31 @@
     "wakatime": true,
     "zig": true,
     "php": true,
+  },
+
+  "theme_overrides": {
+    "Kanso Zen Darker": {
+      "surface.background": "#09090BFF",
+      "background": "#111014FF",
+      "element.background": "#111014FF",
+      "status_bar.background": "#07070BFF",
+      "title_bar.background": "#07070BFF",
+      "title_bar.inactive_background": "#07070BFF",
+      "toolbar.background": "#09090BFF",
+      "tab_bar.background": "#09090BFF",
+      "tab.inactive_background": "#09090BFF",
+      "panel.background": "#09090BFF",
+      "scrollbar.thumb.background": "#18191EAA",
+      "scrollbar.thumb.hover_background": "#18191EFF",
+      "scrollbar.track.background": "#111014FF",
+      "scrollbar.track.border": "#111014FF",
+      "editor.background": "#09090BFF",
+      "editor.gutter.background": "#09090BFF",
+      "terminal.background": "#09090BFF",
+      "panel.overlay_background": "#09090BFF",
+      "panel.overlay_hover": "#111014FF",
+      "minimap.thumb.background": "#18191EAA",
+      "minimap.thumb.hover_background": "#18191EFF",
+    },
   },
 }

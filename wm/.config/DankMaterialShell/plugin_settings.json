@@ -34,9 +34,57 @@
     "pasteUrlOnly": false
   },
   "dankKDEConnect": {
-    "enabled": false
+    "enabled": true
   },
   "emojiLauncher": {
+    "enabled": true
+  },
+  "amdGpuMonitor": {
+    "enabled": true
+  },
+  "dankHyprlandWindows": {
+    "enabled": true
+  },
+  "dankBatteryAlerts": {
+    "enabled": false
+  },
+  "ipIndicator": {
+    "enabled": false
+  },
+  "dankDiskUsage": {
+    "enabled": true
+  },
+  "mediaControlPlus": {
+    "enabled": true
+  },
+  "systemMonitorPlus": {
+    "enabled": true
+  },
+  "unifiedTaskbar": {
+    "enabled": false
+  },
+  "resourceMonitor": {
+    "enabled": false
+  },
+  "clipboardPlus": {
+    "enabled": false
+  },
+  "weeklyCalendar": {
+    "enabled": true
+  },
+  "fullscreenPowerMenu": {
+    "enabled": true
+  },
+  "dankRazer": {
+    "enabled": true
+  },
+  "dankStickerSearch": {
+    "enabled": true
+  },
+  "converter": {
+    "enabled": true
+  },
+  "tasks": {
     "enabled": true
   }
 }

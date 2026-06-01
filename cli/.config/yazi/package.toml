@@ -19,14 +19,19 @@ rev = "e60e122"
 hash = "fbaf0adc8efc59555b748d36aab62d40"
 
 [[plugin.deps]]
-use = "ruudjhuu/f3d-preview"
-rev = "76d115d"
-hash = "6b2008327d65fe374d99f6b6ff007cba"
-
-[[plugin.deps]]
 use = "AminurAlam/yazi-plugins:spot"
 rev = "70a03f3"
 hash = "3d83be32b0859360996e167debc123ee"
+
+[[plugin.deps]]
+use = "alberti42/faster-piper"
+rev = "8b794bf"
+hash = "fac71f8ce9447ad509b5aad9e0d8c694"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:piper"
+rev = "c2c16c8"
+hash = "d99cfbc3812e7738505f9e4bedb759cd"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-mocha"
