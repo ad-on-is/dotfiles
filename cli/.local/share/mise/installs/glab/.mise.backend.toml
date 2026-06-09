@@ -1,0 +1,3 @@
+short = "glab"
+full = "gitlab:gitlab-org/cli"
+explicit_backend = false

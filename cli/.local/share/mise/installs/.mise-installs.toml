@@ -18,6 +18,11 @@ short = "fd"
 full = "aqua:sharkdp/fd"
 explicit_backend = false
 
+[glab]
+short = "glab"
+full = "gitlab:gitlab-org/cli"
+explicit_backend = false
+
 [just]
 short = "just"
 full = "aqua:casey/just"
