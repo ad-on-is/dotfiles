@@ -94,9 +94,10 @@
         "action::Sequence",
         [
           "workspace::CopyRelativePath",
-          ["workspace::NewSearch", { "filter_enabled": true }],
-          ["workspace::SendKeystrokes", "tab ctrl-v"],
-          ["workspace::SendKeystrokes", "enter"],
+          "workspace::NewSearch",
+          // ["pane::DeploySearch", { "included_files": "" }],
+          // ["workspace::SendKeystrokes", "tab ctrl-v"],
+          // ["workspace::SendKeystrokes", "enter"],
         ],
       ],
     },

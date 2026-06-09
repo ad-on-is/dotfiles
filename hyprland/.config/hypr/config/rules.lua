@@ -7,6 +7,7 @@ local floatingWindows = {
   { title = "^(.*)(New archive|Create|Extract|Smart|Done)(.*)$",                                                class = "(peazip)" },
   { title = "Yaak Settings",                                                                                    class = "" },
   { title = "",                                                                                                 class = "^(io.github.diegopvlk.Cine)$" },
+  { title = "",                                                                                                 class = "FortiClient" },
 }
 
 local bluringLayers = {
