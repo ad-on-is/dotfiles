@@ -7,6 +7,11 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "agent_servers": {
+    "opencode": {
+      "type": "registry",
+    },
+  },
   "diff_view_style": "unified",
   "cli_default_open_behavior": "existing_window",
   "agent": {
@@ -244,6 +249,11 @@
   "lsp_document_colors": "inlay",
 
   "lsp": {
+    "gopls": {
+      "initialization_options": {
+        "usePlaceholders": true,
+      },
+    },
     "qmlls": {
       "binary": {
         "arguments": ["-E"],
