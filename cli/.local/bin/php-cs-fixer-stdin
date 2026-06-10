@@ -8,6 +8,7 @@
 //   2. Create a temporary file (tries multiple directories)
 //   3. Call PHP-CS-Fixer's "fix" command with path to the temp file
 //   4. provides the fixed file contents as STDOUT
+//
 
 function error_exit(string $message, int $code = 1): void
 {
@@ -56,7 +57,7 @@ if (! $createdTempFile) {
 // Check if PHP-CS-Fixer is installed
 
 // $whichBinary = exec('which php-cs-fixer');
-$whichBinary = '/home/adurakovic/.local/share/nvim/mason/bin/php-cs-fixer';
+$whichBinary = '/home/adonis/.local/share/nvim/mason/bin/php-cs-fixer';
 if ('' === $whichBinary) {
     error_exit('php-cs-fixer binary not found in $PATH folders');
 }
