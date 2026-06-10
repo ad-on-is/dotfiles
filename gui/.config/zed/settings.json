@@ -111,7 +111,7 @@
   "theme": {
     "mode": "dark",
     "light": "One Light",
-    "dark": "Kanso Zen Darker",
+    "dark": "Adonis Dark",
   },
 
   "close_on_file_delete": true,
@@ -349,31 +349,5 @@
     "wakatime": true,
     "zig": true,
     "php": true,
-  },
-
-  "theme_overrides": {
-    "Kanso Zen Darker": {
-      "surface.background": "#09090BFF",
-      "background": "#111014FF",
-      "element.background": "#111014FF",
-      "status_bar.background": "#07070BFF",
-      "title_bar.background": "#07070BFF",
-      "title_bar.inactive_background": "#07070BFF",
-      "toolbar.background": "#09090BFF",
-      "tab_bar.background": "#09090BFF",
-      "tab.inactive_background": "#09090BFF",
-      "panel.background": "#09090BFF",
-      "scrollbar.thumb.background": "#18191EAA",
-      "scrollbar.thumb.hover_background": "#18191EFF",
-      "scrollbar.track.background": "#111014FF",
-      "scrollbar.track.border": "#111014FF",
-      "editor.background": "#09090BFF",
-      "editor.gutter.background": "#09090BFF",
-      "terminal.background": "#09090BFF",
-      "panel.overlay_background": "#09090BFF",
-      "panel.overlay_hover": "#111014FF",
-      "minimap.thumb.background": "#18191EAA",
-      "minimap.thumb.hover_background": "#18191EFF",
-    },
   },
 }
