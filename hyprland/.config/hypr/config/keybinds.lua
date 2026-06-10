@@ -7,7 +7,6 @@ local screenShot       = "~/.local/scripts/wm/screenshot.sh"
 local screenRecord     = "~/.local/scripts/wm/screenrecord.sh"
 local cameraZoom       = "~/.local/scripts/wm/camctrl.sh zoom"
 local wayscriberToggle = "wayscriber --light-draw-toggle"
--- local cameraSwitch = "~/.local/scripts/wm/camctrl.sh zoom"
 
 local volUp            = "pactl set-sink-volume @DEFAULT_SINK@ +2%"
 local volDown          = "pactl set-sink-volume @DEFAULT_SINK@ -2%"
