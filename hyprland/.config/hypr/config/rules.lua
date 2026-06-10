@@ -8,6 +8,7 @@ local floatingWindows = {
   { title = "Yaak Settings",                                                                                    class = "" },
   { title = "",                                                                                                 class = "^(io.github.diegopvlk.Cine)$" },
   { title = "",                                                                                                 class = "Emulator" },
+  { title = "",                                                                                                 class = "FortiClient" },
 }
 
 local bluringLayers = {

@@ -1,33 +1,33 @@
-local terminal       = "ghostty"
-local fileManager    = "nemo"
-local launcher       = "dms ipc call spotlight openWith apps"
-local clipboard      = "dms ipc call clipboard toggle"
-local adbKeyBack     = "~/.local/share/android/Sdk/platform-tools/adb shell input keyevent KEYCODE_BACK"
-local screenShot     = "~/.local/scripts/wm/screenshot.sh"
-local screenRecord   = "~/.local/scripts/wm/screenrecord.sh"
-local cameraZoom     = "~/.local/scripts/wm/camctrl.sh zoom"
--- local cameraSwitch = "~/.local/scripts/wm/camctrl.sh zoom"
+local terminal         = "ghostty"
+local fileManager      = "nemo"
+local launcher         = "dms ipc call spotlight openWith apps"
+local clipboard        = "dms ipc call clipboard toggle"
+local adbKeyBack       = "~/.local/share/android/Sdk/platform-tools/adb shell input keyevent KEYCODE_BACK"
+local screenShot       = "~/.local/scripts/wm/screenshot.sh"
+local screenRecord     = "~/.local/scripts/wm/screenrecord.sh"
+local cameraZoom       = "~/.local/scripts/wm/camctrl.sh zoom"
+local wayscriberToggle = "wayscriber --light-draw-toggle"
 
-local volUp          = "pactl set-sink-volume @DEFAULT_SINK@ +2%"
-local volDown        = "pactl set-sink-volume @DEFAULT_SINK@ -2%"
-local volMute        = "pactl set-sink-mute @DEFAULT_SINK@ toggle"
-local windowSwitcher = "dms ipc call spotlight openQuery '!'"
-local emojiPicker    = "dms ipc call spotlight openQuery ':e '"
-local gifPicker      = "dms ipc call spotlight openQuery ':g '"
+local volUp            = "pactl set-sink-volume @DEFAULT_SINK@ +2%"
+local volDown          = "pactl set-sink-volume @DEFAULT_SINK@ -2%"
+local volMute          = "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+local windowSwitcher   = "dms ipc call spotlight openQuery '!'"
+local emojiPicker      = "dms ipc call spotlight openQuery ':e '"
+local gifPicker        = "dms ipc call spotlight openQuery ':g '"
 
-local micUp          = "pactl set-source-volume @DEFAULT_SOURCE@ +2%"
-local micDown        = "pactl set-source-volume @DEFAULT_SOURCE@ -2%"
-local micMute        = "pactl set-source-mute @DEFAULT_SOURCE@ toggle"
-local headphones     = "pactl set-default-sink alsa_output.pci-0000_0c_00.4.analog-stereo"
-local btSpeaker      = "pactl set-default-sink bluez_output.F8_5C_7D_90_B6_3B.1"
+local micUp            = "pactl set-source-volume @DEFAULT_SOURCE@ +2%"
+local micDown          = "pactl set-source-volume @DEFAULT_SOURCE@ -2%"
+local micMute          = "pactl set-source-mute @DEFAULT_SOURCE@ toggle"
+local headphones       = "pactl set-default-sink alsa_output.pci-0000_0c_00.4.analog-stereo"
+local btSpeaker        = "pactl set-default-sink bluez_output.F8_5C_7D_90_B6_3B.1"
 
-local common         = require("config._common")
+local common           = require("config._common")
 
-local s              = "SUPER + "
-local ss             = s .. "SHIFT + "
-local sc             = s .. "CTRL + "
-local sa             = s .. "ALT + "
-local ssc            = s .. "CTRL + "
+local s                = "SUPER + "
+local ss               = s .. "SHIFT + "
+local sc               = s .. "CTRL + "
+local sa               = s .. "ALT + "
+local ssc              = s .. "CTRL + "
 
 hl.bind(ss .. "ESCAPE", hl.dsp.exec_cmd("systemctl suspend"))
 hl.bind("XF86PowerOff", hl.dsp.exec_cmd("systemctl suspend"))
@@ -38,6 +38,7 @@ hl.bind(ssc .. "ESCAPE", hl.dsp.exec_cmd("uwsm stop > /tmp/uwsm.log")) -- logout
 -- APPS
 hl.bind(s .. "RETURN", hl.dsp.exec_cmd(terminal))
 hl.bind(s .. "N", hl.dsp.exec_cmd(fileManager))
+hl.bind(s .. "S", hl.dsp.exec_cmd(wayscriberToggle))
 
 hl.bind(s .. "SPACE", hl.dsp.exec_cmd(launcher))
 hl.bind(s .. "V", hl.dsp.exec_cmd(clipboard))
