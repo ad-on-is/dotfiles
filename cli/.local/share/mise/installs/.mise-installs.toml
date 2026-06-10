@@ -33,6 +33,11 @@ short = "lazygit"
 full = "aqua:jesseduffield/lazygit"
 explicit_backend = false
 
+[oci]
+short = "oci"
+full = "asdf:oci"
+explicit_backend = true
+
 [opencode]
 short = "opencode"
 full = "aqua:anomalyco/opencode"
