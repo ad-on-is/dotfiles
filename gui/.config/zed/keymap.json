@@ -52,6 +52,7 @@
     "context": "Editor && vim_mode == visual",
     "bindings": {
       "delete": ["workspace::SendKeystrokes", "d i"],
+      "! ?": "agent::AddSelectionToThread",
       "backspace": ["workspace::SendKeystrokes", "d i"],
     },
   },
@@ -68,6 +69,7 @@
     "bindings": {
       "|": "pane::SplitRight",
       "! !": "agent::Toggle",
+      "! ?": "agent::NewThread",
       "&": "pane::SplitDown",
       "\\": ["pane::DeploySearch", { "replace_enabled": true }],
       "°": "pane::DeploySearch",
