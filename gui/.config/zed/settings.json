@@ -248,6 +248,11 @@
   "lsp_document_colors": "inlay",
 
   "lsp": {
+    "gopls": {
+      "initialization_options": {
+        "usePlaceholders": true,
+      },
+    },
     "qmlls": {
       "binary": {
         "arguments": ["-E"],

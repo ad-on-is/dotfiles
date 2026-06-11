@@ -1,10 +1,3 @@
-// Zed keymap
-//
-// For information on binding keys, see the Zed
-// documentation: https://zed.dev/docs/key-bindings
-//
-// To see the default key bindings run `zed: open default keymap`
-// from the command palette.
 [
   {
     "context": "!Terminal",
@@ -31,6 +24,30 @@
       "ctrl-n": "workspace::NewFile",
       "ctrl-shift-t": "task::Spawn",
       "ctrl-t": "terminal_panel::Toggle",
+    },
+  },
+
+  {
+    "context": "Editor && showing_completions && !Terminal",
+    "bindings": {
+      "tab": [
+        "action::Sequence",
+        [
+          ["editor::ComposeCompletion", {}],
+          ["workspace::SendKeystrokes", "escape"],
+          ["workspace::SendKeystrokes", "i"],
+          ["workspace::SendKeystrokes", "right"],
+        ],
+      ],
+      "enter": [
+        "action::Sequence",
+        [
+          ["editor::ComposeCompletion", {}],
+          ["workspace::SendKeystrokes", "escape"],
+          ["workspace::SendKeystrokes", "i"],
+          ["workspace::SendKeystrokes", "right"],
+        ],
+      ],
     },
   },
 
