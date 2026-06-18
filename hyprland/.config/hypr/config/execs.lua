@@ -11,11 +11,7 @@
 -- exec-once = uwsm app -- bash -c 'eval $(gnome-keyring-daemon --start --components=ssh,secrets,pkcs11)'
 -- ; exec-once = hyprpm reload
 hl.on("hyprland.start", function()
-  -- hl.exec_cmd(terminal)
   hl.exec_cmd("uwsm app -- dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
   hl.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP") -- Execute waybar, hyprpaper, firefox
   hl.exec_cmd("hyprctl setcursor Adwaita 24")                                            -- Execute waybar, hyprpaper, firefox
-  hl.exec_cmd("/usr/libexec/polkit-gnome-authentication-agent-1")                        -- Execute waybar, hyprpaper, firefox
-  hl.exec_cmd("fcitx5")                                                                  -- Execute waybar, hyprpaper, firefox
-  hl.exec_cmd("eval $(gnome-keyring-daemon --start --components=ssh,secrets,pkcs11)")    -- Execute waybar, hyprpaper, firefox
 end)
