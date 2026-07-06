@@ -59,12 +59,16 @@
           "always_confirm": [{ "pattern": "sudo\\s" }],
         },
         "edit_file": {
-          "always_deny": [{ "pattern": "\\.env" }, { "pattern": "\\.(pem|key)$" }],
+          "always_deny": [
+            { "pattern": "\\.env" },
+            { "pattern": "\\.(pem|key)$" },
+          ],
         },
       },
     },
   },
   "edit_predictions": {
+    "mode": "eager",
     "provider": "copilot",
   },
   "ssh_connections": [
@@ -209,9 +213,7 @@
     "default_width": 300,
     "button": true,
   },
-  "notification_panel": {
-    "button": true,
-  },
+
   "git_panel": {
     "dock": "left",
     "sort_by_path": true,
@@ -290,7 +292,12 @@
       "initialization_options": {
         "settings": {
           "files": {
-            "exclude": ["**/.git/**", "**/node_modules/**", "**/tmp/**", "**/tmp/cache/**"],
+            "exclude": [
+              "**/.git/**",
+              "**/node_modules/**",
+              "**/tmp/**",
+              "**/tmp/cache/**",
+            ],
           },
         },
       },
@@ -300,7 +307,12 @@
           "licenceKey": "~/intelephense/license.txt",
           "files": {
             "maxSize": 1000000,
-            "exclude": ["**/.git/**", "**/node_modules/**", "**/tmp/**", "**/tmp/cache/**"],
+            "exclude": [
+              "**/.git/**",
+              "**/node_modules/**",
+              "**/tmp/**",
+              "**/tmp/cache/**",
+            ],
           },
         },
       },
@@ -345,7 +357,12 @@
           // "command": "php-cs-fixer-stdin",
           // "arguments": ["-"]
           "command": "sh",
-          "arguments": ["-c", "if [[ \"$1\" == *.phtml ]]; then cat; else php-cs-fixer-stdin -; fi", "_", "{buffer_path}"],
+          "arguments": [
+            "-c",
+            "if [[ \"$1\" == *.phtml ]]; then cat; else php-cs-fixer-stdin -; fi",
+            "_",
+            "{buffer_path}",
+          ],
         },
       },
     },
