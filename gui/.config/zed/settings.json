@@ -7,6 +7,26 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "language_models": {
+    "deepseek": {
+      "api_url": "https://api.deepseek.com",
+      "available_models": [
+        {
+          "name": "deepseek-v4-flash",
+          "display_name": "DeepSeek V4 Flash",
+          "max_tokens": 1000000,
+          "max_output_tokens": 384000,
+        },
+        {
+          "name": "deepseek-v4-pro",
+          "display_name": "DeepSeek V4 Pro",
+          "max_tokens": 1000000,
+          "max_output_tokens": 384000,
+        },
+      ],
+    },
+  },
+
   "agent_servers": {
     "opencode": {
       "type": "registry",
@@ -18,10 +38,9 @@
     "default_profile": "ask",
     "dock": "right",
     "default_model": {
-      "effort": "high",
-      "provider": "copilot_chat",
-      "model": "claude-sonnet-4.6",
-      "enable_thinking": true,
+      "provider": "deepseek",
+      "model": "deepseek-v4-pro",
+      "enable_thinking": false,
     },
     "favorite_models": [],
     "model_parameters": [],

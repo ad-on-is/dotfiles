@@ -38,7 +38,7 @@ function main() {
   grim -g "$GEOM" $screenshotfile
   notify-send -a "ScreenRecorder" -i $screenshotfile "󰹑 Recording ..." " $recordfile"
 
-  wl-screenrec --codec=auto --experimental-ext-image-copy-capture -g "$GEOM" -f "$file"
+  wl-screenrec --codec=hevc --ffmpeg-encoder-options "qp=22" --gop-size 120 --max-fps 60 -g "$GEOM" -f "$file"
 }
 
 main "$@"

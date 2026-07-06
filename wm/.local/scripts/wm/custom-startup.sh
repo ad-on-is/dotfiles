@@ -5,7 +5,7 @@ razer-cli -b 30 && razer-cli --dpi 800 2>/dev/null
 # use eza to list NAS mounts (to mount automatically)
 while true; do
   sleep 5
-  folder=$(/home/adonis/.local/bin/devbox/eza -la -M /run/media/adonis/NAS | awk '{print $7}' | paste -s | xargs)
+  folder=$(eza -la -M /run/media/adonis/NAS | awk '{print $7}' | paste -s | xargs)
 done
 #
 # x11apps=(

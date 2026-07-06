@@ -153,7 +153,7 @@ hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true 
 
 hl.bind(ss .. "1", hl.dsp.exec_cmd(screenShot))
 hl.bind(ss .. "2", function()
-  hl.dispatch(hl.dsp.window.tag({ tag = "recording" }))
+  -- hl.dispatch(hl.dsp.window.tag({ tag = "recording" }))
   hl.dispatch(hl.dsp.exec_cmd(screenRecord))
 end)
 

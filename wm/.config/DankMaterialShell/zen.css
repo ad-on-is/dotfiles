@@ -9,6 +9,17 @@
   --arrowpanel-background: #09090b !important;
   --sidebar-text-color: #cdd6f4 !important;
   --zen-main-browser-background: #09090b !important;
+  --zen-main-browser-background-toolbar: #09090b !important;
+}
+
+#zen-browser-background {
+  --zen-main-browser-background: #09090b !important;
+  --zen-background-opacity: 1 !important;
+}
+
+#zen-toolbar-background {
+  --zen-main-browser-background-toolbar: #09090b !important;
+  --zen-background-opacity: 1 !important;
 }
 
 .sidebar-placesTree {
