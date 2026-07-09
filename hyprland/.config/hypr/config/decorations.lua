@@ -83,8 +83,8 @@ hl.config({
 
 })
 
-hl.curve("rubber", { type = "spring", mass = 0.8, stiffness = 60, dampening = 9 })
-hl.curve("rubberSmooth", { type = "spring", mass = 1.1, stiffness = 40, dampening = 11 })
+hl.curve("rubber", { type = "spring", mass = 0.8, stiffness = 200, dampening = 12 })
+hl.curve("rubberSmooth", { type = "spring", mass = 0.7, stiffness = 150, dampening = 14 })
 
 hl.animation({ leaf = "global", enabled = true, speed = 10, spring = "rubberSmooth" })
 hl.animation({ leaf = "windows", enabled = true, speed = 10, spring = "rubber" })
