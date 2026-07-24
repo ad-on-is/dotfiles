@@ -2,6 +2,7 @@
   {
     "context": "!Terminal",
     "bindings": {
+      "alt-f": "project_search::ToggleFilters",
       "ctrl-s": "workspace::Save",
       "ctrl-c": "editor::Copy",
       "ctrl-w": "pane::CloseActiveItem",
@@ -13,11 +14,10 @@
       "ctrl-alt-s": "workspace::SaveWithoutFormat",
       "ctrl-ö": "editor::ToggleComments",
       "alt-d": "editor::DuplicateLineDown",
-      "alt-r": "pane::ActivatePreviousItem",
+      "alt-r": "search::ToggleReplace",
       "ctrl-r": "projects::OpenRecent",
       "ctrl-shift-r": "projects::OpenRemote",
       "ctrl-shift-p": "command_palette::Toggle",
-      "alt-t": "pane::ActivateNextItem",
       "ctrl-d": "outline::Toggle",
       "ctrl-p": "file_finder::Toggle",
       "ctrl-u": "tab_switcher::ToggleAll",
@@ -58,7 +58,7 @@
       "ctrl-shift-f": [
         "action::Sequence",
         [
-          ["workspace::NewSearch", { "replace_enabled": true, "filter_enabled": true }],
+          ["workspace::NewSearch", { "replace_enabled": true, "filters_enabled": true }],
           ["workspace::SendKeystrokes", "enter"],
         ],
       ],
@@ -95,6 +95,7 @@
       "ctrl-.": "editor::OpenContextMenu",
       "shift-m": "vim::ToggleMarksView",
       "g a": "git::Add",
+      "g h": "git::FileHistory",
       "g b": "git::Blame",
       "s": "vim::PushAddSurrounds",
       "cs": "vim::PushChangeSurrounds",
@@ -113,10 +114,12 @@
         "action::Sequence",
         [
           "workspace::CopyRelativePath",
-          "workspace::NewSearch",
-          // ["pane::DeploySearch", { "included_files": "" }],
-          // ["workspace::SendKeystrokes", "tab ctrl-v"],
-          // ["workspace::SendKeystrokes", "enter"],
+          // "workspace::NewSearch",
+          ["pane::DeploySearch", { "included_files": "" }],
+          ["workspace::SendKeystrokes", "tab ctrl-v"],
+          ["workspace::SendKeystrokes", "enter"],
+          ["workspace::SendKeystrokes", "shift-tab right"],
+
         ],
       ],
     },

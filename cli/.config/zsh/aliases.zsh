@@ -26,6 +26,17 @@ function ze() {
   zed --new "$@" &!
 }
 
+function ya_zed() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXX")"
+	yazi "$@" --chooser-file="$tmp"
+
+	local opened_file=$(cat -- "$tmp" | head -n 1)
+	zed -- "$opened_file"
+
+	rm -f -- "$tmp"
+	exit
+}
+
 
 
 

@@ -121,7 +121,7 @@
   "relative_line_numbers": "enabled",
   "tab_size": 2,
   "debugger": {
-    "format_dap_log_messages": true,
+    "format_dap_log_messages": false,
     "log_dap_communications": true,
   },
   "inlay_hints": {
@@ -152,6 +152,7 @@
   "git": {
     "inline_blame": {
       "enabled": true,
+      // "location":"status_bar",
       "min_column": 0,
       "padding": 4,
       "delay_ms": 200,
@@ -216,7 +217,7 @@
 
   "git_panel": {
     "dock": "left",
-    "sort_by_path": true,
+    "sort_by": "path",
     "default_width": 300,
     "button": true,
   },
