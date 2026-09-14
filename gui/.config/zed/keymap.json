@@ -10,7 +10,6 @@
       "ctrl-v": "editor::Paste",
       "ctrl-shift-o": "workspace::Open",
       "ctrl-f": "buffer_search::DeployReplace",
-      "shift shift": "file_finder::Toggle",
       "ctrl-alt-s": "workspace::SaveWithoutFormat",
       "ctrl-ö": "editor::ToggleComments",
       "alt-d": "editor::DuplicateLineDown",

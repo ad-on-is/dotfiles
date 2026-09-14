@@ -7,6 +7,7 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "proxy": "",
   "language_models": {
     "deepseek": {
       "api_url": "https://api.deepseek.com",
@@ -68,6 +69,10 @@
     },
   },
   "edit_predictions": {
+    "open_ai_compatible_api": {
+      "model": "",
+      "api_url": "https://aiproxy.null.ad/code/ds"
+    },
     "mode": "eager",
     "provider": "copilot",
   },

@@ -102,7 +102,7 @@ git:
   #
 
   #
-  pagers: []
+  diffRenderers: []
   commit:
     signOff: false
     autoWrapCommitMessage: true
@@ -223,7 +223,7 @@ keybinding:
     prevTab: "["
     nextScreenMode: +
     prevScreenMode: _
-    cyclePagers: "|"
+    cycleDiffRenderers: "|"
     undo: z
     redo: Z
     filteringMenu: <ctrl+s>

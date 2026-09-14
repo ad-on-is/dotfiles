@@ -8,6 +8,11 @@ short = "claude"
 full = "aqua:anthropics/claude-code"
 explicit_backend = false
 
+[copilot-cli]
+short = "copilot-cli"
+full = "aqua:github/copilot-cli"
+explicit_backend = false
+
 [duckdb]
 short = "duckdb"
 full = "aqua:duckdb/duckdb"
