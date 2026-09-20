@@ -29,6 +29,9 @@
 
   "agent_servers": {
     "opencode": {
+      "default_config_options": {
+        "mode": "plan"
+      },
       "type": "registry",
     },
   },
@@ -77,45 +80,75 @@
       "args": [],
       "projects": [
         {
-          "paths": ["/home/adurakovic/ANX/anexia-engine"],
+          "paths": [
+            "/home/adurakovic/ANX/anexia-engine"
+          ]
         },
         {
-          "paths": ["/mnt/appdata/forgejo/gitea/public/assets/css"],
+          "paths": [
+            "/mnt/appdata/forgejo/gitea/public/assets/css"
+          ]
         },
         {
-          "paths": ["/srv/docker/auth"],
+          "paths": [
+            "/srv/docker/auth"
+          ]
         },
         {
-          "paths": ["/srv/docker/network"],
+          "paths": [
+            "/srv/docker/network"
+          ]
         },
         {
-          "paths": ["/srv/docker/network/caddy"],
+          "paths": [
+            "/srv/docker/network/caddy"
+          ]
         },
         {
-          "paths": ["/srv/docker/stacks"],
-        },
-      ],
+          "paths": [
+            "/srv/docker/stacks"
+          ]
+        }
+      ]
     },
     {
       "host": "anxlaptop",
       "args": [],
       "projects": [
         {
-          "paths": ["/home/adurakovic/ANX/anexia-engine"],
+          "paths": [
+            "/home/adurakovic/ANX/anexia-engine"
+          ]
         },
         {
-          "paths": ["/home/adurakovic/ANX/engine-ci-pipelines"],
+          "paths": [
+            "/home/adurakovic/ANX/engine-ci-pipelines"
+          ]
         },
         {
-          "paths": ["/home/adurakovic/ANX/engine-devops"],
-        },
-      ],
+          "paths": [
+            "/home/adurakovic/ANX/engine-devops"
+          ]
+        }
+      ]
     },
     {
       "host": "Mars",
       "args": [],
-      "projects": [],
+      "projects": []
     },
+    {
+      "host": "venus.dnmc.lan",
+      "args": [
+        "-4"
+      ],
+      "projects": []
+    },
+    {
+      "host": "Venus",
+      "args": [],
+      "projects": []
+    }
   ],
   "which_key": { "enabled": true, "delay_ms": 0 },
   "relative_line_numbers": "enabled",

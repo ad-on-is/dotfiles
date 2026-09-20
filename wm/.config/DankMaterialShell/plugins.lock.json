@@ -1,0 +1,108 @@
+{
+  "lockfileVersion": 1,
+  "plugins": {
+    "amdGpuMonitor": {
+      "repo": "https://github.com/navidagz/dms-amd-gpu-monitor",
+      "commit": "430d783232fe00eb4ba046833021353e63c152ed"
+    },
+    "clipboardPlus": {
+      "repo": "https://github.com/Dadangdut33/dms-plugins",
+      "path": "ClipboardPlus",
+      "commit": "cb23b2590038ba47db3f27eca5101a8ac864da7d"
+    },
+    "converter": {
+      "repo": "https://github.com/viewerofall-labs/weather-viewer",
+      "path": "converter",
+      "commit": "4afea52710372a525c14254d9f85b954001bee18"
+    },
+    "dankActions": {
+      "repo": "https://github.com/AvengeMedia/dms-plugins",
+      "path": "DankActions",
+      "commit": "547023b3ba65bcb195c93fd4b111d0f1eebe0432"
+    },
+    "dankAudioVisualizer": {
+      "repo": "https://github.com/odtgit/DankAudioVisualizer",
+      "commit": "25424e8d570e000f4ab086c9e5e1122180861a65"
+    },
+    "dankBatteryAlerts": {
+      "repo": "https://github.com/AvengeMedia/dms-plugins",
+      "path": "DankBatteryAlerts",
+      "commit": "547023b3ba65bcb195c93fd4b111d0f1eebe0432"
+    },
+    "dankDiskUsage": {
+      "repo": "https://github.com/alcxyz/DankDiskUsage",
+      "commit": "2aeb29dfb59bac87ca3a9d22ab440f458763bc5c"
+    },
+    "dankGifSearch": {
+      "repo": "https://github.com/AvengeMedia/dms-plugins",
+      "path": "DankGifSearch",
+      "commit": "547023b3ba65bcb195c93fd4b111d0f1eebe0432"
+    },
+    "dankHyprlandWindows": {
+      "repo": "https://github.com/AvengeMedia/dms-plugins",
+      "path": "DankHyprlandWindows",
+      "commit": "547023b3ba65bcb195c93fd4b111d0f1eebe0432"
+    },
+    "dankKDEConnect": {
+      "repo": "https://github.com/AvengeMedia/dms-plugins",
+      "path": "DankKDEConnect",
+      "commit": "547023b3ba65bcb195c93fd4b111d0f1eebe0432"
+    },
+    "dankRazer": {
+      "repo": "https://github.com/zachfi/dms-razer",
+      "commit": "934d16998b130de11cbe3821e37e92b5b535f7c5"
+    },
+    "dankStickerSearch": {
+      "repo": "https://github.com/AvengeMedia/dms-plugins",
+      "path": "DankStickerSearch",
+      "commit": "547023b3ba65bcb195c93fd4b111d0f1eebe0432"
+    },
+    "easyEffects": {
+      "repo": "https://github.com/jonkristian/dms-easyeffects",
+      "commit": "ac2726063d308ef28c1704956564f013951e3a0a"
+    },
+    "emojiLauncher": {
+      "repo": "https://github.com/devnullvoid/dms-emoji-launcher",
+      "commit": "2fcd667b76271ba6064946fc81feb551cce5ba33"
+    },
+    "fullscreenPowerMenu": {
+      "repo": "https://github.com/JDKamalakar/DMS-Fullscreen_Power_Menu",
+      "commit": "a4447e824472abf5c63b8a3511b4da823072f076"
+    },
+    "ipIndicator": {
+      "repo": "https://github.com/hthienloc/dms-ipIndicator",
+      "commit": "ced0c388d569a1bba7c625e033d3b0de6e239a83"
+    },
+    "mediaControlPlus": {
+      "repo": "https://github.com/Dadangdut33/dms-plugins",
+      "path": "MediaControlPlus",
+      "commit": "cb23b2590038ba47db3f27eca5101a8ac864da7d"
+    },
+    "resourceMonitor": {
+      "repo": "https://github.com/smithyyang/dms-resource-monitor",
+      "commit": "5e5f9d60f00a0f6fe2b9b515d729c27edeb510c5"
+    },
+    "simpleAudioControl": {
+      "repo": "https://github.com/Dadangdut33/dms-plugins",
+      "path": "SimpleAudioControl",
+      "commit": "cb23b2590038ba47db3f27eca5101a8ac864da7d"
+    },
+    "systemMonitorPlus": {
+      "repo": "https://github.com/Dadangdut33/dms-plugins",
+      "path": "SystemMonitorPlus",
+      "commit": "cb23b2590038ba47db3f27eca5101a8ac864da7d"
+    },
+    "tasks": {
+      "repo": "https://github.com/AyoItsYas/dms-tasks",
+      "commit": "d58822c5e307e92e5ca91dc4d609aff463ea2afb"
+    },
+    "unifiedTaskbar": {
+      "repo": "https://github.com/jslandau/dms-unified-taskbar",
+      "commit": "1c175cb7f253d6bada00a8e5b83ce19cc4448248"
+    },
+    "weeklyCalendar": {
+      "repo": "https://github.com/arqueon/dms-calendar",
+      "commit": "c7e300e1b09dca3a53a9036a37c79df9d21c6624"
+    }
+  }
+}

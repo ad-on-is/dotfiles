@@ -67,8 +67,8 @@ export PLATFORMIO_CORE_DIR="$XDG_DATA_HOME"/platformio
 export PSQL_HISTORY="$XDG_STATE_HOME/psql_history"
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 export WINEPREFIX="$XDG_DATA_HOME"/wine
-export PNPM_HOME="$XDG_DATA_HOME"/pnpm
-export NPM_CONFIG_STORE_DIR="$PNPM_HOME"/store
+# export PNPM_HOME="$XDG_DATA_HOME"/pnpm
+# export NPM_CONFIG_STORE_DIR="$PNPM_HOME"/store
 export COMPOSER_HOME="$XDG_DATA_HOME"/composer
 
 export LG_CONFIG_FILE="$XDG_CONFIG_HOME/lazygit/config.yml,$XDG_CONFIG_HOME/lazygit/catppuccin.yml"
@@ -111,7 +111,7 @@ PATH=$PATH:$XDG_DATA_HOME/composer/vendor/bin
 # PATH=$PATH:$HOME/.local/share/devbox/global/default/.devbox/nix/profile/default/bin
 PATH=$PATH:$XDG_DATA_HOME/nvim/mason/bin
 
-PATH=$PNPM_HOME:$PATH
+PATH=$PNPM_HOME/bin:$PATH
 PATH="$HOME"/.opencode/bin:$PATH
 
 [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"
