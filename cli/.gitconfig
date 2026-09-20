@@ -41,8 +41,10 @@ line-numbers = true
     ct = checkout -t
     s = status
     d = diff
-	  dm = !git diff $(git symbolic-ref refs/remotes/origin/HEAD | sed \"s@^refs/remotes/origin/@@\")
-		lb = !git log --pretty='%C(yellow)%h %C(cyan)%cd %Cblue%aN%C(auto)%d %Creset%s' --date=short --date-order $(git symbolic-ref refs/remotes/origin/HEAD | sed \"s@^refs/remotes/origin/@@\")..HEAD
+	  # dm = !git diff $(git symbolic-ref refs/remotes/origin/HEAD | sed \"s@^refs/remotes/origin/@@\")
+		dm = !git diff origin/HEAD..HEAD
+		# lb = !git log --pretty='%C(yellow)%h %C(cyan)%cd %Cblue%aN%C(auto)%d %Creset%s' --date=short --date-order $(git symbolic-ref refs/remotes/origin/HEAD | sed \"s@^refs/remotes/origin/@@\")..HEAD
+		lb = !git log --pretty='%C(yellow)%h %C(cyan)%cd %Cblue%aN%C(auto)%d %Creset%s' --date=short --date-order origin/HEAD..HEAD
 		wa = !gwt_add
 		wr = !gwt_remove
 

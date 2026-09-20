@@ -164,7 +164,12 @@
       "visible": true,
       "popupGapsAuto": true,
       "popupGapsManual": 4,
-      "maximizeDetection": true
+      "maximizeDetection": true,
+      "shadowIntensity": 0,
+      "shadowOpacity": 60,
+      "iconScale": 1,
+      "attachToScreenEdge": false,
+      "island": false
     },
     {
       "id": "bar1765542224544",
@@ -260,7 +265,9 @@
       "visible": true,
       "popupGapsAuto": true,
       "popupGapsManual": 4,
-      "maximizeDetection": true
+      "maximizeDetection": true,
+      "shadowIntensity": 0,
+      "attachToScreenEdge": false
     }
   ],
   "desktopClockCustomColor": {
@@ -292,6 +299,9 @@
   "builtInPluginSettings": {
     "dms_settings_search": {
       "trigger": "?"
+    },
+    "dms_clipboard_search": {
+      "trigger": "cb"
     }
   },
   "configVersion": 18
