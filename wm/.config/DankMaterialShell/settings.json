@@ -1,6 +1,5 @@
 {
   "currentThemeName": "custom",
-  "currentThemeCategory": "registry",
   "customThemeFile": "/home/adonis/.config/DankMaterialShell/themes/catppuccin_darker/theme.json",
   "registryThemeVariants": {
     "flexoki": "blue",
@@ -16,25 +15,157 @@
       }
     }
   },
-  "matugenTargetMonitor": "DP-3",
-  "popupTransparency": 0.96,
-  "widgetBackgroundColor": "sth",
-  "cornerRadius": 7,
-  "firstDayOfWeek": 1,
-  "calendarBackend": "khal",
+  "radiusStrength": 22,
   "clockFormat": "24h",
   "showSeconds": true,
-  "animationSpeed": 2,
+  "animationDuration": 500,
+  "useAutoLocation": true,
+  "fontFamily": "Jersey 25",
+  "fontWeight": 500,
+  "fontScale": 1.1,
+  "powerMenuDefaultAction": "suspend",
+  "powerMenuGridLayout": true,
+  "dockConfigs": [
+    {
+      "id": "dock",
+      "name": "Dock",
+      "enabled": false,
+      "screenPreferences": [
+        "all"
+      ],
+      "showOnLastDisplay": true,
+      "position": 1,
+      "mode": "compact",
+      "taskbarAlign": "center",
+      "widgetExpansion": "popout",
+      "iconSize": 40,
+      "spacing": 4,
+      "itemSpacing": 4,
+      "margin": 0,
+      "bottomGap": 0,
+      "transparency": 1,
+      "followInterfaceStyle": false,
+      "autoHide": false,
+      "smartAutoHide": false,
+      "useOverlayLayer": false,
+      "editOnRightClick": false,
+      "showOnFullscreen": false,
+      "openOnOverview": false,
+      "groupByApp": false,
+      "separatePinnedAndRunningApps": false,
+      "restoreSpecialWorkspaceOnClick": false,
+      "isolateDisplays": false,
+      "indicatorStyle": "circle",
+      "borderEnabled": false,
+      "borderColor": "surfaceText",
+      "borderOpacity": 1,
+      "borderThickness": 1,
+      "launcherEnabled": false,
+      "launcherLogoMode": "apps",
+      "launcherLogoCustomPath": "",
+      "launcherLogoColorOverride": "",
+      "launcherLogoSizeOffset": 0,
+      "launcherLogoBrightness": 0.5,
+      "launcherLogoContrast": 1,
+      "maxVisibleApps": 0,
+      "maxVisibleRunningApps": 0,
+      "showOverflowBadge": true,
+      "showTrash": false,
+      "trashFileManager": "default",
+      "trashCustomCommand": "",
+      "order": [],
+      "widgets": [
+        {
+          "id": "dock_launcher",
+          "widgetId": "dockLauncher",
+          "enabled": true
+        },
+        {
+          "id": "dock_apps",
+          "widgetId": "appsDock",
+          "enabled": true
+        },
+        {
+          "id": "dock_trash",
+          "widgetId": "dockTrash",
+          "enabled": true
+        }
+      ]
+    }
+  ],
+  "currentThemeCategory": "registry",
+  "matugenTargetMonitor": "DP-3",
+  "popupTransparency": 0.96,
+  "dmsWindowsFloatingSeeded": [
+    "hyprland"
+  ],
+  "widgetBackgroundColor": "sth",
+  "firstDayOfWeek": 1,
+  "calendarBackend": "khal",
   "barElevationEnabled": false,
   "clockDateFormat": "ddd, dd MMM",
-  "appLauncherViewMode": "grid",
   "appLauncherGridColumns": 6,
   "spotlightSectionViewModes": {
     "apps": "list",
     "plugin_emojiLauncher": "grid",
     "plugin_dankHyprlandWindows": "tile"
   },
-  "useAutoLocation": true,
+  "dashCards": [
+    {
+      "id": "clock",
+      "w": 2,
+      "h": 1,
+      "col": 0,
+      "row": 0
+    },
+    {
+      "id": "weather",
+      "w": 1,
+      "h": 1,
+      "col": 2,
+      "row": 0
+    },
+    {
+      "id": "notifications",
+      "w": 3,
+      "h": 5,
+      "col": 3,
+      "row": 1
+    },
+    {
+      "id": "calendar",
+      "w": 3,
+      "h": 3,
+      "col": 0,
+      "row": 1
+    },
+    {
+      "id": "media",
+      "w": 3,
+      "h": 1,
+      "col": 0,
+      "row": 4
+    },
+    {
+      "id": "user",
+      "w": 3,
+      "h": 1,
+      "col": 3,
+      "row": 0
+    }
+  ],
+  "dashOptions": {
+    "clock": {
+      "date": true,
+      "tone": ""
+    },
+    "calendar": {
+      "weekends": true
+    },
+    "weather": {
+      "city": true
+    }
+  },
   "cursorSettings": {
     "theme": "System Default",
     "size": 24,
@@ -51,9 +182,6 @@
       "cursorHideTimeout": 0
     }
   },
-  "fontFamily": "Jersey 25",
-  "fontWeight": 500,
-  "fontScale": 1.1,
   "soundsEnabled": false,
   "fadeToLockEnabled": false,
   "syncModeWithPortal": false,
@@ -72,8 +200,6 @@
   "notificationPopupPosition": 3,
   "osdMediaPlaybackEnabled": true,
   "osdPowerProfileEnabled": true,
-  "powerMenuDefaultAction": "suspend",
-  "powerMenuGridLayout": true,
   "screenPreferences": {
     "wallpaper": [
       "all"
@@ -169,7 +295,9 @@
       "shadowOpacity": 60,
       "iconScale": 1,
       "attachToScreenEdge": false,
-      "island": false
+      "island": false,
+      "followInterfaceStyle": false,
+      "widgetFollowInterfaceStyle": false
     },
     {
       "id": "bar1765542224544",
@@ -267,35 +395,11 @@
       "popupGapsManual": 4,
       "maximizeDetection": true,
       "shadowIntensity": 0,
-      "attachToScreenEdge": false
+      "attachToScreenEdge": false,
+      "followInterfaceStyle": false,
+      "widgetFollowInterfaceStyle": false
     }
   ],
-  "desktopClockCustomColor": {
-    "r": 1,
-    "g": 1,
-    "b": 1,
-    "a": 1,
-    "hsvHue": -1,
-    "hsvSaturation": 0,
-    "hsvValue": 1,
-    "hslHue": -1,
-    "hslSaturation": 0,
-    "hslLightness": 1,
-    "valid": true
-  },
-  "systemMonitorCustomColor": {
-    "r": 1,
-    "g": 1,
-    "b": 1,
-    "a": 1,
-    "hsvHue": -1,
-    "hsvSaturation": 0,
-    "hsvValue": 1,
-    "hslHue": -1,
-    "hslSaturation": 0,
-    "hslLightness": 1,
-    "valid": true
-  },
   "builtInPluginSettings": {
     "dms_settings_search": {
       "trigger": "?"
@@ -304,5 +408,5 @@
       "trigger": "cb"
     }
   },
-  "configVersion": 18
+  "configVersion": 31
 }
