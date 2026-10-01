@@ -21,24 +21,22 @@ alias lad='lazydocker'
 alias dbg='devbox global'
 alias http='xh -Fb'
 alias download='xh -b --download'
+alias doco='docker compose'
 
 function ze() {
-  zed --new "$@" &!
+  zed --new "$@" &|
 }
 
 function ya_zed() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXX")"
-	yazi "$@" --chooser-file="$tmp"
+  local tmp="$(mktemp -t "yazi-cwd.XXXXX")"
+  yazi "$@" --chooser-file="$tmp"
 
-	local opened_file=$(cat -- "$tmp" | head -n 1)
-	zed -- "$opened_file"
+  local opened_file=$(cat -- "$tmp" | head -n 1)
+  zed -- "$opened_file"
 
-	rm -f -- "$tmp"
-	exit
+  rm -f -- "$tmp"
+  exit
 }
-
-
-
 
 # ssh() {
 #   local alert_bg='#220000'

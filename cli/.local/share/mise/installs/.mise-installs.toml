@@ -3,6 +3,11 @@ short = "ansible"
 full = "pipx:ansible"
 explicit_backend = false
 
+[aqua-firecow-gitlab-ci-local]
+short = "aqua:firecow/gitlab-ci-local"
+full = "aqua:firecow/gitlab-ci-local"
+explicit_backend = true
+
 [claude]
 short = "claude"
 full = "aqua:anthropics/claude-code"
