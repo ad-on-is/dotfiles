@@ -286,6 +286,7 @@
       "cursorHideTimeout": 0
     }
   },
+  "notificationSummaryFontSize": 16,
   "soundsEnabled": false,
   "fadeToLockEnabled": false,
   "syncModeWithPortal": false,
@@ -301,7 +302,9 @@
   "matugenTemplateEmacs": false,
   "matugenTemplateZed": false,
   "notificationOverlayEnabled": true,
+  "notificationTimeoutNormal": 10000,
   "notificationPopupPosition": 3,
+  "notificationHistoryEnabled": false,
   "osdMediaPlaybackEnabled": true,
   "osdPowerProfileEnabled": true,
   "screenPreferences": {
@@ -320,7 +323,24 @@
       ],
       "showOnLastDisplay": true,
       "leftWidgets": [
-        "workspaceSwitcher",
+        {
+          "id": "workspaceSwitcher",
+          "enabled": true,
+          "workspaceIndicatorStyle": "cards",
+          "showWorkspaceName": false,
+          "showWorkspaceIndex": true,
+          "showWorkspaceApps": false,
+          "maxWorkspaceIcons": 3,
+          "workspaceAppIconSizeOffset": 0,
+          "showOccupiedWorkspacesOnly": false,
+          "showSpecialWorkspaces": false,
+          "workspaceColorMode": "secondary",
+          "workspaceOccupiedColorMode": "none",
+          "workspaceFocusedBorderEnabled": false,
+          "showWorkspacePadding": false,
+          "workspaceFollowFocus": false,
+          "reverseScrolling": false
+        },
         {
           "id": "focusedWindow",
           "enabled": true,
@@ -526,6 +546,125 @@
       "useOverlayLayer": true,
       "barLengthMode": "percent",
       "barLengthPercent": 100
+    },
+    {
+      "id": "dot1790958862284",
+      "name": "Dot",
+      "enabled": false,
+      "position": 0,
+      "screenPreferences": [
+        "all"
+      ],
+      "showOnLastDisplay": true,
+      "leftWidgets": [
+        {
+          "id": "workspaceSwitcher",
+          "enabled": true,
+          "workspaceIndicatorStyle": "cards",
+          "showWorkspaceName": false,
+          "showWorkspaceIndex": true,
+          "showWorkspaceApps": false,
+          "maxWorkspaceIcons": 3,
+          "workspaceAppIconSizeOffset": 0,
+          "showOccupiedWorkspacesOnly": false,
+          "showSpecialWorkspaces": false,
+          "workspaceColorMode": "secondary",
+          "workspaceOccupiedColorMode": "none",
+          "workspaceFocusedBorderEnabled": false,
+          "showWorkspacePadding": false,
+          "workspaceFollowFocus": false,
+          "reverseScrolling": false
+        },
+        {
+          "id": "focusedWindow",
+          "enabled": true,
+          "focusedWindowCompactMode": false
+        }
+      ],
+      "centerWidgets": [
+        "clock",
+        "weather",
+        {
+          "id": "notificationButton",
+          "enabled": true
+        }
+      ],
+      "rightWidgets": [
+        {
+          "id": "easyEffects",
+          "enabled": true
+        },
+        {
+          "id": "controlCenterButton",
+          "enabled": true
+        },
+        {
+          "id": "privacyIndicator",
+          "enabled": true
+        },
+        {
+          "id": "vpn",
+          "enabled": true
+        },
+        {
+          "id": "keyboard_layout_name",
+          "enabled": true
+        },
+        {
+          "id": "dankKDEConnect",
+          "enabled": true
+        },
+        {
+          "id": "systemTray",
+          "enabled": true
+        },
+        {
+          "id": "powerMenuButton",
+          "enabled": true
+        }
+      ],
+      "spacing": 0,
+      "innerPadding": -8,
+      "bottomGap": 0,
+      "transparency": 0.6,
+      "widgetTransparency": 0,
+      "squareCorners": true,
+      "noBackground": false,
+      "gothCornersEnabled": false,
+      "gothCornerRadiusOverride": false,
+      "gothCornerRadiusValue": 12,
+      "borderEnabled": false,
+      "borderColor": "surfaceText",
+      "borderOpacity": 0.37,
+      "borderThickness": 1,
+      "widgetOutlineEnabled": false,
+      "widgetOutlineColor": "primary",
+      "widgetOutlineOpacity": 0.05,
+      "widgetOutlineThickness": 1,
+      "fontScale": 1,
+      "autoHide": false,
+      "autoHideDelay": 250,
+      "openOnOverview": false,
+      "visible": true,
+      "popupGapsAuto": true,
+      "popupGapsManual": 4,
+      "maximizeDetection": true,
+      "shadowIntensity": 0,
+      "shadowOpacity": 60,
+      "iconScale": 1,
+      "attachToScreenEdge": false,
+      "island": false,
+      "followInterfaceStyle": false,
+      "widgetFollowInterfaceStyle": false,
+      "scrollEnabled": false,
+      "useOverlayLayer": true,
+      "barLengthMode": "full",
+      "barInsetPadding": 10,
+      "barLengthPercent": 99,
+      "widgetStyle": "pills",
+      "maximizeWidgetIcons": false,
+      "maximizeWidgetText": false,
+      "dot": true
     }
   ],
   "builtInPluginSettings": {

@@ -7,21 +7,21 @@ M = {
   end,
 
   colors = {
-    primary = "#f54900",
-    primarygradient = "#f56600",
+    primary = "#be123c",
+    primarygradient = "#be123c",
     secondary = "#18191ef5",
     primary2 = "#40191ef5",
     outline = "#18191ef5",
     error = "#f38ba8",
     group = {
-      active = "#f54900",
+      active = "#be123c",
       inactive = "#18191ef5",
-      locked_active = "#f54900",
+      locked_active = "#be123c",
       locked_inactive = "#18191ef5",
       bar = {
         active = "#40191ef5",
         inactive = "#18191ef5",
-        locked_active = "#f54900",
+        locked_active = "#be123c",
         locked_inactive = "#18191ef5",
         text = "#ffffffaa"
       },

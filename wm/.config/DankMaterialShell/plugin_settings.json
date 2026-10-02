@@ -34,7 +34,8 @@
     "pasteUrlOnly": false
   },
   "dankKDEConnect": {
-    "enabled": true
+    "enabled": true,
+    "selectedDeviceId": ""
   },
   "emojiLauncher": {
     "enabled": true
