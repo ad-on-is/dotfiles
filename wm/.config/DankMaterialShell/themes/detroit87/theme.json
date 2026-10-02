@@ -1,0 +1,236 @@
+{
+  "id": "detroit87",
+  "name": "Detroit87",
+  "version": "1.0.0",
+  "author": "ocodo",
+  "description": "Detroit Techno-inspired theme.",
+  "dark": {},
+  "light": {},
+  "variants": {
+    "type": "multi",
+    "defaults": {
+      "dark": {
+        "accent": "nitro",
+        "flavor": "ultra"
+      },
+      "light": {
+        "accent": "nitro",
+        "flavor": "lumin"
+      }
+    },
+    "flavors": [
+      {
+        "id": "ultra",
+        "name": "dark",
+        "dark": {
+          "primary": "#8D5EAE",
+          "primaryText": "#000000",
+          "primaryContainer": "#000000",
+          "secondary": "#9AA1A6",
+          "surface": "#101214",
+          "surfaceText": "#F2F4F5",
+          "surfaceVariant": "#171A1D",
+          "surfaceVariantText": "#D7DBDE",
+          "surfaceTint": "#AAAABF",
+          "background": "#101214",
+          "backgroundText": "#F2F4F5",
+          "outline": "#555B60",
+          "surfaceContainer": "#111111",
+          "surfaceContainerHigh": "#181818",
+          "surfaceContainerHighest": "#1D1D1D",
+          "error": "#B86668",
+          "warning": "#B39A62",
+          "info": "#668FA2"
+        },
+        "light": {}
+      },
+      {
+        "id": "lumin",
+        "name": "light",
+        "dark": {},
+        "light": {
+          "primary": "#76509A",
+          "primaryText": "#FFFFFF",
+          "primaryContainer": "#E8DDF0",
+          "secondary": "#5F686E",
+          "surface": "#F3F4F2",
+          "surfaceText": "#171A1D",
+          "surfaceVariant": "#E8EBE9",
+          "surfaceVariantText": "#30363A",
+          "surfaceTint": "#76509A",
+          "background": "#E3E4E2",
+          "backgroundText": "#171A1D",
+          "outline": "#737B80",
+          "surfaceContainer": "#EFF1EF",
+          "surfaceContainerHigh": "#E5E8E6",
+          "surfaceContainerHighest": "#DCE0DE",
+          "error": "#A64F52",
+          "warning": "#866F3D",
+          "info": "#467488"
+        }
+      }
+    ],
+    "accents": [
+      {
+        "id": "nitro",
+        "lumin": {
+          "primary": "#8D5EAE"
+        },
+        "name": "Nitro Deluxe",
+        "ultra": {
+          "primary": "#8D5EAE"
+        }
+      },
+      {
+        "id": "brutal",
+        "lumin": {
+          "primary": "#5E65AE"
+        },
+        "name": "Let's get Brutal",
+        "ultra": {
+          "primary": "#5E65AE"
+        }
+      },
+      {
+        "id": "string",
+        "lumin": {
+          "primary": "#4C87AE"
+        },
+        "name": "Strings of Life",
+        "ultra": {
+          "primary": "#4C87AE"
+        }
+      },
+      {
+        "id": "model",
+        "lumin": {
+          "primary": "#41B09F"
+        },
+        "name": "Model 500",
+        "ultra": {
+          "primary": "#41B09F"
+        }
+      },
+      {
+        "id": "inner",
+        "lumin": {
+          "primary": "#41B04F"
+        },
+        "name": "Inner City",
+        "ultra": {
+          "primary": "#41B04F"
+        }
+      },
+      {
+        "id": "love",
+        "lumin": {
+          "primary": "#B08941"
+        },
+        "name": "Your Love",
+        "ultra": {
+          "primary": "#B08941"
+        }
+      }
+    ]
+  },
+  "wcag": {
+    "level": "fail",
+    "dark": {
+      "level": "fail",
+      "minRatio": 3.91,
+      "worstPair": [
+        "primary",
+        "surfaceContainer"
+      ],
+      "body": {
+        "level": "AAA",
+        "minRatio": 12.75,
+        "worstPair": [
+          "surfaceVariantText",
+          "surfaceContainerHigh"
+        ]
+      },
+      "accent": {
+        "level": "fail",
+        "minRatio": 3.91,
+        "worstPair": [
+          "primary",
+          "surfaceContainer"
+        ]
+      },
+      "nonText": {
+        "level": "AA",
+        "minRatio": 4.62,
+        "worstPair": [
+          "error",
+          "surfaceContainer"
+        ]
+      },
+      "variants": {
+        "ultra-brutal": "fail",
+        "ultra-inner": "AA",
+        "ultra-love": "AA",
+        "ultra-model": "AAA",
+        "ultra-nitro": "fail",
+        "ultra-string": "AA"
+      },
+      "breakdown": [
+        {
+          "name": "dark",
+          "mode": "dark",
+          "level": "fail",
+          "bodyLevel": "AAA"
+        }
+      ]
+    },
+    "light": {
+      "level": "fail",
+      "minRatio": 4.26,
+      "worstPair": [
+        "primary",
+        "surfaceContainer"
+      ],
+      "body": {
+        "level": "AAA",
+        "minRatio": 9.93,
+        "worstPair": [
+          "surfaceVariantText",
+          "surfaceContainerHigh"
+        ]
+      },
+      "accent": {
+        "level": "fail",
+        "minRatio": 4.26,
+        "worstPair": [
+          "primary",
+          "surfaceContainer"
+        ]
+      },
+      "nonText": {
+        "level": "AA",
+        "minRatio": 4.25,
+        "worstPair": [
+          "warning",
+          "surfaceContainer"
+        ]
+      },
+      "variants": {
+        "lumin-brutal": "AA",
+        "lumin-inner": "fail",
+        "lumin-love": "fail",
+        "lumin-model": "fail",
+        "lumin-nitro": "fail",
+        "lumin-string": "fail"
+      },
+      "breakdown": [
+        {
+          "name": "light",
+          "mode": "light",
+          "level": "fail",
+          "bodyLevel": "AAA"
+        }
+      ]
+    }
+  },
+  "sourceDir": "detroit87"
+}

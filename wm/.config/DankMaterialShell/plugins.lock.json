@@ -3,22 +3,30 @@
   "plugins": {
     "amdGpuMonitor": {
       "repo": "https://github.com/navidagz/dms-amd-gpu-monitor",
-      "commit": "430d783232fe00eb4ba046833021353e63c152ed"
+      "commit": "c93a377456c8d69ee2777c306c215d5ceeff9f20"
+    },
+    "audioFx": {
+      "repo": "https://github.com/satoshoe-dev/dms-audiofx",
+      "commit": "3384c20069856235febf1acb6e4f8aafe6cad9f2"
+    },
+    "cavaVisualizer": {
+      "repo": "https://github.com/ernestowgg/cava-visualizer",
+      "commit": "2d08bef95bc7cd170ad5730a27791c9af6d80a52"
     },
     "clipboardPlus": {
       "repo": "https://github.com/Dadangdut33/dms-plugins",
       "path": "ClipboardPlus",
-      "commit": "cb23b2590038ba47db3f27eca5101a8ac864da7d"
+      "commit": "63fe6b87c497f1f7c2ea61432716817db1c5c3a4"
     },
     "converter": {
       "repo": "https://github.com/viewerofall-labs/weather-viewer",
       "path": "converter",
-      "commit": "4afea52710372a525c14254d9f85b954001bee18"
+      "commit": "45ab60d67079d23b5c1fbac506aec825e9d3178c"
     },
     "dankActions": {
       "repo": "https://github.com/AvengeMedia/dms-plugins",
       "path": "DankActions",
-      "commit": "547023b3ba65bcb195c93fd4b111d0f1eebe0432"
+      "commit": "e774a9756f2a50499c37a5513f28bee4ebe81d73"
     },
     "dankAudioVisualizer": {
       "repo": "https://github.com/odtgit/DankAudioVisualizer",
@@ -27,26 +35,26 @@
     "dankBatteryAlerts": {
       "repo": "https://github.com/AvengeMedia/dms-plugins",
       "path": "DankBatteryAlerts",
-      "commit": "547023b3ba65bcb195c93fd4b111d0f1eebe0432"
+      "commit": "e774a9756f2a50499c37a5513f28bee4ebe81d73"
     },
     "dankDiskUsage": {
       "repo": "https://github.com/alcxyz/DankDiskUsage",
-      "commit": "2aeb29dfb59bac87ca3a9d22ab440f458763bc5c"
+      "commit": "2ec3f2ad1169a8227fa08475d7027143bf312e14"
     },
     "dankGifSearch": {
       "repo": "https://github.com/AvengeMedia/dms-plugins",
       "path": "DankGifSearch",
-      "commit": "547023b3ba65bcb195c93fd4b111d0f1eebe0432"
+      "commit": "e774a9756f2a50499c37a5513f28bee4ebe81d73"
     },
     "dankHyprlandWindows": {
       "repo": "https://github.com/AvengeMedia/dms-plugins",
       "path": "DankHyprlandWindows",
-      "commit": "547023b3ba65bcb195c93fd4b111d0f1eebe0432"
+      "commit": "e774a9756f2a50499c37a5513f28bee4ebe81d73"
     },
     "dankKDEConnect": {
       "repo": "https://github.com/AvengeMedia/dms-plugins",
       "path": "DankKDEConnect",
-      "commit": "547023b3ba65bcb195c93fd4b111d0f1eebe0432"
+      "commit": "e774a9756f2a50499c37a5513f28bee4ebe81d73"
     },
     "dankRazer": {
       "repo": "https://github.com/zachfi/dms-razer",
@@ -55,28 +63,36 @@
     "dankStickerSearch": {
       "repo": "https://github.com/AvengeMedia/dms-plugins",
       "path": "DankStickerSearch",
-      "commit": "547023b3ba65bcb195c93fd4b111d0f1eebe0432"
+      "commit": "e774a9756f2a50499c37a5513f28bee4ebe81d73"
     },
     "easyEffects": {
       "repo": "https://github.com/jonkristian/dms-easyeffects",
-      "commit": "ac2726063d308ef28c1704956564f013951e3a0a"
+      "commit": "f3ec5779eab67d24b05b2261e76cb0a60df81654"
     },
     "emojiLauncher": {
       "repo": "https://github.com/devnullvoid/dms-emoji-launcher",
-      "commit": "2fcd667b76271ba6064946fc81feb551cce5ba33"
+      "commit": "8ff394e3ddfcb2fd755ed2e7b4c6f01f3e26e596"
+    },
+    "enderPulse": {
+      "repo": "https://github.com/iquantecho/enderpulse",
+      "commit": "7b908fa130a2d3c5cd43e2bfdcb067ee77735c42"
     },
     "fullscreenPowerMenu": {
       "repo": "https://github.com/JDKamalakar/DMS-Fullscreen_Power_Menu",
-      "commit": "a4447e824472abf5c63b8a3511b4da823072f076"
+      "commit": "d6a184c979696ad6ae24e98579d7ca9ba7c9268b"
     },
     "ipIndicator": {
       "repo": "https://github.com/hthienloc/dms-ipIndicator",
-      "commit": "ced0c388d569a1bba7c625e033d3b0de6e239a83"
+      "commit": "988aeadbdcece2484d64806b16c9546642185674"
     },
     "mediaControlPlus": {
       "repo": "https://github.com/Dadangdut33/dms-plugins",
       "path": "MediaControlPlus",
-      "commit": "cb23b2590038ba47db3f27eca5101a8ac864da7d"
+      "commit": "63fe6b87c497f1f7c2ea61432716817db1c5c3a4"
+    },
+    "mediaControlsPlus": {
+      "repo": "https://github.com/lpv11/dms-media-controls-plus",
+      "commit": "1e8e885d4da4f315a594641af914cea82a66d9fc"
     },
     "resourceMonitor": {
       "repo": "https://github.com/smithyyang/dms-resource-monitor",
@@ -85,20 +101,24 @@
     "simpleAudioControl": {
       "repo": "https://github.com/Dadangdut33/dms-plugins",
       "path": "SimpleAudioControl",
-      "commit": "cb23b2590038ba47db3f27eca5101a8ac864da7d"
+      "commit": "63fe6b87c497f1f7c2ea61432716817db1c5c3a4"
+    },
+    "spotifyLike": {
+      "repo": "https://github.com/Dukko/dms-spotify-like",
+      "commit": "856cf7a6c087fa22c7c743c568fe37d0b118377f"
     },
     "systemMonitorPlus": {
       "repo": "https://github.com/Dadangdut33/dms-plugins",
       "path": "SystemMonitorPlus",
-      "commit": "cb23b2590038ba47db3f27eca5101a8ac864da7d"
+      "commit": "63fe6b87c497f1f7c2ea61432716817db1c5c3a4"
     },
     "tasks": {
       "repo": "https://github.com/AyoItsYas/dms-tasks",
-      "commit": "d58822c5e307e92e5ca91dc4d609aff463ea2afb"
+      "commit": "da212be5e329053a9a1e77b3826221674c6bbe77"
     },
     "unifiedTaskbar": {
       "repo": "https://github.com/jslandau/dms-unified-taskbar",
-      "commit": "1c175cb7f253d6bada00a8e5b83ce19cc4448248"
+      "commit": "eba5b385cfbbda85587fa0a4feefe293563617ff"
     },
     "weeklyCalendar": {
       "repo": "https://github.com/arqueon/dms-calendar",

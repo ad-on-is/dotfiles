@@ -9,6 +9,7 @@ local floatingWindows = {
   { title = "",                                                                                                 class = "^(io.github.diegopvlk.Cine)$" },
   { title = "",                                                                                                 class = "Emulator" },
   { title = "",                                                                                                 class = "FortiClient" },
+  { title = "",                                                                                                 class = "^com.danklinux.dms$" },
 }
 
 local bluringLayers = {

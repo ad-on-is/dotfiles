@@ -86,5 +86,37 @@
   },
   "tasks": {
     "enabled": true
+  },
+  "audioFx": {
+    "enabled": true
+  },
+  "enderPulse": {
+    "enabled": true,
+    "variants": [
+      {
+        "id": "builtin_output",
+        "name": "System output",
+        "audioTarget": "system",
+        "audioBackend": "auto",
+        "customAudioSource": "",
+        "icon": "volume_up",
+        "description": "EnderPulse audio source: System output"
+      },
+      {
+        "id": "builtin_microphone",
+        "name": "Microphone input",
+        "audioTarget": "microphone",
+        "audioBackend": "auto",
+        "customAudioSource": "",
+        "icon": "mic",
+        "description": "EnderPulse audio source: Microphone input"
+      }
+    ],
+    "barLength": 82,
+    "bandCount": 48,
+    "smoothing": 55,
+    "glow": 39,
+    "backgroundOpacity": 0,
+    "fadeDelay": 4
   }
 }
