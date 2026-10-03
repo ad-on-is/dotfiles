@@ -1,5 +1,7 @@
 require "config.envs"
 require "config.general"
+require "config.layout"
+require "config.plugins"
 require "config.decorations"
 require "config.monitors"
 require "config.input"
