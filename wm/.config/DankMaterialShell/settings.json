@@ -92,6 +92,10 @@
       "showTrash": false,
       "trashFileManager": "default",
       "trashCustomCommand": "",
+      "magnification": false,
+      "magnificationScale": 130,
+      "magnificationProfile": "parabolic",
+      "magnificationExpand": false,
       "order": [],
       "widgets": [
         {
@@ -685,5 +689,5 @@
       "trigger": "pw"
     }
   },
-  "configVersion": 35
+  "configVersion": 39
 }

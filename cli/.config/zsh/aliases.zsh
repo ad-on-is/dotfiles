@@ -154,6 +154,8 @@ alias llf='ll -f'
 alias la='ls -a'
 alias find='fd -H'
 alias tree="ls --tree -L 2"
+alias doco="docker compose"
+alias docox="docker compose exec"
 # alias rm='gio trash'
 function rm() {
   local args=()
