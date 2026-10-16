@@ -256,7 +256,7 @@
     "git_status": false,
     "file_icons": true,
     "close_position": "right",
-    "activate_on_close": "neighbour",
+    "activate_on_close": "history",
     "show_diagnostics": "all",
   },
 
